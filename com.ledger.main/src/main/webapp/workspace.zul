@@ -1,5 +1,5 @@
-<?page id="index" title="Candidate Recruitment Management - Project"?>
-<?link rel="icon" type="image/png" href="/images/logoagit-new.png"?>
+<?page id="index" title="Financial Management"?>
+<?link rel="icon" type="image/png" href="/images/logo-login.jpeg"?>
 <?taglib uri="/WEB-INF/security.tld" prefix="sec"?>
 <?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
 <?link rel="stylesheet" type="text/css"	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" ?>
@@ -24,22 +24,20 @@
                 <!-- Header -->
                 <borderlayout >
                     <north sclass="isi" height="80px" border="none">
-                        <borderlayout  style="background:#7C1442;">
-                            <west border="none" size="40%" style="background:#7C1442;">
+                        <borderlayout  style="background:#005a00;">
+                            <west border="none" size="40%" style="background:#005a00;">
                                 <div style="padding:25px;">
-                                    <label sclass="isi" style="color:white;font-size:20px;font-weight:bold" value="Candidate Recruitment Management"/>
+                                    <label sclass="isi" style="color:white;font-size:20px;font-weight:bold" value="Financial Management"/>
                                 </div>
                             </west>
-                            <east border="none" style="background:#7C1442; color:#fff;">
+                            <east border="none" style="background:#005a00; color:#fff;">
                                 <div style="padding:15px;">
-                                    <!--                            <label value="Logged" style="font-weight:bold"/>-->
                                     <label value="@load(vm.concat(vm.user.userSpecificationDTO.fullName, vm.concat(' - ',vm.user.roleDTO.roleName)))" style="font-weight:bold" />
                                     <label value="|"/>
                                     <a href="/processLogout" style="color:white" onClick="@command('buttonLogout')" >
                                         <label sclass="fa fa-power-off" value="Logout" style="font-weight:bold"/>
                                     </a>
                                     
-                                    <!--<label value="Version : ${labels.buildNumber}"/>-->
                                 </div>
                             </east>
                         </borderlayout>
@@ -48,13 +46,13 @@
                     <!-- Menu -->
                     <!--                    <west sclass="isi" splittable="true" width="20%" collapsible="true" border="none"
                           title="${labels.workspace.label.menu}" flex="true" autoscroll="true">
-                        <tree model="@load(vm.model)" sclass="list-group" style="background:#7C1442;">
+                        <tree model="@load(vm.model)" sclass="list-group" style="background:#005a00;">
                             <template name="model">
                                 <treeitem label="@load(each.menuName)" onClick="@command('menuClick', obj=each)" visible="${sec:isAllGranted(each.privilegeID)}" />
                             </template>
                         </tree>
                     </west>-->
-                    <west style="font-size:9pt; font-weight: bold" sclass="isi" splittable="true" width="23%" collapsible="true" border="none"
+                    <west style="font-size:9pt; font-weight: bold" sclass="isi" splittable="true" width="23%" collapsible="true" open="false" border="none"
                           title="${labels.workspace.label.menu}" flex="true" autoscroll="true">
                         <tree style="font-size:9pt; font-weight: bold" sclass="isi" model="@load(vm.model)" >
                             <template name="model" >
@@ -80,11 +78,11 @@
 
                     <!-- Footer -->
                     <south border="none" size="25px" >
-                        <borderlayout  style="background:#7C1442;">
-                            <west border="none" style="width:50% ;color:#fff; padding: 5px 10px 0px 10px; background:#7C1442;" sclass="isi">
-                                Copyright 2017 &#169; AGIT - App Candidate Recruitment Management
+                        <borderlayout  style="background:#005a00;">
+                            <west border="none" style="width:50% ;color:#fff; padding: 5px 10px 0px 10px; background:#005a00;" sclass="isi">
+                                Copyright 2018 &#169; Financial Management
                             </west>
-                            <east border="none" style="color:#fff; padding: 5px 5px 0px 0px; background:#7C1442;">
+                            <east border="none" style="color:#fff; padding: 5px 5px 0px 0px; background:#005a00;">
                                 <div align="left">
                                     <label sclass="isi" value="@load(vm.concatDate('Date: ',vm.user.userSpecificationDTO.userLoginInfoDTO.loginDate))" />
                                     <space/>

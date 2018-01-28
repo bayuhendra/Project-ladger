@@ -1,27 +1,28 @@
-<?page id="index" title="Candidate Recruitment Management - Project"?>
-<?link rel="icon" type="image/png" href="/images/logoagit-new.png"?>
+<?page id="index" title="Financial Management"?>
+<?link rel="icon" type="image/png" href="/images/logo-login.jpeg"?>
 <?taglib uri="/WEB-INF/security.tld" prefix="sec"?>
 <?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
 <?link rel="stylesheet" type="text/css"	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" ?>
 <?link rel="stylesheet" type="text/css"	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" ?>
-<!--<?link rel="stylesheet" type="text/css"	href="/styles/css/bootstrap.css" ?>-->
-<!--<?link rel="stylesheet" type="text/css"	href="/styles/css/default.css" ?>-->
 <?script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js" if="${zk.ie < 9}" ?>
     <?script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" if="${zk.ie < 9}"?>
         <zk xmlns="http://www.zkoss.org/2005/zul">
-            <window width="400px" position="center" mode="overlapped" style="background-color:#65001e;"
+            <window width="400px" position="center" mode="overlapped" style="background-color:black;"
                     apply="org.zkoss.bind.BindComposer"
                     viewModel="@id('vm') @init('com.ledger.main.viewmodel.LoginVM')">
-                <h:form id="f" name="f" action="/crm/processLogin" method="POST" xmlns:h="native">
-                    <image src="/images/background_crm.jpg" style='position: fixed; top: 0px; left: 0px; width: 100%; z-index: -1;' />
-                    <groupbox mold="3d" style="background-image:url('https://image.freepik.com/free-vector/blue-floral-background-design_1048-5786.jpg');">
+                <h:form id="f" name="f" action="/ledger/processLogin" method="POST" xmlns:h="native">
+                    <image src="/images/canting-batik.jpg" style='position: fixed; top: 0px; left: 0px; width: 100%; z-index: -1;' />
+                    <groupbox mold="3d">
                         <vbox width="100%" height="100%" align="center">
-                            <image src="/images/logo.png"/>
-                            <label sclass="isi" style="font-weight:bold;color:#65001e;font-size:17px" value="Sign In App Candidate Recruitment Management"></label>
+                            <image src="/images/logo-login.jpeg"/>
+                            <separator></separator>
+                            <separator></separator>
+                            <separator></separator>
+                            <label sclass="isi" style="font-weight:bold;color:black;font-size:15px" value="Sign In App Financial Management"></label>
                         </vbox>
                         <style>
                             .z-separator-hor-bar {
-                            background: #65001e;	
+                            background: black;	
                             height: 5px;		
                             }
                         </style>
@@ -29,7 +30,7 @@
                         <grid style="border:none;">
                             <rows>
                                 <row>
-                                    <label sclass="isi" style="font-weight:bold;color:#65001e;font-size:14px" value="${labels.user.label.username}" />
+                                    <label sclass="isi" style="font-weight:bold;color:black;font-size:12px" value="${labels.user.label.username}" />
                                     <textbox class="form-control"  name="username" width="150px" placeholder="username" constraint="no empty : Username Tidak Boleh Kosong"/>
                                 </row>
                             </rows>
@@ -38,11 +39,11 @@
                         <grid>
                             <rows>
                                 <row>
-                                    <label sclass="isi" style="font-weight:bold;color:#65001e;font-size:14px" value="${labels.user.label.password}" />
+                                    <label sclass="isi" style="font-weight:bold;color:black;font-size:12px" value="${labels.user.label.password}" />
                                     <textbox class="form-control" type="password" name="password" width="150px" placeholder="Password" constraint="no empty : Password Tidak Boleh Kosong"/>
                                 </row>
                                 <row visible="false">
-                                    <label sclass="isi" value="${labels.user.label.domain}" style="font-weight:bold;color:#65001e" />
+                                    <label sclass="isi" value="${labels.user.label.domain}" style="font-weight:bold;color:black" />
                                     <listbox name="ldapDomain" model="@load(vm.domains)" mold="select" width="150px">
                                         <template name="model" status="s">  
                                             <listitem label="@load(each.key)" value="@load(each.value)" selected="@load(s.index eq 0)"/>
@@ -55,14 +56,14 @@
                         <grid style="border:none;">
                             <rows>
                                 <row spans="2">
-                                    <a width="100%" label="Belum Punya Account User?" style="font-weight:bold;color:#65001e" onClick="@command('buttonKembali')"/>
+                                    <a width="100%" label="Belum Punya Account User?" style="font-weight:bold;color:black;font-size:12px" onClick="@command('buttonKembali')"/>
                                 </row>
                             </rows>
                         </grid>
                         <grid style="border:none;">
                             <rows>
                                 <row spans="2">
-                                    <a width="100%" label="Lupa Password?" style="font-weight:bold;color:#65001e" onClick="@command('buttonLupaPassword')"/>
+                                    <a width="100%" label="Lupa Password?" style="font-weight:bold;color:black;font-size:12px" onClick="@command('buttonLupaPassword')"/>
                                     <div align="center">
                                         <h:input type="submit" value="${labels.user.label.login}" style="width: 120px; height : 30px" />
                                     </div>

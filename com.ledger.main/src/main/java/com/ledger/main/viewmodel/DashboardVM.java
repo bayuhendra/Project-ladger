@@ -57,7 +57,7 @@ public class DashboardVM {
         }
         switch (role) {
             default:
-                uriPhoto = "/images/background.png";
+                uriPhoto = "/images/background.jpeg";
                 break;
         }
     }
