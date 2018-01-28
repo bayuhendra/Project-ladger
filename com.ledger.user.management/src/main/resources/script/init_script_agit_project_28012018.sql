@@ -2,27 +2,27 @@
 -- Records of mst_privilege
 -- ----------------------------
 INSERT INTO "public"."mst_privilege" VALUES ('0', 'ROOT', 'ROOT', 'DELETED', null, 't', 'Dashboard', 'Dashboard', null, null, '2016-01-01 00:00:00', 'SYSTEM');
-INSERT INTO "public"."mst_privilege" VALUES ('1', 'ADMINISTRATOR', 'Administrator', 'ACTIVE', 'ROOT', 't', 'Pengurus', null, null, null, '2016-01-01 00:00:00', 'SYSTEM');
-INSERT INTO "public"."mst_privilege" VALUES ('2', 'GROUP', 'Group', 'ACTIVE', 'ADMINISTRATOR', 't', 'Pengelolaan Grup', null, null, null, '2016-01-01 00:00:00', 'SYSTEM');
-INSERT INTO "public"."mst_privilege" VALUES ('3', 'GROUP_SEARCH', 'Group Search', 'ACTIVE', 'GROUP', 't', 'Pemeliharaan Grup', 'Pemeliharaan Grup', null, '~./ui/fnd/group/search.fnd.group.zul', '2016-01-01 00:00:00', 'SYSTEM');
+INSERT INTO "public"."mst_privilege" VALUES ('1', 'ADMINISTRATOR', 'User Management', 'ACTIVE', 'ROOT', 't', 'User Management', null, null, null, '2016-01-01 00:00:00', 'SYSTEM');
+INSERT INTO "public"."mst_privilege" VALUES ('2', 'GROUP', 'Group', 'ACTIVE', 'ADMINISTRATOR', 't', 'Group Management', null, null, null, '2016-01-01 00:00:00', 'SYSTEM');
+INSERT INTO "public"."mst_privilege" VALUES ('3', 'GROUP_SEARCH', 'Group Search', 'ACTIVE', 'GROUP', 't', 'Group - Maintenance', 'Pemeliharaan Grup', null, '~./ui/fnd/group/search.fnd.group.zul', '2016-01-01 00:00:00', 'SYSTEM');
 INSERT INTO "public"."mst_privilege" VALUES ('4', 'GROUP_UPDATE', 'Group Update', 'ACTIVE', 'GROUP_SEARCH', 'f', null, null, null, null, '2016-01-01 00:00:00', 'SYSTEM');
 INSERT INTO "public"."mst_privilege" VALUES ('5', 'GROUP_VIEW', 'Group View', 'ACTIVE', 'GROUP_SEARCH', 'f', null, null, null, null, '2016-01-01 00:00:00', 'SYSTEM');
 INSERT INTO "public"."mst_privilege" VALUES ('6', 'GROUP_DELETE', 'Group Delete', 'ACTIVE', 'GROUP_SEARCH', 'f', null, null, null, null, '2016-01-01 00:00:00', 'SYSTEM');
-INSERT INTO "public"."mst_privilege" VALUES ('7', 'GROUP_CREATE', 'Group Create', 'ACTIVE', 'GROUP', 't', 'Pembuatan Grup', 'Pembuatan Grup', null, '~./ui/fnd/group/create.fnd.group.zul', '2016-01-01 00:00:00', 'SYSTEM');
-INSERT INTO "public"."mst_privilege" VALUES ('8', 'USER_MANAGEMENT', 'User', 'ACTIVE', 'ADMINISTRATOR', 't', 'Pengelolaan Pengguna', null, null, null, '2016-01-01 00:00:00', 'SYSTEM');
-INSERT INTO "public"."mst_privilege" VALUES ('9', 'USER_SEARCH', 'User Search', 'ACTIVE', 'USER_MANAGEMENT', 't', 'Pemeliharaan Pengguna', 'Pemeliharaan Pengguna', null, '~./ui/fnd/user/search.fnd.user.zul', '2016-01-01 00:00:00', 'SYSTEM');
+INSERT INTO "public"."mst_privilege" VALUES ('7', 'GROUP_CREATE', 'Group Create', 'ACTIVE', 'GROUP', 't', 'Create', 'Group - Create', null, '~./ui/fnd/group/create.fnd.group.zul', '2016-01-01 00:00:00', 'SYSTEM');
+INSERT INTO "public"."mst_privilege" VALUES ('8', 'USER_MANAGEMENT', 'User', 'ACTIVE', 'ADMINISTRATOR', 't', 'User Management', null, null, null, '2016-01-01 00:00:00', 'SYSTEM');
+INSERT INTO "public"."mst_privilege" VALUES ('9', 'USER_SEARCH', 'User Search', 'ACTIVE', 'USER_MANAGEMENT', 't', 'Search', 'User - Maintenance', null, '~./ui/fnd/user/search.fnd.user.zul', '2016-01-01 00:00:00', 'SYSTEM');
 INSERT INTO "public"."mst_privilege" VALUES ('10', 'USER_UPDATE', 'User Update', 'ACTIVE', 'USER_SEARCH', 'f', null, null, null, null, '2016-01-01 00:00:00', 'SYSTEM');
 INSERT INTO "public"."mst_privilege" VALUES ('11', 'USER_VIEW', 'User View', 'ACTIVE', 'USER_SEARCH', 'f', null, null, null, null, '2016-01-01 00:00:00', 'SYSTEM');
 INSERT INTO "public"."mst_privilege" VALUES ('12', 'USER_DELETE', 'User Delete', 'ACTIVE', 'USER_SEARCH', 'f', null, null, null, null, '2016-01-01 00:00:00', 'SYSTEM');
 INSERT INTO "public"."mst_privilege" VALUES ('13', 'USER_RESET_PASSWORD', 'User Reset Password', 'ACTIVE', 'USER_SEARCH', 'f', null, null, null, null, '2016-01-01 00:00:00', 'SYSTEM');
 INSERT INTO "public"."mst_privilege" VALUES ('14', 'USER_LOCK_UNLOCK', 'User Lock Unlock', 'ACTIVE', 'USER_SEARCH', 'f', null, null, null, null, '2016-01-01 00:00:00', 'SYSTEM');
-INSERT INTO "public"."mst_privilege" VALUES ('15', 'USER_CREATE', 'User Create', 'ACTIVE', 'USER_MANAGEMENT', 't', 'Pembuatan Pengguna', 'Pembuatan Pengguna', null, '~./ui/fnd/user/create.fnd.user.zul', '2016-01-01 00:00:00', 'SYSTEM');
-INSERT INTO "public"."mst_privilege" VALUES ('16', 'USER_RELEASE', 'User Release', 'ACTIVE', 'USER_MANAGEMENT', 't', 'Penghapusan Pengguna', 'Penghapusan Pengguna', null, '~./ui/fnd/user/release.fnd.user.zul', '2016-01-01 00:00:00', 'SYSTEM');
-INSERT INTO "public"."mst_privilege" VALUES ('17', 'MENU', 'Menu Dashboard', 'ACTIVE', 'ADMINISTRATOR', 't', 'Pengelolaan Menu', null, null, null, '2016-01-01 00:00:00', 'SYSTEM');
-INSERT INTO "public"."mst_privilege" VALUES ('18', 'MENU_MANAGEMENT', 'Menu Dashboard', 'ACTIVE', 'MENU', 't', 'Beranda - Menu', 'Beranda - Menu', null, '~./ui/fnd/menu/dashboard.privilege.zul', '2016-01-01 00:00:00', 'SYSTEM');
-
-
-
+INSERT INTO "public"."mst_privilege" VALUES ('15', 'USER_CREATE', 'User Create', 'ACTIVE', 'USER_MANAGEMENT', 't', 'Create', 'User - Create', null, '~./ui/fnd/user/create.fnd.user.zul', '2016-01-01 00:00:00', 'SYSTEM');
+INSERT INTO "public"."mst_privilege" VALUES ('16', 'USER_RELEASE', 'User Release', 'ACTIVE', 'USER_MANAGEMENT', 't', 'Release', 'User - Release', null, '~./ui/fnd/user/release.fnd.user.zul', '2016-01-01 00:00:00', 'SYSTEM');
+INSERT INTO "public"."mst_privilege" VALUES ('17', 'MENU', 'Menu Dashboard', 'ACTIVE', 'ADMINISTRATOR', 't', 'User', null, null, null, '2016-01-01 00:00:00', 'SYSTEM');
+INSERT INTO "public"."mst_privilege" VALUES ('18', 'MENU_MANAGEMENT', 'Menu Dashboard', 'ACTIVE', 'MENU', 't', 'User - Dashboard', 'User - Dashboard', null, '~./ui/fnd/menu/dashboard.privilege.zul', '2016-01-01 00:00:00', 'SYSTEM');
+INSERT INTO "public"."mst_privilege" VALUES ('19', 'TRANSAKSI', 'Transaksi', 'ACTIVE', 'ROOT', 't', 'Transaksi', null, null, null, '2016-01-01 00:00:00', 'SYSTEM');
+INSERT INTO "public"."mst_privilege" VALUES ('20', 'ASSET', 'Asset', 'ACTIVE', 'ROOT', 't', 'Asset', null, null, null, '2016-01-01 00:00:00', 'SYSTEM');
+INSERT INTO "public"."mst_privilege" VALUES ('21', 'LAPORAN', 'Laporan', 'ACTIVE', 'ROOT', 't', 'Laporan', null, null, null, '2016-01-01 00:00:00', 'SYSTEM');
 
 -- ----------------------------
 -- Records of mst_role
@@ -34,6 +34,9 @@ INSERT INTO "public"."mst_role" VALUES ('2', 'ADMIN', 'ADMIN', 'ADMIN', 'ACTIVE'
 -- Records of mst_role_privilege
 -- ----------------------------
 INSERT INTO "public"."mst_role_privilege" VALUES ('1', '1', 'ALLOW', '0');
+INSERT INTO "public"."mst_role_privilege" VALUES ('1', '19', 'ALLOW', '1');
+INSERT INTO "public"."mst_role_privilege" VALUES ('1', '20', 'ALLOW', '2');
+INSERT INTO "public"."mst_role_privilege" VALUES ('1', '21', 'ALLOW', '3');
 INSERT INTO "public"."mst_role_privilege" VALUES ('2', '1', 'ALLOW', '0');
 -- ----------------------------
 -- Records of mst_user

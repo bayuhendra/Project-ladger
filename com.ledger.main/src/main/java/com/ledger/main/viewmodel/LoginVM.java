@@ -41,12 +41,12 @@ public class LoginVM {
         return ldapDomains;
     }
 
-    @Command("buttonKembali")
+    @Command("buttonRegisterAkun")
     @NotifyChange("userDTO")
-    public void buttonKembali(@BindingParam("object") UserDTO obj, @ContextParam(ContextType.VIEW) Window window) {
+    public void buttonRegisterAkun(@BindingParam("object") UserDTO obj, @ContextParam(ContextType.VIEW) Window window) {
         Map<String, Object> params = new HashMap<>();
         params.put("userDTO", obj);
-        CommonViewModel.navigateToWithoutDetach("/crm/register/register.zul", window, params);
+        CommonViewModel.navigateToWithoutDetach("/financial-management/register/register-akun.zul", window, params);
     }
 
     @Command("buttonLupaPassword")
