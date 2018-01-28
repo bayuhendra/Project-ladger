@@ -5,5 +5,5 @@
     
     <import resource="ledger-context-infrastructure-persistence.xml"/>
     <import resource="ledger-context-infrastructure-scheduler.xml"/>
-    <import resource="ledger-context-infrastructure-workflow.xml"/>
+    <!--<import resource="ledger-context-infrastructure-workflow.xml"/>-->
 </beans>

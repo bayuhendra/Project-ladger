@@ -1,4 +1,4 @@
-<window border="none"
+<!--<window border="none"
         apply="org.zkoss.bind.BindComposer"
         viewModel="@id('vm') @init('com.ledger.main.viewmodel.DashboardVM')">
     <groupbox mold="3d" style="background-color:white" contentStyle="border:0" visible="@load(not empty vm.user.getUserSpecificationDTO().getFullName() ? true : false)">
@@ -35,6 +35,15 @@
             <label style="color:black;font-size:15px; font-weight: bold"/>
         </vbox>
     </groupbox>
-
+</window>-->
+<window closable="true" apply="org.zkoss.bind.BindComposer"
+        viewModel="@id('vm') @init('com.ledger.main.viewmodel.DashboardVM')">
+    <panel title="@load(vm.concatUsername('Welcome,  ',vm.user.userSpecificationDTO.fullName))" sclass="panel-primary">
+        <panelchildren>
+            <div align="center" style="padding: 50px 5px 0px 0px">
+                <image src="@bind(vm.uriPhoto)" />
+            </div>
+        </panelchildren>
+    </panel>
 </window>
 

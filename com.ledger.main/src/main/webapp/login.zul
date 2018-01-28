@@ -28,19 +28,27 @@
                         </style>
                         <separator spacing="20px" bar="true"/>
                         <grid style="border:none;">
+                            <columns>
+                                <column width="30%"/>
+                                <column width="70%"/>
+                            </columns>
                             <rows>
                                 <row>
                                     <label sclass="isi" style="font-weight:bold;color:black;font-size:12px" value="${labels.user.label.username}" />
-                                    <textbox class="form-control"  name="username" width="150px" placeholder="username" constraint="no empty : Username Tidak Boleh Kosong"/>
+                                    <textbox class="form-control"  name="username" width="100%" placeholder="username" constraint="no empty : Username Tidak Boleh Kosong"/>
                                 </row>
                             </rows>
                     
                         </grid>
-                        <grid>
+                        <grid style="border:none;">
+                            <columns>
+                                <column width="30%"/>
+                                <column width="70%"/>
+                            </columns>
                             <rows>
                                 <row>
                                     <label sclass="isi" style="font-weight:bold;color:black;font-size:12px" value="${labels.user.label.password}" />
-                                    <textbox class="form-control" type="password" name="password" width="150px" placeholder="Password" constraint="no empty : Password Tidak Boleh Kosong"/>
+                                    <textbox class="form-control" type="password" name="password" width="100%" placeholder="Password" constraint="no empty : Password Tidak Boleh Kosong"/>
                                 </row>
                                 <row visible="false">
                                     <label sclass="isi" value="${labels.user.label.domain}" style="font-weight:bold;color:black" />
@@ -64,8 +72,11 @@
                             <rows>
                                 <row spans="2">
                                     <a width="100%" label="Lupa Password?" style="font-weight:bold;color:black;font-size:12px" onClick="@command('buttonLupaPassword')"/>
-                                    <div align="center">
+                                    <!--                                    <div align="center">
                                         <h:input type="submit" value="${labels.user.label.login}" style="width: 120px; height : 30px" />
+                                    </div>-->
+                                    <div align="left" class="btn-group btn-group-justified">
+                                        <button type="submit" label="Login" sclass="btn-success" width="100%"/>
                                     </div>
                                 </row>
                             </rows>

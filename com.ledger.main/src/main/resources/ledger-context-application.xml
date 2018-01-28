@@ -5,7 +5,7 @@
     
     <import resource="classpath*:common-context-application.xml" />
     <import resource="classpath*:usermanagement-context-application.xml"/>
-    <import resource="classpath*:bpm-context-application.xml"/> 
+    <!--<import resource="classpath*:bpm-context-application.xml"/>--> 
     <import resource="classpath*:masterdata-context-application.xml"/> 
     <import resource="classpath*:core-context-application.xml"/> 
     

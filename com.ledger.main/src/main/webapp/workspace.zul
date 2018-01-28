@@ -21,23 +21,32 @@
                     <menuitem label="Close All" onClick="@command('menuRightTab', popupRight=2)"/>
                     <menuitem label="Close Other" onClick="@command('menuRightTab', popupRight=3)"/>
                 </menupopup>
+                <menupopup id="m1">
+                    <menuitem label="Update Profile" />
+                    <menuitem label="Logout" href="/processLogout" onClick="@command('buttonLogout')"/>
+                </menupopup>
                 <!-- Header -->
                 <borderlayout >
-                    <north sclass="isi" height="80px" border="none">
+                    <north sclass="isi" height="37px" border="none">
                         <borderlayout  style="background:#005a00;">
                             <west border="none" size="40%" style="background:#005a00;">
-                                <div style="padding:25px;">
+                                <div style="padding:5px;">
                                     <label sclass="isi" style="color:white;font-size:20px;font-weight:bold" value="Financial Management"/>
                                 </div>
                             </west>
                             <east border="none" style="background:#005a00; color:#fff;">
-                                <div style="padding:15px;">
-                                    <label value="@load(vm.concat(vm.user.userSpecificationDTO.fullName, vm.concat(' - ',vm.user.roleDTO.roleName)))" style="font-weight:bold" />
-                                    <label value="|"/>
-                                    <a href="/processLogout" style="color:white" onClick="@command('buttonLogout')" >
-                                        <label sclass="fa fa-power-off" value="Logout" style="font-weight:bold"/>
-                                    </a>
-                                    
+                                <div sclass="navbar" style="padding:2px;">
+                                    <hlayout sclass="nav-user pull-right" spacing="0">
+                                        <menubar sclass="user-menu light-blue">
+                                            <menu tooltiptext="@load(vm.user.userSpecificationDTO.fullName)" label="@load(vm.user.userSpecificationDTO.fullName)" image="images/User/user.png">
+                                                <menupopup>
+                                                    <menuitem label="Update Profile" iconSclass="z-icon-user"/>
+                                                    <menuseparator/>
+                                                    <menuitem label="Logout" iconSclass="z-icon-off" href="/processLogout" onClick="@command('buttonLogout')"/>
+                                                </menupopup>
+                                            </menu>
+                                        </menubar>
+                                    </hlayout>
                                 </div>
                             </east>
                         </borderlayout>
@@ -52,11 +61,11 @@
                             </template>
                         </tree>
                     </west>-->
-                    <west style="font-size:9pt; font-weight: bold" sclass="isi" splittable="true" width="23%" collapsible="true" open="false" border="none"
+                    <west style="font-size:9pt; font-weight: bold" sclass="isi" splittable="true" width="23%" collapsible="true" open="true" border="none"
                           title="${labels.workspace.label.menu}" flex="true" autoscroll="true">
                         <tree style="font-size:9pt; font-weight: bold" sclass="isi" model="@load(vm.model)" >
                             <template name="model" >
-                                <treeitem label="@load(each.menuName)" image="@load(each.icon)" open="@load(true)" onClick="@command('menuClick', obj=each)" visible="${sec:isAllGranted(each.privilegeID)}" />
+                                <treeitem label="@load(each.menuName)" image="@load(each.icon)" open="@load(false)" onClick="@command('menuClick', obj=each)" visible="${sec:isAllGranted(each.privilegeID)}" />
                             </template>
                         </tree>
                     </west>

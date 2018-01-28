@@ -43,5 +43,5 @@
     <import resource="classpath*:usermanagement-context-infrastructure-persistence.xml"/>
     <import resource="classpath*:masterdata-context-infrastructure-persistence.xml"/>
     <import resource="classpath*:core-context-infrastructure-persistence.xml"/>
-    <import resource="classpath*:bpm-context-infrastructure-persistence.xml"/>
+    <!--<import resource="classpath*:bpm-context-infrastructure-persistence.xml"/>-->
 </beans>
