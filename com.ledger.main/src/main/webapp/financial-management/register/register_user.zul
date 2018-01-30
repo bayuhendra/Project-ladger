@@ -1,6 +1,6 @@
 <zk xmlns:w="client" xmlns:n="native">
     <window apply="org.zkoss.bind.BindComposer"
-            viewModel="@id('vm') @init('com.ledger.main.viewmodel.TestVM')"
+            viewModel="@id('vm') @init('com.ledger.main.viewmodel.financial.management.DaftarUserVM')"
             width="500px" height="600px">
         <!-- Modal content-->
         <div>
@@ -10,29 +10,29 @@
             <div class="modal-body">
                 <div class="input-group">
                     <n:h5 class="modal-title"> Nama Lengkap</n:h5>
-                    <textbox class="form-control" width="463px"/>
+                    <textbox class="form-control" width="463px" value="@bind(vm.fullname)"/>
                     <n:h5 class="modal-title"> Email</n:h5>
-                    <textbox class="form-control" width="463px"/>
+                    <textbox class="form-control" width="463px" value="@bind(vm.email)"/>
                     <n:h5 class="modal-title"> Username</n:h5>
-                    <textbox class="form-control" width="463px"/>
+                    <textbox class="form-control" width="463px" value="@bind(vm.username)"/>
                     <n:h5 class="modal-title"> Password</n:h5>
-                    <textbox class="form-control" type="password" width="463px"/>
+                    <textbox class="form-control" type="password" width="463px" value="@bind(vm.password)"/>
                 </div>
                 <separator width="3px"/>
                 <panel title="Data Usaha" sclass="panel-success">
                     <panelchildren>
                         <div class="input-group">
                             <n:h5 class="modal-title"> Nama Usaha</n:h5>
-                            <textbox class="form-control" width="435px"/>
+                            <textbox class="form-control" width="435px" value="@bind(vm.namaUsaha)"/>
                             <n:h5 class="modal-title"> Jenis Usaha</n:h5>
-                            <textbox class="form-control" width="435px"/>
+                            <textbox class="form-control" width="435px" value="@bind(vm.jenisUsaha)"/>
                         </div>
                     </panelchildren>
                 </panel>
             </div>
             <div class="modal-footer">
                 <button sclass="btn-danger" label="Close" onClick="@command('buttonCancel')" />
-                <button sclass="btn-success" label="Daftar" onClick="@command('buttonSave')" />
+                <button sclass="btn-success" label="Daftar" onClick="@command('buttonRegister')" />
             </div>
         </div>
     </window>
