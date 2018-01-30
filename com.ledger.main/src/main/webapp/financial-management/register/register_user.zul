@@ -1,0 +1,39 @@
+<zk xmlns:w="client" xmlns:n="native">
+    <window apply="org.zkoss.bind.BindComposer"
+            viewModel="@id('vm') @init('com.ledger.main.viewmodel.TestVM')"
+            width="500px" height="600px">
+        <!-- Modal content-->
+        <div>
+            <div class="modal-header" align="center">
+                <n:h4 class="modal-title"> Registrasi User</n:h4>
+            </div>
+            <div class="modal-body">
+                <div class="input-group">
+                    <n:h5 class="modal-title"> Nama Lengkap</n:h5>
+                    <textbox class="form-control" width="463px"/>
+                    <n:h5 class="modal-title"> Email</n:h5>
+                    <textbox class="form-control" width="463px"/>
+                    <n:h5 class="modal-title"> Username</n:h5>
+                    <textbox class="form-control" width="463px"/>
+                    <n:h5 class="modal-title"> Password</n:h5>
+                    <textbox class="form-control" type="password" width="463px"/>
+                </div>
+                <separator width="3px"/>
+                <panel title="Data Usaha" sclass="panel-success">
+                    <panelchildren>
+                        <div class="input-group">
+                            <n:h5 class="modal-title"> Nama Usaha</n:h5>
+                            <textbox class="form-control" width="435px"/>
+                            <n:h5 class="modal-title"> Jenis Usaha</n:h5>
+                            <textbox class="form-control" width="435px"/>
+                        </div>
+                    </panelchildren>
+                </panel>
+            </div>
+            <div class="modal-footer">
+                <button sclass="btn-danger" label="Close" onClick="@command('buttonCancel')" />
+                <button sclass="btn-success" label="Daftar" onClick="@command('buttonSave')" />
+            </div>
+        </div>
+    </window>
+</zk>

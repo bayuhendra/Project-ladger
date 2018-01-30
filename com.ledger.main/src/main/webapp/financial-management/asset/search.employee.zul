@@ -1,0 +1,196 @@
+<zk xmlns:w="client" xmlns:n="native">
+    <window apply="org.zkoss.bind.BindComposer"
+            viewModel="@id('vm') @init('com.ledger.main.viewmodel.TestVM')">
+        <div class="container">
+            <div class="input-group">
+                <textbox class="form-control" placeholder="@bind(vm.tulisan2)"/>
+                <span class="input-group-btn">
+                    <button label="Search" sclass="btn-primary" onClick="@command('buttonSearch')"/>
+                </span>
+            </div>
+        </div>
+        <separator height="30px"/>
+        <div align="left" class="bs-example">
+            <button label="@bind(vm.tulisan1)" sclass="btn-success" onClick="@command('buttonCreate')"/>
+            <space width="15px"/>
+            <button label="Tampilkan di Modal" sclass="btn-warning" onClick="@command('buttonShowModal', tulisan2=vm.tulisan2)"/>
+        </div>
+        <separator width="30px"/>
+        <!--<groupbox closable="false">-->
+        <listbox rows="10" mold="paging" emptyMessage="${labels.common.noDataFound}">
+            <listhead>
+                <listheader label="No" width="5%" align="center"/>
+                <listheader label="Nama Karyawan" width="15%" align="center"/>
+                <listheader label="Nama Perusahaan" width="15%" align="center"/>
+                <listheader label="Jabatan" width="10%" align="center"/>
+                <listheader label="Departemen" width="15%" align="center"/>
+                <listheader label="Alamat" width="25%" align="center"/>
+                <listheader label="Aksi" width="15%" align="center"/>
+            </listhead>
+            <listitem value="${each}">
+                <listcell >
+                    <label width="100%" value="1"/>
+                </listcell>
+                <listcell >
+                    <label width="100%" value="John Doe"/>
+                </listcell>
+                <listcell >
+                    <label width="100%" value="PT. CHEVRON"/>
+                </listcell>
+                <listcell >
+                    <label width="100%" value="Supervisor"/>
+                </listcell>
+                <listcell >
+                    <label width="100%" value="Tambang &amp; Alat Berat"/>
+                </listcell>
+                <listcell >
+                    <label width="100%" value="Jl. Umar Said No.15"/>
+                </listcell>
+                <listcell>
+                    <button label="Delete" mold="trendy"/>
+                    <space width="5px"></space>
+                    <button label="Detail" mold="trendy"/>
+                </listcell>
+            </listitem>
+            <listitem value="${each}">
+                <listcell >
+                    <label width="100%" value="2"/>
+                </listcell>
+                <listcell >
+                    <label width="100%" value="John Wick"/>
+                </listcell>
+                <listcell >
+                    <label width="100%" value="PT. CHEVRON"/>
+                </listcell>
+                <listcell >
+                    <label width="100%" value="Supervisor"/>
+                </listcell>
+                <listcell >
+                    <label width="100%" value="Tambang &amp; Alat Berat"/>
+                </listcell>
+                <listcell >
+                    <label width="100%" value="Jl. Umar Said No.16"/>
+                </listcell>
+                <listcell>
+                    <button label="Delete" mold="trendy"/>
+                    <space width="5px"></space>
+                    <button label="Detail" mold="trendy"/>
+                </listcell>
+            </listitem>
+            <listitem value="${each}">
+                <listcell >
+                    <label width="100%" value="3"/>
+                </listcell>
+                <listcell >
+                    <label width="100%" value="John Lenon"/>
+                </listcell>
+                <listcell >
+                    <label width="100%" value="PT. CHEVRON"/>
+                </listcell>
+                <listcell >
+                    <label width="100%" value="Supervisor"/>
+                </listcell>
+                <listcell >
+                    <label width="100%" value="Tambang &amp; Alat Berat"/>
+                </listcell>
+                <listcell >
+                    <label width="100%" value="Jl. Umar Said No.17"/>
+                </listcell>
+                <listcell>
+                    <button label="Delete" mold="trendy"/>
+                    <space width="5px"></space>
+                    <button label="Detail" mold="trendy"/>
+                </listcell>
+            </listitem>
+            <listitem value="${each}">
+                <listcell >
+                    <label width="100%" value="4"/>
+                </listcell>
+                <listcell >
+                    <label width="100%" value="John Kelly"/>
+                </listcell>
+                <listcell >
+                    <label width="100%" value="PT. CHEVRON"/>
+                </listcell>
+                <listcell >
+                    <label width="100%" value="Supervisor"/>
+                </listcell>
+                <listcell >
+                    <label width="100%" value="Tambang &amp; Alat Berat"/>
+                </listcell>
+                <listcell >
+                    <label width="100%" value="Jl. Umar Said No.18"/>
+                </listcell>
+                <listcell>
+                    <button label="Delete" mold="trendy"/>
+                    <space width="5px"></space>
+                    <button label="Detail" mold="trendy"/>
+                </listcell>
+            </listitem>
+            <listitem value="${each}">
+                <listcell >
+                    <label width="100%" value="5"/>
+                </listcell>
+                <listcell >
+                    <label width="100%" value="John Lock"/>
+                </listcell>
+                <listcell >
+                    <label width="100%" value="PT. CHEVRON"/>
+                </listcell>
+                <listcell >
+                    <label width="100%" value="Supervisor"/>
+                </listcell>
+                <listcell >
+                    <label width="100%" value="Tambang &amp; Alat Berat"/>
+                </listcell>
+                <listcell >
+                    <label width="100%" value="Jl. Umar Said No.19"/>
+                </listcell>
+                <listcell>
+                    <button label="Delete" mold="trendy"/>
+                    <space width="5px"></space>
+                    <button label="Detail" mold="trendy"/>
+                </listcell>
+            </listitem>
+                
+                
+            <!--                <template name="model">
+                <listitem value="${each}">
+                    <listcell >
+                        <label width="100%" value="EMP001"/>
+                    </listcell>
+                    <listcell >
+                        <label width="100%" value="John Doe"/>
+                    </listcell>
+                    <listcell >
+                        <label width="100%" value="PT. CHEVRON"/>
+                    </listcell>
+                    <listcell >
+                        <label width="100%" value="Supervisor"/>
+                    </listcell>
+                    <listcell >
+                        <label width="100%" value="Tambang &amp; Alat Berat"/>
+                    </listcell>
+                    <listcell >
+                        <label width="100%" value="Jl. Umar Said No.15"/>
+                    </listcell>
+                    <listcell>
+                        <button label="Delete" mold="trendy"/>
+                        <space width="5px"></space>
+                        <button label="Detail" mold="trendy"/>
+                    </listcell>
+                </listitem>
+            </template>-->
+        </listbox>
+        <!--</groupbox>-->
+        <div align="right">
+            <combobox width="182px" style="font-size:14px" height="25px" placeholder="-Pilih Jenis File-">
+                <template name="model" var="items">
+                    <comboitem label="@load(items)" value="@load(items)"/>
+                </template>
+            </combobox>
+            <space width="5px"></space>
+            <button label="Download" mold="trendy"/>
+        </div>
+    </window>
+</zk>

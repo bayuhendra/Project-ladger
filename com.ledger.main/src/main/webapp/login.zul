@@ -26,7 +26,9 @@
                             height: 5px;		
                             }
                         </style>
-                        <separator spacing="20px" bar="true"/>
+                        <!--<separator spacing="20px" bar="true"/>-->
+                        <div class="modal-footer" align="center">
+                        </div>
                         <grid style="border:none;">
                             <columns>
                                 <column width="30%"/>
@@ -38,7 +40,6 @@
                                     <textbox class="form-control"  name="username" width="100%" placeholder="username" constraint="no empty : Username Tidak Boleh Kosong"/>
                                 </row>
                             </rows>
-                    
                         </grid>
                         <grid style="border:none;">
                             <columns>
@@ -60,27 +61,40 @@
                                 </row>
                             </rows>
                         </grid>
-                        <separator spacing="20px" bar="true"/>
-                        <grid style="border:none;">
+                        <div class="modal-footer">
+                        </div>
+                        <!--<separator spacing="20px" bar="true"/>-->
+                        <div class="btn-group btn-group-justified">
+                            <hbox align="center">
+                                <space width="195px"/>
+                                <vbox>
+                                    <button label="Register Akun" sclass="btn-primary" width="100px" onClick="@command('buttonRegisterAkun')"/>
+                                </vbox>
+                                <vbox>
+                                    <button type="submit" label="Login" sclass="btn-success" width="70px"/>
+                                </vbox>
+                            </hbox>
+                        </div>
+                        <!--                        <grid style="border:none;">
                             <rows>
                                 <row spans="2">
                                     <a width="100%" label="Belum Punya Account User?" style="font-weight:bold;color:black;font-size:12px" onClick="@command('buttonRegisterAkun')"/>
                                 </row>
                             </rows>
-                        </grid>
-                        <grid style="border:none;">
+                        </grid>-->
+                        <!--                        <grid style="border:none;">
                             <rows>
                                 <row spans="2">
                                     <a width="100%" label="Lupa Password?" style="font-weight:bold;color:black;font-size:12px" onClick="@command('buttonLupaPassword')"/>
-                                    <!--                                    <div align="center">
+                                                                        <div align="center">
                                         <h:input type="submit" value="${labels.user.label.login}" style="width: 120px; height : 30px" />
-                                    </div>-->
+                                    </div>
                                     <div align="left" class="btn-group btn-group-justified">
                                         <button type="submit" label="Login" sclass="btn-success" width="100%"/>
                                     </div>
                                 </row>
                             </rows>
-                        </grid>
+                        </grid>-->
                     </groupbox>
                 </h:form>
                 <!-- this form-login-page form is also used as the form-error-page to ask for a login again. -->

@@ -46,7 +46,7 @@ public class LoginVM {
     public void buttonRegisterAkun(@BindingParam("object") UserDTO obj, @ContextParam(ContextType.VIEW) Window window) {
         Map<String, Object> params = new HashMap<>();
         params.put("userDTO", obj);
-        CommonViewModel.navigateToWithoutDetach("/financial-management/register/register-akun.zul", window, params);
+        CommonViewModel.navigateToWithoutDetach("/financial-management/register/register_user.zul", window, params);
     }
 
     @Command("buttonLupaPassword")
