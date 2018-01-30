@@ -52,10 +52,10 @@ INSERT INTO "public"."mst_role_privilege" VALUES ('2', '19', 'ALLOW', '1');
 INSERT INTO "public"."mst_role_privilege" VALUES ('2', '21', 'ALLOW', '2');
 INSERT INTO "public"."mst_role_privilege" VALUES ('2', '24', 'ALLOW', '3');
 INSERT INTO "public"."mst_role_privilege" VALUES ('2', '26', 'ALLOW', '4');
-INSERT INTO "public"."mst_role_privilege" VALUES ('3', '19', 'ALLOW', '1');
-INSERT INTO "public"."mst_role_privilege" VALUES ('3', '21', 'ALLOW', '2');
-INSERT INTO "public"."mst_role_privilege" VALUES ('3', '24', 'ALLOW', '3');
-INSERT INTO "public"."mst_role_privilege" VALUES ('3', '26', 'ALLOW', '4');
+INSERT INTO "public"."mst_role_privilege" VALUES ('3', '19', 'ALLOW', '0');
+INSERT INTO "public"."mst_role_privilege" VALUES ('3', '21', 'ALLOW', '1');
+INSERT INTO "public"."mst_role_privilege" VALUES ('3', '24', 'ALLOW', '2');
+INSERT INTO "public"."mst_role_privilege" VALUES ('3', '26', 'ALLOW', '3');
 -- ----------------------------
 -- Records of mst_user
 -- ----------------------------
