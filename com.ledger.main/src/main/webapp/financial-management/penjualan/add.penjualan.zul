@@ -1,0 +1,46 @@
+<zk xmlns:w="client" xmlns:n="native">
+    <window apply="org.zkoss.bind.BindComposer" width="700px" height="700px">
+        
+        <!-- Modal content-->
+        <div>
+            <div class="modal-header" align="center">
+                <n:h4 class="modal-title"> Tambah Data Pembelian</n:h4>
+            </div>
+            <div class="modal-body">
+                <div class="input-group">
+                    <n:h5 class="modal-title"> ID</n:h5>
+                    <textbox class="form-control" width="463px"/>
+                    <n:h5 class="modal-title"> Nama Barang</n:h5>
+                    <textbox class="form-control" width="463px"/>
+                    <n:h5 class="modal-title"> Kategori</n:h5>
+                    <combobox width="250px" style="font-size:14px" height="25px" placeholder="-Pilih Jenis Kategori-">
+                        <template name="model" var="items">
+                            <comboitem label="@load(items)" value="@load(items)"/>
+                        </template>
+                    </combobox>
+                    <n:h5 class="modal-title"> Jenis</n:h5>
+                    <combobox width="250px" style="font-size:14px" height="25px" placeholder="-Pilih Jenis Jenis">
+                        <template name="model" var="items">
+                            <comboitem label="@load(items)" value="@load(items)"/>
+                        </template>
+                    </combobox>
+                    <n:h5 class="modal-title"> Total</n:h5>
+                    <textbox class="form-control" width="463px"/>
+                    <n:h5 class="modal-title"> Catatan</n:h5>
+                    <textbox class="form-control" width="463px" rows="2"/>
+                    <n:h5 class="modal-title"> Tanggal Transaksi</n:h5>
+                    <datebox sclass="isi" format="hh:mm:ss a dd/MM/yyyy" width="250px" 
+                             readonly="true" value="@bind(fx.startDate)"
+                             constraint="no empty : Tanggal Mulai Tidak Boleh Kosong"/>
+                    <n:h5 class="modal-title"> Status</n:h5>
+                    <textbox class="form-control" width="463px"/>
+                </div>
+                <separator width="3px"/>
+            </div>
+            <div class="modal-footer">
+                <button sclass="btn-danger" label="Close" onClick="@command('buttonCancel')" />
+                <button sclass="btn-success" label="Daftar" onClick="@command('buttonRegister')" />
+            </div>
+        </div>
+    </window>
+</zk>

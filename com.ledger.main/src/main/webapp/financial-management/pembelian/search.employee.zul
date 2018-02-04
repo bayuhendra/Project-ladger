@@ -1,4 +1,4 @@
-<zk xmlns:w="client" xmlns:n="native">
+<!--<zk xmlns:w="client" xmlns:n="native">
     <window apply="org.zkoss.bind.BindComposer"
             viewModel="@id('vm') @init('com.ledger.main.viewmodel.TestVM')">
         <div class="container">
@@ -16,7 +16,7 @@
             <button label="Tampilkan di Modal" sclass="btn-warning" onClick="@command('buttonShowModal', tulisan2=vm.tulisan2)"/>
         </div>
         <separator width="30px"/>
-        <!--<groupbox closable="false">-->
+        <groupbox closable="false">
         <listbox rows="10" mold="paging" emptyMessage="${labels.common.noDataFound}">
             <listhead>
                 <listheader label="No" width="5%" align="center"/>
@@ -154,7 +154,7 @@
             </listitem>
                 
                 
-            <!--                <template name="model">
+                            <template name="model">
                 <listitem value="${each}">
                     <listcell >
                         <label width="100%" value="EMP001"/>
@@ -180,9 +180,9 @@
                         <button label="Detail" mold="trendy"/>
                     </listcell>
                 </listitem>
-            </template>-->
+            </template>
         </listbox>
-        <!--</groupbox>-->
+        </groupbox>
         <div align="right">
             <combobox width="182px" style="font-size:14px" height="25px" placeholder="-Pilih Jenis File-">
                 <template name="model" var="items">
@@ -193,4 +193,4 @@
             <button label="Download" mold="trendy"/>
         </div>
     </window>
-</zk>
+</zk>-->

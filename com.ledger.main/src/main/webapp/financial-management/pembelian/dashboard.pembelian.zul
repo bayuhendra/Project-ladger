@@ -1,0 +1,34 @@
+<zk xmlns:w="client" xmlns:n="native">
+    <window apply="org.zkoss.bind.BindComposer">
+        <separator height="5px"/>
+        <div align="left" class="bs-example">
+            <div class="col-lg-6">
+                <div class="input-group" >
+                    <textbox class="form-control" placeholder="Masukkan Parameter" />
+                    <span class="input-group-btn">
+                        <button sclass="btn-success">
+                            Search
+                        </button>
+                    </span>
+                </div>
+            </div>
+            <button label="Create" sclass="btn-success" onClick="@command('buttonCreate')"/>
+            <space width="5px"/>
+        </div>
+        <separator width="30px"/>
+        <listbox rows="10" mold="paging" emptyMessage="${labels.common.noDataFound}">
+            <listhead>
+                <listheader label="ID" width="5%" align="center"/>
+                <listheader label="Nama Barang" width="15%" align="center"/>
+                <listheader label="Kategori" width="10%" align="center"/>
+                <listheader label="Jenis" width="15%" align="center"/>
+                <listheader label="Total" width="10%" align="center"/>
+                <listheader label="Tanggal Transaksi" width="25%" align="center"/>
+                <listheader label="Status" width="15%" align="center"/>
+                <listheader label="Aksi" width="15%" align="center"/>
+            </listhead>
+            <listitem value="${each}">
+            </listitem>
+        </listbox>
+    </window>
+</zk>
