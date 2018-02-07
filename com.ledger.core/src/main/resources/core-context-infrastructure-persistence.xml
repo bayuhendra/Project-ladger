@@ -10,6 +10,11 @@
         http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-3.2.xsd">
 
     <!--Setting Repository-->
-    
+    <bean id="pembelianRepository" class="com.ledger.domain.infrastructure.persistance.hibernate.PembelianHibernateRepository">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    <bean id="penjualanRepository" class="com.ledger.domain.infrastructure.persistance.hibernate.PenjualanHibernateRepository">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
     
 </beans>

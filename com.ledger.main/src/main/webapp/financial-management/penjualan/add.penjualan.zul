@@ -24,6 +24,10 @@
                             <comboitem label="@load(items)" value="@load(items)"/>
                         </template>
                     </combobox>
+                    <n:h5 class="modal-title"> Jumlah</n:h5>
+                    <textbox class="form-control" width="463px"/>
+                    <n:h5 class="modal-title"> Diskon</n:h5>
+                    <textbox class="form-control" width="463px"/>
                     <n:h5 class="modal-title"> Total</n:h5>
                     <textbox class="form-control" width="463px"/>
                     <n:h5 class="modal-title"> Catatan</n:h5>

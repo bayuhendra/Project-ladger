@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+  "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+  "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping default-access="field">
+    <class mutable="true" name="com.ledger.domain.financial.management.Pembelian" table="MST_PEMBELIAN">
+        <!--<cache usage="read-only"/>-->
+        <id column="id" name="id">
+            <generator class="org.hibernate.id.IdentityGenerator"/>
+        </id>
+        <property column="pembelianID" name="pembelianID" not-null="false"/>
+        <property column="namaBarang" name="namaBarang" not-null="false"/>
+        <property column="kategoriPembelian" name="kategoriPembelian" not-null="false">
+            <type name="org.hibernate.type.EnumType">
+                <param name="enumClass">com.ledger.shared.type.Kategori</param>
+                <param name="type">12</param>
+            </type>
+        </property>
+        <property column="jenisPembelian" name="jenisPembelian" not-null="false">
+            <type name="org.hibernate.type.EnumType">
+                <param name="enumClass">com.ledger.shared.type.Jenis</param>
+                <param name="type">12</param>
+            </type>
+        </property>
+        <property column="jumlah" name="jumlah" not-null="false"/>
+        <property column="diskon" name="diskon" not-null="false"/>
+        <property column="total" name="total" not-null="false"/>
+        <property column="tanggalTransaksiPembelian" name="tanggalTransaksiPembelian" not-null="false"/>
+        <property column="catatan" name="catatan" not-null="false"/>
+        <property column="statusTransaksi" name="statusTransaksi" not-null="false">
+            <type name="org.hibernate.type.EnumType">
+                <param name="enumClass">com.ledger.shared.status.StatusTransaksi</param>
+                <param name="type">12</param>
+            </type>
+        </property>
+        <property column="createdBy" name="createdBy" not-null="false"/>
+        <property column="createdDate" name="createdDate" not-null="false"/>
+        <property column="modifiedDate" name="modifiedDate" not-null="false"/>
+        <property column="modifiedBy" name="modifiedBy" not-null="false"/>
+ 
+    </class>
+</hibernate-mapping>
