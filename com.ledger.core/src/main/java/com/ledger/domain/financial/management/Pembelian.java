@@ -37,7 +37,7 @@ public class Pembelian implements EntityObject<Pembelian> {
     public Pembelian() {
     }
 
-    public Pembelian(long id, String pembelianID, String namaBarang, Kategori kategoriPembelian, Jenis jenisPembelian, int jumlah, int diskon, int total, Date tanggalTransaksiPembelian, String catatan, StatusTransaksi statusPembelian, String createdBy, Date createdDate, String modifiedBy, Date modifiedDate) {
+    public Pembelian(long id, String pembelianID, String namaBarang, Kategori kategoriPembelian, Jenis jenisPembelian, int jumlah, int diskon, int total, Date tanggalTransaksiPembelian, String catatan, StatusTransaksi statusTransaksi, String createdBy, Date createdDate, String modifiedBy, Date modifiedDate) {
         this.id = id;
         this.pembelianID = pembelianID;
         this.namaBarang = namaBarang;
@@ -149,6 +149,30 @@ public class Pembelian implements EntityObject<Pembelian> {
 
     public void setModifiedDate(Date modifiedDate) {
         this.modifiedDate = modifiedDate;
+    }
+
+    public Kategori getKategoriPembelian() {
+        return kategoriPembelian;
+    }
+
+    public void setKategoriPembelian(Kategori kategoriPembelian) {
+        this.kategoriPembelian = kategoriPembelian;
+    }
+
+    public Jenis getJenisPembelian() {
+        return jenisPembelian;
+    }
+
+    public void setJenisPembelian(Jenis jenisPembelian) {
+        this.jenisPembelian = jenisPembelian;
+    }
+
+    public StatusTransaksi getStatusTransaksi() {
+        return statusTransaksi;
+    }
+
+    public void setStatusTransaksi(StatusTransaksi statusTransaksi) {
+        this.statusTransaksi = statusTransaksi;
     }
 
     @Override

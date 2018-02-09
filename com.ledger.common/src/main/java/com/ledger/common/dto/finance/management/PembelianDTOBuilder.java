@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.ledger.domain.financial.management;
+package com.ledger.common.dto.finance.management;
 
 import com.ledger.shared.status.StatusTransaksi;
 import com.ledger.shared.type.Jenis;
@@ -11,9 +11,8 @@ import com.ledger.shared.type.Kategori;
 import java.util.Date;
 
 
-public class PembelianBuilder {
+public class PembelianDTOBuilder {
 
-    private long id;
     private String pembelianID;
     private String namaBarang;
     private Kategori kategoriPembelian;
@@ -29,86 +28,81 @@ public class PembelianBuilder {
     private String modifiedBy;
     private Date modifiedDate;
 
-    public PembelianBuilder() {
+    public PembelianDTOBuilder() {
     }
 
-    public PembelianBuilder setId(long id) {
-        this.id = id;
-        return this;
-    }
-
-    public PembelianBuilder setPembelianID(String pembelianID) {
+    public PembelianDTOBuilder setPembelianID(String pembelianID) {
         this.pembelianID = pembelianID;
         return this;
     }
 
-    public PembelianBuilder setNamaBarang(String namaBarang) {
+    public PembelianDTOBuilder setNamaBarang(String namaBarang) {
         this.namaBarang = namaBarang;
         return this;
     }
 
-    public PembelianBuilder setKategoriPembelian(Kategori kategoriPembelian) {
+    public PembelianDTOBuilder setKategoriPembelian(Kategori kategoriPembelian) {
         this.kategoriPembelian = kategoriPembelian;
         return this;
     }
 
-    public PembelianBuilder setJenisPembelian(Jenis jenisPembelian) {
+    public PembelianDTOBuilder setJenisPembelian(Jenis jenisPembelian) {
         this.jenisPembelian = jenisPembelian;
         return this;
     }
 
-    public PembelianBuilder setJumlah(int jumlah) {
+    public PembelianDTOBuilder setJumlah(int jumlah) {
         this.jumlah = jumlah;
         return this;
     }
 
-    public PembelianBuilder setDiskon(int diskon) {
+    public PembelianDTOBuilder setDiskon(int diskon) {
         this.diskon = diskon;
         return this;
     }
 
-    public PembelianBuilder setTotal(int total) {
+    public PembelianDTOBuilder setTotal(int total) {
         this.total = total;
         return this;
     }
 
-    public PembelianBuilder setTanggalTransaksiPembelian(Date tanggalTransaksiPembelian) {
+    public PembelianDTOBuilder setTanggalTransaksiPembelian(Date tanggalTransaksiPembelian) {
         this.tanggalTransaksiPembelian = tanggalTransaksiPembelian;
         return this;
     }
 
-    public PembelianBuilder setCatatan(String catatan) {
+    public PembelianDTOBuilder setCatatan(String catatan) {
         this.catatan = catatan;
         return this;
     }
 
-    public PembelianBuilder setStatusTransaksi(StatusTransaksi statusTransaksi) {
+    public PembelianDTOBuilder setStatusTransaksi(StatusTransaksi statusTransaksi) {
         this.statusTransaksi = statusTransaksi;
         return this;
     }
 
-    public PembelianBuilder setCreatedBy(String createdBy) {
+    public PembelianDTOBuilder setCreatedBy(String createdBy) {
         this.createdBy = createdBy;
         return this;
     }
 
-    public PembelianBuilder setCreatedDate(Date createdDate) {
+    public PembelianDTOBuilder setCreatedDate(Date createdDate) {
         this.createdDate = createdDate;
         return this;
     }
 
-    public PembelianBuilder setModifiedBy(String modifiedBy) {
+    public PembelianDTOBuilder setModifiedBy(String modifiedBy) {
         this.modifiedBy = modifiedBy;
         return this;
     }
 
-    public PembelianBuilder setModifiedDate(Date modifiedDate) {
+    public PembelianDTOBuilder setModifiedDate(Date modifiedDate) {
         this.modifiedDate = modifiedDate;
         return this;
     }
 
-    public Pembelian createPembelian() {
-        return new Pembelian(id, pembelianID, namaBarang, kategoriPembelian, jenisPembelian, jumlah, diskon, total, tanggalTransaksiPembelian, catatan, statusTransaksi, createdBy, createdDate, modifiedBy, modifiedDate);
+    public PembelianDTO createPembelianDTO() {
+        return new PembelianDTO(pembelianID, namaBarang, kategoriPembelian, jenisPembelian, jumlah, diskon, total, tanggalTransaksiPembelian, catatan, statusTransaksi, createdBy, createdDate, modifiedBy, modifiedDate);
     }
     
 }

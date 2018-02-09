@@ -4,4 +4,18 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
     
+    
+    <bean id="pembelianDTOAssembler" class="com.ledger.interfaces.web.facade.dto.assembler.finance.management.PembelianDTOAssembler">
+    </bean>
+    <bean id="pembelianService" class="com.ledger.application.impl.PembelianServiceImpl">
+        <property name="pembelianDTOAssembler" ref="pembelianDTOAssembler"/>
+        <property name="pembelianRepository" ref="pembelianRepository"/>
+    </bean>
+    
+    <bean id="penjualanDTOAssembler" class="com.ledger.interfaces.web.facade.dto.assembler.finance.management.PenjualanDTOAssembler">
+    </bean>
+    <bean id="penjualanService" class="com.ledger.application.impl.PenjualanServiceImpl">
+        <property name="penjualanRepository" ref="penjualanRepository"/>
+        <property name="penjualanDTOAssembler" ref="penjualanDTOAssembler"/>
+    </bean>
 </beans>
