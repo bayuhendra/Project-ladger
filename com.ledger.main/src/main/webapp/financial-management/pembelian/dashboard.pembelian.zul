@@ -1,5 +1,7 @@
 <zk xmlns:w="client" xmlns:n="native">
-    <window apply="org.zkoss.bind.BindComposer">
+    <window apply="org.zkoss.bind.BindComposer"
+            viewModel="@id('vm') @init('com.ledger.main.viewmodel.financial.management.pembelian.PembelianVM')"
+            form="@id('fx') @load(vm.pembelianDTO) @save(vm.pembelianDTO, before='buttonSaveDataPembelian')">
         <separator height="5px"/>
         <div align="left" class="bs-example">
             <div class="col-lg-6">
@@ -16,19 +18,55 @@
             <space width="5px"/>
         </div>
         <separator width="30px"/>
-        <listbox rows="10" mold="paging" emptyMessage="${labels.common.noDataFound}">
+        <listbox rows="@load(vm.pageSize)" mold="paging" pageSize="@load(vm.pageSize)" emptyMessage="${labels.common.noDataFound}" 
+                 model="@bind(vm.pembelianDTOs)">
             <listhead>
                 <listheader label="ID" width="5%" align="center"/>
                 <listheader label="Nama Barang" width="15%" align="center"/>
                 <listheader label="Kategori" width="10%" align="center"/>
                 <listheader label="Jenis" width="15%" align="center"/>
+                <listheader label="Jumlah" width="10%" align="center"/>
+                <listheader label="Diskon" width="10%" align="center"/>
                 <listheader label="Total" width="10%" align="center"/>
-                <listheader label="Tanggal Transaksi" width="25%" align="center"/>
                 <listheader label="Status" width="15%" align="center"/>
+                <listheader label="Tanggal Transaksi" width="25%" align="center"/>
                 <listheader label="Aksi" width="15%" align="center"/>
             </listhead>
-            <listitem value="${each}">
-            </listitem>
+            <template name="model">
+                <listitem value="${each}">
+                    <listcell>
+                        <label width="100%" value="@bind(each.pembelianID)"/>
+                    </listcell>
+                    <listcell>
+                        <label width="100%" value="@bind(each.namaBarang)"/>
+                    </listcell>
+                    <listcell>
+                        <label width="100%" value="@bind(each.kategoriPembelian)"/>
+                    </listcell>
+                    <listcell>
+                        <label width="100%" value="@bind(each.jenisPembelian)"/>
+                    </listcell>
+                    <listcell>
+                        <label width="100%" value="@bind(each.jumlah)"/>
+                    </listcell>
+                    <listcell>
+                        <label width="100%" value="@bind(each.diskon)"/>
+                    </listcell>
+                    <listcell>
+                        <label width="100%" value="@bind(each.total)"/>
+                    </listcell>
+                    <listcell>
+                        <label width="100%" value="@bind(each.statusTransaksi)"/>
+                    </listcell>
+                    <listcell>
+                        <label width="100%" value="@bind(each.tanggalTransaksiPembelian)"/>
+                    </listcell>
+                    <listcell >
+                        <a onClick="@command('detailPembelian', object=each)" image="/images/skk_edit.png" sclass="btn btn-default"/>
+                        <a onClick="@command('deletePembelian', object=each)" image="/images/clear_x.png" sclass="btn btn-default"/>
+                    </listcell>
+                </listitem>
+            </template>
         </listbox>
     </window>
 </zk>
