@@ -32,9 +32,11 @@ import org.zkoss.bind.annotation.ExecutionArgParam;
 import org.zkoss.bind.annotation.GlobalCommand;
 import org.zkoss.bind.annotation.Init;
 import org.zkoss.bind.annotation.NotifyChange;
+import org.zkoss.zk.ui.event.Event;
 import org.zkoss.zk.ui.select.annotation.VariableResolver;
 import org.zkoss.zk.ui.select.annotation.WireVariable;
 import org.zkoss.zul.ListModelList;
+import org.zkoss.zul.Messagebox;
 import org.zkoss.zul.Window;
 
 /**
@@ -192,8 +194,28 @@ public class TransaksiVM {
         params.put("transaksiDTO", obj);
         CommonViewModel.navigateToWithoutDetach("/financial-management/transaksi/add.transaksi.zul", window, params);
     }
-    
-    
+
+    @Command("deleteTransaksi")
+    @NotifyChange("transaksiDTOs")
+    public void deleteTransaksi(@BindingParam("object") TransaksiDTO obj, @ContextParam(ContextType.VIEW) Window window) {
+        transaksiDTO = (TransaksiDTO) obj;
+
+        Messagebox.show("Apakah anda yakin ingin menghapus Transaksi?", "Konfirmasi", Messagebox.OK | Messagebox.CANCEL, Messagebox.QUESTION,
+                new org.zkoss.zk.ui.event.EventListener() {
+            @Override
+            public void onEvent(Event evt) throws InterruptedException {
+                if (evt.getName().equals("onOK")) {
+                    transaksiService.deleteData(transaksiDTO);
+                    showInformationMessagebox("Transaksi Berhasil Dihapus");
+                    BindUtils.postGlobalCommand(null, null, "refreshData", null);
+                } else {
+                    System.out.println("Operasi dibatalkan");
+                }
+            }
+        }
+        );
+
+    }
 
     public TransaksiService getTransaksiService() {
         return transaksiService;
