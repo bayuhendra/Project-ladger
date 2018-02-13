@@ -7,7 +7,7 @@ package com.ledger.domain.financial.management;
 
 import com.ledger.shared.object.EntityObject;
 import com.ledger.shared.status.StatusTransaksi;
-import com.ledger.shared.type.Jenis;
+import com.ledger.shared.type.JenisBarang;
 import com.ledger.shared.type.Kategori;
 import java.util.Date;
 import java.util.Objects;
@@ -22,7 +22,7 @@ public class Pembelian implements EntityObject<Pembelian> {
     private String pembelianID;
     private String namaBarang;
     private Kategori kategoriPembelian;
-    private Jenis jenisPembelian;
+    private JenisBarang jenisPembelian;
     private int jumlah;
     private int diskon;
     private int total;
@@ -37,7 +37,7 @@ public class Pembelian implements EntityObject<Pembelian> {
     public Pembelian() {
     }
 
-    public Pembelian(long id, String pembelianID, String namaBarang, Kategori kategoriPembelian, Jenis jenisPembelian, int jumlah, int diskon, int total, Date tanggalTransaksiPembelian, String catatan, StatusTransaksi statusTransaksi, String createdBy, Date createdDate, String modifiedBy, Date modifiedDate) {
+    public Pembelian(long id, String pembelianID, String namaBarang, Kategori kategoriPembelian, JenisBarang jenisPembelian, int jumlah, int diskon, int total, Date tanggalTransaksiPembelian, String catatan, StatusTransaksi statusTransaksi, String createdBy, Date createdDate, String modifiedBy, Date modifiedDate) {
         this.id = id;
         this.pembelianID = pembelianID;
         this.namaBarang = namaBarang;
@@ -159,11 +159,11 @@ public class Pembelian implements EntityObject<Pembelian> {
         this.kategoriPembelian = kategoriPembelian;
     }
 
-    public Jenis getJenisPembelian() {
+    public JenisBarang getJenisPembelian() {
         return jenisPembelian;
     }
 
-    public void setJenisPembelian(Jenis jenisPembelian) {
+    public void setJenisPembelian(JenisBarang jenisPembelian) {
         this.jenisPembelian = jenisPembelian;
     }
 

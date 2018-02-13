@@ -6,7 +6,7 @@
 package com.ledger.domain.financial.management;
 
 import com.ledger.shared.status.StatusTransaksi;
-import com.ledger.shared.type.Jenis;
+import com.ledger.shared.type.JenisBarang;
 import com.ledger.shared.type.Kategori;
 import java.util.Date;
 
@@ -17,7 +17,7 @@ public class PenjualanBuilder {
     private String penjualanID;
     private String namaBarang;
     private Kategori kategoriPenjualan;
-    private Jenis jenisPenjualan;
+    private JenisBarang jenisPenjualan;
     private int jumlah;
     private int diskon;
     private int total;
@@ -52,7 +52,7 @@ public class PenjualanBuilder {
         return this;
     }
 
-    public PenjualanBuilder setJenisPenjualan(Jenis jenisPenjualan) {
+    public PenjualanBuilder setJenisPenjualan(JenisBarang jenisPenjualan) {
         this.jenisPenjualan = jenisPenjualan;
         return this;
     }

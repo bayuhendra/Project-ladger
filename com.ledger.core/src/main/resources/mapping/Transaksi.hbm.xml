@@ -5,33 +5,39 @@
   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping default-access="field">
-    <class mutable="true" name="com.ledger.domain.financial.management.Penjualan" table="MST_PENJUALAN">
+    <class mutable="true" name="com.ledger.domain.financial.management.Transaksi" table="MST_TRANSAKSI">
         <!--<cache usage="read-only"/>-->
         <id column="id" name="id">
             <generator class="org.hibernate.id.IdentityGenerator"/>
         </id>
-        <property column="penjualanID" name="penjualanID" not-null="false"/>
-        <property column="namaBarang" name="namaBarang" not-null="false"/>
-        <property column="kategoriPenjualan" name="kategoriPenjualan" not-null="false">
+        <property column="transaksiID" name="transaksiID" not-null="false"/>
+        <property column="namaProduk" name="namaProduk" not-null="false"/>
+        <property column="kategoriTransaksi" name="kategoriTransaksi" not-null="false">
             <type name="org.hibernate.type.EnumType">
                 <param name="enumClass">com.ledger.shared.type.Kategori</param>
                 <param name="type">12</param>
             </type>
         </property>
-        <property column="jenisPenjualan" name="jenisPenjualan" not-null="false">
-         <type name="org.hibernate.type.EnumType">
+        <property column="jenisBarang" name="jenisBarang" not-null="false">
+            <type name="org.hibernate.type.EnumType">
                 <param name="enumClass">com.ledger.shared.type.JenisBarang</param>
                 <param name="type">12</param>
             </type>
         </property>
-        <property column="jumlah" name="jumlah" not-null="false"/>
+        <property column="harga" name="harga" not-null="false"/>
         <property column="diskon" name="diskon" not-null="false"/>
         <property column="total" name="total" not-null="false"/>
-        <property column="tanggalTransaksiPenjualan" name="tanggalTransaksiPenjualan" not-null="false"/>
-        <property column="catatan" name="catatan" not-null="false"/>
+        <property column="tanggalTransaksi" name="tanggalTransaksi" not-null="false"/>
+        <property column="deskripsi" name="deskripsi" not-null="false"/>
         <property column="statusTransaksi" name="statusTransaksi" not-null="false">
             <type name="org.hibernate.type.EnumType">
                 <param name="enumClass">com.ledger.shared.status.StatusTransaksi</param>
+                <param name="type">12</param>
+            </type>
+        </property>
+        <property column="jenisPembayaran" name="jenisPembayaran" not-null="false">
+            <type name="org.hibernate.type.EnumType">
+                <param name="enumClass">com.ledger.shared.type.JenisPembayaran</param>
                 <param name="type">12</param>
             </type>
         </property>

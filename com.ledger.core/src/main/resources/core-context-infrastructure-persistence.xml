@@ -16,5 +16,7 @@
     <bean id="penjualanRepository" class="com.ledger.domain.infrastructure.persistance.hibernate.PenjualanHibernateRepository">
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
-    
+    <bean id="transaksiRepository" class="com.ledger.domain.infrastructure.persistance.hibernate.TransaksiHibernateRepository">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
 </beans>

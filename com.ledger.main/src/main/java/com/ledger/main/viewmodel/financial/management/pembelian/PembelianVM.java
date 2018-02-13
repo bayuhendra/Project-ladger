@@ -10,7 +10,7 @@ import com.ledger.common.dto.finance.management.PembelianDTO;
 import com.ledger.common.dto.finance.management.PembelianDTOBuilder;
 import com.ledger.common.security.SecurityUtil;
 import com.ledger.shared.status.StatusTransaksi;
-import com.ledger.shared.type.Jenis;
+import com.ledger.shared.type.JenisBarang;
 import com.ledger.shared.type.Kategori;
 import com.ledger.shared.zul.CommonViewModel;
 import com.ledger.shared.zul.PageNavigation;
@@ -47,7 +47,7 @@ public class PembelianVM {
     private List<PembelianDTO> pembelianDTOs = new ArrayList<>();
 
     private ListModelList<Kategori> kategoris = new ListModelList<>();
-    private ListModelList<Jenis> jenises = new ListModelList<>();
+    private ListModelList<JenisBarang> jenises = new ListModelList<>();
     private ListModelList<StatusTransaksi> statusTransaksis = new ListModelList<>();
 
     private PageNavigation previous;
@@ -256,11 +256,11 @@ public class PembelianVM {
         this.kategoris = kategoris;
     }
 
-    public ListModelList<Jenis> getJenises() {
-        return new ListModelList<>(Jenis.values());
+    public ListModelList<JenisBarang> getJenises() {
+        return new ListModelList<>(JenisBarang.values());
     }
 
-    public void setJenises(ListModelList<Jenis> jenises) {
+    public void setJenises(ListModelList<JenisBarang> jenises) {
         this.jenises = jenises;
     }
 

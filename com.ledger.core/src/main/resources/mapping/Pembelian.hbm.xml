@@ -20,7 +20,7 @@
         </property>
         <property column="jenisPembelian" name="jenisPembelian" not-null="false">
             <type name="org.hibernate.type.EnumType">
-                <param name="enumClass">com.ledger.shared.type.Jenis</param>
+                <param name="enumClass">com.ledger.shared.type.JenisBarang</param>
                 <param name="type">12</param>
             </type>
         </property>

@@ -12,7 +12,7 @@ import com.ledger.domain.financial.management.PenjualanBuilder;
 import com.ledger.domain.financial.management.PenjualanRepository;
 import com.ledger.interfaces.web.facade.dto.assembler.finance.management.PenjualanDTOAssembler;
 import com.ledger.shared.status.StatusTransaksi;
-import com.ledger.shared.type.Jenis;
+import com.ledger.shared.type.JenisBarang;
 import com.ledger.shared.type.Kategori;
 import java.util.Date;
 import java.util.List;
@@ -61,13 +61,13 @@ public class PenjualanServiceImpl implements PenjualanService {
         Penjualan penjualan = new PenjualanBuilder()
                 .setPenjualanID("C1")
                 .setNamaBarang("aa")
-                .setKategoriPenjualan(Kategori.KATEGORI1)
-                .setJenisPenjualan(Jenis.JENIS1)
+                .setKategoriPenjualan(Kategori.PEMBELIAN)
+                .setJenisPenjualan(JenisBarang.NON_ELEKTRONIK)
                 .setJumlah(12)
                 .setDiskon(3)
                 .setTotal(4)
                 .setTanggalTransaksiPenjualan(new Date())
-                .setStatusTransaksi(StatusTransaksi.STATUS1)
+                .setStatusTransaksi(StatusTransaksi.DONE)
                 .setCatatan("catatan")
                 .setCreatedBy("createdBy")
                 .setCreatedDate(new Date())

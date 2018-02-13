@@ -9,8 +9,7 @@ package com.ledger.shared.type;
  *
  * @author BayuHS
  */
-public enum Jenis {
-    JENIS1,
-    JENIS2,
-    JENIS3
+public enum JenisPembayaran {
+    DEBIT,
+    NON_DEBIT
 }

@@ -18,4 +18,11 @@
         <property name="penjualanRepository" ref="penjualanRepository"/>
         <property name="penjualanDTOAssembler" ref="penjualanDTOAssembler"/>
     </bean>
+    
+    <bean id="transaksiDTOAssembler" class="com.ledger.interfaces.web.facade.dto.assembler.finance.management.TransaksiDTOAssembler">
+    </bean>
+    <bean id="transaksiService" class="com.ledger.application.impl.TransaksiServiceImpl">
+        <property name="transaksiDTOAssembler" ref="transaksiDTOAssembler"/>
+        <property name="transaksiRepository" ref="transaksiRepository"/>
+    </bean>
 </beans>

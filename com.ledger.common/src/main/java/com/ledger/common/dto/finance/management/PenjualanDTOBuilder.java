@@ -6,7 +6,7 @@
 package com.ledger.common.dto.finance.management;
 
 import com.ledger.shared.status.StatusTransaksi;
-import com.ledger.shared.type.Jenis;
+import com.ledger.shared.type.JenisBarang;
 import com.ledger.shared.type.Kategori;
 import java.util.Date;
 
@@ -16,7 +16,7 @@ public class PenjualanDTOBuilder {
     private String penjualanID;
     private String namaBarang;
     private Kategori kategoriPenjualan;
-    private Jenis jenisPenjualan;
+    private JenisBarang jenisPenjualan;
     private int jumlah;
     private int diskon;
     private int total;
@@ -46,7 +46,7 @@ public class PenjualanDTOBuilder {
         return this;
     }
 
-    public PenjualanDTOBuilder setJenisPenjualan(Jenis jenisPenjualan) {
+    public PenjualanDTOBuilder setJenisPenjualan(JenisBarang jenisPenjualan) {
         this.jenisPenjualan = jenisPenjualan;
         return this;
     }

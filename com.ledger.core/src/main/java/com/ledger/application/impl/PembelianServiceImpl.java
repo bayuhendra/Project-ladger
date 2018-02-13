@@ -12,7 +12,7 @@ import com.ledger.domain.financial.management.PembelianBuilder;
 import com.ledger.domain.financial.management.PembelianRepository;
 import com.ledger.interfaces.web.facade.dto.assembler.finance.management.PembelianDTOAssembler;
 import com.ledger.shared.status.StatusTransaksi;
-import com.ledger.shared.type.Jenis;
+import com.ledger.shared.type.JenisBarang;
 import com.ledger.shared.type.Kategori;
 import java.util.Date;
 import java.util.List;
@@ -61,13 +61,13 @@ public class PembelianServiceImpl implements PembelianService {
         Pembelian pembelian = new PembelianBuilder()
                 .setPembelianID("C1")
                 .setNamaBarang("aa")
-                .setKategoriPembelian(Kategori.KATEGORI1)
-                .setJenisPembelian(Jenis.JENIS1)
+                .setKategoriPembelian(Kategori.PEMBELIAN)
+                .setJenisPembelian(JenisBarang.ELETRONIK)
                 .setJumlah(12)
                 .setDiskon(3)
                 .setTotal(4)
                 .setTanggalTransaksiPembelian(new Date())
-                .setStatusTransaksi(StatusTransaksi.STATUS1)
+                .setStatusTransaksi(StatusTransaksi.DONE)
                 .setCatatan("catatan")
                 .setCreatedBy("createdBy")
                 .setCreatedDate(new Date())

@@ -6,7 +6,7 @@
 package com.ledger.common.dto.finance.management;
 
 import com.ledger.shared.status.StatusTransaksi;
-import com.ledger.shared.type.Jenis;
+import com.ledger.shared.type.JenisBarang;
 import com.ledger.shared.type.Kategori;
 import java.io.Serializable;
 import java.util.Date;
@@ -20,7 +20,7 @@ public class PembelianDTO implements Serializable {
     private String pembelianID;
     private String namaBarang;
     private Kategori kategoriPembelian;
-    private Jenis jenisPembelian;
+    private JenisBarang jenisPembelian;
     private int jumlah;
     private int diskon;
     private int total;
@@ -35,7 +35,7 @@ public class PembelianDTO implements Serializable {
     public PembelianDTO() {
     }
 
-    public PembelianDTO(String pembelianID, String namaBarang, Kategori kategoriPembelian, Jenis jenisPembelian, int jumlah, int diskon, int total, Date tanggalTransaksiPembelian, String catatan, StatusTransaksi statusTransaksi, String createdBy, Date createdDate, String modifiedBy, Date modifiedDate) {
+    public PembelianDTO(String pembelianID, String namaBarang, Kategori kategoriPembelian, JenisBarang jenisPembelian, int jumlah, int diskon, int total, Date tanggalTransaksiPembelian, String catatan, StatusTransaksi statusTransaksi, String createdBy, Date createdDate, String modifiedBy, Date modifiedDate) {
         this.pembelianID = pembelianID;
         this.namaBarang = namaBarang;
         this.kategoriPembelian = kategoriPembelian;
@@ -76,11 +76,11 @@ public class PembelianDTO implements Serializable {
         this.kategoriPembelian = kategoriPembelian;
     }
 
-    public Jenis getJenisPembelian() {
+    public JenisBarang getJenisPembelian() {
         return jenisPembelian;
     }
 
-    public void setJenisPembelian(Jenis jenisPembelian) {
+    public void setJenisPembelian(JenisBarang jenisPembelian) {
         this.jenisPembelian = jenisPembelian;
     }
 

@@ -1,0 +1,56 @@
+<zk xmlns:w="client" xmlns:n="native">
+    <window apply="org.zkoss.bind.BindComposer"
+            viewModel="@id('vm') @init('com.ledger.main.viewmodel.financial.management.transaksi.TransaksiVM')"
+            form="@id('fx') @load(vm.transaksiDTO) @save(vm.transaksiDTO, before='buttonSaveDataTransaksi')">
+        <separator height="5px"/>
+        <div align="left" class="bs-example">
+            <div class="col-lg-6">
+                <div class="input-group" >
+                    <textbox class="form-control" placeholder="Masukkan Parameter" />
+                    <span class="input-group-btn">
+                        <button sclass="btn-success">
+                            Search
+                        </button>
+                    </span>
+                </div>
+            </div>
+            <button label="Create" sclass="btn-success" onClick="@command('buttonCreateTransaksi')"/>
+            <space width="5px"/>
+        </div>
+        <separator width="30px"/>
+        <listbox rows="@load(vm.pageSize)" mold="paging" pageSize="@load(vm.pageSize)" emptyMessage="${labels.common.noDataFound}" 
+                 model="@bind(vm.transaksiDTOs)">
+            <listhead>
+                <listheader label="ID" width="15%" align="center"/>
+                <listheader label="Nama Produk" width="20%" align="center"/>
+                <listheader label="Kategori" width="15%" align="center"/>
+                <listheader label="Jenis Pembayaran" width="15%" align="center"/>
+                <listheader label="Tanggal Transaksi" width="20%" align="center"/>
+                <listheader label="Aksi" width="15%" align="center"/>
+            </listhead>
+            <template name="model">
+                <listitem value="${each}">
+                    <listcell>
+                        <label width="100%" value="@bind(each.transaksiID)"/>
+                    </listcell>
+                    <listcell>
+                        <label width="100%" value="@bind(each.namaProduk)"/>
+                    </listcell>
+                    <listcell>
+                        <label width="100%" value="@bind(each.kategoriTransaksi)"/>
+                    </listcell>
+                    <listcell>
+                        <label width="100%" value="@bind(each.jenisPembayaran)"/>
+                    </listcell>
+                    <listcell>
+                        <label width="100%" value="@bind(each.tanggalTransaksi)"/>
+                    </listcell>
+                    <listcell >
+                        <a onClick="@command('detailTransaksi', object=each)" image="/images/skk_edit.png" sclass="btn btn-default"/>
+                        <a onClick="@command('deleteTransaksi', object=each)" image="/images/clear_x.png" sclass="btn btn-default"/>
+                    </listcell>
+                </listitem>
+            </template>
+        </listbox>
+    </window>
+</zk>
