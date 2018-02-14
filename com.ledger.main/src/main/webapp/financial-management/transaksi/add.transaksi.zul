@@ -36,12 +36,6 @@
                         <div class="input-group">
                             <n:h5 class="modal-title"> Nama Produk</n:h5>
                             <textbox class="form-control" width="463px" value="@bind(fx.namaProduk)"/>
-                            <n:h5 class="modal-title"> Kategori</n:h5>
-                            <combobox width="250px" style="font-size:14px" readonly="true" height="25px" placeholder="-Pilih Jenis Kategori-" model="@load(vm.kategoris)" selectedItem="@bind(fx.kategoriTransaksi)">
-                                <template name="model" var="items">
-                                    <comboitem label="@load(items)" value="@load(items)"/>
-                                </template>
-                            </combobox>
                             <n:h5 class="modal-title"> Jenis Barang</n:h5>
                             <combobox width="250px" style="font-size:14px" readonly="true" height="25px" placeholder="-Pilih Jenis Jenis" model="@load(vm.jenises)" selectedItem="@bind(fx.jenisBarang)">
                                 <template name="model" var="items">
@@ -86,12 +80,6 @@
                         <div class="input-group">
                             <n:h5 class="modal-title"> Nama Produk</n:h5>
                             <textbox class="form-control" width="463px" value="@bind(fx.namaProduk)"/>
-                            <n:h5 class="modal-title"> Kategori</n:h5>
-                            <combobox width="250px" style="font-size:14px" readonly="true" height="25px" placeholder="-Pilih Jenis Kategori-" model="@load(vm.kategoris)" selectedItem="@bind(fx.kategoriTransaksi)">
-                                <template name="model" var="items">
-                                    <comboitem label="@load(items)" value="@load(items)"/>
-                                </template>
-                            </combobox>
                             <n:h5 class="modal-title"> Jenis Barang</n:h5>
                             <combobox width="250px" style="font-size:14px" readonly="true" height="25px" placeholder="-Pilih Jenis Jenis" model="@load(vm.jenises)" selectedItem="@bind(fx.jenisBarang)">
                                 <template name="model" var="items">
@@ -104,8 +92,8 @@
                             <textbox class="form-control" width="463px" rows="2" value="@bind(fx.deskripsi)"/>
                             <n:h5 class="modal-title"> Tanggal Transaksi</n:h5>
                             <datebox sclass="isi" format="hh:mm:ss a dd/MM/yyyy" width="250px" 
-                                                                 readonly="true"
-                                                                 constraint="no empty : Tanggal Mulai Tidak Boleh Kosong" value="@bind(fx.tanggalTransaksi)"/>
+                                     readonly="true"
+                                     constraint="no empty : Tanggal Mulai Tidak Boleh Kosong" value="@bind(fx.tanggalTransaksi)"/>
                         </div>
                         <separator width="3px"/>
                     </div>

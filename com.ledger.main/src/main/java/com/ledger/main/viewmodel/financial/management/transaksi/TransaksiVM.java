@@ -177,6 +177,7 @@ public class TransaksiVM {
     @Command("buttonSimpanTransaksi")
     @NotifyChange("transaksiDTO")
     public void buttonSimpanTransaksi(@BindingParam("object") TransaksiDTO obj, @ContextParam(ContextType.VIEW) Window window) {
+        transaksiDTO.setKategoriTransaksi(kategori);
         transaksiDTO.setTanggalTransaksi(new Date());
         transaksiService.SaveOrUpdate(transaksiDTO);
         showInformationMessagebox("Data Transaksi Berhasil Disimpan");
