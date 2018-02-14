@@ -1,0 +1,61 @@
+<zk xmlns:w="client" xmlns:n="native">
+    <window apply="org.zkoss.bind.BindComposer"
+            viewModel="@id('vm') @init('com.ledger.main.viewmodel.financial.management.profile.UpdateProfileVM')">
+        <style src="/style.css" />
+        <hbox>
+            <vbox>
+                <groupbox contentStyle="border:0;">
+                    <!--                    <div sclass="photo">
+                        <image id="img" src="/images/User/user.png" width="100%" height="100%"/>
+                    </div>-->
+                    <div class="modal-body">
+                        <panel title="Data Pribadi" sclass="panel-success">
+                            <panelchildren>
+                                <div class="input-group">
+                                    <n:h5 class="modal-title"> Nama Lengkap</n:h5>
+                                    <textbox class="form-control" width="425px" value="@bind(vm.fullname)" readonly="false"/>
+                                    <n:h5 class="modal-title"> No. Telp</n:h5>
+                                    <textbox class="form-control" width="425px" value="@bind(vm.handphone)" readonly="false"/>
+                                    <n:h5 class="modal-title"> Alamat</n:h5>
+                                    <textbox class="form-control" rows="3" width="425px" value="@bind(vm.alamatRumah)" readonly="false"/>
+                                    <n:h5 class="modal-title"> Email</n:h5>
+                                    <textbox class="form-control" width="425px" value="@bind(vm.email)" readonly="true"/>
+                                    <n:h5 class="modal-title"> Username</n:h5>
+                                    <textbox class="form-control" width="425px" value="@bind(vm.username)" readonly="true"/>
+                                    <n:h5 class="modal-title"> Password</n:h5>
+                                    <textbox class="form-control" type="password" width="425px" value="******" readonly="true"/>
+                                </div>
+                            </panelchildren>
+                        </panel>
+                    </div>
+                </groupbox>
+            </vbox>
+            <vbox>
+                <groupbox contentStyle="border:0;">
+                    <div class="modal-body">
+                        <panel title="Data Usaha" sclass="panel-success">
+                            <panelchildren>
+                                <div class="input-group">
+                                    <n:h5 class="modal-title"> Nama Usaha</n:h5>
+                                    <textbox class="form-control" width="425px" value="@bind(vm.namaUsaha)"/>
+                                    <n:h5 class="modal-title"> Jenis Usaha</n:h5>
+                                    <textbox class="form-control" width="425px" value="@bind(vm.jenisUsaha)"/>
+                                    <n:h5 class="modal-title"> Alamat</n:h5>
+                                    <textbox class="form-control" rows="3" width="425px" value="@bind(vm.alamatUsaha)"/>
+                                </div>
+                            </panelchildren>
+                        </panel>
+                    </div>
+                    <div class="modal-body" align="right">
+                        <button sclass="btn-success" label="Simpan" onClick="@command('buttonSave')" />
+                    </div>
+                </groupbox>
+            </vbox>
+        </hbox>
+<!--        <hbox>
+            <div class="modal-body">
+                <button sclass="btn-success" label="Simpan" onClick="@command('buttonRegister')" />
+            </div>
+        </hbox>-->
+    </window>
+</zk>

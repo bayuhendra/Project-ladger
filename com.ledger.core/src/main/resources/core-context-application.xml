@@ -25,4 +25,11 @@
         <property name="transaksiDTOAssembler" ref="transaksiDTOAssembler"/>
         <property name="transaksiRepository" ref="transaksiRepository"/>
     </bean>
+    
+    <bean id="assetDTOAssembler" class="com.ledger.interfaces.web.facade.dto.assembler.finance.management.AssetDTOAssembler">
+    </bean>
+    <bean id="assetService" class="com.ledger.application.impl.AssetServiceImpl">
+        <property name="assetDTOAssembler" ref="assetDTOAssembler"/>
+        <property name="assetRepository" ref="assetRepository"/>
+    </bean>
 </beans>

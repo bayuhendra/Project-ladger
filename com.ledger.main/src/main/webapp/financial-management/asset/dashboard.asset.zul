@@ -1,0 +1,57 @@
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<zk xmlns:w="client" xmlns:n="native">
+    <window apply="org.zkoss.bind.BindComposer"
+            viewModel="@id('vm') @init('com.ledger.main.viewmodel.financial.management.asset.AssetVM')">
+        <div align="left" class="bs-example">
+            <div class="col-lg-6">
+                <div class="input-group" >
+                    <textbox class="form-control" placeholder="Masukkan Parameter" value="@bind(vm.searchByNamaAsset)"/>
+                    <span class="input-group-btn">
+                        <button sclass="btn-success" label="Search" onClick="@command('buttonSearch')"/>
+                    </span>
+                </div>
+            </div>
+            <button label="Create" sclass="btn-success" onClick="@command('buttonCreateAsset')"/>
+            <space width="5px"/>
+        </div>
+        <separator width="30px"/>
+        <!--<groupbox closable="false">-->
+        <listbox rows="10" mold="paging" emptyMessage="${labels.common.noDataFound}"
+                 model="@bind(vm.assetDTOs)">
+            <listhead>
+                <listheader label="ID" width="10%" align="center"/>
+                <listheader label="Nama Asset" width="20%" align="center"/>
+                <listheader label="Jenis Asset" width="15%" align="center"/>
+                <listheader label="Nilai Asset" width="15%" align="center"/>
+                <listheader label="Keterangan" width="25%" align="center"/>
+                <listheader label="Aksi" width="15%" align="center"/>
+            </listhead>
+            <template name="model">
+                <listitem value="${each}">
+                    <listcell>
+                        <label width="100%" value="@load(each.assetdID)"/>
+                    </listcell>
+                    <listcell>
+                        <label width="100%" value="@load(each.namaAsset)"/>
+                    </listcell>
+                    <listcell>
+                        <label width="100%" value="@load(each.jenisAsset)"/>
+                    </listcell>
+                    <listcell>
+                        <label width="100%" value="@load(c:formatNumber(each.nilaiAsset, '#,###.##'))"/>
+                    </listcell>
+                    <listcell>
+                        <label width="100%" value="@load(each.keterangan)"/>
+                    </listcell>
+                    <listcell >
+                        <a onClick="@command('detailAsset', object=each)" image="/images/skk_edit.png" sclass="btn btn-default"/>
+                        <a onClick="@command('deleteAsset', object=each)" image="/images/clear_x.png" sclass="btn btn-default"/>
+                    </listcell>
+                </listitem>
+            </template>
+        </listbox>
+        <div align="right">
+            <paging totalSize="100"/>
+        </div>
+    </window>
+</zk>

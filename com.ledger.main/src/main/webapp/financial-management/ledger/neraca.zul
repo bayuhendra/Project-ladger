@@ -1,0 +1,19 @@
+<zk xmlns:w="client" xmlns:n="native">
+    <window apply="org.zkoss.bind.BindComposer"
+            viewModel="@id('vm') @init('com.ledger.main.viewmodel.financial.management.ledger.LaporanVM')">
+        <div>
+            <button upload="true" label="Select File">
+                <attribute name="onUpload"><![CDATA[
+        Object media = event.getMedia();
+        if (media != null)
+            iframe.setContent(media);
+    ]]></attribute>
+            </button>
+        </div>
+        <separator width="20px"/>
+        <div>
+            <iframe id="iframe" src="/files/Profil Bisnis UMKM.pdf"
+                    width="100%" height="500px" style="border: 1px solid gray" />
+        </div>
+    </window>
+</zk>

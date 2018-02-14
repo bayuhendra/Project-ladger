@@ -120,6 +120,7 @@ public class User implements EntityObject<User> {
 
     /*user status which purposes update status of data*/
     public void assignNewSpecification(User user) {
+        this.nip = user.getNip();
         this.role = user.getRole();
         this.userStatus = user.getUserStatus();
         this.userSpecification = user.getUserSpecification();

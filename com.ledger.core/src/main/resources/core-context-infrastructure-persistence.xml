@@ -19,4 +19,7 @@
     <bean id="transaksiRepository" class="com.ledger.domain.infrastructure.persistance.hibernate.TransaksiHibernateRepository">
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
+    <bean id="assetRepository" class="com.ledger.domain.infrastructure.persistance.hibernate.AssetHibernateRepository">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
 </beans>

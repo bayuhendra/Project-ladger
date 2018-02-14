@@ -10,7 +10,7 @@
         <property column="userName" name="userName" not-null="true" unique="true" update="false"/>
         <property column="password" name="password" not-null="true" update="true"/>
         <property column="userID" name="userID" not-null="false" update="false"/>
-        <property column="nip" name="nip" not-null="false" update="false"/>
+        <property column="nip" name="nip" not-null="false" update="true"/>
         <property column="userStatus" name="userStatus" not-null="true" update="true">
             <type name="org.hibernate.type.EnumType">
                 <param name="enumClass">com.ledger.shared.type.StatusData</param>

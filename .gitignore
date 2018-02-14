@@ -1,0 +1,12 @@
+/com.ledger.util/target/
+/com.ledger.shared/target/
+/com.ledger.infrastrucrture/com.ledger.infrastructure.component/target/
+/com.ledger.common/target/
+/com.ledger.masterdata/target/
+/com.ledger.core/target/
+/com.ledger.infrastrucrture/com.ledger.infrastructure.hibernate/target/
+/com.ledger.infrastrucrture/com.ledger.infrastructure.report/target/
+/com.ledger.infrastrucrture/com.ledger.infrastructure.notification/target/
+/com.ledger.user.management/target/
+/com.ledger.main/target/
+/com.ledger.script/target/

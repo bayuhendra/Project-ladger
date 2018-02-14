@@ -29,7 +29,7 @@
                     <rows>
                         <row>
                             <label sclass="isi" style="font-weight:bold;color:black;font-size:12px" value="${labels.user.label.username}" />
-                            <textbox class="form-control"  name="username" width="100%" placeholder="username" constraint="no empty : Username Tidak Boleh Kosong"/>
+                            <textbox class="form-control"  name="username" width="100%" placeholder="username"/>
                         </row>
                     </rows>
                 </grid>
@@ -41,7 +41,7 @@
                     <rows>
                         <row>
                             <label sclass="isi" style="font-weight:bold;color:black;font-size:12px" value="${labels.user.label.password}" />
-                            <textbox class="form-control" type="password" name="password" width="100%" placeholder="Password" constraint="no empty : Password Tidak Boleh Kosong"/>
+                            <textbox class="form-control" type="password" name="password" width="100%" placeholder="Password"/>
                         </row>
                         <row visible="false">
                             <label sclass="isi" value="${labels.user.label.domain}" style="font-weight:bold;color:black" />
@@ -60,7 +60,7 @@
                     <hbox align="center">
                         <space width="195px"/>
                         <vbox>
-                            <button label="Register Akun" sclass="btn-primary" width="100px" onClick="@command('buttonRegisterAkun')"/>
+                            <button label="Register Akun" sclass="btn-primary" width="110px" onClick="@command('buttonRegisterAkun')"/>
                         </vbox>
                         <vbox>
                             <button type="submit" label="Login" sclass="btn-success" width="70px"/>
