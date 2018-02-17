@@ -19,6 +19,7 @@ import java.util.Date;
 public class TransaksiDTO implements Serializable {
 
     private String transaksiID;
+    private String userIDTransaksi;
     private String namaProduk;
     private Kategori kategoriTransaksi;
     private JenisBarang jenisBarang;
@@ -37,8 +38,9 @@ public class TransaksiDTO implements Serializable {
     public TransaksiDTO() {
     }
 
-    public TransaksiDTO(String transaksiID, String namaProduk, Kategori kategoriTransaksi, JenisBarang jenisBarang, int harga, int diskon, int total, Date tanggalTransaksi, String deskripsi, StatusTransaksi statusTransaksi, JenisPembayaran jenisPembayaran, String createdBy, Date createdDate, String modifiedBy, Date modifiedDate) {
+    public TransaksiDTO(String transaksiID, String userIDTransaksi, String namaProduk, Kategori kategoriTransaksi, JenisBarang jenisBarang, int harga, int diskon, int total, Date tanggalTransaksi, String deskripsi, StatusTransaksi statusTransaksi, JenisPembayaran jenisPembayaran, String createdBy, Date createdDate, String modifiedBy, Date modifiedDate) {
         this.transaksiID = transaksiID;
+        this.userIDTransaksi = userIDTransaksi;
         this.namaProduk = namaProduk;
         this.kategoriTransaksi = kategoriTransaksi;
         this.jenisBarang = jenisBarang;
@@ -57,6 +59,14 @@ public class TransaksiDTO implements Serializable {
 
     public String getTransaksiID() {
         return transaksiID;
+    }
+
+    public String getUserIDTransaksi() {
+        return userIDTransaksi;
+    }
+
+    public void setUserIDTransaksi(String userIDTransaksi) {
+        this.userIDTransaksi = userIDTransaksi;
     }
 
     public void setTransaksiID(String transaksiID) {

@@ -11,6 +11,7 @@
             <generator class="org.hibernate.id.IdentityGenerator"/>
         </id>
         <property column="transaksiID" name="transaksiID" not-null="false"/>
+        <property column="userIDTransaksi" name="userIDTransaksi" not-null="false"/>
         <property column="namaProduk" name="namaProduk" not-null="false"/>
         <property column="kategoriTransaksi" name="kategoriTransaksi" not-null="false">
             <type name="org.hibernate.type.EnumType">

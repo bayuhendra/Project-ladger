@@ -64,6 +64,9 @@ public class TransaksiHibernateRepository extends HibernateRepository implements
         if (StringUtil.hasValue(map.get("statusTransaksi"))) {
             criteria.add(Restrictions.eq("statusTransaksi", map.get("statusTransaksi")));
         }
+        if (StringUtil.hasValue(map.get("userIDTransaksi"))) {
+            criteria.add(Restrictions.like("userIDTransaksi", "%" + map.get("userIDTransaksi") + "%").ignoreCase());
+        }
 
         return criteria.list();
     }

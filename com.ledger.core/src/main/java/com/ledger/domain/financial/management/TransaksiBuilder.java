@@ -16,6 +16,7 @@ public class TransaksiBuilder {
 
     private long id;
     private String transaksiID;
+    private String userIDTransaksi;
     private String namaProduk;
     private Kategori kategoriTransaksi;
     private JenisBarang jenisBarang;
@@ -41,6 +42,11 @@ public class TransaksiBuilder {
 
     public TransaksiBuilder setTransaksiID(String transaksiID) {
         this.transaksiID = transaksiID;
+        return this;
+    }
+
+    public TransaksiBuilder setUserIDTransaksi(String userIDTransaksi) {
+        this.userIDTransaksi = userIDTransaksi;
         return this;
     }
 
@@ -115,7 +121,7 @@ public class TransaksiBuilder {
     }
 
     public Transaksi createTransaksi() {
-        return new Transaksi(id, transaksiID, namaProduk, kategoriTransaksi, jenisBarang, harga, diskon, total, tanggalTransaksi, deskripsi, statusTransaksi, jenisPembayaran, createdBy, createdDate, modifiedBy, modifiedDate);
+        return new Transaksi(id, transaksiID, userIDTransaksi, namaProduk, kategoriTransaksi, jenisBarang, harga, diskon, total, tanggalTransaksi, deskripsi, statusTransaksi, jenisPembayaran, createdBy, createdDate, modifiedBy, modifiedDate);
     }
     
 }

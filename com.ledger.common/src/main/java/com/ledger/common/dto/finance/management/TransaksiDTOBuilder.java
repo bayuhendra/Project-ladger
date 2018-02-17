@@ -15,6 +15,7 @@ import java.util.Date;
 public class TransaksiDTOBuilder {
 
     private String transaksiID;
+    private String userIDTransaksi;
     private String namaProduk;
     private Kategori kategoriTransaksi;
     private JenisBarang jenisBarang;
@@ -35,6 +36,11 @@ public class TransaksiDTOBuilder {
 
     public TransaksiDTOBuilder setTransaksiID(String transaksiID) {
         this.transaksiID = transaksiID;
+        return this;
+    }
+
+    public TransaksiDTOBuilder setUserIDTransaksi(String userIDTransaksi) {
+        this.userIDTransaksi = userIDTransaksi;
         return this;
     }
 
@@ -109,7 +115,7 @@ public class TransaksiDTOBuilder {
     }
 
     public TransaksiDTO createTransaksiDTO() {
-        return new TransaksiDTO(transaksiID, namaProduk, kategoriTransaksi, jenisBarang, harga, diskon, total, tanggalTransaksi, deskripsi, statusTransaksi, jenisPembayaran, createdBy, createdDate, modifiedBy, modifiedDate);
+        return new TransaksiDTO(transaksiID, userIDTransaksi, namaProduk, kategoriTransaksi, jenisBarang, harga, diskon, total, tanggalTransaksi, deskripsi, statusTransaksi, jenisPembayaran, createdBy, createdDate, modifiedBy, modifiedDate);
     }
     
 }

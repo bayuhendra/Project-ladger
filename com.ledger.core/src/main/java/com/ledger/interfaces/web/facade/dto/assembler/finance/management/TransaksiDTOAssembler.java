@@ -20,11 +20,12 @@ import java.util.List;
  * @author BayuHS
  */
 public class TransaksiDTOAssembler implements IObjectAssembler<Transaksi, TransaksiDTO> {
-
+    
     @Override
     public TransaksiDTO toDTO(Transaksi domainObject) {
         return new TransaksiDTOBuilder()
                 .setTransaksiID(domainObject.getTransaksiID())
+                .setUserIDTransaksi(domainObject.getUserIDTransaksi())
                 .setNamaProduk(domainObject.getNamaProduk())
                 .setKategoriTransaksi(domainObject.getKategoriTransaksi())
                 .setJenisBarang(domainObject.getJenisBarang())
@@ -41,11 +42,12 @@ public class TransaksiDTOAssembler implements IObjectAssembler<Transaksi, Transa
                 .setModifiedDate(domainObject.getModifiedDate())
                 .createTransaksiDTO();
     }
-
+    
     @Override
     public Transaksi toDomain(TransaksiDTO dtoObject) {
         return new TransaksiBuilder()
                 .setTransaksiID(dtoObject.getTransaksiID())
+                .setUserIDTransaksi(dtoObject.getUserIDTransaksi())
                 .setNamaProduk(dtoObject.getNamaProduk())
                 .setKategoriTransaksi(dtoObject.getKategoriTransaksi())
                 .setJenisBarang(dtoObject.getJenisBarang())
@@ -62,7 +64,7 @@ public class TransaksiDTOAssembler implements IObjectAssembler<Transaksi, Transa
                 .setModifiedDate(dtoObject.getModifiedDate())
                 .createTransaksi();
     }
-
+    
     public List<Transaksi> toDomains(List<TransaksiDTO> arg0) {
         List<Transaksi> res = new ArrayList<>();
         for (TransaksiDTO t : arg0) {
@@ -70,7 +72,7 @@ public class TransaksiDTOAssembler implements IObjectAssembler<Transaksi, Transa
         }
         return res;
     }
-
+    
     public List<TransaksiDTO> toDTOs(List<Transaksi> arg0) {
         List<TransaksiDTO> res = new ArrayList<>();
         for (Transaksi t : arg0) {
