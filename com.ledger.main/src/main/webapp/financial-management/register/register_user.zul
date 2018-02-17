@@ -10,11 +10,11 @@
             <div class="modal-body">
                 <div class="input-group">
                     <n:h5 class="modal-title"> Nama Lengkap</n:h5>
-                    <textbox class="form-control" width="463px" value="@bind(vm.fullname)"/>
+                    <textbox class="form-control" width="463px" value="@bind(vm.fullname)" constraint="no empty"/>
                     <n:h5 class="modal-title"> Email</n:h5>
-                    <textbox class="form-control" width="463px" value="@bind(vm.email)"/>
+                    <textbox class="form-control" width="463px" value="@bind(vm.email)" constraint="no empty"/>
                     <n:h5 class="modal-title"> Username</n:h5>
-                    <textbox class="form-control" width="463px" value="@bind(vm.username)"/>
+                    <textbox class="form-control" width="463px" value="@bind(vm.username)" constraint="no empty"/>
                     <n:h5 class="modal-title"> Password</n:h5>
                     <textbox class="form-control" type="password" width="463px" value="@bind(vm.password)"/>
                 </div>

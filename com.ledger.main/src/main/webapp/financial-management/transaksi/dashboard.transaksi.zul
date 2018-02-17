@@ -48,5 +48,8 @@
                 </listitem>
             </template>
         </listbox>
+        <div align="right">
+            <paging totalSize="100"/>
+        </div>
     </window>
 </zk>

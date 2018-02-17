@@ -94,4 +94,14 @@ public class AssetServiceImpl implements AssetService {
         return null;
     }
 
+    @Override
+    public List<AssetDTO> findByUserID(String userID) {
+        Validate.notNull(assetRepository);
+        List<Asset> listAsset = assetRepository.findByUserID(userID);
+        if (listAsset != null) {
+            return (List<AssetDTO>) assetDTOAssembler.toDTOs(listAsset);
+        }
+        return null;
+    }
+
 }

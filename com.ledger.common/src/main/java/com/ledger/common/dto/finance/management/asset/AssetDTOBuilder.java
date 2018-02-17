@@ -6,6 +6,7 @@ public class AssetDTOBuilder {
 
     private String assetdID;
     private String namaAsset;
+    private String userID;
     private String jenisAsset;
     private double nilaiAsset;
     private String keterangan;
@@ -24,6 +25,11 @@ public class AssetDTOBuilder {
 
     public AssetDTOBuilder setNamaAsset(String namaAsset) {
         this.namaAsset = namaAsset;
+        return this;
+    }
+
+    public AssetDTOBuilder setUserID(String userID) {
+        this.userID = userID;
         return this;
     }
 
@@ -63,7 +69,7 @@ public class AssetDTOBuilder {
     }
 
     public AssetDTO createAssetDTO() {
-        return new AssetDTO(assetdID, namaAsset, jenisAsset, nilaiAsset, keterangan, createdBy, createdDate, modifiedBy, modifiedDate);
+        return new AssetDTO(assetdID, namaAsset, userID, jenisAsset, nilaiAsset, keterangan, createdBy, createdDate, modifiedBy, modifiedDate);
     }
 
 }

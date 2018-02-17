@@ -2,7 +2,7 @@
 <?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
 <zk xmlns="http://www.zkoss.org/2005/zul">
     <div class="container" xmlns:n="native">
-        <n:h1>Laporan Laba Rugi</n:h1>
+        <n:h1>Laporan KAS</n:h1>
     </div>
     <div>
         <grid>

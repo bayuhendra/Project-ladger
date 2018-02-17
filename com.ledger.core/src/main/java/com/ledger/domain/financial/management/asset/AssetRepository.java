@@ -16,6 +16,8 @@ public interface AssetRepository {
     Asset findByID(String assetID);
 
     List<Asset> findAll();
+    
+    List<Asset> findByUserID(String userID);
 
     List<Asset> findByParams(Map map);
 

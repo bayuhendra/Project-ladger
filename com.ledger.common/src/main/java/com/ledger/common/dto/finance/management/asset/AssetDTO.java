@@ -11,6 +11,7 @@ public class AssetDTO implements Serializable {
 
     private String assetdID;
     private String namaAsset;
+    private String userID;
     private String jenisAsset;
     private double nilaiAsset;
     private String keterangan;
@@ -22,9 +23,10 @@ public class AssetDTO implements Serializable {
     public AssetDTO() {
     }
 
-    public AssetDTO(String assetdID, String namaAsset, String jenisAsset, double nilaiAsset, String keterangan, String createdBy, Date createdDate, String modifiedBy, Date modifiedDate) {
+    public AssetDTO(String assetdID, String namaAsset, String userID, String jenisAsset, double nilaiAsset, String keterangan, String createdBy, Date createdDate, String modifiedBy, Date modifiedDate) {
         this.assetdID = assetdID;
         this.namaAsset = namaAsset;
+        this.userID = userID;
         this.jenisAsset = jenisAsset;
         this.nilaiAsset = nilaiAsset;
         this.keterangan = keterangan;
@@ -48,6 +50,14 @@ public class AssetDTO implements Serializable {
 
     public void setNamaAsset(String namaAsset) {
         this.namaAsset = namaAsset;
+    }
+
+    public String getUserID() {
+        return userID;
+    }
+
+    public void setUserID(String userID) {
+        this.userID = userID;
     }
 
     public String getJenisAsset() {
@@ -108,7 +118,7 @@ public class AssetDTO implements Serializable {
 
     @Override
     public String toString() {
-        return "AssetDTO{" + "assetdID=" + assetdID + ", namaAsset=" + namaAsset + ", jenisAsset=" + jenisAsset + ", nilaiAsset=" + nilaiAsset + ", keterangan=" + keterangan + ", createdBy=" + createdBy + ", createdDate=" + createdDate + ", modifiedBy=" + modifiedBy + ", modifiedDate=" + modifiedDate + '}';
+        return "AssetDTO{" + "assetdID=" + assetdID + ", namaAsset=" + namaAsset + ", userID=" + userID + ", jenisAsset=" + jenisAsset + ", nilaiAsset=" + nilaiAsset + ", keterangan=" + keterangan + ", createdBy=" + createdBy + ", createdDate=" + createdDate + ", modifiedBy=" + modifiedBy + ", modifiedDate=" + modifiedDate + '}';
     }
 
 }

@@ -6,6 +6,7 @@ public class AssetBuilder {
 
     private String assetdID;
     private String namaAsset;
+    private String userID;
     private String jenisAsset;
     private double nilaiAsset;
     private String keterangan;
@@ -24,6 +25,11 @@ public class AssetBuilder {
 
     public AssetBuilder setNamaAsset(String namaAsset) {
         this.namaAsset = namaAsset;
+        return this;
+    }
+
+    public AssetBuilder setUserID(String userID) {
+        this.userID = userID;
         return this;
     }
 
@@ -63,7 +69,7 @@ public class AssetBuilder {
     }
 
     public Asset createAsset() {
-        return new Asset(assetdID, namaAsset, jenisAsset, nilaiAsset, keterangan, createdBy, createdDate, modifiedBy, modifiedDate);
+        return new Asset(assetdID, namaAsset, userID, jenisAsset, nilaiAsset, keterangan, createdBy, createdDate, modifiedBy, modifiedDate);
     }
 
 }

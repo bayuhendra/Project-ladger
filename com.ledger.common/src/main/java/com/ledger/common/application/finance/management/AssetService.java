@@ -19,6 +19,8 @@ public interface AssetService {
     AssetDTO findByID(String assetID);
 
     List<AssetDTO> findAll();
+    
+    List<AssetDTO> findByUserID(String userID);
 
     List<AssetDTO> findByParams(Map map);
 }

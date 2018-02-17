@@ -1,17 +1,9 @@
 package com.ledger.main.viewmodel.financial.management.profile;
 
-import com.ledger.common.dto.usermanagement.AccessTimeDTO;
-import com.ledger.common.dto.usermanagement.AccessTimeDTOBuilder;
 import com.ledger.common.dto.usermanagement.RoleDTO;
 import com.ledger.common.dto.usermanagement.UserDTO;
-import com.ledger.common.dto.usermanagement.UserDTOBuilder;
-import com.ledger.common.dto.usermanagement.UserLoginInfoDTO;
-import com.ledger.common.dto.usermanagement.UserSpecificationDTO;
-import com.ledger.common.dto.usermanagement.UserSpecificationDTOBuilder;
 import com.ledger.common.security.SecurityUtil;
-import com.ledger.shared.type.StatusData;
 import com.ledger.shared.zul.PageNavigation;
-import com.ledger.user.management.application.RoleService;
 import com.ledger.user.management.application.UserService;
 import com.ledger.util.DateUtil;
 import com.ledger.util.StringUtil;
@@ -19,8 +11,6 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.UUID;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.zkoss.bind.annotation.Command;
 import org.zkoss.bind.annotation.ContextParam;
 import org.zkoss.bind.annotation.ContextType;

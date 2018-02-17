@@ -12,6 +12,7 @@ public class Asset implements EntityObject<Asset> {
 
     long id;
     private String assetdID;
+    private String userID;
     private String namaAsset;
     private String jenisAsset;
     private double nilaiAsset;
@@ -24,8 +25,9 @@ public class Asset implements EntityObject<Asset> {
     public Asset() {
     }
 
-    public Asset(String assetdID, String namaAsset, String jenisAsset, double nilaiAsset, String keterangan, String createdBy, Date createdDate, String modifiedBy, Date modifiedDate) {
+    public Asset(String assetdID, String namaAsset, String userID, String jenisAsset, double nilaiAsset, String keterangan, String createdBy, Date createdDate, String modifiedBy, Date modifiedDate) {
         this.assetdID = assetdID;
+        this.userID = userID;
         this.namaAsset = namaAsset;
         this.jenisAsset = jenisAsset;
         this.nilaiAsset = nilaiAsset;
@@ -36,16 +38,20 @@ public class Asset implements EntityObject<Asset> {
         this.modifiedDate = modifiedDate;
     }
 
-    public long getId() {
-        return id;
-    }
-
     public String getAssetdID() {
         return assetdID;
     }
 
     public void setAssetdID(String assetdID) {
         this.assetdID = assetdID;
+    }
+
+    public String getUserID() {
+        return userID;
+    }
+
+    public void setUserID(String userID) {
+        this.userID = userID;
     }
 
     public String getNamaAsset() {
@@ -117,6 +123,7 @@ public class Asset implements EntityObject<Asset> {
         int hash = 7;
         hash = 37 * hash + Objects.hashCode(this.assetdID);
         hash = 37 * hash + Objects.hashCode(this.namaAsset);
+        hash = 37 * hash + Objects.hashCode(this.userID);
         hash = 37 * hash + Objects.hashCode(this.jenisAsset);
         hash = 37 * hash + (int) (Double.doubleToLongBits(this.nilaiAsset) ^ (Double.doubleToLongBits(this.nilaiAsset) >>> 32));
         hash = 37 * hash + Objects.hashCode(this.keterangan);
@@ -145,6 +152,7 @@ public class Asset implements EntityObject<Asset> {
     public void assignNewDataAsset(Asset asset) {
         this.assetdID = asset.assetdID;
         this.namaAsset = asset.namaAsset;
+        this.userID = asset.userID;
         this.jenisAsset = asset.jenisAsset;
         this.nilaiAsset = asset.nilaiAsset;
         this.keterangan = asset.keterangan;

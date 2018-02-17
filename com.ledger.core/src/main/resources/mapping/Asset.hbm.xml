@@ -12,6 +12,7 @@
         </id>
         <property column="assetdID" name="assetdID" not-null="false"/>
         <property column="namaAsset" name="namaAsset" not-null="false"/>
+        <property column="userID" name="userID" not-null="false"/>
         <property column="jenisAsset" name="jenisAsset" not-null="false"/>
         <property column="nilaiAsset" name="nilaiAsset" not-null="false"/>
         <property column="keterangan" name="keterangan" not-null="false"/>

@@ -49,6 +49,9 @@ public class AssetHibernateRepository extends HibernateRepository implements Ass
     @Override
     public List<Asset> findByParams(Map map) {
         Criteria criteria = getSession().createCriteria(Asset.class);
+        if (StringUtil.hasValue(map.get("userID"))) {
+            criteria.add(Restrictions.eq("userID", map.get("userID")));
+        }
         if (StringUtil.hasValue(map.get("assetdID"))) {
             criteria.add(Restrictions.eq("assetdID", map.get("assetdID")));
         }
@@ -60,6 +63,14 @@ public class AssetHibernateRepository extends HibernateRepository implements Ass
         }
 
         return criteria.list();
+    }
+
+    @Override
+    public List<Asset> findByUserID(String userID) {
+        return (List<Asset>) getSession()
+                .createQuery("from com.ledger.domain.financial.management.asset.Asset where userID = :cid")
+                .setParameter("cid", userID)
+                .list();
     }
 
 }

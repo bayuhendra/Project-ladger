@@ -16,7 +16,7 @@
         </div>
         <separator width="30px"/>
         <!--<groupbox closable="false">-->
-        <listbox rows="10" mold="paging" emptyMessage="${labels.common.noDataFound}"
+        <listbox rows="9" mold="paging" emptyMessage="${labels.common.noDataFound}"
                  model="@bind(vm.assetDTOs)">
             <listhead>
                 <listheader label="ID" width="10%" align="center"/>

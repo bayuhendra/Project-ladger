@@ -94,7 +94,6 @@ public class DaftarUserVM {
         } else {
             roleDTO = roleService.findByID("USER");
             UserSpecificationDTO userSpecificationDTO = new UserSpecificationDTOBuilder()
-                    .setPrimaryBranchID("123456789")
                     .setEmail(email)
                     .setFullName(fullname)
                     .setImmediateSupervisorUserName(namaUsaha)

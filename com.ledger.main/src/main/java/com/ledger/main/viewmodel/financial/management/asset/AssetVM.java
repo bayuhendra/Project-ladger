@@ -75,7 +75,7 @@ public class AssetVM {
     private void initData() {
         listJenisAsset.add("ELEKTRONIK");
         listJenisAsset.add("NON ELEKTRONIK");
-        assetDTOs = assetService.findAll();
+        assetDTOs = assetService.findByUserID(SecurityUtil.getUserName());
         if (assetDTOs.isEmpty()) {
             assetDTOs = Collections.emptyList();
         }
@@ -158,6 +158,7 @@ public class AssetVM {
     @NotifyChange("assetDTOs")
     public void buttonSearch(@ContextParam(ContextType.VIEW) Window window) {
         Map params = new HashMap();
+        params.put("userID", SecurityUtil.getUserName());
         params.put("namaAsset", searchByNamaAsset);
 
         assetDTOs = assetService.findByParams(params);
@@ -184,6 +185,7 @@ public class AssetVM {
         assetDTO.setJenisAsset(jenisAsset);
         assetDTO.setNilaiAsset(nilaiAsset);
         assetDTO.setKeterangan(keterangan);
+        assetDTO.setUserID(SecurityUtil.getUserName());
         assetService.SaveOrUpdate(assetDTO);
         showInformationMessagebox("Data Asset Berhasil Disimpan");
         BindUtils.postGlobalCommand(null, null, "refreshData", null);
@@ -193,7 +195,7 @@ public class AssetVM {
     @GlobalCommand
     @NotifyChange("assetDTOs")
     public void refreshData() {
-        assetDTOs = assetService.findAll();
+        assetDTOs = assetService.findByUserID(SecurityUtil.getUserName());
     }
 
     @Command("detailAsset")
