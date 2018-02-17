@@ -78,6 +78,9 @@ public class TransaksiVM {
     private String transaksiID;
     private String namaProduk;
 
+    private double afterDiscount;
+    private double total;
+
     @Init
     public void init(
             @ExecutionArgParam("transaksiDTO") TransaksiDTO transaksi,
@@ -192,6 +195,9 @@ public class TransaksiVM {
         transaksiDTO.setUserIDTransaksi(userDTO.getUserID());
         transaksiDTO.setKategoriTransaksi(kategori);
         transaksiDTO.setTanggalTransaksi(new Date());
+        total = 100 - transaksiDTO.getDiskon();
+        afterDiscount = (total * transaksiDTO.getHarga()) / 100;
+        transaksiDTO.setTotal(afterDiscount);
         transaksiService.SaveOrUpdate(transaksiDTO);
         showInformationMessagebox("Data Transaksi Berhasil Disimpan");
         BindUtils.postGlobalCommand(null, null, "refreshDataSubmitTransaksi", null);
@@ -384,6 +390,22 @@ public class TransaksiVM {
 
     public void setUserDTO(UserDTO userDTO) {
         this.userDTO = userDTO;
+    }
+
+    public double getAfterDiscount() {
+        return afterDiscount;
+    }
+
+    public void setAfterDiscount(double afterDiscount) {
+        this.afterDiscount = afterDiscount;
+    }
+
+    public double getTotal() {
+        return total;
+    }
+
+    public void setTotal(double total) {
+        this.total = total;
     }
 
 }

@@ -20,9 +20,9 @@ public class TransaksiBuilder {
     private String namaProduk;
     private Kategori kategoriTransaksi;
     private JenisBarang jenisBarang;
-    private int harga;
-    private int diskon;
-    private int total;
+    private double harga;
+    private double diskon;
+    private double total;
     private Date tanggalTransaksi;
     private String deskripsi;
     private StatusTransaksi statusTransaksi;
@@ -65,17 +65,17 @@ public class TransaksiBuilder {
         return this;
     }
 
-    public TransaksiBuilder setHarga(int harga) {
+    public TransaksiBuilder setHarga(double harga) {
         this.harga = harga;
         return this;
     }
 
-    public TransaksiBuilder setDiskon(int diskon) {
+    public TransaksiBuilder setDiskon(double diskon) {
         this.diskon = diskon;
         return this;
     }
 
-    public TransaksiBuilder setTotal(int total) {
+    public TransaksiBuilder setTotal(double total) {
         this.total = total;
         return this;
     }

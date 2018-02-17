@@ -19,9 +19,9 @@ public class TransaksiDTOBuilder {
     private String namaProduk;
     private Kategori kategoriTransaksi;
     private JenisBarang jenisBarang;
-    private int harga;
-    private int diskon;
-    private int total;
+    private double harga;
+    private double diskon;
+    private double total;
     private Date tanggalTransaksi;
     private String deskripsi;
     private StatusTransaksi statusTransaksi;
@@ -59,17 +59,17 @@ public class TransaksiDTOBuilder {
         return this;
     }
 
-    public TransaksiDTOBuilder setHarga(int harga) {
+    public TransaksiDTOBuilder setHarga(double harga) {
         this.harga = harga;
         return this;
     }
 
-    public TransaksiDTOBuilder setDiskon(int diskon) {
+    public TransaksiDTOBuilder setDiskon(double diskon) {
         this.diskon = diskon;
         return this;
     }
 
-    public TransaksiDTOBuilder setTotal(int total) {
+    public TransaksiDTOBuilder setTotal(double total) {
         this.total = total;
         return this;
     }

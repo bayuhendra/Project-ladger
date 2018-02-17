@@ -23,9 +23,9 @@ public class TransaksiDTO implements Serializable {
     private String namaProduk;
     private Kategori kategoriTransaksi;
     private JenisBarang jenisBarang;
-    private int harga;
-    private int diskon;
-    private int total;
+    private double harga;
+    private double diskon;
+    private double total;
     private Date tanggalTransaksi;
     private String deskripsi;
     private StatusTransaksi statusTransaksi;
@@ -38,7 +38,7 @@ public class TransaksiDTO implements Serializable {
     public TransaksiDTO() {
     }
 
-    public TransaksiDTO(String transaksiID, String userIDTransaksi, String namaProduk, Kategori kategoriTransaksi, JenisBarang jenisBarang, int harga, int diskon, int total, Date tanggalTransaksi, String deskripsi, StatusTransaksi statusTransaksi, JenisPembayaran jenisPembayaran, String createdBy, Date createdDate, String modifiedBy, Date modifiedDate) {
+    public TransaksiDTO(String transaksiID, String userIDTransaksi, String namaProduk, Kategori kategoriTransaksi, JenisBarang jenisBarang, double harga, double diskon, double total, Date tanggalTransaksi, String deskripsi, StatusTransaksi statusTransaksi, JenisPembayaran jenisPembayaran, String createdBy, Date createdDate, String modifiedBy, Date modifiedDate) {
         this.transaksiID = transaksiID;
         this.userIDTransaksi = userIDTransaksi;
         this.namaProduk = namaProduk;
@@ -97,24 +97,28 @@ public class TransaksiDTO implements Serializable {
         this.jenisBarang = jenisBarang;
     }
 
-    public int getHarga() {
+    public double getHarga() {
         return harga;
     }
 
-    public void setHarga(int harga) {
+    public void setHarga(double harga) {
         this.harga = harga;
     }
 
-    public int getDiskon() {
+    public double getDiskon() {
         return diskon;
     }
 
-    public void setDiskon(int diskon) {
+    public void setDiskon(double diskon) {
         this.diskon = diskon;
     }
 
-    public int getTotal() {
+    public double getTotal() {
         return total;
+    }
+
+    public void setTotal(double total) {
+        this.total = total;
     }
 
     public void setTotal(int total) {

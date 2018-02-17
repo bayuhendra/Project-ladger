@@ -25,9 +25,9 @@ public class Transaksi implements EntityObject<Transaksi> {
     private String namaProduk;
     private Kategori kategoriTransaksi;
     private JenisBarang jenisBarang;
-    private int harga;
-    private int diskon;
-    private int total;
+    private double harga;
+    private double diskon;
+    private double total;
     private Date tanggalTransaksi;
     private String deskripsi;
     private StatusTransaksi statusTransaksi;
@@ -40,7 +40,7 @@ public class Transaksi implements EntityObject<Transaksi> {
     public Transaksi() {
     }
 
-    public Transaksi(long id, String transaksiID, String userIDTransaksi, String namaProduk, Kategori kategoriTransaksi, JenisBarang jenisBarang, int harga, int diskon, int total, Date tanggalTransaksi, String deskripsi, StatusTransaksi statusTransaksi, JenisPembayaran jenisPembayaran, String createdBy, Date createdDate, String modifiedBy, Date modifiedDate) {
+    public Transaksi(long id, String transaksiID, String userIDTransaksi, String namaProduk, Kategori kategoriTransaksi, JenisBarang jenisBarang, double harga, double diskon, double total, Date tanggalTransaksi, String deskripsi, StatusTransaksi statusTransaksi, JenisPembayaran jenisPembayaran, String createdBy, Date createdDate, String modifiedBy, Date modifiedDate) {
         this.id = id;
         this.transaksiID = transaksiID;
         this.userIDTransaksi = userIDTransaksi;
@@ -100,24 +100,28 @@ public class Transaksi implements EntityObject<Transaksi> {
         this.jenisBarang = jenisBarang;
     }
 
-    public int getHarga() {
+    public double getHarga() {
         return harga;
     }
 
-    public void setHarga(int harga) {
+    public void setHarga(double harga) {
         this.harga = harga;
     }
 
-    public int getDiskon() {
+    public double getDiskon() {
         return diskon;
     }
 
-    public void setDiskon(int diskon) {
+    public void setDiskon(double diskon) {
         this.diskon = diskon;
     }
 
-    public int getTotal() {
+    public double getTotal() {
         return total;
+    }
+
+    public void setTotal(double total) {
+        this.total = total;
     }
 
     public void setTotal(int total) {
@@ -204,7 +208,7 @@ public class Transaksi implements EntityObject<Transaksi> {
         this.jenisBarang = transaksi.jenisBarang;
         this.harga = transaksi.harga;
         this.diskon = transaksi.diskon;
-        this.total = total;
+        this.total = transaksi.total;
         this.tanggalTransaksi = transaksi.tanggalTransaksi;
         this.deskripsi = transaksi.deskripsi;
         this.statusTransaksi = transaksi.statusTransaksi;

@@ -24,6 +24,7 @@
                 <listheader label="ID" width="15%" align="center"/>
                 <listheader label="Nama Produk" width="30%" align="center"/>
                 <listheader label="Kategori" width="20%" align="center"/>
+                <listheader label="Total Harga" width="15%" align="center"/>
                 <listheader label="Tanggal Transaksi" width="20%" align="center"/>
                 <listheader label="Aksi" width="15%" align="center"/>
             </listhead>
@@ -37,6 +38,9 @@
                     </listcell>
                     <listcell>
                         <label width="100%" value="@bind(each.kategoriTransaksi)"/>
+                    </listcell>
+                    <listcell>
+                        <label width="100%" value="@bind(each.total)"/>
                     </listcell>
                     <listcell>
                         <label width="100%" value="@bind(each.tanggalTransaksi)"/>

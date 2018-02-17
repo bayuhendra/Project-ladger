@@ -55,8 +55,6 @@
                             <doublebox class="form-control" width="425px" value="@bind(fx.harga)" format=",###.#" constraint="no empty,no negative"/>
                             <n:h5 class="modal-title"> Diskon</n:h5>
                             <doublebox class="form-control" width="425px" value="@bind(fx.diskon)"/>
-                            <n:h5 class="modal-title"> Total</n:h5>
-                            <doublebox class="form-control" width="425px" value="@bind(fx.harga)" format=",###.#"/>
                             <n:h5 class="modal-title"> Deskripsi</n:h5>
                             <textbox class="form-control" width="425px" rows="2" value="@bind(fx.deskripsi)"/>
                             <n:h5 class="modal-title"> Jenis Pembayaran</n:h5>
