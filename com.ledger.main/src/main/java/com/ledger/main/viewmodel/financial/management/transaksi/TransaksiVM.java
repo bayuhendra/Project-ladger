@@ -194,7 +194,7 @@ public class TransaksiVM {
         transaksiDTO.setTanggalTransaksi(new Date());
         transaksiService.SaveOrUpdate(transaksiDTO);
         showInformationMessagebox("Data Transaksi Berhasil Disimpan");
-        BindUtils.postGlobalCommand(null, null, "refreshData", null);
+        BindUtils.postGlobalCommand(null, null, "refreshDataSubmitTransaksi", null);
         window.detach();
     }
 
@@ -202,6 +202,14 @@ public class TransaksiVM {
     @NotifyChange("transaksiDTOs")
     public void refreshData() {
         transaksiDTOs = transaksiService.findAll();
+    }
+
+    @GlobalCommand
+    @NotifyChange("transaksiDTOs")
+    public void refreshDataSubmitTransaksi() {
+        Map<String, Object> map1 = new HashMap();
+        map1.put("userIDTransaksi", userDTO.getUserID());
+        transaksiDTOs = transaksiService.findByParams(map1);
     }
 
     @Command("detailTransaksi")
