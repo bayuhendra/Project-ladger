@@ -8,7 +8,8 @@
     <class mutable="true" name="com.ledger.domain.financial.management.Penjualan" table="MST_PENJUALAN">
         <!--<cache usage="read-only"/>-->
         <id column="id" name="id">
-            <generator class="org.hibernate.id.IdentityGenerator"/>
+            <!--<generator class="org.hibernate.id.IdentityGenerator"/>-->
+            <generator class="increment"/>
         </id>
         <property column="penjualanID" name="penjualanID" not-null="false"/>
         <property column="namaBarang" name="namaBarang" not-null="false"/>
@@ -19,7 +20,7 @@
             </type>
         </property>
         <property column="jenisPenjualan" name="jenisPenjualan" not-null="false">
-         <type name="org.hibernate.type.EnumType">
+            <type name="org.hibernate.type.EnumType">
                 <param name="enumClass">com.ledger.shared.type.JenisBarang</param>
                 <param name="type">12</param>
             </type>

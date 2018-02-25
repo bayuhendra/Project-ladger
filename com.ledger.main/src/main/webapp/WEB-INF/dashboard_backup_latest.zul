@@ -1,0 +1,435 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<window closable="true" apply="org.zkoss.bind.BindComposer"
+        viewModel="@id('vm') @init('com.ledger.main.viewmodel.DashboardVM')">
+    <panel title="@load(vm.concatString2('Saldo Awal Laporan Keuangan  - ',vm.user.userSpecificationDTO.immediateSupervisorUserName, ' - ', vm.user.userSpecificationDTO.escute))" sclass="panel-primary" visible="@load(vm.panelBefore)">
+        <panelchildren>
+            <!-- form home opening balance -->
+            <div class="container" xmlns:n="native" visible="@load(vm.introForm)">
+                <n:h1>
+                    <label style="font-size: 35px; font-weight: bold" value="@load(vm.concatUsername('Welcome,  ',vm.user.userSpecificationDTO.fullName))"/>
+                </n:h1>
+                <cell>
+                    <n:p>
+                        Sebelum melanjutkan untuk menggunakan aplikasi ini, 
+                        Anda diminta untuk mengisi data <label class="label label-default">Opening Balance</label> terlebih dahulu.
+                    </n:p>
+                    <n:p>
+                        Apabila Anda sudah siap, mari kita mulai dengan klik tombol <label class="label label-default">Mulai</label> dibawah ini. 
+                    </n:p>
+                </cell>
+                <n:p>
+                    <a class="btn btn-primary btn-lg" onClick="@command('buttonKlikMulai')">
+                        Mulai
+                    </a>
+                </n:p>
+            </div>
+            
+            <!-- form 1 - Saldo KAS dan Saldo Bank -->
+            <div class="container" xmlns:n="native" visible="@load(vm.step1Form)">
+                <n:h1>
+                    <label style="font-size: 35px; font-weight: bold" value="Langkah 1"/>
+                </n:h1>
+                <cell>
+                    <n:p>
+                        Masukkan Data Saldo KAS dan Saldo Bank saat ini:
+                    </n:p>
+                </cell>
+                <div class="input-group">
+                    <span class="input-group-addon">Rp</span>
+                    <doublebox class="form-control" value="@bind(vm.saldoKasBank) @save(vm.saldoKasBank, before='buttonKlikNextForm1')" format="#,##0.##" width="463px" constraint="no empty: Data saldo tidak boleh kosong!, no zero: Data saldo tidak boleh 0!"/>
+                </div>
+                <separator height="20px"/>
+                <n:p>
+                    <a class="btn btn-primary btn-lg" onClick="@command('buttonKlikNextForm1')">
+                        Next
+                    </a>
+                </n:p>
+            </div>
+            
+            <!-- form 2 - Daftar Hutang -->
+            <div class="container" xmlns:n="native" visible="@load(vm.step2Form)">
+                <n:h1>
+                    <label style="font-size: 35px; font-weight: bold" value="Langkah 2"/>
+                </n:h1>
+                <cell>
+                    <n:p>
+                        Masukkan Data Hutang saat ini:
+                    </n:p>
+                </cell>
+                <div align="right" class="bs-example">
+                    <button label="Tambah Data" sclass="btn-primary" onClick="@command('buttonTambahHutangNew')"/>
+                </div>
+                <separator height="10px"/>
+                <listbox rows="5" mold="paging" emptyMessage="${labels.common.noDataFound}"
+                         model="@bind(vm.hutangDTOs)">
+                    <listhead>
+                        <listheader label="ID" width="30%" align="center"/>
+                        <listheader label="Hutang" width="30%" align="center"/>
+                        <listheader label="Nilai Hutang" width="20%" align="center"/>
+                        <listheader label="Aksi" width="20%" align="center"/>
+                    </listhead>
+                    <template name="model">
+                        <listitem value="${each}">
+                            <listcell>
+                                <label width="100%" value="@load(each.hutangID)"/>
+                            </listcell>
+                            <listcell>
+                                <label width="100%" value="@load(each.namaHutang)"/>
+                            </listcell>
+                            <listcell>
+                                <label width="100%" value="@load(c:formatNumber(each.jumlahHutang, '#,###.##'))"/>
+                            </listcell>
+                            <listcell >
+                                <a onClick="@command('detailHutang', object=each)" image="/images/skk_edit.png" sclass="btn btn-default"/>
+                                <a onClick="@command('deleteHutang', object=each)" image="/images/clear_x.png" sclass="btn btn-default"/>
+                            </listcell>
+                        </listitem>
+                    </template>
+                </listbox>
+                <separator height="20px"/>
+                <n:p>
+                    <a class="btn btn-danger btn-lg" onClick="@command('buttonKlikBackForm2')">
+                        Back
+                    </a>
+                    <a class="btn btn-primary btn-lg" onClick="@command('buttonKlikNextForm2')">
+                        Next
+                    </a>
+                </n:p>
+            </div>
+            
+            <!-- form 3 - Daftar Piutang -->
+            <div class="container" xmlns:n="native" visible="@load(vm.step3Form)">
+                <n:h1>
+                    <label style="font-size: 35px; font-weight: bold" value="Langkah 3"/>
+                </n:h1>
+                <cell>
+                    <n:p>
+                        Masukkan Data Piutang saat ini:
+                    </n:p>
+                </cell>
+                <div align="right" class="bs-example">
+                    <button label="Tambah Data" sclass="btn-primary" onClick="@command('buttonTambahPiutangNew')"/>
+                </div>
+                <separator height="10px"/>
+                <listbox rows="5" mold="paging" emptyMessage="${labels.common.noDataFound}"
+                         model="@bind(vm.piutangDTOs)">
+                    <listhead>
+                        <listheader label="ID" width="30%" align="center"/>
+                        <listheader label="Piutang" width="30%" align="center"/>
+                        <listheader label="Nilai Piutang" width="20%" align="center"/>
+                        <listheader label="Aksi" width="20%" align="center"/>
+                    </listhead>
+                    <template name="model">
+                        <listitem value="${each}">
+                            <listcell>
+                                <label width="100%" value="@load(each.piutangID)"/>
+                            </listcell>
+                            <listcell>
+                                <label width="100%" value="@load(each.namaPiutang)"/>
+                            </listcell>
+                            <listcell>
+                                <label width="100%" value="@load(c:formatNumber(each.jumlahPiutang, '#,###.##'))"/>
+                            </listcell>
+                            <listcell >
+                                <a onClick="@command('detailPiutang', object=each)" image="/images/skk_edit.png" sclass="btn btn-default"/>
+                                <a onClick="@command('deletePiutang', object=each)" image="/images/clear_x.png" sclass="btn btn-default"/>
+                            </listcell>
+                        </listitem>
+                    </template>
+                </listbox>
+                <separator height="20px"/>
+                <n:p>
+                    <a class="btn btn-danger btn-lg" onClick="@command('buttonKlikBackForm3')">
+                        Back
+                    </a>
+                    <a class="btn btn-primary btn-lg" onClick="@command('buttonKlikNextForm3')">
+                        Next
+                    </a>
+                </n:p>
+            </div>
+            
+            <!-- form 4 - Daftar Persediaan -->
+            <div class="container" xmlns:n="native" visible="@load(vm.step4Form)">
+                <n:h1>
+                    <label style="font-size: 35px; font-weight: bold" value="Langkah 4"/>
+                </n:h1>
+                <cell>
+                    <n:p>
+                        Masukkan Data Persediaan saat ini:
+                    </n:p>
+                </cell>
+                <div align="right" class="bs-example">
+                    <button label="Tambah Data" sclass="btn-primary" onClick="@command('buttonTambahPersediaanNew')"/>
+                </div>
+                <separator height="10px"/>
+                <listbox rows="5" mold="paging" emptyMessage="${labels.common.noDataFound}"
+                         model="@bind(vm.persediaanDTOs)">
+                    <listhead>
+                        <listheader label="ID" width="20%" align="center"/>
+                        <listheader label="Jenis Persediaan" width="15%" align="center"/>
+                        <listheader label="Nama Persediaan" width="25%" align="center"/>
+                        <listheader label="Nilai" width="20%" align="center"/>
+                        <listheader label="Aksi" width="20%" align="center"/>
+                    </listhead>
+                    <template name="model">
+                        <listitem value="${each}">
+                            <listcell>
+                                <label width="100%" value="@load(each.persediaanID)"/>
+                            </listcell>
+                            <listcell>
+                                <label width="100%" value="@load(each.jenisPersediaan)"/>
+                            </listcell>
+                            <listcell>
+                                <label width="100%" value="@load(each.namaPersediaan)"/>
+                            </listcell>
+                            <listcell>
+                                <label width="100%" value="@load(c:formatNumber(each.totalHargaPersediaan, '#,###.##'))"/>
+                            </listcell>
+                            <listcell >
+                                <a onClick="@command('detailPersediaan', object=each)" image="/images/skk_edit.png" sclass="btn btn-default"/>
+                                <a onClick="@command('deletePersediaan', object=each)" image="/images/clear_x.png" sclass="btn btn-default"/>
+                            </listcell>
+                        </listitem>
+                    </template>
+                </listbox>
+                <separator height="20px"/>
+                <n:p>
+                    <a class="btn btn-danger btn-lg" onClick="@command('buttonKlikBackForm4')">
+                        Back
+                    </a>
+                    <a class="btn btn-primary btn-lg" onClick="@command('buttonKlikNextForm4')">
+                        Next
+                    </a>
+                </n:p>
+            </div>
+            
+            <!-- form 5 - Aktiva Tetap -->
+            <div class="container" xmlns:n="native" visible="@load(vm.step5Form)">
+                <n:h1>
+                    <label style="font-size: 35px; font-weight: bold" value="Langkah 5"/>
+                </n:h1>
+                <cell>
+                    <n:p>
+                        Masukkan Data Aktiva Tetap saat ini:
+                    </n:p>
+                </cell>
+                <div align="right" class="bs-example">
+                    <button label="Tambah Data" sclass="btn-primary" onClick="@command('buttonTambahActivaTetapNew')"/>
+                </div>
+                <separator height="10px"/>
+                <listbox rows="5" mold="paging" emptyMessage="${labels.common.noDataFound}"
+                         model="@bind(vm.activaTetapDTOs)">
+                    <listhead>
+                        <listheader label="ID" width="10%" align="center"/>
+                        <listheader label="Nama Activa Tetap" width="25%" align="center"/>
+                        <listheader label="Nilai Activa Tetap" width="20%" align="center"/>
+                        <listheader label="Lama Pemakaian (Tahun)" width="20%" align="center"/>
+                        <listheader label="Aksi" width="25%" align="center"/>
+                    </listhead>
+                    <template name="model">
+                        <listitem value="${each}">
+                            <listcell>
+                                <label width="100%" value="@load(each.activaTetapID)"/>
+                            </listcell>
+                            <listcell>
+                                <label width="100%" value="@load(each.namaActivaTetap)"/>
+                            </listcell>
+                            <listcell>
+                                <label width="100%" value="@load(c:formatNumber(each.hargaActivaTetap, '#,###.##'))"/>
+                            </listcell>
+                            <listcell>
+                                <label width="100%" value="@load(each.lamaPemakaian)"/>
+                            </listcell>
+                            <listcell >
+                                <a onClick="@command('detailActivaTetap', object=each)" image="/images/skk_edit.png" sclass="btn btn-default"/>
+                                <a onClick="@command('deleteActivaTetap', object=each)" image="/images/clear_x.png" sclass="btn btn-default"/>
+                            </listcell>
+                        </listitem>
+                    </template>
+                </listbox>
+                <separator height="20px"/>
+                <n:p>
+                    <a class="btn btn-danger btn-lg" onClick="@command('buttonKlikBackForm5')">
+                        Back
+                    </a>
+                    <a class="btn btn-primary btn-lg" onClick="@command('buttonKlikFinishForm5')">
+                        Finish
+                    </a>
+                </n:p>
+            </div>
+        </panelchildren>
+    </panel>
+    <panel title="@load(vm.concatString('Laporan Laba Rugi dan Neraca  - ',vm.user.userSpecificationDTO.immediateSupervisorUserName,' - Periode Februari 2018'))" sclass="panel-primary" visible="@load(vm.panelAfter)">
+        <panelchildren>
+            <!-- form initial dashboard -->
+            <div class="container" xmlns:n="native" visible="true">
+                <n:p>
+                    <a class="btn btn-primary btn-lg" onClick="@command('buttonTambahDataTransaksi')">
+                        Tambah Data Transaksi
+                    </a>
+                </n:p>
+                <grid>
+                    <columns sizable="true">
+                        <column label="NERACA" width="30%" sort="auto" />
+                        <column label="" width="20%" align="right"/>
+                        <column label="" width="20%" align="right"/>
+                        <column label="" width="30%" align="right"/>
+                
+                    </columns>
+                    <rows>
+                        <group label="Pendapatan (Revenue)" open="true">
+                        </group>
+                        <row>
+                            <label value="a. Penjualan" style="padding-left:15px" />
+                            <cell>
+                                <!--<label value="Rp "/>-->
+                                <label width="100%" value="@load(c:formatNumber(300000000, '#,###.##'))" />
+                            </cell>
+                            <cell>
+                            </cell>
+                        </row>
+                        <row>
+                            <label value="b. Diskon" style="padding-left:15px" />
+                            <cell>
+                                <!--<label value="Rp "/>-->
+                                <label width="100%" value="@load(c:formatNumber(50000000, '#,###.##'))" />
+                            </cell>
+                            <cell>
+                            </cell>
+                        </row>
+                        <row>
+                            <label value="c. Retur" style="padding-left:15px" />
+                            <cell>
+                                <!--<label value="Rp "/>-->
+                                <label width="100%" value="@load(c:formatNumber(50000000, '#,###.##'))" />
+                            </cell>
+                            <cell>
+                            </cell>
+                        </row>
+                        <row>
+                            <label value="d. Pendapatan Lain" style="padding-left:15px" />
+                            <cell>
+                                <!--<label value="Rp "/>-->
+                                <label width="100%" value="@load(c:formatNumber(150000000, '#,###.##'))" />
+                            </cell>
+                            <cell>
+                            </cell>
+                        </row>
+                        <row>
+                            <label value="TOTAL PENDAPATAN" style="padding-left:15px" />
+                            <cell>
+                            </cell>
+                            <cell>
+                                <!--<label value="Rp "/>-->
+                                <label width="100%" value="@load(c:formatNumber(350000000, '#,###.##'))" />
+                            </cell>
+                    
+                        </row>
+                        <group label="Harga Pokok Penjualan" open="true">
+                            <label/>
+                            <label width="100%" value="@load(c:formatNumber(150000000, '#,###.##'))" />
+                            <label/>
+                        </group>
+                        <row>
+                            <label value="Laba/Rugi Kotor" style="padding-left:15px" />
+                            <cell>
+                            </cell>
+                            <cell>
+                                <!--<label value="Rp "/>-->
+                                <label width="100%" value="@load(c:formatNumber(200000000, '#,###.##'))" />
+                            </cell>
+                    
+                        </row>
+                        <group label="Biaya-Biaya" open="true">
+                        </group>
+                        <row>
+                            <label value="a. Gaji Pegawai" style="padding-left:15px" />
+                            <cell>
+                                <!--<label value="Rp "/>-->
+                                <label width="100%" value="@load(c:formatNumber(35000000, '#,###.##'))" />
+                            </cell>
+                            <cell>
+                            </cell>
+                        </row>
+                        <row>
+                            <label value="b. Listrik" style="padding-left:15px" />
+                            <cell>
+                                <!--<label value="Rp "/>-->
+                                <label width="100%" value="@load(c:formatNumber(10000000, '#,###.##'))" />
+                            </cell>
+                            <cell>
+                            </cell>
+                        </row>
+                        <row>
+                            <label value="c. Telpon dan Internet" style="padding-left:15px" />
+                            <cell>
+                                <!--<label value="Rp "/>-->
+                                <label width="100%" value="@load(c:formatNumber(10000000, '#,###.##'))" />
+                            </cell>
+                            <cell>
+                            </cell>
+                        </row>
+                        <row>
+                            <label value="d. Perlengkapan Kantor" style="padding-left:15px" />
+                            <cell>
+                                <!--<label value="Rp "/>-->
+                                <label width="100%" value="@load(c:formatNumber(7000000, '#,###.##'))" />
+                            </cell>
+                            <cell>
+                            </cell>
+                        </row>
+                        <row>
+                            <label value="e. Biaya Penyusutan" style="padding-left:15px" />
+                            <cell>
+                                <!--<label value="Rp "/>-->
+                                <label width="100%" value="@load(c:formatNumber(20000000, '#,###.##'))" />
+                            </cell>
+                            <cell>
+                            </cell>
+                        </row>
+                        <row>
+                            <label value="f. Transportasi dan Bensin" style="padding-left:15px" />
+                            <cell>
+                                <!--<label value="Rp "/>-->
+                                <label width="100%" value="@load(c:formatNumber(15000000, '#,###.##'))" />
+                            </cell>
+                            <cell>
+                            </cell>
+                        </row>
+                        <row>
+                            <label value="g. Biaya Tak Terduga" style="padding-left:15px" />
+                            <cell>
+                                <!--<label value="Rp "/>-->
+                                <label width="100%" value="@load(c:formatNumber(5000000, '#,###.##'))" />
+                            </cell>
+                            <cell>
+                            </cell>
+                        </row>
+                        <row>
+                            <label value="TOTAL BIAYA" style="padding-left:15px" />
+                            <cell>
+                            </cell>
+                            <cell>
+                                <!--<label value="Rp "/>-->
+                                <label width="100%" value="@load(c:formatNumber(102000000, '#,###.##'))" />
+                            </cell>
+                    
+                        </row>
+                        <row>
+                            <label value="LABA SEBELUM PAJAK" style="padding-left:15px" />
+                            <cell>
+                            </cell>
+                            <cell>
+                                <!--<label value="Rp "/>-->
+                                <label width="100%" value="@load(c:formatNumber(98000000, '#,###.##'))" />
+                            </cell>
+                    
+                        </row>
+                    </rows>
+                </grid>
+            </div>
+        </panelchildren>
+    </panel>
+</window>
+

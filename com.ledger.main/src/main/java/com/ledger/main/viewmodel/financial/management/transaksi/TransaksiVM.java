@@ -108,7 +108,7 @@ public class TransaksiVM {
             ListModelList<TransaksiDTO> parameterList = new ListModelList<>(transaksiService.findAll());
             String transaksiID = "";
             if (parameterList.isEmpty()) {
-                transaksiID = "TRANSAKSI001";
+                transaksiID = "TRN001";
             } else {
                 transaksiID = getLatestObjectID(parameterList, "transaksiID");
             }
@@ -117,7 +117,7 @@ public class TransaksiVM {
                     .setCreatedBy(SecurityUtil.getUserName())
                     .setTanggalTransaksi(new Date())
                     .setCreatedDate(new Date())
-                    .setStatusTransaksi(StatusTransaksi.IN_PROGRESS)
+                    .setStatusTransaksi("IN PROGRESS")
                     .createTransaksiDTO();
         } else {
             this.transaksiDTO = transaksi;
@@ -192,7 +192,7 @@ public class TransaksiVM {
     @Command("buttonSimpanTransaksi")
     @NotifyChange("transaksiDTO")
     public void buttonSimpanTransaksi(@BindingParam("object") TransaksiDTO obj, @ContextParam(ContextType.VIEW) Window window) {
-        transaksiDTO.setUserIDTransaksi(userDTO.getUserID());
+        transaksiDTO.setUserID(userDTO.getUserID());
         transaksiDTO.setKategoriTransaksi(kategori);
         transaksiDTO.setTanggalTransaksi(new Date());
         total = 100 - transaksiDTO.getDiskon();
@@ -233,17 +233,17 @@ public class TransaksiVM {
 
         Messagebox.show("Apakah anda yakin ingin menghapus Transaksi?", "Konfirmasi", Messagebox.OK | Messagebox.CANCEL, Messagebox.QUESTION,
                 new org.zkoss.zk.ui.event.EventListener() {
-            @Override
-            public void onEvent(Event evt) throws InterruptedException {
-                if (evt.getName().equals("onOK")) {
-                    transaksiService.deleteData(transaksiDTO);
-                    showInformationMessagebox("Transaksi Berhasil Dihapus");
-                    BindUtils.postGlobalCommand(null, null, "refreshData", null);
-                } else {
-                    System.out.println("Operasi dibatalkan");
+                    @Override
+                    public void onEvent(Event evt) throws InterruptedException {
+                        if (evt.getName().equals("onOK")) {
+                            transaksiService.deleteData(transaksiDTO);
+                            showInformationMessagebox("Transaksi Berhasil Dihapus");
+                            BindUtils.postGlobalCommand(null, null, "refreshData", null);
+                        } else {
+                            System.out.println("Operasi dibatalkan");
+                        }
+                    }
                 }
-            }
-        }
         );
 
     }

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.ledger.domain.infrastructure.persistance.hibernate;
 
 import com.ledger.domain.financial.management.Transaksi;
@@ -64,15 +59,15 @@ public class TransaksiHibernateRepository extends HibernateRepository implements
         if (StringUtil.hasValue(map.get("statusTransaksi"))) {
             criteria.add(Restrictions.eq("statusTransaksi", map.get("statusTransaksi")));
         }
-        if (StringUtil.hasValue(map.get("userIDTransaksi"))) {
-            criteria.add(Restrictions.like("userIDTransaksi", "%" + map.get("userIDTransaksi") + "%").ignoreCase());
+        if (StringUtil.hasValue(map.get("userID"))) {
+            criteria.add(Restrictions.like("userID", "%" + map.get("userID") + "%").ignoreCase());
         }
 
         return criteria.list();
     }
 
     @Override
-    public List<Transaksi> findAllByStatus(StatusTransaksi statusTransaksi) {
+    public List<Transaksi> findAllByStatus(String statusTransaksi) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

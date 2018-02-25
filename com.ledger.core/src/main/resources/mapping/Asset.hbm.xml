@@ -8,7 +8,8 @@
     <class mutable="true" name="com.ledger.domain.financial.management.asset.Asset" table="MST_ASET">
         <!--<cache usage="read-only"/>-->
         <id column="id" name="id">
-            <generator class="org.hibernate.id.IdentityGenerator"/>
+            <!--<generator class="org.hibernate.id.IdentityGenerator"/>-->
+            <generator class="increment"/>
         </id>
         <property column="assetdID" name="assetdID" not-null="false"/>
         <property column="namaAsset" name="namaAsset" not-null="false"/>

@@ -32,4 +32,39 @@
         <property name="assetDTOAssembler" ref="assetDTOAssembler"/>
         <property name="assetRepository" ref="assetRepository"/>
     </bean>
+    
+    <bean id="saldoKasDTOAssembler" class="com.ledger.interfaces.web.facade.dto.assembler.finance.management.SaldoKasDTOAssembler">
+    </bean>
+    <bean id="saldoKasService" class="com.ledger.application.impl.SaldoKasServiceImpl">
+        <property name="saldoKasDTOAssembler" ref="saldoKasDTOAssembler"/>
+        <property name="saldoKasRepository" ref="saldoKasRepository"/>
+    </bean>
+    
+    <bean id="hutangDTOAssembler" class="com.ledger.interfaces.web.facade.dto.assembler.finance.management.HutangDTOAssembler">
+    </bean>
+    <bean id="hutangService" class="com.ledger.application.impl.HutangServiceImpl">
+        <property name="hutangDTOAssembler" ref="hutangDTOAssembler"/>
+        <property name="hutangRepository" ref="hutangRepository"/>
+    </bean>
+    
+    <bean id="piutangDTOAssembler" class="com.ledger.interfaces.web.facade.dto.assembler.finance.management.PiutangDTOAssembler">
+    </bean>
+    <bean id="piutangService" class="com.ledger.application.impl.PiutangServiceImpl">
+        <property name="piutangDTOAssembler" ref="piutangDTOAssembler"/>
+        <property name="piutangRepository" ref="piutangRepository"/>
+    </bean>
+    
+    <bean id="persediaanDTOAssembler" class="com.ledger.interfaces.web.facade.dto.assembler.finance.management.PersediaanDTOAssembler">
+    </bean>
+    <bean id="persediaanService" class="com.ledger.application.impl.PersediaanServiceImpl">
+        <property name="persediaanDTOAssembler" ref="persediaanDTOAssembler"/>
+        <property name="persediaanRepository" ref="persediaanRepository"/>
+    </bean>
+    
+    <bean id="activaTetapDTOAssembler" class="com.ledger.interfaces.web.facade.dto.assembler.finance.management.ActivaTetapDTOAssembler">
+    </bean>
+    <bean id="activaTetapService" class="com.ledger.application.impl.ActivaTetapServiceImpl">
+        <property name="activaTetapDTOAssembler" ref="activaTetapDTOAssembler"/>
+        <property name="activaTetapRepository" ref="activaTetapRepository"/>
+    </bean>
 </beans>

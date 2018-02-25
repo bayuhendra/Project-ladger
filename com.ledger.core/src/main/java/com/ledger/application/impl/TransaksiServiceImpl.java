@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.ledger.application.impl;
 
 import com.ledger.common.application.finance.management.TransaksiService;
@@ -63,17 +58,17 @@ public class TransaksiServiceImpl implements TransaksiService {
                 .setTransaksiID("TRANSAKSI001")
                 .setNamaProduk("TANAH")
                 .setKategoriTransaksi(Kategori.PEMBELIAN)
-                .setJenisBarang(JenisBarang.NON_ELEKTRONIK)
+                .setJenisBarang("NON ELEKTRONIK")
                 .setHarga(12000)
                 .setDiskon(3)
                 .setTotal(4)
                 .setTanggalTransaksi(new Date())
-                .setStatusTransaksi(StatusTransaksi.DONE)
-                .setJenisPembayaran(JenisPembayaran.NON_DEBIT)
+                .setStatusTransaksi("DONE")
+                .setJenisPembayaran("KREDIT")
                 .setDeskripsi("catatan")
-                .setCreatedBy("createdBy")
+                .setCreatedBy("SYSTEM")
                 .setCreatedDate(new Date())
-                .setModifiedBy("aa")
+                .setModifiedBy("SYSTEM")
                 .setModifiedDate(new Date())
                 .createTransaksi();
         return transaksiDTOAssembler.toDTO(transaksi);

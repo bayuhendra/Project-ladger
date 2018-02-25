@@ -1,14 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.ledger.domain.financial.management;
 
 import com.ledger.shared.object.EntityObject;
-import com.ledger.shared.status.StatusTransaksi;
-import com.ledger.shared.type.JenisBarang;
-import com.ledger.shared.type.JenisPembayaran;
 import com.ledger.shared.type.Kategori;
 import java.util.Date;
 import java.util.Objects;
@@ -21,17 +13,17 @@ public class Transaksi implements EntityObject<Transaksi> {
 
     long id;
     private String transaksiID;
-    private String userIDTransaksi;
+    private String userID;
     private String namaProduk;
     private Kategori kategoriTransaksi;
-    private JenisBarang jenisBarang;
+    private String jenisBarang;
     private double harga;
     private double diskon;
     private double total;
     private Date tanggalTransaksi;
     private String deskripsi;
-    private StatusTransaksi statusTransaksi;
-    private JenisPembayaran jenisPembayaran;
+    private String statusTransaksi;
+    private String jenisPembayaran;
     private String createdBy;
     private Date createdDate;
     private String modifiedBy;
@@ -40,10 +32,9 @@ public class Transaksi implements EntityObject<Transaksi> {
     public Transaksi() {
     }
 
-    public Transaksi(long id, String transaksiID, String userIDTransaksi, String namaProduk, Kategori kategoriTransaksi, JenisBarang jenisBarang, double harga, double diskon, double total, Date tanggalTransaksi, String deskripsi, StatusTransaksi statusTransaksi, JenisPembayaran jenisPembayaran, String createdBy, Date createdDate, String modifiedBy, Date modifiedDate) {
-        this.id = id;
+    public Transaksi(String transaksiID, String userID, String namaProduk, Kategori kategoriTransaksi, String jenisBarang, double harga, double diskon, double total, Date tanggalTransaksi, String deskripsi, String statusTransaksi, String jenisPembayaran, String createdBy, Date createdDate, String modifiedBy, Date modifiedDate) {
         this.transaksiID = transaksiID;
-        this.userIDTransaksi = userIDTransaksi;
+        this.userID = userID;
         this.namaProduk = namaProduk;
         this.kategoriTransaksi = kategoriTransaksi;
         this.jenisBarang = jenisBarang;
@@ -58,14 +49,6 @@ public class Transaksi implements EntityObject<Transaksi> {
         this.createdDate = createdDate;
         this.modifiedBy = modifiedBy;
         this.modifiedDate = modifiedDate;
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
     }
 
     public String getTransaksiID() {
@@ -90,14 +73,6 @@ public class Transaksi implements EntityObject<Transaksi> {
 
     public void setKategoriTransaksi(Kategori kategoriTransaksi) {
         this.kategoriTransaksi = kategoriTransaksi;
-    }
-
-    public JenisBarang getJenisBarang() {
-        return jenisBarang;
-    }
-
-    public void setJenisBarang(JenisBarang jenisBarang) {
-        this.jenisBarang = jenisBarang;
     }
 
     public double getHarga() {
@@ -144,22 +119,6 @@ public class Transaksi implements EntityObject<Transaksi> {
         this.deskripsi = deskripsi;
     }
 
-    public StatusTransaksi getStatusTransaksi() {
-        return statusTransaksi;
-    }
-
-    public void setStatusTransaksi(StatusTransaksi statusTransaksi) {
-        this.statusTransaksi = statusTransaksi;
-    }
-
-    public JenisPembayaran getJenisPembayaran() {
-        return jenisPembayaran;
-    }
-
-    public void setJenisPembayaran(JenisPembayaran jenisPembayaran) {
-        this.jenisPembayaran = jenisPembayaran;
-    }
-
     public String getCreatedBy() {
         return createdBy;
     }
@@ -192,17 +151,78 @@ public class Transaksi implements EntityObject<Transaksi> {
         this.modifiedDate = modifiedDate;
     }
 
-    public String getUserIDTransaksi() {
-        return userIDTransaksi;
+    public String getUserID() {
+        return userID;
     }
 
-    public void setUserIDTransaksi(String userIDTransaksi) {
-        this.userIDTransaksi = userIDTransaksi;
+    public void setUserID(String userID) {
+        this.userID = userID;
+    }
+
+    public String getJenisBarang() {
+        return jenisBarang;
+    }
+
+    public void setJenisBarang(String jenisBarang) {
+        this.jenisBarang = jenisBarang;
+    }
+
+    public String getStatusTransaksi() {
+        return statusTransaksi;
+    }
+
+    public void setStatusTransaksi(String statusTransaksi) {
+        this.statusTransaksi = statusTransaksi;
+    }
+
+    public String getJenisPembayaran() {
+        return jenisPembayaran;
+    }
+
+    public void setJenisPembayaran(String jenisPembayaran) {
+        this.jenisPembayaran = jenisPembayaran;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 89 * hash + Objects.hashCode(this.transaksiID);
+        hash = 89 * hash + Objects.hashCode(this.userID);
+        hash = 89 * hash + Objects.hashCode(this.namaProduk);
+        hash = 89 * hash + Objects.hashCode(this.kategoriTransaksi);
+        hash = 89 * hash + Objects.hashCode(this.jenisBarang);
+        hash = 89 * hash + (int) (Double.doubleToLongBits(this.harga) ^ (Double.doubleToLongBits(this.harga) >>> 32));
+        hash = 89 * hash + (int) (Double.doubleToLongBits(this.diskon) ^ (Double.doubleToLongBits(this.diskon) >>> 32));
+        hash = 89 * hash + (int) (Double.doubleToLongBits(this.total) ^ (Double.doubleToLongBits(this.total) >>> 32));
+        hash = 89 * hash + Objects.hashCode(this.tanggalTransaksi);
+        hash = 89 * hash + Objects.hashCode(this.deskripsi);
+        hash = 89 * hash + Objects.hashCode(this.statusTransaksi);
+        hash = 89 * hash + Objects.hashCode(this.jenisPembayaran);
+        hash = 89 * hash + Objects.hashCode(this.createdBy);
+        hash = 89 * hash + Objects.hashCode(this.createdDate);
+        hash = 89 * hash + Objects.hashCode(this.modifiedBy);
+        hash = 89 * hash + Objects.hashCode(this.modifiedDate);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Transaksi other = (Transaksi) obj;
+        if (this.id != other.id) {
+            return false;
+        }
+        return true;
     }
 
     public void assignNewDataTransaksi(Transaksi transaksi) {
         this.transaksiID = transaksi.transaksiID;
-        this.userIDTransaksi = transaksi.userIDTransaksi;
+        this.userID = transaksi.userID;
         this.namaProduk = transaksi.namaProduk;
         this.kategoriTransaksi = transaksi.kategoriTransaksi;
         this.jenisBarang = transaksi.jenisBarang;

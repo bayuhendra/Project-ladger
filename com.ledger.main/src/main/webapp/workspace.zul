@@ -3,11 +3,12 @@
 <?taglib uri="/WEB-INF/security.tld" prefix="sec"?>
 <?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
 <?link rel="stylesheet" type="text/css"	href="/bootstrap/css/bootstrap.min.css" ?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
 <zk xmlns="http://www.zkoss.org/2005/zul">
     <window border="none"
-                    apply="org.zkoss.bind.BindComposer"
-                    viewModel="@id('vm') @init('com.ledger.main.viewmodel.WorkspaceVM')"
-                    height="100%" width="100%"  >
+            apply="org.zkoss.bind.BindComposer"
+            viewModel="@id('vm') @init('com.ledger.main.viewmodel.WorkspaceVM')"
+            height="100%" width="100%"  >
         
         <!-- Right Click Tab -->
         <menupopup id="popupClose">
@@ -22,13 +23,13 @@
         <!-- Header -->
         <borderlayout >
             <north sclass="isi" height="37px" border="none">
-                <borderlayout  style="background:#005a00;">
-                    <west border="none" size="40%" style="background:#005a00;">
+                <borderlayout  style="background:#4169E1;">
+                    <west border="none" size="40%" style="background:#4169E1;">
                         <div style="padding:5px;">
                             <label sclass="isi" style="color:white;font-size:20px;font-weight:bold" value="Financial Management"/>
                         </div>
                     </west>
-                    <east border="none" style="background:#005a00; color:#fff;">
+                    <east border="none" style="background:#4169E1; color:#fff;">
                         <div sclass="navbar" style="padding:2px;">
                             <hlayout sclass="nav-user pull-right" spacing="0">
                                 <menubar sclass="user-menu light-blue">
@@ -55,8 +56,8 @@
                     </template>
                 </tree>
             </west>-->
-            <west style="font-size:9pt; font-weight: bold" sclass="isi" splittable="true" width="23%" collapsible="true" open="true" border="none"
-                          title="${labels.workspace.label.menu}" flex="true" autoscroll="true">
+            <west style="font-size:9pt; font-weight: bold" sclass="isi" splittable="true" width="23%" collapsible="true" open="false" border="none"
+                  title="${labels.workspace.label.menu}" flex="true" autoscroll="true">
                 <tree style="font-size:9pt; font-weight: bold" sclass="isi" model="@load(vm.model)" >
                     <template name="model" >
                         <treeitem label="@load(each.menuName)" image="@load(each.icon)" open="@load(false)" onClick="@command('menuClick', obj=each)" visible="${sec:isAllGranted(each.privilegeID)}" />
@@ -73,7 +74,7 @@
                     </tabs>
                     <tabpanels id="tabPanels">
                         <tabpanel style="overflow: auto">
-                            <include src="@load(vm.sourceDashboard)" />
+                            <include src="@load(vm.sourceDashboard)"/>
                         </tabpanel>
                     </tabpanels>
                 </tabbox>
@@ -81,11 +82,11 @@
 
             <!-- Footer -->
             <south border="none" size="25px" >
-                <borderlayout  style="background:#005a00;">
-                    <west border="none" style="width:50% ;color:#fff; padding: 5px 10px 0px 10px; background:#005a00;" sclass="isi">
+                <borderlayout  style="background:#4169E1;">
+                    <west border="none" style="width:50% ;color:#fff; padding: 5px 10px 0px 10px; background:#4169E1;" sclass="isi">
                         Copyright 2018 &#169; Financial Management
                     </west>
-                    <east border="none" style="color:#fff; padding: 5px 5px 0px 0px; background:#005a00;">
+                    <east border="none" style="color:#fff; padding: 5px 5px 0px 0px; background:#4169E1;">
                         <div align="left">
                             <label sclass="isi" value="@load(vm.concatDate('Date: ',vm.user.userSpecificationDTO.userLoginInfoDTO.loginDate))" />
                             <space/>

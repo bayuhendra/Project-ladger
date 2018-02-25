@@ -1,0 +1,35 @@
+<zk xmlns:w="client" xmlns:n="native">
+    <window apply="org.zkoss.bind.BindComposer"
+            viewModel="@id('vm') @init('com.ledger.main.viewmodel.DashboardVM')"
+            width="500px" height="450px" form="@id('fx') @load(vm.persediaanDTO) @save(vm.persediaanDTO, before='buttonSimpanPersediaan')" >
+        <!-- Modal content-->
+        <div>
+            <div class="modal-header" align="center">
+                <n:h4 class="modal-title"> Data Persediaan</n:h4>
+            </div>
+            <div class="modal-body">
+                <div class="input-group">
+                    <n:h5 class="modal-title"> Jenis Persediaan</n:h5>
+                    <combobox width="463px" style="font-size:14px" height="25px" placeholder="-Pilih Jenis-" model="@load(vm.listJenisPersediaan)" selectedItem="@bind(vm.jenisPersediaan) @save(vm.jenisPersediaan, before='buttonSimpanPersediaan')" readonly="true" constraint="no empty: Status Persediaan tidak boleh kosong">
+                        <template name="model" var="items">
+                            <comboitem label="@load(items)" value="@load(items)"/>
+                        </template>
+                    </combobox>
+                    <n:h5 class="modal-title"> Nama Persediaan</n:h5>
+                    <textbox class="form-control" width="463px" value="@bind(vm.namaPersediaan) @save(vm.namaPersediaan, before='buttonSimpanPersediaan')" constraint="no empty: Nama Persediaan tidak boleh kosong"/>
+                    <n:h5 class="modal-title"> Jumlah Persediaan</n:h5>
+                    <doublebox class="form-control" width="463px" value="@bind(vm.jumlahPersediaan) @save(vm.jumlahPersediaan, before='buttonSimpanPersediaan')" constraint="no empty: Jumlah Persediaan tidak boleh kosong"/>
+                    <n:h5 class="modal-title"> Harga Persediaan</n:h5>
+                    <doublebox class="form-control" format="#,##0.##" width="463px" value="@bind(vm.hargaPersediaan) @save(vm.jumlahPersediaan, before='buttonSimpanPersediaan')" constraint="no empty: Jumlah Persediaan tidak boleh kosong, no zero Jumlah Persediaan tidak boleh 0"/>
+                    <n:h5 class="modal-title"> Total Nilai Persediaan</n:h5>
+                    <doublebox class="form-control" format="#,##0.##" width="463px" value="@load(vm.jumlahPersediaan*vm.hargaPersediaan)" readonly="true"/>
+                </div>
+                <separator width="3px"/>
+            </div>
+            <div class="modal-footer">
+                <button sclass="btn-danger" label="Close" onClick="@command('buttonKembaliPersediaan')" />
+                <button sclass="btn-success" label="Simpan" onClick="@command('buttonSimpanPersediaan')" />
+            </div>
+        </div>
+    </window>
+</zk>

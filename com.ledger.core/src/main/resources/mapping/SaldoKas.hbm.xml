@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+  "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+  "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping default-access="field">
+    <class mutable="true" name="com.ledger.domain.financial.management.SaldoKas" table="TXN_SALDO_KAS">
+        <!--<cache usage="read-only"/>-->
+        <id column="id" name="id">
+            <generator class="org.hibernate.id.IdentityGenerator"/>
+            <!--<generator class="increment"/>-->
+        </id>
+        <property column="saldoKasID" name="saldoKasID" not-null="true"/>
+        <property column="userID" name="userID" not-null="false"/>
+        <property column="saldoKas" name="saldoKas" not-null="false"/>
+        <property column="saldoBank" name="saldoBank" not-null="false"/>
+        <property column="saldoKasBank" name="saldoKasBank" not-null="false"/>
+        <property column="createdBy" name="createdBy" not-null="false"/>
+        <property column="createdDate" name="createdDate" not-null="false"/>
+        <property column="modifiedDate" name="modifiedDate" not-null="false"/>
+        <property column="modifiedBy" name="modifiedBy" not-null="false"/>
+    </class>
+</hibernate-mapping>

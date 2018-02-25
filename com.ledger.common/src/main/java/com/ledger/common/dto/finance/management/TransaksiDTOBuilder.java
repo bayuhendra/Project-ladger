@@ -1,31 +1,22 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.ledger.common.dto.finance.management;
 
-import com.ledger.shared.status.StatusTransaksi;
-import com.ledger.shared.type.JenisBarang;
-import com.ledger.shared.type.JenisPembayaran;
 import com.ledger.shared.type.Kategori;
 import java.util.Date;
 
 
 public class TransaksiDTOBuilder {
-
     private String transaksiID;
     private String userIDTransaksi;
     private String namaProduk;
     private Kategori kategoriTransaksi;
-    private JenisBarang jenisBarang;
+    private String jenisBarang;
     private double harga;
     private double diskon;
     private double total;
     private Date tanggalTransaksi;
     private String deskripsi;
-    private StatusTransaksi statusTransaksi;
-    private JenisPembayaran jenisPembayaran;
+    private String statusTransaksi;
+    private String jenisPembayaran;
     private String createdBy;
     private Date createdDate;
     private String modifiedBy;
@@ -54,7 +45,7 @@ public class TransaksiDTOBuilder {
         return this;
     }
 
-    public TransaksiDTOBuilder setJenisBarang(JenisBarang jenisBarang) {
+    public TransaksiDTOBuilder setJenisBarang(String jenisBarang) {
         this.jenisBarang = jenisBarang;
         return this;
     }
@@ -84,12 +75,12 @@ public class TransaksiDTOBuilder {
         return this;
     }
 
-    public TransaksiDTOBuilder setStatusTransaksi(StatusTransaksi statusTransaksi) {
+    public TransaksiDTOBuilder setStatusTransaksi(String statusTransaksi) {
         this.statusTransaksi = statusTransaksi;
         return this;
     }
 
-    public TransaksiDTOBuilder setJenisPembayaran(JenisPembayaran jenisPembayaran) {
+    public TransaksiDTOBuilder setJenisPembayaran(String jenisPembayaran) {
         this.jenisPembayaran = jenisPembayaran;
         return this;
     }

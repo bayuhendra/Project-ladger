@@ -8,11 +8,13 @@ import com.ledger.common.dto.usermanagement.UserDTOBuilder;
 import com.ledger.common.dto.usermanagement.UserLoginInfoDTO;
 import com.ledger.common.dto.usermanagement.UserSpecificationDTO;
 import com.ledger.common.dto.usermanagement.UserSpecificationDTOBuilder;
+import com.ledger.common.security.SecurityUtil;
 import com.ledger.shared.type.StatusData;
 import com.ledger.user.management.application.RoleService;
 import com.ledger.user.management.application.UserService;
 import com.ledger.util.DateUtil;
 import com.ledger.util.StringUtil;
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -22,9 +24,11 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.zkoss.bind.annotation.Command;
 import org.zkoss.bind.annotation.ContextParam;
 import org.zkoss.bind.annotation.ContextType;
+import org.zkoss.bind.annotation.Init;
 import org.zkoss.bind.annotation.NotifyChange;
 import org.zkoss.zk.ui.select.annotation.VariableResolver;
 import org.zkoss.zk.ui.select.annotation.WireVariable;
+import org.zkoss.zul.ListModelList;
 import org.zkoss.zul.Messagebox;
 import org.zkoss.zul.Window;
 
@@ -51,6 +55,18 @@ public class DaftarUserVM {
     private RoleDTO roleDTO = new RoleDTO();
     private List<UserDTO> userDTOs;
     private UserDTO userDTO = new UserDTO();
+    private ListModelList<String> listJenisUsaha = new ListModelList<>();
+
+    @Init
+    public void init() {
+        initData();
+    }
+
+    private void initData() {
+        listJenisUsaha.add("JASA");
+        listJenisUsaha.add("MANUFAKTUR");
+        listJenisUsaha.add("PERDAGANGAN");
+    }
 
     public AccessTimeDTO initAccessTime() {
         Date startTime = DateUtil.stringToDate("00:00", "HH:mm");
@@ -201,6 +217,14 @@ public class DaftarUserVM {
 
     public void setJenisUsaha(String jenisUsaha) {
         this.jenisUsaha = jenisUsaha;
+    }
+
+    public ListModelList<String> getListJenisUsaha() {
+        return listJenisUsaha;
+    }
+
+    public void setListJenisUsaha(ListModelList<String> listJenisUsaha) {
+        this.listJenisUsaha = listJenisUsaha;
     }
 
 }

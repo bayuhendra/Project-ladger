@@ -22,4 +22,19 @@
     <bean id="assetRepository" class="com.ledger.domain.infrastructure.persistance.hibernate.AssetHibernateRepository">
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
+    <bean id="saldoKasRepository" class="com.ledger.domain.infrastructure.persistance.hibernate.SaldoKasHibernateRepository">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    <bean id="hutangRepository" class="com.ledger.domain.infrastructure.persistance.hibernate.HutangHibernateRepository">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    <bean id="piutangRepository" class="com.ledger.domain.infrastructure.persistance.hibernate.PiutangHibernateRepository">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    <bean id="persediaanRepository" class="com.ledger.domain.infrastructure.persistance.hibernate.PersediaanHibernateRepository">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    <bean id="activaTetapRepository" class="com.ledger.domain.infrastructure.persistance.hibernate.ActivaTetapHibernateRepository">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
 </beans>

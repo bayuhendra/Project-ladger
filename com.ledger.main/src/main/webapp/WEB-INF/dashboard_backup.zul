@@ -1,0 +1,289 @@
+<!--<window border="none"
+        apply="org.zkoss.bind.BindComposer"
+        viewModel="@id('vm') @init('com.ledger.main.viewmodel.DashboardVM')">
+    <groupbox mold="3d" style="background-color:white" contentStyle="border:0" visible="@load(not empty vm.user.getUserSpecificationDTO().getFullName() ? true : false)">
+        <separator spacing="5px"/>
+        <vbox width="100%" height="100%" align="left">
+            <label sclass="isi" style="color:blue;font-size:20px" value="@load(vm.concatUsername('Welcome,  ',vm.user.userSpecificationDTO.fullName))"/>
+        </vbox>
+        <style>
+            .z-separator-hor-bar {
+            background: #eeeeee;	
+            height: 5px;		
+            }
+        </style>
+        <separator spacing="10px" />
+        <vbox width="100%" height="100%" align="left">
+            <cell>
+                <label sclass="isi" style="color:black;font-size:15px" value="@load(vm.concatUsername('You are registered in  ',vm.user.userSpecificationDTO.fullName))"/>
+                <label sclass="isi" style="color:black;font-size:15px" value=" - "/>
+                <label sclass="isi" style="color:black;font-size:15px" value="@load(vm.user.roleDTO.roleName)"/>
+            </cell>
+        </vbox>
+        <separator spacing="5px"/>
+        <vbox width="100%" height="100%" align="left">
+            <label style="color:black;font-size:15px" value="@load(vm.concatUsername('Your last sign in activity was on :  ',vm.user.userSpecificationDTO.userLoginInfoDTO.lastLogin))"/>
+        </vbox>
+        
+    </groupbox>
+    <div align="center" style="padding: 50px 5px 0px 0px">
+        <image src="@bind(vm.uriPhoto)" />
+    </div>
+    
+    <groupbox mold="3d" contentStyle="border:0">
+        <vbox width="100%" height="100%" align="left">
+            <label style="color:black;font-size:15px; font-weight: bold"/>
+        </vbox>
+    </groupbox>
+</window>-->
+<window closable="true" apply="org.zkoss.bind.BindComposer"
+        viewModel="@id('vm') @init('com.ledger.main.viewmodel.DashboardVM')">
+    <panel title="@load(vm.concatUsername('Saldo Awal Laporan Keuangan  - ',vm.user.userSpecificationDTO.immediateSupervisorUserName))" sclass="panel-primary">
+        <panelchildren>
+            
+            <!-- form home opening balance -->
+            <div class="container" xmlns:n="native" visible="@load(vm.introForm)">
+                <n:h1>
+                    <label style="font-size: 35px; font-weight: bold" value="@load(vm.concatUsername('Welcome,  ',vm.user.userSpecificationDTO.fullName))"/>
+                </n:h1>
+                <cell>
+                    <n:p>
+                        Sebelum melanjutkan untuk menggunakan aplikasi ini, 
+                        Anda diminta untuk mengisi data <label class="label label-default">Opening Balance</label> terlebih dahulu.
+                    </n:p>
+                    <n:p>
+                        Apabila Anda sudah siap, mari kita mulai dengan klik tombol <label class="label label-default">Mulai</label> dibawah ini. 
+                    </n:p>
+                </cell>
+                <n:p>
+                    <a class="btn btn-primary btn-lg" onClick="@command('buttonKlikMulai')">
+                        Mulai
+                    </a>
+                </n:p>
+            </div>
+            
+            <!-- form 1 - Saldo KAS dan Saldo Bank -->
+            <div class="container" xmlns:n="native" visible="@load(vm.step1Form)">
+                <n:h1>
+                    <label style="font-size: 35px; font-weight: bold" value="Langkah 1"/>
+                </n:h1>
+                <cell>
+                    <n:p>
+                        Masukkan Data Saldo KAS dan Saldo Bank saat ini:
+                    </n:p>
+                </cell>
+                <div class="input-group">
+                    <span class="input-group-addon">Rp</span>
+                    <doublebox class="form-control" format="#,##0.##" width="463px"/>
+                </div>
+                <separator height="20px"/>
+                <n:p>
+                    <a class="btn btn-primary btn-lg" onClick="@command('buttonKlikForm1')">
+                        Next
+                    </a>
+                </n:p>
+            </div>
+            
+            <!-- form 2 - Daftar Hutang -->
+            <div class="container" xmlns:n="native" visible="@load(vm.step2Form)">
+                <n:h1>
+                    <label style="font-size: 35px; font-weight: bold" value="Langkah 2"/>
+                </n:h1>
+                <cell>
+                    <n:p>
+                        Masukkan Data Hutang saat ini:
+                    </n:p>
+                </cell>
+                <div align="right" class="bs-example">
+                    <button label="Tambah Data" sclass="btn-primary" onClick="@command('buttonTambahHutang')"/>
+                </div>
+                <separator height="10px"/>
+                <listbox rows="5" mold="paging" emptyMessage="${labels.common.noDataFound}">
+                    <listhead>
+                        <listheader label="ID" width="10%" align="center"/>
+                        <listheader label="Hutang" width="40%" align="center"/>
+                        <listheader label="Nilai Hutang" width="25%" align="center"/>
+                        <listheader label="Aksi" width="25%" align="center"/>
+                    </listhead>
+                    <template name="model">
+                        <listitem value="${each}">
+                            <listcell>
+                                <label width="100%" />
+                            </listcell>
+                            <listcell>
+                                <label width="100%" />
+                            </listcell>
+                            <listcell>
+                                <label width="100%" />
+                            </listcell>
+                            <listcell >
+                                <a onClick="@command('detailAsset', object=each)" image="/images/skk_edit.png" sclass="btn btn-default"/>
+                                <a onClick="@command('deleteAsset', object=each)" image="/images/clear_x.png" sclass="btn btn-default"/>
+                            </listcell>
+                        </listitem>
+                    </template>
+                </listbox>
+                <separator height="20px"/>
+                <n:p>
+                    <a class="btn btn-danger btn-lg" onClick="@command('buttonKlikForm2')">
+                        Back
+                    </a>
+                    <a class="btn btn-primary btn-lg" onClick="@command('buttonKlikForm2')">
+                        Next
+                    </a>
+                </n:p>
+            </div>
+            
+            <!-- form 3 - Daftar Piutang -->
+            <div class="container" xmlns:n="native" visible="@load(vm.step3Form)">
+                <n:h1>
+                    <label style="font-size: 35px; font-weight: bold" value="Langkah 3"/>
+                </n:h1>
+                <cell>
+                    <n:p>
+                        Masukkan Data Piutang saat ini:
+                    </n:p>
+                </cell>
+                <div align="right" class="bs-example">
+                    <button label="Tambah Data" sclass="btn-primary" onClick="@command('buttonTambahHutang')"/>
+                </div>
+                <separator height="10px"/>
+                <listbox rows="5" mold="paging" emptyMessage="${labels.common.noDataFound}">
+                    <listhead>
+                        <listheader label="ID" width="10%" align="center"/>
+                        <listheader label="Piutang" width="40%" align="center"/>
+                        <listheader label="Nilai Piutang" width="25%" align="center"/>
+                        <listheader label="Aksi" width="25%" align="center"/>
+                    </listhead>
+                    <template name="model">
+                        <listitem value="${each}">
+                            <listcell>
+                                <label width="100%" />
+                            </listcell>
+                            <listcell>
+                                <label width="100%" />
+                            </listcell>
+                            <listcell>
+                                <label width="100%" />
+                            </listcell>
+                            <listcell >
+                                <a onClick="@command('detailAsset', object=each)" image="/images/skk_edit.png" sclass="btn btn-default"/>
+                                <a onClick="@command('deleteAsset', object=each)" image="/images/clear_x.png" sclass="btn btn-default"/>
+                            </listcell>
+                        </listitem>
+                    </template>
+                </listbox>
+                <separator height="20px"/>
+                <n:p>
+                    <a class="btn btn-danger btn-lg" onClick="@command('buttonKlikForm2')">
+                        Back
+                    </a>
+                    <a class="btn btn-primary btn-lg" onClick="@command('buttonKlikForm2')">
+                        Next
+                    </a>
+                </n:p>
+            </div>
+            
+            <!-- form 4 - Daftar Persediaan -->
+            <div class="container" xmlns:n="native" visible="@load(vm.step3Form)">
+                <n:h1>
+                    <label style="font-size: 35px; font-weight: bold" value="Langkah 3"/>
+                </n:h1>
+                <cell>
+                    <n:p>
+                        Masukkan Data Persediaan saat ini:
+                    </n:p>
+                </cell>
+                <div align="right" class="bs-example">
+                    <button label="Tambah Data" sclass="btn-primary" onClick="@command('buttonTambahHutang')"/>
+                </div>
+                <separator height="10px"/>
+                <listbox rows="5" mold="paging" emptyMessage="${labels.common.noDataFound}">
+                    <listhead>
+                        <listheader label="ID" width="10%" align="center"/>
+                        <listheader label="Piutang" width="40%" align="center"/>
+                        <listheader label="Nilai Piutang" width="25%" align="center"/>
+                        <listheader label="Aksi" width="25%" align="center"/>
+                    </listhead>
+                    <template name="model">
+                        <listitem value="${each}">
+                            <listcell>
+                                <label width="100%" />
+                            </listcell>
+                            <listcell>
+                                <label width="100%" />
+                            </listcell>
+                            <listcell>
+                                <label width="100%" />
+                            </listcell>
+                            <listcell >
+                                <a onClick="@command('detailAsset', object=each)" image="/images/skk_edit.png" sclass="btn btn-default"/>
+                                <a onClick="@command('deleteAsset', object=each)" image="/images/clear_x.png" sclass="btn btn-default"/>
+                            </listcell>
+                        </listitem>
+                    </template>
+                </listbox>
+                <separator height="20px"/>
+                <n:p>
+                    <a class="btn btn-danger btn-lg" onClick="@command('buttonKlikForm2')">
+                        Back
+                    </a>
+                    <a class="btn btn-primary btn-lg" onClick="@command('buttonKlikForm2')">
+                        Next
+                    </a>
+                </n:p>
+            </div>
+            
+            <!-- form 5 - Aktiva Tetap -->
+            <div class="container" xmlns:n="native" visible="@load(vm.step3Form)">
+                <n:h1>
+                    <label style="font-size: 35px; font-weight: bold" value="Langkah 3"/>
+                </n:h1>
+                <cell>
+                    <n:p>
+                        Masukkan Data Persediaan saat ini:
+                    </n:p>
+                </cell>
+                <div align="right" class="bs-example">
+                    <button label="Tambah Data" sclass="btn-primary" onClick="@command('buttonTambahHutang')"/>
+                </div>
+                <separator height="10px"/>
+                <listbox rows="5" mold="paging" emptyMessage="${labels.common.noDataFound}">
+                    <listhead>
+                        <listheader label="ID" width="10%" align="center"/>
+                        <listheader label="Piutang" width="40%" align="center"/>
+                        <listheader label="Nilai Piutang" width="25%" align="center"/>
+                        <listheader label="Aksi" width="25%" align="center"/>
+                    </listhead>
+                    <template name="model">
+                        <listitem value="${each}">
+                            <listcell>
+                                <label width="100%" />
+                            </listcell>
+                            <listcell>
+                                <label width="100%" />
+                            </listcell>
+                            <listcell>
+                                <label width="100%" />
+                            </listcell>
+                            <listcell >
+                                <a onClick="@command('detailAsset', object=each)" image="/images/skk_edit.png" sclass="btn btn-default"/>
+                                <a onClick="@command('deleteAsset', object=each)" image="/images/clear_x.png" sclass="btn btn-default"/>
+                            </listcell>
+                        </listitem>
+                    </template>
+                </listbox>
+                <separator height="20px"/>
+                <n:p>
+                    <a class="btn btn-danger btn-lg" onClick="@command('buttonKlikForm2')">
+                        Back
+                    </a>
+                    <a class="btn btn-primary btn-lg" onClick="@command('buttonKlikForm2')">
+                        Finish
+                    </a>
+                </n:p>
+            </div>
+        </panelchildren>
+    </panel>
+</window>
+

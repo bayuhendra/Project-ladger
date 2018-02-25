@@ -1,32 +1,22 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.ledger.domain.financial.management;
 
-import com.ledger.shared.status.StatusTransaksi;
-import com.ledger.shared.type.JenisBarang;
-import com.ledger.shared.type.JenisPembayaran;
 import com.ledger.shared.type.Kategori;
 import java.util.Date;
 
-
 public class TransaksiBuilder {
 
-    private long id;
     private String transaksiID;
-    private String userIDTransaksi;
+    private String userID;
     private String namaProduk;
     private Kategori kategoriTransaksi;
-    private JenisBarang jenisBarang;
+    private String jenisBarang;
     private double harga;
     private double diskon;
     private double total;
     private Date tanggalTransaksi;
     private String deskripsi;
-    private StatusTransaksi statusTransaksi;
-    private JenisPembayaran jenisPembayaran;
+    private String statusTransaksi;
+    private String jenisPembayaran;
     private String createdBy;
     private Date createdDate;
     private String modifiedBy;
@@ -35,18 +25,13 @@ public class TransaksiBuilder {
     public TransaksiBuilder() {
     }
 
-    public TransaksiBuilder setId(long id) {
-        this.id = id;
-        return this;
-    }
-
     public TransaksiBuilder setTransaksiID(String transaksiID) {
         this.transaksiID = transaksiID;
         return this;
     }
 
-    public TransaksiBuilder setUserIDTransaksi(String userIDTransaksi) {
-        this.userIDTransaksi = userIDTransaksi;
+    public TransaksiBuilder setUserID(String userID) {
+        this.userID = userID;
         return this;
     }
 
@@ -60,7 +45,7 @@ public class TransaksiBuilder {
         return this;
     }
 
-    public TransaksiBuilder setJenisBarang(JenisBarang jenisBarang) {
+    public TransaksiBuilder setJenisBarang(String jenisBarang) {
         this.jenisBarang = jenisBarang;
         return this;
     }
@@ -90,12 +75,12 @@ public class TransaksiBuilder {
         return this;
     }
 
-    public TransaksiBuilder setStatusTransaksi(StatusTransaksi statusTransaksi) {
+    public TransaksiBuilder setStatusTransaksi(String statusTransaksi) {
         this.statusTransaksi = statusTransaksi;
         return this;
     }
 
-    public TransaksiBuilder setJenisPembayaran(JenisPembayaran jenisPembayaran) {
+    public TransaksiBuilder setJenisPembayaran(String jenisPembayaran) {
         this.jenisPembayaran = jenisPembayaran;
         return this;
     }
@@ -121,7 +106,7 @@ public class TransaksiBuilder {
     }
 
     public Transaksi createTransaksi() {
-        return new Transaksi(id, transaksiID, userIDTransaksi, namaProduk, kategoriTransaksi, jenisBarang, harga, diskon, total, tanggalTransaksi, deskripsi, statusTransaksi, jenisPembayaran, createdBy, createdDate, modifiedBy, modifiedDate);
+        return new Transaksi(transaksiID, userID, namaProduk, kategoriTransaksi, jenisBarang, harga, diskon, total, tanggalTransaksi, deskripsi, statusTransaksi, jenisPembayaran, createdBy, createdDate, modifiedBy, modifiedDate);
     }
-    
+
 }

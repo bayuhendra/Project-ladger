@@ -1,36 +1,44 @@
 <zk xmlns:w="client" xmlns:n="native">
     <window apply="org.zkoss.bind.BindComposer"
             viewModel="@id('vm') @init('com.ledger.main.viewmodel.financial.management.DaftarUserVM')"
-            width="500px" height="600px">
+            width="500px" height="640px" form="@id('fx') @load(vm.userDTO) @save(vm.userDTO, before='buttonRegister')">
         <!-- Modal content-->
         <div>
             <div class="modal-header" align="center">
                 <n:h4 class="modal-title"> Registrasi User</n:h4>
             </div>
             <div class="modal-body">
-                <div class="input-group">
-                    <n:h5 class="modal-title"> Nama Lengkap</n:h5>
-                    <textbox class="form-control" width="463px" value="@bind(vm.fullname)" constraint="no empty"/>
-                    <n:h5 class="modal-title"> Email</n:h5>
-                    <textbox class="form-control" width="463px" value="@bind(vm.email)" constraint="no empty"/>
-                    <n:h5 class="modal-title"> Username</n:h5>
-                    <textbox class="form-control" width="463px" value="@bind(vm.username)" constraint="no empty"/>
-                    <n:h5 class="modal-title"> Password</n:h5>
-                    <textbox class="form-control" type="password" width="463px" value="@bind(vm.password)"/>
-                </div>
+                <panel title="Data Pribadi" sclass="panel-success">
+                    <panelchildren>
+                        <div class="input-group">
+                            <n:h5 class="modal-title"> Nama Lengkap</n:h5>
+                            <textbox class="form-control" width="420px" value="@bind(vm.fullname) @save(vm.fullname, before='buttonRegister')" constraint="no empty: Nama Lengkap tidak boleh kosong" />
+                            <n:h5 class="modal-title"> Email</n:h5>
+                            <textbox class="form-control" width="420px" value="@bind(vm.email) @save(vm.email, before='buttonRegister')" constraint="no empty: Email tidak boleh kosong"/>
+                            <n:h5 class="modal-title"> Username</n:h5>
+                            <textbox class="form-control" width="420px" value="@bind(vm.username) @save(vm.username, before='buttonRegister')" constraint="no empty: Username tidak boleh kosong"/>
+                            <n:h5 class="modal-title"> Password</n:h5>
+                            <textbox class="form-control" type="password" width="420px" value="@bind(vm.password) @save(vm.password, before='buttonRegister')" constraint="no empty: Password tidak boleh kosong"/>
+                        </div>
+                    </panelchildren>
+                </panel>
                 <separator width="3px"/>
                 <panel title="Data Usaha" sclass="panel-success">
                     <panelchildren>
                         <div class="input-group">
                             <n:h5 class="modal-title"> Nama Usaha</n:h5>
-                            <textbox class="form-control" width="435px" value="@bind(vm.namaUsaha)"/>
+                            <textbox class="form-control" width="420px" value="@bind(vm.namaUsaha) @save(vm.namaUsaha, before='buttonRegister')" constraint="no empty: Nama Usaha tidak boleh kosong"/>
                             <n:h5 class="modal-title"> Jenis Usaha</n:h5>
-                            <textbox class="form-control" width="435px" value="@bind(vm.jenisUsaha)"/>
+                            <!--<textbox class="form-control" width="420px" value="@bind(vm.jenisUsaha) @save(vm.jenisUsaha, before='buttonRegister')" constraint="no empty: Email tidak boleh kosong"/>-->
+                            <combobox width="420px" style="font-size:14px" height="35px" placeholder="-Pilih Jenis Usaha-" model="@load(vm.listJenisUsaha)" selectedItem="@bind(vm.jenisUsaha)" readonly="true" constraint="no empty: Jenis Usaha tidak boleh kosong">
+                                <template name="model" var="items">
+                                    <comboitem label="@load(items)" value="@load(items)"/>
+                                </template>
+                            </combobox>
                         </div>
                     </panelchildren>
                 </panel>
-            </div>
-            <div class="modal-footer">
+                <space width="310px"/>
                 <button sclass="btn-danger" label="Close" onClick="@command('buttonCancel')" />
                 <button sclass="btn-success" label="Daftar" onClick="@command('buttonRegister')" />
             </div>
