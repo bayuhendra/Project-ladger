@@ -11,8 +11,10 @@ public class PiutangDTO implements Serializable {
 
     private String userID;
     private String piutangID;
+    private String jenisPiutang;
     private String namaPiutang;
     private double jumlahPiutang;
+    private Date tanggalJatuhTempo;
     private String status;
     private String createdBy;
     private Date createdDate;
@@ -22,11 +24,13 @@ public class PiutangDTO implements Serializable {
     public PiutangDTO() {
     }
 
-    public PiutangDTO(String userID, String piutangID, String namaPiutang, double jumlahPiutang, String status, String createdBy, Date createdDate, String modifiedBy, Date modifiedDate) {
+    public PiutangDTO(String userID, String piutangID, String jenisPiutang, String namaPiutang, double jumlahPiutang, Date tanggalJatuhTempo, String status, String createdBy, Date createdDate, String modifiedBy, Date modifiedDate) {
         this.userID = userID;
         this.piutangID = piutangID;
+        this.jenisPiutang = jenisPiutang;
         this.namaPiutang = namaPiutang;
         this.jumlahPiutang = jumlahPiutang;
+        this.tanggalJatuhTempo = tanggalJatuhTempo;
         this.status = status;
         this.createdBy = createdBy;
         this.createdDate = createdDate;
@@ -104,6 +108,22 @@ public class PiutangDTO implements Serializable {
 
     public void setUserID(String userID) {
         this.userID = userID;
+    }
+
+    public String getJenisPiutang() {
+        return jenisPiutang;
+    }
+
+    public void setJenisPiutang(String jenisPiutang) {
+        this.jenisPiutang = jenisPiutang;
+    }
+
+    public Date getTanggalJatuhTempo() {
+        return tanggalJatuhTempo;
+    }
+
+    public void setTanggalJatuhTempo(Date tanggalJatuhTempo) {
+        this.tanggalJatuhTempo = tanggalJatuhTempo;
     }
 
 }

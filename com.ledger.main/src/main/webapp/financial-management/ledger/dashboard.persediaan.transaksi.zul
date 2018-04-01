@@ -1,0 +1,50 @@
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<zk xmlns:w="client" xmlns:n="native">
+    <window closable="true" apply="org.zkoss.bind.BindComposer"
+            viewModel="@id('vm') @init('com.ledger.main.viewmodel.DashboardVM')">
+        <div align="left" class="bs-example">
+            <div class="col-lg-6">
+                <div class="input-group" >
+                    <textbox class="form-control" placeholder="Masukkan Parameter"/>
+                    <span class="input-group-btn">
+                        <button sclass="btn-success" label="Search" onClick="@command('buttonSearch')"/>
+                    </span>
+                </div>
+            </div>
+            <button label="Tambah Data" sclass="btn-primary" onClick="@command('buttonTambahPersediaanNew')"/>
+            <space width="5px"/>
+        </div>
+        <separator width="30px"/>
+        <!--<groupbox closable="false">-->
+        <separator height="10px"/>
+        <listbox mold="paging" emptyMessage="${labels.common.noDataFound}"
+                         model="@bind(vm.persediaanDTOs)">
+            <listhead>
+                <listheader label="Nama Persediaan" width="35%" align="center"/>
+                <listheader label="Qty" width="15%" align="center"/>
+                <listheader label="Total Harga" width="25%" align="center"/>
+                <listheader label="Aksi" width="25%" align="center"/>
+            </listhead>
+            <template name="model">
+                <listitem value="${each}">
+                    <listcell>
+                        <label width="100%" value="@load(each.namaPersediaan)"/>
+                    </listcell>
+                    <listcell>
+                        <label width="100%" value="@load(each.jumlahPersediaan)"/>
+                    </listcell>
+                    <listcell>
+                        <label width="100%" value="@load(c:formatNumber(each.totalHargaPersediaan, '#,###.##'))"/>
+                    </listcell>
+                    <listcell >
+                        <a onClick="@command('detailPersediaan', object=each)" image="/images/skk_edit.png" sclass="btn btn-default"/>
+                        <a onClick="@command('deletePersediaan', object=each)" image="/images/clear_x.png" sclass="btn btn-default"/>
+                    </listcell>
+                </listitem>
+            </template>
+        </listbox>
+        <div align="right">
+            <paging totalSize="100"/>
+        </div>
+    </window>
+</zk>

@@ -1,6 +1,5 @@
 package com.ledger.domain.financial.management;
 
-import com.ledger.shared.status.StatusTransaksi;
 import java.util.List;
 import java.util.Map;
 
@@ -19,6 +18,8 @@ public interface TransaksiRepository {
     List<Transaksi> findAll();
 
     List<Transaksi> findByParams(Map map);
+    
+    List<Transaksi> findByUserID(String userID);
 
     List<Transaksi> findAllByStatus(String statusTransaksi);
 }

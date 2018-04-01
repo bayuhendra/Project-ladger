@@ -32,12 +32,44 @@
                 </n:h1>
                 <cell>
                     <n:p>
-                        Masukkan Data Saldo KAS dan Saldo Bank saat ini:
+                        Masukkan Saldo KAS Anda saat ini:
                     </n:p>
                 </cell>
                 <div class="input-group">
                     <span class="input-group-addon">Rp</span>
-                    <doublebox class="form-control" value="@bind(vm.saldoKasBank) @save(vm.saldoKasBank, before='buttonKlikNextForm1')" format="#,##0.##" width="463px" constraint="no empty: Data saldo tidak boleh kosong!, no zero: Data saldo tidak boleh 0!"/>
+                    <doublebox class="form-control" value="@bind(vm.saldoKas) @save(vm.saldoKas, before='buttonKlikNextForm1')" format="#,##0.##" width="463px" constraint="no empty: Saldo KAS tidak boleh kosong!, no zero: Saldo KAS tidak boleh 0!"/>
+                </div>
+                <cell>
+                    <n:p>
+                        Masukkan Saldo Bank Anda saat ini:
+                    </n:p>
+                </cell>
+                <div class="input-group">
+                    <span class="input-group-addon">Rp</span>
+                    <doublebox class="form-control" value="@bind(vm.saldoBank) @save(vm.saldoBank, before='buttonKlikNextForm1')" format="#,##0.##" width="463px" constraint="no empty: Saldo Bank tidak boleh kosong!, no zero: Saldo Bank tidak boleh 0!"/>
+                </div>
+                <cell>
+                    <n:p>
+                        Masukkan Modal Disetor Anda:
+                    </n:p>
+                </cell>
+                <div class="input-group">
+                    <span class="input-group-addon">Rp</span>
+                    <doublebox class="form-control" value="@bind(vm.modalDisetor) @save(vm.modalDisetor, before='buttonKlikNextForm1')" format="#,##0.##" width="463px" constraint="no empty: Modal Disetor tidak boleh kosong!, no zero: Modal Disetor  tidak boleh 0!"/>
+                </div>
+                <cell>
+                    <n:p>
+                        Masukkan Saldo Laba/Rugi Anda:
+                    </n:p>
+                </cell>
+                <div class="input-group">
+                    <span class="input-group-addon">Rp</span>
+                    <doublebox class="form-control" value="@bind(vm.saldoLabaRugi) @save(vm.saldoLabaRugi, before='buttonKlikNextForm1')" format="#,##0.##" width="463px" constraint="no empty: Saldo Laba/Rugi tidak boleh kosong!, no zero: Saldo Laba/Rugi tidak boleh 0!"/>
+                </div>
+                <separator height="20px"/>
+                <div class="input-group">
+                    <checkbox class="input-group-addon" value="@bind(vm.isNoSaldo)" checked="@bind(vm.isNoSaldo)"/>
+                    <label class="form-control" value="Tidak memiliki Saldo Kas, Saldo Bank, Saldo Laba/Rugi dan Modal Disetor" width="200px"/>
                 </div>
                 <separator height="20px"/>
                 <n:p>
@@ -58,7 +90,8 @@
                     </n:p>
                 </cell>
                 <div align="right" class="bs-example">
-                    <button label="Tambah Data" sclass="btn-primary" onClick="@command('buttonTambahHutangNew')"/>
+                    <button label="Tambah Hutang Usaha" sclass="btn-primary" onClick="@command('buttonTambahHutangNew')"/>
+                    <button label="Tambah Hutang Lainnya" sclass="btn-primary" onClick="@command('buttonTambahHutangNew')"/>
                 </div>
                 <separator height="10px"/>
                 <listbox mold="paging" emptyMessage="${labels.common.noDataFound}"
@@ -88,6 +121,11 @@
                     </template>
                 </listbox>
                 <separator height="20px"/>
+                <div class="input-group">
+                    <checkbox class="input-group-addon" value="@bind(vm.isNoHutang)" checked="@bind(vm.isNoHutang)"/>
+                    <label class="form-control" value="Tidak memiliki Hutang" width="200px"/>
+                </div>
+                <separator height="20px"/>
                 <n:p>
                     <a class="btn btn-danger btn-lg" onClick="@command('buttonKlikBackForm2')">
                         Back
@@ -109,7 +147,8 @@
                     </n:p>
                 </cell>
                 <div align="right" class="bs-example">
-                    <button label="Tambah Data" sclass="btn-primary" onClick="@command('buttonTambahPiutangNew')"/>
+                    <button label="Tambah Piutang Usaha" sclass="btn-primary" onClick="@command('buttonTambahPiutangNew')"/>
+                    <button label="Tambah Piutang Lainnya" sclass="btn-primary" onClick="@command('buttonTambahPiutangNew')"/>
                 </div>
                 <separator height="10px"/>
                 <listbox mold="paging" emptyMessage="${labels.common.noDataFound}"
@@ -139,6 +178,11 @@
                     </template>
                 </listbox>
                 <separator height="20px"/>
+                <div class="input-group">
+                    <checkbox class="input-group-addon" value="@bind(vm.isNoPiutang)" checked="@bind(vm.isNoPiutang)"/>
+                    <label class="form-control" value="Tidak memiliki Piutang" width="200px"/>
+                </div>
+                <separator height="20px"/>
                 <n:p>
                     <a class="btn btn-danger btn-lg" onClick="@command('buttonKlikBackForm3')">
                         Back
@@ -160,7 +204,8 @@
                     </n:p>
                 </cell>
                 <div align="right" class="bs-example">
-                    <button label="Tambah Data" sclass="btn-primary" onClick="@command('buttonTambahPersediaanNew')"/>
+                    <button label="Tambah Persediaan Barang Dagangan" sclass="btn-primary" onClick="@command('buttonTambahPersediaanNew')"/>
+                    <button label="Tambah Persediaan Lainnya" sclass="btn-primary" onClick="@command('buttonTambahPersediaanNew')"/>
                 </div>
                 <separator height="10px"/>
                 <listbox mold="paging" emptyMessage="${labels.common.noDataFound}"
@@ -194,6 +239,11 @@
                     </template>
                 </listbox>
                 <separator height="20px"/>
+                <div class="input-group">
+                    <checkbox class="input-group-addon" value="@bind(vm.isNoPersediaan)" checked="@bind(vm.isNoPersediaan)"/>
+                    <label class="form-control" value="Tidak memiliki Persediaan" width="200px"/>
+                </div>
+                <separator height="20px"/>
                 <n:p>
                     <a class="btn btn-danger btn-lg" onClick="@command('buttonKlikBackForm4')">
                         Back
@@ -215,7 +265,9 @@
                     </n:p>
                 </cell>
                 <div align="right" class="bs-example">
-                    <button label="Tambah Data" sclass="btn-primary" onClick="@command('buttonTambahActivaTetapNew')"/>
+                    <button label="Tambah Aktifa Tanah dan Bangunan" sclass="btn-primary" onClick="@command('buttonTambahActivaTetapNew')"/>
+                    <button label="Tambah Aktifa Kendaraan" sclass="btn-primary" onClick="@command('buttonTambahActivaTetapNew')"/>
+                    <button label="Tambah Aktifa Lainnya" sclass="btn-primary" onClick="@command('buttonTambahActivaTetapNew')"/>
                 </div>
                 <separator height="10px"/>
                 <listbox mold="paging" emptyMessage="${labels.common.noDataFound}"
@@ -224,7 +276,7 @@
                         <listheader label="ID" width="10%" align="center"/>
                         <listheader label="Nama Activa Tetap" width="25%" align="center"/>
                         <listheader label="Nilai Activa Tetap" width="20%" align="center"/>
-                        <listheader label="Lama Pemakaian (Tahun)" width="20%" align="center"/>
+                        <listheader label="Nilai Penyusutan" width="20%" align="center"/>
                         <listheader label="Aksi" width="25%" align="center"/>
                     </listhead>
                     <template name="model">
@@ -239,7 +291,7 @@
                                 <label width="100%" value="@load(c:formatNumber(each.hargaActivaTetap, '#,###.##'))"/>
                             </listcell>
                             <listcell>
-                                <label width="100%" value="@load(each.lamaPemakaian)"/>
+                                <label width="100%" value="@load(c:formatNumber(each.totalPenyusutan, '#,###.##'))"/>
                             </listcell>
                             <listcell >
                                 <a onClick="@command('detailActivaTetap', object=each)" image="/images/skk_edit.png" sclass="btn btn-default"/>
@@ -248,6 +300,11 @@
                         </listitem>
                     </template>
                 </listbox>
+                <separator height="20px"/>
+                <div class="input-group">
+                    <checkbox class="input-group-addon" value="@bind(vm.isNoActiva)" checked="@bind(vm.isNoActiva)"/>
+                    <label class="form-control" value="Tidak memiliki Activa Tetap" width="200px"/>
+                </div>
                 <separator height="20px"/>
                 <n:p>
                     <a class="btn btn-danger btn-lg" onClick="@command('buttonKlikBackForm5')">
@@ -260,100 +317,31 @@
             </div>
         </panelchildren>
     </panel>
-    <panel title="@load(vm.concatString('Laporan Laba Rugi dan Neraca  - ',vm.user.userSpecificationDTO.immediateSupervisorUserName,' - Periode Februari 2018'))" sclass="panel-primary" visible="@load(vm.panelAfter)">
+    <panel title="@load(vm.concatString('Laporan Laba Rugi dan Neraca  - ',vm.user.userSpecificationDTO.immediateSupervisorUserName,' - Periode April 2018'))" sclass="panel-primary" visible="@load(vm.panelAfter)">
         <panelchildren>
             <!-- form initial dashboard -->
             <div class="container" xmlns:n="native" visible="true">
                 <n:p>
-                    <a class="btn btn-primary btn-lg" onClick="@command('buttonTambahDataTransaksi')">
-                        Tambah Data Transaksi
+                    <a class="btn btn-primary btn-lg" onClick="@command('buttonTambahTransaksiPokok')">
+                        Tambah Transaksi Pokok
+                    </a>
+                    <a class="btn btn-primary btn-lg" onClick="@command('buttonTambahTransaksiPokok')">
+                        Tambah Transaksi Lainnya
+                    </a>
+                    <a class="btn btn-primary btn-lg" onClick="@command('buttonTambahTransaksiPokok')">
+                        Riwayat Transaksi
                     </a>
                 </n:p>
-                <grid>
-                    <columns sizable="true">
-                        <column label="NERACA" width="30%" sort="auto" />
-                        <column label="" width="20%" align="right"/>
-                        <column label="" width="20%" align="right"/>
-                        <column label="" width="30%" align="right"/>
+                <navbar mold="bs-tabs">
+                    <navitem label="Neraca" selected="true" onClick="@command('buttonKlikNeraca')"/>
+                    <navitem label="Laporan Laba Rugi" onClick="@command('buttonKlikLabaRugi')"/>
+                    <!--<navitem label="Riwayat Transaksi" onClick="@command('buttonKlikHistoryTransaksi')"/>-->
+                </navbar>
                 
-                    </columns>
-                    <rows>
-                        <group label="ASSET LANCAR" open="true">
-                        </group>
-                        <row>
-                            <label value="a. Kas dan Bank" style="padding-left:15px" />
-                            <cell>
-                                <!--<label value="Rp "/>-->
-                                <label width="100%" value="@load(c:formatNumber(vm.totalKasBank, '#,###.##'))" />
-                            </cell>
-                            <cell>
-                            </cell>
-                        </row>
-                        <row>
-                            <label value="b. Piutang" style="padding-left:15px" />
-                            <cell>
-                                <!--<label value="Rp "/>-->
-                                <label width="100%" value="@load(c:formatNumber(vm.totalPiutang, '#,###.##'))" />
-                            </cell>
-                            <cell>
-                            </cell>
-                        </row>
-                        <row>
-                            <label value="c. Persediaan" style="padding-left:15px" />
-                            <cell>
-                                <!--<label value="Rp "/>-->
-                                <label width="100%" value="@load(c:formatNumber(vm.totalPersediaan, '#,###.##'))" />
-                            </cell>
-                            <cell>
-                            </cell>
-                        </row>
-                        <row>
-                            <label value="JUMLAH ASSET LANCAR" style="padding-left:15px; font-weight: bold" />
-                            <!--                            <cell>
-                            </cell>-->
-                            <cell>
-                                <!--<label value="Rp "/>-->
-                                <label width="100%" style="padding-left:15px; font-weight: bold" value="@load(c:formatNumber(vm.totalKasBank + vm.totalPiutang + vm.totalPersediaan, '#,###.##'))" />
-                            </cell>
-                    
-                        </row>
-                        <group label="ACTIVA TETAP" open="true">
-                        </group>
-                        <row>
-                            <label value="NILAI ACTIVA TETAP" style="padding-left:15px" />
-                            <!--                            <cell>
-                            </cell>-->
-                            <cell>
-                                <!--<label value="Rp "/>-->
-                                <label width="100%" value="@load(c:formatNumber(vm.nilaiActivaTetap, '#,###.##'))" />
-                            </cell>
-                    
-                        </row>
-                        <row>
-                            <label value="AKUMULASI PENYUSUTAN" style="padding-left:15px" />
-                            <!--                            <cell>
-                            </cell>-->
-                            <cell>
-                                <!--<label value="Rp "/>-->
-                                <label width="100%" value="@load(c:formatNumber(vm.nilaiTotalPenyusutan, '#,###.##'))" />
-                            </cell>
-                    
-                        </row>
-                        <row>
-                            <label value="NILAI BUKU ASSET TETAP" style="padding-left:15px" />
-                            <!--                            <cell>
-                            </cell>-->
-                            <cell>
-                                <!--<label value="Rp "/>-->
-                                <label width="100%" value="@load(c:formatNumber(vm.nilaiBukuAssetTetap, '#,###.##'))" />
-                            </cell>
-                        </row>
-                        <group label="TOTAL ASSET" open="true">
-                            <label width="100%" value="@load(c:formatNumber(vm.totalAsset, '#,###.##'))" />
-                            <label/>
-                        </group>
-                    </rows>
-                </grid>
+                <separator height="15px"></separator>
+                <hlayout>
+                    <include id="incTab1" src="@load(vm.src)" hflex="1"/>
+                </hlayout>
             </div>
         </panelchildren>
     </panel>

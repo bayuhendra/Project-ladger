@@ -13,6 +13,8 @@ public class SaldoKasDTO implements Serializable {
     private String saldoKasID;
     private double saldoKas;
     private double saldoBank;
+    private double saldoLabaRugi;
+    private double modalDisetor;
     private double saldoKasBank;
     private String createdBy;
     private Date createdDate;
@@ -22,11 +24,13 @@ public class SaldoKasDTO implements Serializable {
     public SaldoKasDTO() {
     }
 
-    public SaldoKasDTO(String userID, String saldoKasID, double saldoKas, double saldoBank, double saldoKasBank, String createdBy, Date createdDate, String modifiedBy, Date modifiedDate) {
+    public SaldoKasDTO(String userID, String saldoKasID, double saldoKas, double saldoBank, double saldoLabaRugi, double modalDisetor, double saldoKasBank, String createdBy, Date createdDate, String modifiedBy, Date modifiedDate) {
         this.userID = userID;
         this.saldoKasID = saldoKasID;
         this.saldoKas = saldoKas;
         this.saldoBank = saldoBank;
+        this.saldoLabaRugi = saldoLabaRugi;
+        this.modalDisetor = modalDisetor;
         this.saldoKasBank = saldoKasBank;
         this.createdBy = createdBy;
         this.createdDate = createdDate;
@@ -106,9 +110,25 @@ public class SaldoKasDTO implements Serializable {
         this.userID = userID;
     }
 
+    public double getSaldoLabaRugi() {
+        return saldoLabaRugi;
+    }
+
+    public void setSaldoLabaRugi(double saldoLabaRugi) {
+        this.saldoLabaRugi = saldoLabaRugi;
+    }
+
+    public double getModalDisetor() {
+        return modalDisetor;
+    }
+
+    public void setModalDisetor(double modalDisetor) {
+        this.modalDisetor = modalDisetor;
+    }
+
     @Override
     public String toString() {
-        return "SaldoKasDTO{" + "userID=" + userID + ", saldoKasID=" + saldoKasID + ", saldoKas=" + saldoKas + ", saldoBank=" + saldoBank + ", saldoKasBank=" + saldoKasBank + ", createdBy=" + createdBy + ", createdDate=" + createdDate + ", modifiedBy=" + modifiedBy + ", modifiedDate=" + modifiedDate + '}';
+        return "SaldoKasDTO{" + "userID=" + userID + ", saldoKasID=" + saldoKasID + ", saldoKas=" + saldoKas + ", saldoBank=" + saldoBank + ", saldoLabaRugi=" + saldoLabaRugi + ", modalDisetor=" + modalDisetor + ", saldoKasBank=" + saldoKasBank + ", createdBy=" + createdBy + ", createdDate=" + createdDate + ", modifiedBy=" + modifiedBy + ", modifiedDate=" + modifiedDate + '}';
     }
 
 }

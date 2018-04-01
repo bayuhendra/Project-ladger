@@ -6,9 +6,6 @@ import com.ledger.domain.financial.management.Transaksi;
 import com.ledger.domain.financial.management.TransaksiBuilder;
 import com.ledger.domain.financial.management.TransaksiRepository;
 import com.ledger.interfaces.web.facade.dto.assembler.finance.management.TransaksiDTOAssembler;
-import com.ledger.shared.status.StatusTransaksi;
-import com.ledger.shared.type.JenisBarang;
-import com.ledger.shared.type.JenisPembayaran;
 import com.ledger.shared.type.Kategori;
 import java.util.Date;
 import java.util.List;
@@ -55,21 +52,21 @@ public class TransaksiServiceImpl implements TransaksiService {
     @Override
     public TransaksiDTO getDummyData() {
         Transaksi transaksi = new TransaksiBuilder()
-                .setTransaksiID("TRANSAKSI001")
-                .setNamaProduk("TANAH")
-                .setKategoriTransaksi(Kategori.PEMBELIAN)
-                .setJenisBarang("NON ELEKTRONIK")
-                .setHarga(12000)
-                .setDiskon(3)
-                .setTotal(4)
-                .setTanggalTransaksi(new Date())
-                .setStatusTransaksi("DONE")
-                .setJenisPembayaran("KREDIT")
-                .setDeskripsi("catatan")
-                .setCreatedBy("SYSTEM")
-                .setCreatedDate(new Date())
-                .setModifiedBy("SYSTEM")
-                .setModifiedDate(new Date())
+                //                .setTransaksiID("TRANSAKSI001")
+                //                .setNamaProduk("TANAH")
+                //                .setKategoriTransaksi(Kategori.PEMBELIAN)
+                //                .setJenisBarang("NON ELEKTRONIK")
+                //                .setHarga(12000)
+                //                .setDiskon(3)
+                //                .setTotal(4)
+                //                .setTanggalTransaksi(new Date())
+                //                .setStatusTransaksi("DONE")
+                //                .setJenisPembayaran("KREDIT")
+                //                .setDeskripsi("catatan")
+                //                .setCreatedBy("SYSTEM")
+                //                .setCreatedDate(new Date())
+                //                .setModifiedBy("SYSTEM")
+                //                .setModifiedDate(new Date())
                 .createTransaksi();
         return transaksiDTOAssembler.toDTO(transaksi);
     }
@@ -94,6 +91,16 @@ public class TransaksiServiceImpl implements TransaksiService {
     public List<TransaksiDTO> findByParams(Map map) {
         Validate.notNull(transaksiRepository);
         List<Transaksi> listTransaksi = transaksiRepository.findByParams(map);
+        if (listTransaksi != null) {
+            return (List<TransaksiDTO>) transaksiDTOAssembler.toDTOs(listTransaksi);
+        }
+        return null;
+    }
+
+    @Override
+    public List<TransaksiDTO> findByUserID(String userID) {
+        Validate.notNull(transaksiRepository);
+        List<Transaksi> listTransaksi = transaksiRepository.findByUserID(userID);
         if (listTransaksi != null) {
             return (List<TransaksiDTO>) transaksiDTOAssembler.toDTOs(listTransaksi);
         }

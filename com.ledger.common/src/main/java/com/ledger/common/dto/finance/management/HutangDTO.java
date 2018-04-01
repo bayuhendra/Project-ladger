@@ -11,8 +11,10 @@ public class HutangDTO implements Serializable {
 
     private String userID;
     private String hutangID;
+    private String jenisHutang;
     private String namaHutang;
     private double jumlahHutang;
+    private Date tanggalJatuhTempo;
     private String status;
     private String createdBy;
     private Date createdDate;
@@ -22,11 +24,13 @@ public class HutangDTO implements Serializable {
     public HutangDTO() {
     }
 
-    public HutangDTO(String userID, String hutangID, String namaHutang, double jumlahHutang, String status, String createdBy, Date createdDate, String modifiedBy, Date modifiedDate) {
+    public HutangDTO(String userID, String hutangID, String jenisHutang, String namaHutang, double jumlahHutang, Date tanggalJatuhTempo, String status, String createdBy, Date createdDate, String modifiedBy, Date modifiedDate) {
         this.userID = userID;
         this.hutangID = hutangID;
+        this.jenisHutang = jenisHutang;
         this.namaHutang = namaHutang;
         this.jumlahHutang = jumlahHutang;
+        this.tanggalJatuhTempo = tanggalJatuhTempo;
         this.status = status;
         this.createdBy = createdBy;
         this.createdDate = createdDate;
@@ -104,6 +108,22 @@ public class HutangDTO implements Serializable {
 
     public void setUserID(String userID) {
         this.userID = userID;
+    }
+
+    public String getJenisHutang() {
+        return jenisHutang;
+    }
+
+    public void setJenisHutang(String jenisHutang) {
+        this.jenisHutang = jenisHutang;
+    }
+
+    public Date getTanggalJatuhTempo() {
+        return tanggalJatuhTempo;
+    }
+
+    public void setTanggalJatuhTempo(Date tanggalJatuhTempo) {
+        this.tanggalJatuhTempo = tanggalJatuhTempo;
     }
 
 }

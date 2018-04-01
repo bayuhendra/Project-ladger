@@ -1,21 +1,17 @@
 package com.ledger.common.dto.finance.management;
 
-import com.ledger.shared.type.Kategori;
 import java.util.Date;
 
-
 public class TransaksiDTOBuilder {
+
     private String transaksiID;
-    private String userIDTransaksi;
-    private String namaProduk;
-    private Kategori kategoriTransaksi;
-    private String jenisBarang;
-    private double harga;
-    private double diskon;
-    private double total;
+    private String userID;
+    private String jenisTransaksi;
+    private String namaTransaksi;
+    private double nilaiTransaksi;
+    private double cash;
+    private double kredit;
     private Date tanggalTransaksi;
-    private String deskripsi;
-    private String statusTransaksi;
     private String jenisPembayaran;
     private String createdBy;
     private Date createdDate;
@@ -30,53 +26,38 @@ public class TransaksiDTOBuilder {
         return this;
     }
 
-    public TransaksiDTOBuilder setUserIDTransaksi(String userIDTransaksi) {
-        this.userIDTransaksi = userIDTransaksi;
+    public TransaksiDTOBuilder setUserID(String userID) {
+        this.userID = userID;
         return this;
     }
 
-    public TransaksiDTOBuilder setNamaProduk(String namaProduk) {
-        this.namaProduk = namaProduk;
+    public TransaksiDTOBuilder setJenisTransaksi(String jenisTransaksi) {
+        this.jenisTransaksi = jenisTransaksi;
         return this;
     }
 
-    public TransaksiDTOBuilder setKategoriTransaksi(Kategori kategoriTransaksi) {
-        this.kategoriTransaksi = kategoriTransaksi;
+    public TransaksiDTOBuilder setNamaTransaksi(String namaTransaksi) {
+        this.namaTransaksi = namaTransaksi;
         return this;
     }
 
-    public TransaksiDTOBuilder setJenisBarang(String jenisBarang) {
-        this.jenisBarang = jenisBarang;
+    public TransaksiDTOBuilder setNilaiTransaksi(double nilaiTransaksi) {
+        this.nilaiTransaksi = nilaiTransaksi;
         return this;
     }
 
-    public TransaksiDTOBuilder setHarga(double harga) {
-        this.harga = harga;
+    public TransaksiDTOBuilder setCash(double cash) {
+        this.cash = cash;
         return this;
     }
 
-    public TransaksiDTOBuilder setDiskon(double diskon) {
-        this.diskon = diskon;
-        return this;
-    }
-
-    public TransaksiDTOBuilder setTotal(double total) {
-        this.total = total;
+    public TransaksiDTOBuilder setKredit(double kredit) {
+        this.kredit = kredit;
         return this;
     }
 
     public TransaksiDTOBuilder setTanggalTransaksi(Date tanggalTransaksi) {
         this.tanggalTransaksi = tanggalTransaksi;
-        return this;
-    }
-
-    public TransaksiDTOBuilder setDeskripsi(String deskripsi) {
-        this.deskripsi = deskripsi;
-        return this;
-    }
-
-    public TransaksiDTOBuilder setStatusTransaksi(String statusTransaksi) {
-        this.statusTransaksi = statusTransaksi;
         return this;
     }
 
@@ -106,7 +87,7 @@ public class TransaksiDTOBuilder {
     }
 
     public TransaksiDTO createTransaksiDTO() {
-        return new TransaksiDTO(transaksiID, userIDTransaksi, namaProduk, kategoriTransaksi, jenisBarang, harga, diskon, total, tanggalTransaksi, deskripsi, statusTransaksi, jenisPembayaran, createdBy, createdDate, modifiedBy, modifiedDate);
+        return new TransaksiDTO(transaksiID, userID, jenisTransaksi, namaTransaksi, nilaiTransaksi, cash, kredit, tanggalTransaksi, jenisPembayaran, createdBy, createdDate, modifiedBy, modifiedDate);
     }
-    
+
 }

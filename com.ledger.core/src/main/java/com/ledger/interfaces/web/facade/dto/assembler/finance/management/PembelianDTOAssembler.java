@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.ledger.interfaces.web.facade.dto.assembler.finance.management;
 
 import com.ledger.common.dto.finance.management.PembelianDTO;
@@ -23,18 +18,21 @@ public class PembelianDTOAssembler implements IObjectAssembler<Pembelian, Pembel
     public PembelianDTO toDTO(Pembelian domainObject) {
         return new PembelianDTOBuilder()
                 .setPembelianID(domainObject.getPembelianID())
+                .setUserID(domainObject.getUserID())
                 .setNamaBarang(domainObject.getNamaBarang())
-                .setKategoriPembelian(domainObject.getKategoriPembelian())
-                .setJenisPembelian(domainObject.getJenisPembelian())
+                .setJenisBarang(domainObject.getJenisBarang())
+                .setSatuan(domainObject.getSatuan())
                 .setJumlah(domainObject.getJumlah())
                 .setDiskon(domainObject.getDiskon())
-                .setTotal(domainObject.getTotal())
-                .setTanggalTransaksiPembelian(domainObject.getTanggalTransaksiPembelian())
-                .setStatusTransaksi(domainObject.getStatusTransaksi())
-                .setCatatan(domainObject.getCatatan())
+                .setHargaBarang(domainObject.getHargaBarang())
+                .setTotalHarga(domainObject.getTotalHarga())
+                .setTanggalPembelian(domainObject.getTanggalPembelian())
+                .setTipePembayaran(domainObject.getTipePembayaran())
+                .setBuktiPembelian(domainObject.getBuktiPembelian())
                 .setCreatedBy(domainObject.getCreatedBy())
                 .setCreatedDate(domainObject.getCreatedDate())
                 .setModifiedBy(domainObject.getModifiedBy())
+                .setModifiedDate(domainObject.getModifiedDate())
                 .createPembelianDTO();
     }
 
@@ -42,18 +40,22 @@ public class PembelianDTOAssembler implements IObjectAssembler<Pembelian, Pembel
     public Pembelian toDomain(PembelianDTO dtoObject) {
         return new PembelianBuilder()
                 .setPembelianID(dtoObject.getPembelianID())
+                .setUserID(dtoObject.getUserID())
                 .setNamaBarang(dtoObject.getNamaBarang())
-                .setKategoriPembelian(dtoObject.getKategoriPembelian())
-                .setJenisPembelian(dtoObject.getJenisPembelian())
+                .setJenisBarang(dtoObject.getJenisBarang())
+                .setSatuan(dtoObject.getSatuan())
                 .setJumlah(dtoObject.getJumlah())
                 .setDiskon(dtoObject.getDiskon())
-                .setTotal(dtoObject.getTotal())
-                .setTanggalTransaksiPembelian(dtoObject.getTanggalTransaksiPembelian())
-                .setStatusTransaksi(dtoObject.getStatusTransaksi())
-                .setCatatan(dtoObject.getCatatan())
+                .setHargaBarang(dtoObject.getHargaBarang())
+                .setTotalHarga(dtoObject.getTotalHarga())
+                .setTanggalPembelian(dtoObject.getTanggalPembelian())
+                .setTipePembayaran(dtoObject.getTipePembayaran())
+                .setBuktiPembelian(dtoObject.getBuktiPembelian())
                 .setCreatedBy(dtoObject.getCreatedBy())
                 .setCreatedDate(dtoObject.getCreatedDate())
-                .setModifiedBy(dtoObject.getModifiedBy()).createPembelian();
+                .setModifiedBy(dtoObject.getModifiedBy())
+                .setModifiedDate(dtoObject.getModifiedDate())
+                .createPembelian();
     }
 
     public List<Pembelian> toDomains(List<PembelianDTO> arg0) {

@@ -2,10 +2,11 @@ package com.ledger.common.dto.finance.management;
 
 import java.util.Date;
 
-
 public class ActivaTetapDTOBuilder {
+
     private String userID;
     private String activaTetapID;
+    private String jenisActiva;
     private String namaActivaTetap;
     private double hargaActivaTetap;
     private int lamaPemakaian;
@@ -28,6 +29,11 @@ public class ActivaTetapDTOBuilder {
 
     public ActivaTetapDTOBuilder setActivaTetapID(String activaTetapID) {
         this.activaTetapID = activaTetapID;
+        return this;
+    }
+
+    public ActivaTetapDTOBuilder setJenisActiva(String jenisActiva) {
+        this.jenisActiva = jenisActiva;
         return this;
     }
 
@@ -87,7 +93,7 @@ public class ActivaTetapDTOBuilder {
     }
 
     public ActivaTetapDTO createActivaTetapDTO() {
-        return new ActivaTetapDTO(userID, activaTetapID, namaActivaTetap, hargaActivaTetap, lamaPemakaian, jangkaWaktuPenyusutan, persenPenyusutan, totalPenyusutan, status, createdBy, createdDate, modifiedBy, modifiedDate);
+        return new ActivaTetapDTO(userID, activaTetapID, jenisActiva, namaActivaTetap, hargaActivaTetap, lamaPemakaian, jangkaWaktuPenyusutan, persenPenyusutan, totalPenyusutan, status, createdBy, createdDate, modifiedBy, modifiedDate);
     }
-    
+
 }

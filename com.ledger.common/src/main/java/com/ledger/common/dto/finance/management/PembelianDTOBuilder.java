@@ -1,28 +1,21 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.ledger.common.dto.finance.management;
 
-import com.ledger.shared.status.StatusTransaksi;
-import com.ledger.shared.type.JenisBarang;
-import com.ledger.shared.type.Kategori;
 import java.util.Date;
 
 
 public class PembelianDTOBuilder {
-
     private String pembelianID;
+    private String userID;
     private String namaBarang;
-    private Kategori kategoriPembelian;
-    private JenisBarang jenisPembelian;
+    private String buktiPembelian;
+    private String jenisBarang;
+    private String satuan;
     private int jumlah;
     private int diskon;
-    private int total;
-    private Date tanggalTransaksiPembelian;
-    private String catatan;
-    private StatusTransaksi statusTransaksi;
+    private double hargaBarang;
+    private double totalHarga;
+    private Date tanggalPembelian;
+    private String tipePembayaran;
     private String createdBy;
     private Date createdDate;
     private String modifiedBy;
@@ -36,18 +29,28 @@ public class PembelianDTOBuilder {
         return this;
     }
 
+    public PembelianDTOBuilder setUserID(String userID) {
+        this.userID = userID;
+        return this;
+    }
+
     public PembelianDTOBuilder setNamaBarang(String namaBarang) {
         this.namaBarang = namaBarang;
         return this;
     }
 
-    public PembelianDTOBuilder setKategoriPembelian(Kategori kategoriPembelian) {
-        this.kategoriPembelian = kategoriPembelian;
+    public PembelianDTOBuilder setBuktiPembelian(String buktiPembelian) {
+        this.buktiPembelian = buktiPembelian;
         return this;
     }
 
-    public PembelianDTOBuilder setJenisPembelian(JenisBarang jenisPembelian) {
-        this.jenisPembelian = jenisPembelian;
+    public PembelianDTOBuilder setJenisBarang(String jenisBarang) {
+        this.jenisBarang = jenisBarang;
+        return this;
+    }
+
+    public PembelianDTOBuilder setSatuan(String satuan) {
+        this.satuan = satuan;
         return this;
     }
 
@@ -61,23 +64,23 @@ public class PembelianDTOBuilder {
         return this;
     }
 
-    public PembelianDTOBuilder setTotal(int total) {
-        this.total = total;
+    public PembelianDTOBuilder setHargaBarang(double hargaBarang) {
+        this.hargaBarang = hargaBarang;
         return this;
     }
 
-    public PembelianDTOBuilder setTanggalTransaksiPembelian(Date tanggalTransaksiPembelian) {
-        this.tanggalTransaksiPembelian = tanggalTransaksiPembelian;
+    public PembelianDTOBuilder setTotalHarga(double totalHarga) {
+        this.totalHarga = totalHarga;
         return this;
     }
 
-    public PembelianDTOBuilder setCatatan(String catatan) {
-        this.catatan = catatan;
+    public PembelianDTOBuilder setTanggalPembelian(Date tanggalPembelian) {
+        this.tanggalPembelian = tanggalPembelian;
         return this;
     }
 
-    public PembelianDTOBuilder setStatusTransaksi(StatusTransaksi statusTransaksi) {
-        this.statusTransaksi = statusTransaksi;
+    public PembelianDTOBuilder setTipePembayaran(String tipePembayaran) {
+        this.tipePembayaran = tipePembayaran;
         return this;
     }
 
@@ -102,7 +105,7 @@ public class PembelianDTOBuilder {
     }
 
     public PembelianDTO createPembelianDTO() {
-        return new PembelianDTO(pembelianID, namaBarang, kategoriPembelian, jenisPembelian, jumlah, diskon, total, tanggalTransaksiPembelian, catatan, statusTransaksi, createdBy, createdDate, modifiedBy, modifiedDate);
+        return new PembelianDTO(pembelianID, userID, namaBarang, buktiPembelian, jenisBarang, satuan, jumlah, diskon, hargaBarang, totalHarga, tanggalPembelian, tipePembayaran, createdBy, createdDate, modifiedBy, modifiedDate);
     }
     
 }

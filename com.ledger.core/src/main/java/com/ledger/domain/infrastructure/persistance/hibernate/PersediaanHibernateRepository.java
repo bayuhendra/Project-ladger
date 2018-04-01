@@ -38,6 +38,14 @@ public class PersediaanHibernateRepository extends HibernateRepository implement
                 .setParameter("cid", persediaanID)
                 .uniqueResult();
     }
+    
+    @Override
+    public Persediaan findByName(String namaPersediaan) {
+        return (Persediaan) getSession()
+                .createQuery("from com.ledger.domain.financial.management.Persediaan where namaPersediaan = :cid")
+                .setParameter("cid", namaPersediaan)
+                .uniqueResult();
+    }
 
     @Override
     public List<Persediaan> findAll() {

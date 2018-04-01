@@ -1,13 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.ledger.common.dto.finance.management;
 
-import com.ledger.shared.status.StatusTransaksi;
-import com.ledger.shared.type.JenisBarang;
-import com.ledger.shared.type.Kategori;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -17,16 +9,19 @@ import java.util.Date;
  */
 public class PenjualanDTO implements Serializable {
 
+    private String userID;
     private String penjualanID;
     private String namaBarang;
-    private Kategori kategoriPenjualan;
-    private JenisBarang jenisPenjualan;
+    private String jenisBarang;
+    private String satuan;
     private int jumlah;
     private int diskon;
-    private int total;
-    private Date tanggalTransaksiPenjualan;
-    private String catatan;
-    private StatusTransaksi statusTransaksi;
+    private double hargaBarang;
+    private double totalHarga;
+    private double hargaPokokPenjualan;
+    private double pendapatanUsaha;
+    private Date tanggalPenjualan;
+    private String buktiPenjualan;
     private String createdBy;
     private Date createdDate;
     private String modifiedBy;
@@ -35,17 +30,20 @@ public class PenjualanDTO implements Serializable {
     public PenjualanDTO() {
     }
 
-    public PenjualanDTO(String penjualanID, String namaBarang, Kategori kategoriPenjualan, JenisBarang jenisPenjualan, int jumlah, int diskon, int total, Date tanggalTransaksiPenjualan, String catatan, StatusTransaksi statusTransaksi, String createdBy, Date createdDate, String modifiedBy, Date modifiedDate) {
+    public PenjualanDTO(String penjualanID, String userID, String namaBarang, String jenisBarang, String satuan, int jumlah, int diskon, double hargaBarang, double totalHarga, double hargaPokokPenjualan, double pendapatanUsaha, Date tanggalPenjualan, String buktiPenjualan, String createdBy, Date createdDate, String modifiedBy, Date modifiedDate) {
         this.penjualanID = penjualanID;
+        this.userID = userID;
         this.namaBarang = namaBarang;
-        this.kategoriPenjualan = kategoriPenjualan;
-        this.jenisPenjualan = jenisPenjualan;
+        this.jenisBarang = jenisBarang;
+        this.satuan = satuan;
         this.jumlah = jumlah;
         this.diskon = diskon;
-        this.total = total;
-        this.tanggalTransaksiPenjualan = tanggalTransaksiPenjualan;
-        this.catatan = catatan;
-        this.statusTransaksi = statusTransaksi;
+        this.hargaBarang = hargaBarang;
+        this.totalHarga = totalHarga;
+        this.hargaPokokPenjualan = hargaPokokPenjualan;
+        this.pendapatanUsaha = pendapatanUsaha;
+        this.tanggalPenjualan = tanggalPenjualan;
+        this.buktiPenjualan = buktiPenjualan;
         this.createdBy = createdBy;
         this.createdDate = createdDate;
         this.modifiedBy = modifiedBy;
@@ -60,6 +58,14 @@ public class PenjualanDTO implements Serializable {
         this.penjualanID = penjualanID;
     }
 
+    public String getUserID() {
+        return userID;
+    }
+
+    public void setUserID(String userID) {
+        this.userID = userID;
+    }
+
     public String getNamaBarang() {
         return namaBarang;
     }
@@ -68,20 +74,20 @@ public class PenjualanDTO implements Serializable {
         this.namaBarang = namaBarang;
     }
 
-    public Kategori getKategoriPenjualan() {
-        return kategoriPenjualan;
+    public String getJenisBarang() {
+        return jenisBarang;
     }
 
-    public void setKategoriPenjualan(Kategori kategoriPenjualan) {
-        this.kategoriPenjualan = kategoriPenjualan;
+    public void setJenisBarang(String jenisBarang) {
+        this.jenisBarang = jenisBarang;
     }
 
-    public JenisBarang getJenisPenjualan() {
-        return jenisPenjualan;
+    public String getSatuan() {
+        return satuan;
     }
 
-    public void setJenisPenjualan(JenisBarang jenisPenjualan) {
-        this.jenisPenjualan = jenisPenjualan;
+    public void setSatuan(String satuan) {
+        this.satuan = satuan;
     }
 
     public int getJumlah() {
@@ -100,36 +106,52 @@ public class PenjualanDTO implements Serializable {
         this.diskon = diskon;
     }
 
-    public int getTotal() {
-        return total;
+    public double getHargaBarang() {
+        return hargaBarang;
     }
 
-    public void setTotal(int total) {
-        this.total = total;
+    public void setHargaBarang(double hargaBarang) {
+        this.hargaBarang = hargaBarang;
     }
 
-    public Date getTanggalTransaksiPenjualan() {
-        return tanggalTransaksiPenjualan;
+    public double getTotalHarga() {
+        return totalHarga;
     }
 
-    public void setTanggalTransaksiPenjualan(Date tanggalTransaksiPenjualan) {
-        this.tanggalTransaksiPenjualan = tanggalTransaksiPenjualan;
+    public void setTotalHarga(double totalHarga) {
+        this.totalHarga = totalHarga;
     }
 
-    public String getCatatan() {
-        return catatan;
+    public double getHargaPokokPenjualan() {
+        return hargaPokokPenjualan;
     }
 
-    public void setCatatan(String catatan) {
-        this.catatan = catatan;
+    public void setHargaPokokPenjualan(double hargaPokokPenjualan) {
+        this.hargaPokokPenjualan = hargaPokokPenjualan;
     }
 
-    public StatusTransaksi getStatusTransaksi() {
-        return statusTransaksi;
+    public double getPendapatanUsaha() {
+        return pendapatanUsaha;
     }
 
-    public void setStatusTransaksi(StatusTransaksi statusTransaksi) {
-        this.statusTransaksi = statusTransaksi;
+    public void setPendapatanUsaha(double pendapatanUsaha) {
+        this.pendapatanUsaha = pendapatanUsaha;
+    }
+
+    public Date getTanggalPenjualan() {
+        return tanggalPenjualan;
+    }
+
+    public void setTanggalPenjualan(Date tanggalPenjualan) {
+        this.tanggalPenjualan = tanggalPenjualan;
+    }
+
+    public String getBuktiPenjualan() {
+        return buktiPenjualan;
+    }
+
+    public void setBuktiPenjualan(String buktiPenjualan) {
+        this.buktiPenjualan = buktiPenjualan;
     }
 
     public String getCreatedBy() {
@@ -166,7 +188,7 @@ public class PenjualanDTO implements Serializable {
 
     @Override
     public String toString() {
-        return "PenjualanDTO{" + "penjualanID=" + penjualanID + ", namaBarang=" + namaBarang + ", kategoriPenjualan=" + kategoriPenjualan + ", jenisPenjualan=" + jenisPenjualan + ", jumlah=" + jumlah + ", diskon=" + diskon + ", total=" + total + ", tanggalTransaksiPenjualan=" + tanggalTransaksiPenjualan + ", catatan=" + catatan + ", statusTransaksi=" + statusTransaksi + ", createdBy=" + createdBy + ", createdDate=" + createdDate + ", modifiedBy=" + modifiedBy + ", modifiedDate=" + modifiedDate + '}';
+        return "PenjualanDTO{" + "userID=" + userID + ", penjualanID=" + penjualanID + ", namaBarang=" + namaBarang + ", jenisBarang=" + jenisBarang + ", satuan=" + satuan + ", jumlah=" + jumlah + ", diskon=" + diskon + ", hargaBarang=" + hargaBarang + ", totalHarga=" + totalHarga + ", hargaPokokPenjualan=" + hargaPokokPenjualan + ", pendapatanUsaha=" + pendapatanUsaha + ", tanggalPenjualan=" + tanggalPenjualan + ", buktiPenjualan=" + buktiPenjualan + ", createdBy=" + createdBy + ", createdDate=" + createdDate + ", modifiedBy=" + modifiedBy + ", modifiedDate=" + modifiedDate + '}';
     }
 
 }

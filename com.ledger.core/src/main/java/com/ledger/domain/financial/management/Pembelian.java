@@ -1,14 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.ledger.domain.financial.management;
 
 import com.ledger.shared.object.EntityObject;
-import com.ledger.shared.status.StatusTransaksi;
-import com.ledger.shared.type.JenisBarang;
-import com.ledger.shared.type.Kategori;
 import java.util.Date;
 import java.util.Objects;
 
@@ -19,16 +11,18 @@ import java.util.Objects;
 public class Pembelian implements EntityObject<Pembelian> {
 
     long id;
+    private String userID;
     private String pembelianID;
     private String namaBarang;
-    private Kategori kategoriPembelian;
-    private JenisBarang jenisPembelian;
+    private String jenisBarang;
+    private String satuan;
     private int jumlah;
     private int diskon;
-    private int total;
-    private Date tanggalTransaksiPembelian;
-    private String catatan;
-    private StatusTransaksi statusTransaksi;
+    private double hargaBarang;
+    private double totalHarga;
+    private Date tanggalPembelian;
+    private String tipePembayaran;
+    private String buktiPembelian;
     private String createdBy;
     private Date createdDate;
     private String modifiedBy;
@@ -37,30 +31,23 @@ public class Pembelian implements EntityObject<Pembelian> {
     public Pembelian() {
     }
 
-    public Pembelian(long id, String pembelianID, String namaBarang, Kategori kategoriPembelian, JenisBarang jenisPembelian, int jumlah, int diskon, int total, Date tanggalTransaksiPembelian, String catatan, StatusTransaksi statusTransaksi, String createdBy, Date createdDate, String modifiedBy, Date modifiedDate) {
-        this.id = id;
+    public Pembelian(String pembelianID, String userID, String namaBarang, String buktiPembelian, String jenisBarang, String satuan, int jumlah, int diskon, double hargaBarang, double totalHarga, Date tanggalPembelian, String tipePembayaran, String createdBy, Date createdDate, String modifiedBy, Date modifiedDate) {
         this.pembelianID = pembelianID;
+        this.userID = userID;
         this.namaBarang = namaBarang;
-        this.kategoriPembelian = kategoriPembelian;
-        this.jenisPembelian = jenisPembelian;
+        this.jenisBarang = jenisBarang;
+        this.satuan = satuan;
         this.jumlah = jumlah;
         this.diskon = diskon;
-        this.total = total;
-        this.tanggalTransaksiPembelian = tanggalTransaksiPembelian;
-        this.catatan = catatan;
-        this.statusTransaksi = statusTransaksi;
+        this.hargaBarang = hargaBarang;
+        this.totalHarga = totalHarga;
+        this.tanggalPembelian = tanggalPembelian;
+        this.tipePembayaran = tipePembayaran;
+        this.buktiPembelian = buktiPembelian;
         this.createdBy = createdBy;
         this.createdDate = createdDate;
         this.modifiedBy = modifiedBy;
         this.modifiedDate = modifiedDate;
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
     }
 
     public String getPembelianID() {
@@ -71,12 +58,36 @@ public class Pembelian implements EntityObject<Pembelian> {
         this.pembelianID = pembelianID;
     }
 
+    public String getUserID() {
+        return userID;
+    }
+
+    public void setUserID(String userID) {
+        this.userID = userID;
+    }
+
     public String getNamaBarang() {
         return namaBarang;
     }
 
     public void setNamaBarang(String namaBarang) {
         this.namaBarang = namaBarang;
+    }
+
+    public String getJenisBarang() {
+        return jenisBarang;
+    }
+
+    public void setJenisBarang(String jenisBarang) {
+        this.jenisBarang = jenisBarang;
+    }
+
+    public String getSatuan() {
+        return satuan;
+    }
+
+    public void setSatuan(String satuan) {
+        this.satuan = satuan;
     }
 
     public int getJumlah() {
@@ -95,28 +106,36 @@ public class Pembelian implements EntityObject<Pembelian> {
         this.diskon = diskon;
     }
 
-    public int getTotal() {
-        return total;
+    public double getHargaBarang() {
+        return hargaBarang;
     }
 
-    public void setTotal(int total) {
-        this.total = total;
+    public void setHargaBarang(double hargaBarang) {
+        this.hargaBarang = hargaBarang;
     }
 
-    public Date getTanggalTransaksiPembelian() {
-        return tanggalTransaksiPembelian;
+    public double getTotalHarga() {
+        return totalHarga;
     }
 
-    public void setTanggalTransaksiPembelian(Date tanggalTransaksiPembelian) {
-        this.tanggalTransaksiPembelian = tanggalTransaksiPembelian;
+    public void setTotalHarga(double totalHarga) {
+        this.totalHarga = totalHarga;
     }
 
-    public String getCatatan() {
-        return catatan;
+    public Date getTanggalPembelian() {
+        return tanggalPembelian;
     }
 
-    public void setCatatan(String catatan) {
-        this.catatan = catatan;
+    public void setTanggalPembelian(Date tanggalPembelian) {
+        this.tanggalPembelian = tanggalPembelian;
+    }
+
+    public String getTipePembayaran() {
+        return tipePembayaran;
+    }
+
+    public void setTipePembayaran(String tipePembayaran) {
+        this.tipePembayaran = tipePembayaran;
     }
 
     public String getCreatedBy() {
@@ -151,55 +170,38 @@ public class Pembelian implements EntityObject<Pembelian> {
         this.modifiedDate = modifiedDate;
     }
 
-    public Kategori getKategoriPembelian() {
-        return kategoriPembelian;
+    public String getBuktiPembelian() {
+        return buktiPembelian;
     }
 
-    public void setKategoriPembelian(Kategori kategoriPembelian) {
-        this.kategoriPembelian = kategoriPembelian;
-    }
-
-    public JenisBarang getJenisPembelian() {
-        return jenisPembelian;
-    }
-
-    public void setJenisPembelian(JenisBarang jenisPembelian) {
-        this.jenisPembelian = jenisPembelian;
-    }
-
-    public StatusTransaksi getStatusTransaksi() {
-        return statusTransaksi;
-    }
-
-    public void setStatusTransaksi(StatusTransaksi statusTransaksi) {
-        this.statusTransaksi = statusTransaksi;
+    public void setBuktiPembelian(String buktiPembelian) {
+        this.buktiPembelian = buktiPembelian;
     }
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 43 * hash + Objects.hashCode(this.pembelianID);
-        hash = 43 * hash + Objects.hashCode(this.namaBarang);
-        hash = 43 * hash + Objects.hashCode(this.kategoriPembelian);
-        hash = 43 * hash + Objects.hashCode(this.jenisPembelian);
-        hash = 43 * hash + this.jumlah;
-        hash = 43 * hash + this.diskon;
-        hash = 43 * hash + this.total;
-        hash = 43 * hash + Objects.hashCode(this.tanggalTransaksiPembelian);
-        hash = 43 * hash + Objects.hashCode(this.catatan);
-        hash = 43 * hash + Objects.hashCode(this.statusTransaksi);
-        hash = 43 * hash + Objects.hashCode(this.createdBy);
-        hash = 43 * hash + Objects.hashCode(this.createdDate);
-        hash = 43 * hash + Objects.hashCode(this.modifiedBy);
-        hash = 43 * hash + Objects.hashCode(this.modifiedDate);
+        int hash = 5;
+        hash = 89 * hash + Objects.hashCode(this.pembelianID);
+        hash = 89 * hash + Objects.hashCode(this.userID);
+        hash = 89 * hash + Objects.hashCode(this.namaBarang);
+        hash = 89 * hash + Objects.hashCode(this.jenisBarang);
+        hash = 89 * hash + Objects.hashCode(this.satuan);
+        hash = 89 * hash + this.jumlah;
+        hash = 89 * hash + this.diskon;
+        hash = 89 * hash + (int) (Double.doubleToLongBits(this.hargaBarang) ^ (Double.doubleToLongBits(this.hargaBarang) >>> 32));
+        hash = 89 * hash + (int) (Double.doubleToLongBits(this.totalHarga) ^ (Double.doubleToLongBits(this.totalHarga) >>> 32));
+        hash = 89 * hash + Objects.hashCode(this.tanggalPembelian);
+        hash = 89 * hash + Objects.hashCode(this.tipePembayaran);
+        hash = 89 * hash + Objects.hashCode(this.buktiPembelian);
+        hash = 89 * hash + Objects.hashCode(this.createdBy);
+        hash = 89 * hash + Objects.hashCode(this.createdDate);
+        hash = 89 * hash + Objects.hashCode(this.modifiedBy);
+        hash = 89 * hash + Objects.hashCode(this.modifiedDate);
         return hash;
     }
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
         if (obj == null) {
             return false;
         }
@@ -215,15 +217,17 @@ public class Pembelian implements EntityObject<Pembelian> {
 
     public void assignNewDataPembelian(Pembelian pembelian) {
         this.pembelianID = pembelian.pembelianID;
+        this.userID = pembelian.userID;
         this.namaBarang = pembelian.namaBarang;
-        this.kategoriPembelian = pembelian.kategoriPembelian;
-        this.jenisPembelian = pembelian.jenisPembelian;
+        this.jenisBarang = pembelian.jenisBarang;
+        this.satuan = pembelian.satuan;
         this.jumlah = pembelian.jumlah;
         this.diskon = pembelian.diskon;
-        this.total = pembelian.total;
-        this.tanggalTransaksiPembelian = pembelian.tanggalTransaksiPembelian;
-        this.catatan = pembelian.catatan;
-        this.statusTransaksi = pembelian.statusTransaksi;
+        this.hargaBarang = pembelian.hargaBarang;
+        this.totalHarga = pembelian.totalHarga;
+        this.tanggalPembelian = pembelian.tanggalPembelian;
+        this.tipePembayaran = pembelian.tipePembayaran;
+        this.buktiPembelian = pembelian.buktiPembelian;
         this.createdBy = pembelian.createdBy;
         this.createdDate = pembelian.createdDate;
         this.modifiedBy = pembelian.modifiedBy;

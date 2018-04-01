@@ -6,8 +6,10 @@ import java.util.Date;
 public class PiutangDTOBuilder {
     private String userID;
     private String piutangID;
+    private String jenisPiutang;
     private String namaPiutang;
     private double jumlahPiutang;
+    private Date tanggalJatuhTempo;
     private String status;
     private String createdBy;
     private Date createdDate;
@@ -27,6 +29,11 @@ public class PiutangDTOBuilder {
         return this;
     }
 
+    public PiutangDTOBuilder setJenisPiutang(String jenisPiutang) {
+        this.jenisPiutang = jenisPiutang;
+        return this;
+    }
+
     public PiutangDTOBuilder setNamaPiutang(String namaPiutang) {
         this.namaPiutang = namaPiutang;
         return this;
@@ -34,6 +41,11 @@ public class PiutangDTOBuilder {
 
     public PiutangDTOBuilder setJumlahPiutang(double jumlahPiutang) {
         this.jumlahPiutang = jumlahPiutang;
+        return this;
+    }
+
+    public PiutangDTOBuilder setTanggalJatuhTempo(Date tanggalJatuhTempo) {
+        this.tanggalJatuhTempo = tanggalJatuhTempo;
         return this;
     }
 
@@ -63,7 +75,7 @@ public class PiutangDTOBuilder {
     }
 
     public PiutangDTO createPiutangDTO() {
-        return new PiutangDTO(userID, piutangID, namaPiutang, jumlahPiutang, status, createdBy, createdDate, modifiedBy, modifiedDate);
+        return new PiutangDTO(userID, piutangID, jenisPiutang, namaPiutang, jumlahPiutang, tanggalJatuhTempo, status, createdBy, createdDate, modifiedBy, modifiedDate);
     }
     
 }

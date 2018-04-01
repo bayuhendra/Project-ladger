@@ -6,8 +6,10 @@ import java.util.Date;
 public class HutangDTOBuilder {
     private String userID;
     private String hutangID;
+    private String jenisHutang;
     private String namaHutang;
     private double jumlahHutang;
+    private Date tanggalJatuhTempo;
     private String status;
     private String createdBy;
     private Date createdDate;
@@ -27,6 +29,11 @@ public class HutangDTOBuilder {
         return this;
     }
 
+    public HutangDTOBuilder setJenisHutang(String jenisHutang) {
+        this.jenisHutang = jenisHutang;
+        return this;
+    }
+
     public HutangDTOBuilder setNamaHutang(String namaHutang) {
         this.namaHutang = namaHutang;
         return this;
@@ -34,6 +41,11 @@ public class HutangDTOBuilder {
 
     public HutangDTOBuilder setJumlahHutang(double jumlahHutang) {
         this.jumlahHutang = jumlahHutang;
+        return this;
+    }
+
+    public HutangDTOBuilder setTanggalJatuhTempo(Date tanggalJatuhTempo) {
+        this.tanggalJatuhTempo = tanggalJatuhTempo;
         return this;
     }
 
@@ -63,7 +75,7 @@ public class HutangDTOBuilder {
     }
 
     public HutangDTO createHutangDTO() {
-        return new HutangDTO(userID, hutangID, namaHutang, jumlahHutang, status, createdBy, createdDate, modifiedBy, modifiedDate);
+        return new HutangDTO(userID, hutangID, jenisHutang, namaHutang, jumlahHutang, tanggalJatuhTempo, status, createdBy, createdDate, modifiedBy, modifiedDate);
     }
     
 }

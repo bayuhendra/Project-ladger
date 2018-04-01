@@ -5,7 +5,7 @@
   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping default-access="field">
-    <class mutable="true" name="com.ledger.domain.financial.management.Transaksi" table="MST_TRANSAKSI">
+    <class mutable="true" name="com.ledger.domain.financial.management.Transaksi" table="TXN_TRANSAKSI">
         <!--<cache usage="read-only"/>-->
         <id column="id" name="id">
             <generator class="org.hibernate.id.IdentityGenerator"/>
@@ -13,20 +13,12 @@
         </id>
         <property column="transaksiID" name="transaksiID" not-null="false"/>
         <property column="userID" name="userID" not-null="false"/>
-        <property column="namaProduk" name="namaProduk" not-null="false"/>
-        <property column="kategoriTransaksi" name="kategoriTransaksi" not-null="false">
-            <type name="org.hibernate.type.EnumType">
-                <param name="enumClass">com.ledger.shared.type.Kategori</param>
-                <param name="type">12</param>
-            </type>
-        </property>
-        <property column="jenisBarang" name="jenisBarang" not-null="false"/>
-        <property column="harga" name="harga" not-null="false"/>
-        <property column="diskon" name="diskon" not-null="false"/>
-        <property column="total" name="total" not-null="false"/>
+        <property column="namaTransaksi" name="namaTransaksi" not-null="false"/>
+        <property column="jenisTransaksi" name="jenisTransaksi" not-null="false"/>
+        <property column="nilaiTransaksi" name="nilaiTransaksi" not-null="false"/>
+        <property column="cash" name="cash" not-null="false"/>
+        <property column="kredit" name="kredit" not-null="false"/>
         <property column="tanggalTransaksi" name="tanggalTransaksi" not-null="false"/>
-        <property column="deskripsi" name="deskripsi" not-null="false"/>
-        <property column="statusTransaksi" name="statusTransaksi" not-null="false"/>
         <property column="jenisPembayaran" name="jenisPembayaran" not-null="false"/>
         <property column="createdBy" name="createdBy" not-null="false"/>
         <property column="createdDate" name="createdDate" not-null="false"/>

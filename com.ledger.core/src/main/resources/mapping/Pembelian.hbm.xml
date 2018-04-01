@@ -5,37 +5,24 @@
   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping default-access="field">
-    <class mutable="true" name="com.ledger.domain.financial.management.Pembelian" table="MST_PEMBELIAN">
+    <class mutable="true" name="com.ledger.domain.financial.management.Pembelian" table="TXN_PEMBELIAN">
         <!--<cache usage="read-only"/>-->
         <id column="id" name="id">
             <!--<generator class="org.hibernate.id.IdentityGenerator"/>-->
             <generator class="increment"/>
         </id>
         <property column="pembelianID" name="pembelianID" not-null="false"/>
+        <property column="userID" name="userID" not-null="false"/>
         <property column="namaBarang" name="namaBarang" not-null="false"/>
-        <property column="kategoriPembelian" name="kategoriPembelian" not-null="false">
-            <type name="org.hibernate.type.EnumType">
-                <param name="enumClass">com.ledger.shared.type.Kategori</param>
-                <param name="type">12</param>
-            </type>
-        </property>
-        <property column="jenisPembelian" name="jenisPembelian" not-null="false">
-            <type name="org.hibernate.type.EnumType">
-                <param name="enumClass">com.ledger.shared.type.JenisBarang</param>
-                <param name="type">12</param>
-            </type>
-        </property>
+        <property column="jenisBarang" name="jenisBarang" not-null="false"/>
+        <property column="satuan" name="satuan" not-null="false"/>
         <property column="jumlah" name="jumlah" not-null="false"/>
         <property column="diskon" name="diskon" not-null="false"/>
-        <property column="total" name="total" not-null="false"/>
-        <property column="tanggalTransaksiPembelian" name="tanggalTransaksiPembelian" not-null="false"/>
-        <property column="catatan" name="catatan" not-null="false"/>
-        <property column="statusTransaksi" name="statusTransaksi" not-null="false">
-            <type name="org.hibernate.type.EnumType">
-                <param name="enumClass">com.ledger.shared.status.StatusTransaksi</param>
-                <param name="type">12</param>
-            </type>
-        </property>
+        <property column="hargaBarang" name="hargaBarang" not-null="false"/>
+        <property column="totalHarga" name="totalHarga" not-null="false"/>
+        <property column="tanggalPembelian" name="tanggalPembelian" not-null="false"/>
+        <property column="tipePembayaran" name="tipePembayaran" not-null="false"/>
+        <property column="buktiPembelian" name="buktiPembelian" not-null="false"/>
         <property column="createdBy" name="createdBy" not-null="false"/>
         <property column="createdDate" name="createdDate" not-null="false"/>
         <property column="modifiedDate" name="modifiedDate" not-null="false"/>

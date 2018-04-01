@@ -65,7 +65,7 @@
         <guava.version>16.0</guava.version>
     </properties>
     <build>
-        <finalName>crm</finalName>
+        <finalName>ledger</finalName>
     </build>
     <dependencies>
         <!--spring-->

@@ -1,21 +1,17 @@
 package com.ledger.domain.financial.management;
 
-import com.ledger.shared.type.Kategori;
 import java.util.Date;
 
 public class TransaksiBuilder {
 
     private String transaksiID;
     private String userID;
-    private String namaProduk;
-    private Kategori kategoriTransaksi;
-    private String jenisBarang;
-    private double harga;
-    private double diskon;
-    private double total;
+    private String jenisTransaksi;
+    private String namaTransaksi;
+    private double nilaiTransaksi;
+    private double cash;
+    private double kredit;
     private Date tanggalTransaksi;
-    private String deskripsi;
-    private String statusTransaksi;
     private String jenisPembayaran;
     private String createdBy;
     private Date createdDate;
@@ -35,48 +31,33 @@ public class TransaksiBuilder {
         return this;
     }
 
-    public TransaksiBuilder setNamaProduk(String namaProduk) {
-        this.namaProduk = namaProduk;
+    public TransaksiBuilder setJenisTransaksi(String jenisTransaksi) {
+        this.jenisTransaksi = jenisTransaksi;
         return this;
     }
 
-    public TransaksiBuilder setKategoriTransaksi(Kategori kategoriTransaksi) {
-        this.kategoriTransaksi = kategoriTransaksi;
+    public TransaksiBuilder setNamaTransaksi(String namaTransaksi) {
+        this.namaTransaksi = namaTransaksi;
         return this;
     }
 
-    public TransaksiBuilder setJenisBarang(String jenisBarang) {
-        this.jenisBarang = jenisBarang;
+    public TransaksiBuilder setNilaiTransaksi(double nilaiTransaksi) {
+        this.nilaiTransaksi = nilaiTransaksi;
         return this;
     }
 
-    public TransaksiBuilder setHarga(double harga) {
-        this.harga = harga;
+    public TransaksiBuilder setCash(double cash) {
+        this.cash = cash;
         return this;
     }
 
-    public TransaksiBuilder setDiskon(double diskon) {
-        this.diskon = diskon;
-        return this;
-    }
-
-    public TransaksiBuilder setTotal(double total) {
-        this.total = total;
+    public TransaksiBuilder setKredit(double kredit) {
+        this.kredit = kredit;
         return this;
     }
 
     public TransaksiBuilder setTanggalTransaksi(Date tanggalTransaksi) {
         this.tanggalTransaksi = tanggalTransaksi;
-        return this;
-    }
-
-    public TransaksiBuilder setDeskripsi(String deskripsi) {
-        this.deskripsi = deskripsi;
-        return this;
-    }
-
-    public TransaksiBuilder setStatusTransaksi(String statusTransaksi) {
-        this.statusTransaksi = statusTransaksi;
         return this;
     }
 
@@ -106,7 +87,7 @@ public class TransaksiBuilder {
     }
 
     public Transaksi createTransaksi() {
-        return new Transaksi(transaksiID, userID, namaProduk, kategoriTransaksi, jenisBarang, harga, diskon, total, tanggalTransaksi, deskripsi, statusTransaksi, jenisPembayaran, createdBy, createdDate, modifiedBy, modifiedDate);
+        return new Transaksi(transaksiID, userID, jenisTransaksi, namaTransaksi, nilaiTransaksi, cash, kredit, tanggalTransaksi, jenisPembayaran, createdBy, createdDate, modifiedBy, modifiedDate);
     }
 
 }

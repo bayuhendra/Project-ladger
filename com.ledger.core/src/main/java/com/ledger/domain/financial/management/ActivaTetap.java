@@ -13,6 +13,7 @@ public class ActivaTetap implements EntityObject<ActivaTetap> {
     long id;
     private String userID;
     private String activaTetapID;
+    private String jenisActiva;
     private String namaActivaTetap;
     private double hargaActivaTetap;
     private int lamaPemakaian;
@@ -28,9 +29,10 @@ public class ActivaTetap implements EntityObject<ActivaTetap> {
     public ActivaTetap() {
     }
 
-    public ActivaTetap(String userID, String activaTetapID, String namaActivaTetap, double hargaActivaTetap, int lamaPemakaian, int jangkaWaktuPenyusutan, int persenPenyusutan, double totalPenyusutan, String status, String createdBy, Date createdDate, String modifiedBy, Date modifiedDate) {
+    public ActivaTetap(String userID, String activaTetapID, String jenisActiva, String namaActivaTetap, double hargaActivaTetap, int lamaPemakaian, int jangkaWaktuPenyusutan, int persenPenyusutan, double totalPenyusutan, String status, String createdBy, Date createdDate, String modifiedBy, Date modifiedDate) {
         this.userID = userID;
         this.activaTetapID = activaTetapID;
+        this.jenisActiva = jenisActiva;
         this.namaActivaTetap = namaActivaTetap;
         this.hargaActivaTetap = hargaActivaTetap;
         this.lamaPemakaian = lamaPemakaian;
@@ -148,11 +150,20 @@ public class ActivaTetap implements EntityObject<ActivaTetap> {
         this.userID = userID;
     }
 
+    public String getJenisActiva() {
+        return jenisActiva;
+    }
+
+    public void setJenisActiva(String jenisActiva) {
+        this.jenisActiva = jenisActiva;
+    }
+
     @Override
     public int hashCode() {
         int hash = 7;
         hash = 53 * hash + Objects.hashCode(this.userID);
         hash = 53 * hash + Objects.hashCode(this.activaTetapID);
+        hash = 53 * hash + Objects.hashCode(this.jenisActiva);
         hash = 53 * hash + Objects.hashCode(this.namaActivaTetap);
         hash = 53 * hash + (int) (Double.doubleToLongBits(this.hargaActivaTetap) ^ (Double.doubleToLongBits(this.hargaActivaTetap) >>> 32));
         hash = 53 * hash + this.lamaPemakaian;
@@ -185,6 +196,7 @@ public class ActivaTetap implements EntityObject<ActivaTetap> {
     public void assignNewActivaTetap(ActivaTetap activaTetap) {
         this.userID = activaTetap.userID;
         this.activaTetapID = activaTetap.activaTetapID;
+        this.jenisActiva = activaTetap.jenisActiva;
         this.namaActivaTetap = activaTetap.namaActivaTetap;
         this.hargaActivaTetap = activaTetap.hargaActivaTetap;
         this.lamaPemakaian = activaTetap.lamaPemakaian;

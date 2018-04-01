@@ -17,6 +17,8 @@ public interface PersediaanService {
     PersediaanDTO getDummyData();
 
     PersediaanDTO findByID(String persediaanID);
+    
+    PersediaanDTO findByName(String namaPersediaan);
 
     List<PersediaanDTO> findAll();
 

@@ -13,6 +13,7 @@
         </id>
         <property column="activaTetapID" name="activaTetapID" not-null="true"/>
         <property column="userID" name="userID" not-null="false"/>
+        <property column="jenisActiva" name="jenisActiva" not-null="true"/>
         <property column="namaActivaTetap" name="namaActivaTetap" not-null="false"/>
         <property column="hargaActivaTetap" name="hargaActivaTetap" not-null="false"/>
         <property column="lamaPemakaian" name="lamaPemakaian" not-null="false"/>

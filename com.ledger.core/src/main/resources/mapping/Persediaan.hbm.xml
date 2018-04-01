@@ -12,12 +12,15 @@
             <!--<generator class="increment"/>-->
         </id>
         <property column="persediaanID" name="persediaanID" not-null="true"/>
+        <property column="tipePersediaan" name="tipePersediaan" not-null="true"/>
         <property column="userID" name="userID" not-null="false"/>
         <property column="namaPersediaan" name="namaPersediaan" not-null="false"/>
         <property column="jenisPersediaan" name="jenisPersediaan" not-null="false"/>
+        <property column="satuan" name="satuan" not-null="false"/>
         <property column="jumlahPersediaan" name="jumlahPersediaan" not-null="false"/>
         <property column="hargaPersediaan" name="hargaPersediaan" not-null="false"/>
         <property column="totalHargaPersediaan" name="totalHargaPersediaan" not-null="false"/>
+        <property column="hargaRataRata" name="hargaRataRata" not-null="false"/>
         <property column="createdBy" name="createdBy" not-null="false"/>
         <property column="createdDate" name="createdDate" not-null="false"/>
         <property column="modifiedDate" name="modifiedDate" not-null="false"/>

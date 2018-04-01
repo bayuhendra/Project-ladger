@@ -1,0 +1,60 @@
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<zk xmlns:w="client" xmlns:n="native">
+    <window closable="true" apply="org.zkoss.bind.BindComposer"
+            viewModel="@id('vm') @init('com.ledger.main.viewmodel.DashboardVM')">
+        <div align="left" class="bs-example">
+            <div class="col-lg-6">
+                <div class="input-group" >
+                    <textbox class="form-control" placeholder="Masukkan Parameter"/>
+                    <span class="input-group-btn">
+                        <button sclass="btn-success" label="Search" onClick="@command('buttonSearch')"/>
+                    </span>
+                </div>
+            </div>
+            <space width="5px"/>
+        </div>
+        <separator width="30px"/>
+        <!--<groupbox closable="false">-->
+        <separator height="10px"/>
+        <listbox mold="paging" emptyMessage="${labels.common.noDataFound}"
+                 model="@bind(vm.transaksiDTOs)">
+            <listhead>
+                <listheader label="ID" width="15%" align="center"/>
+                <listheader label="Tanggal" width="10%" align="center"/>
+                <listheader label="Jenis Transaksi" width="10%" align="center"/>
+                <listheader label="Nama Transaksi" width="20%" align="center"/>
+                <listheader label="Nilai" width="15%" align="center"/>
+                <listheader label="Cash" width="15%" align="center"/>
+                <listheader label="Kredit" width="15%" align="center"/>
+            </listhead>
+            <template name="model">
+                <listitem value="${each}">
+                    <listcell>
+                        <label width="100%" value="@load(each.transaksiID)"/>
+                    </listcell>
+                    <listcell>
+                        <label width="100%" value="@load(each.tanggalTransaksi)"/>
+                    </listcell>
+                    <listcell>
+                        <label width="100%" value="@load(each.jenisTransaksi)"/>
+                    </listcell>
+                    <listcell>
+                        <label width="100%" value="@load(each.namaTransaksi)"/>
+                    </listcell>
+                    <listcell>
+                        <label width="100%" value="@load(c:formatNumber(each.nilaiTransaksi, '#,###.##'))"/>
+                    </listcell>
+                    <listcell >
+                        <label width="100%" value="@load(c:formatNumber(each.cash, '#,###.##'))"/>
+                    </listcell>
+                    <listcell >
+                        <label width="100%" value="@load(c:formatNumber(each.kredit, '#,###.##'))"/>
+                    </listcell>
+                </listitem>
+            </template>
+        </listbox>
+        <div align="right">
+            <paging totalSize="100"/>
+        </div>
+    </window>
+</zk>

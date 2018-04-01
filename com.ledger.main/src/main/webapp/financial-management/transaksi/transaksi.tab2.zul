@@ -1,0 +1,44 @@
+<zk xmlns:w="client" xmlns:n="native">
+    <window apply="org.zkoss.bind.BindComposer"
+            viewModel="@id('vm') @init('com.ledger.main.viewmodel.DashboardVM')"
+            width="500px" height="500px" >
+        <!-- Modal content-->
+        <groupbox closable="false" mold="3d">
+            <div class="modal-header" align="center">
+                <n:h4 class="modal-title"> Tambah Data Transaksi Lainnya</n:h4>
+            </div>
+            <groupbox width="600px" contentStyle="border:0">
+                <grid style="border:0">
+                    <columns>
+                        <column width="30%"></column>
+                        <column ></column>
+                    </columns>
+                    <rows>
+                        <row>
+                            <n:h5 class="modal-title"> Tanggal Transaksi</n:h5>
+                            <datebox sclass="isi" format="long" width="270px" 
+                                     readonly="true"
+                                     value="@bind(vm.tanggalTransaksi)"/>
+                        </row>
+                        <row>
+                            <n:h5 class="modal-title"> Jenis Transaksi</n:h5>
+                            <combobox width="270px" style="font-size:14px" placeholder="-Pilih Jenis Transaksi" model="@load(vm.listJenisTransaksi)" selectedItem="@bind(vm.jenisTransaksi)" readonly="true" >
+                                <template name="model" var="items">
+                                    <comboitem label="@load(items)" value="@load(items)"/>
+                                </template>
+                            </combobox>
+                        </row>
+                 
+                    </rows>
+                </grid>
+                <separator height="10px"/>
+            </groupbox>
+            
+<!--            <groupbox>
+                <div class="modal-footer">
+                    <button sclass="btn-danger" label="Close" onClick="@command('buttonKembaliPersediaan')" />
+                </div>
+            </groupbox>-->
+        </groupbox>
+    </window>
+</zk>

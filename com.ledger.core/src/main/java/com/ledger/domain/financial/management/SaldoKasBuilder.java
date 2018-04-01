@@ -8,6 +8,8 @@ public class SaldoKasBuilder {
     private String saldoKasID;
     private double saldoKas;
     private double saldoBank;
+    private double saldoLabaRugi;
+    private double modalDisetor;
     private double saldoKasBank;
     private String createdBy;
     private Date createdDate;
@@ -37,6 +39,16 @@ public class SaldoKasBuilder {
         return this;
     }
 
+    public SaldoKasBuilder setSaldoLabaRugi(double saldoLabaRugi) {
+        this.saldoLabaRugi = saldoLabaRugi;
+        return this;
+    }
+
+    public SaldoKasBuilder setModalDisetor(double modalDisetor) {
+        this.modalDisetor = modalDisetor;
+        return this;
+    }
+
     public SaldoKasBuilder setSaldoKasBank(double saldoKasBank) {
         this.saldoKasBank = saldoKasBank;
         return this;
@@ -63,7 +75,7 @@ public class SaldoKasBuilder {
     }
 
     public SaldoKas createSaldoKas() {
-        return new SaldoKas(userID, saldoKasID, saldoKas, saldoBank, saldoKasBank, createdBy, createdDate, modifiedBy, modifiedDate);
+        return new SaldoKas(userID, saldoKasID, saldoKas, saldoBank, saldoLabaRugi, modalDisetor, saldoKasBank, createdBy, createdDate, modifiedBy, modifiedDate);
     }
 
 }

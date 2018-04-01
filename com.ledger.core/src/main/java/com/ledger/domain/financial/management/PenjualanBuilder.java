@@ -1,29 +1,22 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.ledger.domain.financial.management;
 
-import com.ledger.shared.status.StatusTransaksi;
-import com.ledger.shared.type.JenisBarang;
-import com.ledger.shared.type.Kategori;
 import java.util.Date;
-
 
 public class PenjualanBuilder {
 
-    private long id;
     private String penjualanID;
+    private String userID;
     private String namaBarang;
-    private Kategori kategoriPenjualan;
-    private JenisBarang jenisPenjualan;
+    private String jenisBarang;
+    private String satuan;
     private int jumlah;
     private int diskon;
-    private int total;
-    private Date tanggalTransaksiPenjualan;
-    private String catatan;
-    private StatusTransaksi statusTransaksi;
+    private double hargaBarang;
+    private double totalHarga;
+    private double hargaPokokPenjualan;
+    private double pendapatanUsaha;
+    private Date tanggalPenjualan;
+    private String buktiPenjualan;
     private String createdBy;
     private Date createdDate;
     private String modifiedBy;
@@ -32,13 +25,13 @@ public class PenjualanBuilder {
     public PenjualanBuilder() {
     }
 
-    public PenjualanBuilder setId(long id) {
-        this.id = id;
+    public PenjualanBuilder setPenjualanID(String penjualanID) {
+        this.penjualanID = penjualanID;
         return this;
     }
 
-    public PenjualanBuilder setPenjualanID(String penjualanID) {
-        this.penjualanID = penjualanID;
+    public PenjualanBuilder setUserID(String userID) {
+        this.userID = userID;
         return this;
     }
 
@@ -47,13 +40,13 @@ public class PenjualanBuilder {
         return this;
     }
 
-    public PenjualanBuilder setKategoriPenjualan(Kategori kategoriPenjualan) {
-        this.kategoriPenjualan = kategoriPenjualan;
+    public PenjualanBuilder setJenisBarang(String jenisBarang) {
+        this.jenisBarang = jenisBarang;
         return this;
     }
 
-    public PenjualanBuilder setJenisPenjualan(JenisBarang jenisPenjualan) {
-        this.jenisPenjualan = jenisPenjualan;
+    public PenjualanBuilder setSatuan(String satuan) {
+        this.satuan = satuan;
         return this;
     }
 
@@ -67,23 +60,33 @@ public class PenjualanBuilder {
         return this;
     }
 
-    public PenjualanBuilder setTotal(int total) {
-        this.total = total;
+    public PenjualanBuilder setHargaBarang(double hargaBarang) {
+        this.hargaBarang = hargaBarang;
         return this;
     }
 
-    public PenjualanBuilder setTanggalTransaksiPenjualan(Date tanggalTransaksiPenjualan) {
-        this.tanggalTransaksiPenjualan = tanggalTransaksiPenjualan;
+    public PenjualanBuilder setTotalHarga(double totalHarga) {
+        this.totalHarga = totalHarga;
         return this;
     }
 
-    public PenjualanBuilder setCatatan(String catatan) {
-        this.catatan = catatan;
+    public PenjualanBuilder setHargaPokokPenjualan(double hargaPokokPenjualan) {
+        this.hargaPokokPenjualan = hargaPokokPenjualan;
         return this;
     }
 
-    public PenjualanBuilder setStatusTransaksi(StatusTransaksi statusTransaksi) {
-        this.statusTransaksi = statusTransaksi;
+    public PenjualanBuilder setPendapatanUsaha(double pendapatanUsaha) {
+        this.pendapatanUsaha = pendapatanUsaha;
+        return this;
+    }
+
+    public PenjualanBuilder setTanggalPenjualan(Date tanggalPenjualan) {
+        this.tanggalPenjualan = tanggalPenjualan;
+        return this;
+    }
+
+    public PenjualanBuilder setBuktiPenjualan(String buktiPenjualan) {
+        this.buktiPenjualan = buktiPenjualan;
         return this;
     }
 
@@ -108,7 +111,7 @@ public class PenjualanBuilder {
     }
 
     public Penjualan createPenjualan() {
-        return new Penjualan(id, penjualanID, namaBarang, kategoriPenjualan, jenisPenjualan, jumlah, diskon, total, tanggalTransaksiPenjualan, catatan, statusTransaksi, createdBy, createdDate, modifiedBy, modifiedDate);
+        return new Penjualan(penjualanID, userID, namaBarang, jenisBarang, satuan, jumlah, diskon, hargaBarang, totalHarga, hargaPokokPenjualan, pendapatanUsaha, tanggalPenjualan, buktiPenjualan, createdBy, createdDate, modifiedBy, modifiedDate);
     }
-    
+
 }

@@ -8,6 +8,8 @@ public class SaldoKasDTOBuilder {
     private String saldoKasID;
     private double saldoKas;
     private double saldoBank;
+    private double saldoLabaRugi;
+    private double modalDisetor;
     private double saldoKasBank;
     private String createdBy;
     private Date createdDate;
@@ -37,6 +39,16 @@ public class SaldoKasDTOBuilder {
         return this;
     }
 
+    public SaldoKasDTOBuilder setSaldoLabaRugi(double saldoLabaRugi) {
+        this.saldoLabaRugi = saldoLabaRugi;
+        return this;
+    }
+
+    public SaldoKasDTOBuilder setModalDisetor(double modalDisetor) {
+        this.modalDisetor = modalDisetor;
+        return this;
+    }
+
     public SaldoKasDTOBuilder setSaldoKasBank(double saldoKasBank) {
         this.saldoKasBank = saldoKasBank;
         return this;
@@ -63,7 +75,7 @@ public class SaldoKasDTOBuilder {
     }
 
     public SaldoKasDTO createSaldoKasDTO() {
-        return new SaldoKasDTO(userID, saldoKasID, saldoKas, saldoBank, saldoKasBank, createdBy, createdDate, modifiedBy, modifiedDate);
+        return new SaldoKasDTO(userID, saldoKasID, saldoKas, saldoBank, saldoLabaRugi, modalDisetor, saldoKasBank, createdBy, createdDate, modifiedBy, modifiedDate);
     }
 
 }

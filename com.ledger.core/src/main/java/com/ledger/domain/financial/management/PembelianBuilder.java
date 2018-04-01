@@ -1,29 +1,21 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.ledger.domain.financial.management;
 
-import com.ledger.shared.status.StatusTransaksi;
-import com.ledger.shared.type.JenisBarang;
-import com.ledger.shared.type.Kategori;
 import java.util.Date;
-
 
 public class PembelianBuilder {
 
-    private long id;
     private String pembelianID;
+    private String userID;
     private String namaBarang;
-    private Kategori kategoriPembelian;
-    private JenisBarang jenisPembelian;
+    private String buktiPembelian;
+    private String jenisBarang;
+    private String satuan;
     private int jumlah;
     private int diskon;
-    private int total;
-    private Date tanggalTransaksiPembelian;
-    private String catatan;
-    private StatusTransaksi statusTransaksi;
+    private double hargaBarang;
+    private double totalHarga;
+    private Date tanggalPembelian;
+    private String tipePembayaran;
     private String createdBy;
     private Date createdDate;
     private String modifiedBy;
@@ -32,13 +24,13 @@ public class PembelianBuilder {
     public PembelianBuilder() {
     }
 
-    public PembelianBuilder setId(long id) {
-        this.id = id;
+    public PembelianBuilder setPembelianID(String pembelianID) {
+        this.pembelianID = pembelianID;
         return this;
     }
 
-    public PembelianBuilder setPembelianID(String pembelianID) {
-        this.pembelianID = pembelianID;
+    public PembelianBuilder setUserID(String userID) {
+        this.userID = userID;
         return this;
     }
 
@@ -47,13 +39,18 @@ public class PembelianBuilder {
         return this;
     }
 
-    public PembelianBuilder setKategoriPembelian(Kategori kategoriPembelian) {
-        this.kategoriPembelian = kategoriPembelian;
+    public PembelianBuilder setBuktiPembelian(String buktiPembelian) {
+        this.buktiPembelian = buktiPembelian;
         return this;
     }
 
-    public PembelianBuilder setJenisPembelian(JenisBarang jenisPembelian) {
-        this.jenisPembelian = jenisPembelian;
+    public PembelianBuilder setJenisBarang(String jenisBarang) {
+        this.jenisBarang = jenisBarang;
+        return this;
+    }
+
+    public PembelianBuilder setSatuan(String satuan) {
+        this.satuan = satuan;
         return this;
     }
 
@@ -67,23 +64,23 @@ public class PembelianBuilder {
         return this;
     }
 
-    public PembelianBuilder setTotal(int total) {
-        this.total = total;
+    public PembelianBuilder setHargaBarang(double hargaBarang) {
+        this.hargaBarang = hargaBarang;
         return this;
     }
 
-    public PembelianBuilder setTanggalTransaksiPembelian(Date tanggalTransaksiPembelian) {
-        this.tanggalTransaksiPembelian = tanggalTransaksiPembelian;
+    public PembelianBuilder setTotalHarga(double totalHarga) {
+        this.totalHarga = totalHarga;
         return this;
     }
 
-    public PembelianBuilder setCatatan(String catatan) {
-        this.catatan = catatan;
+    public PembelianBuilder setTanggalPembelian(Date tanggalPembelian) {
+        this.tanggalPembelian = tanggalPembelian;
         return this;
     }
 
-    public PembelianBuilder setStatusTransaksi(StatusTransaksi statusTransaksi) {
-        this.statusTransaksi = statusTransaksi;
+    public PembelianBuilder setTipePembayaran(String tipePembayaran) {
+        this.tipePembayaran = tipePembayaran;
         return this;
     }
 
@@ -108,7 +105,7 @@ public class PembelianBuilder {
     }
 
     public Pembelian createPembelian() {
-        return new Pembelian(id, pembelianID, namaBarang, kategoriPembelian, jenisPembelian, jumlah, diskon, total, tanggalTransaksiPembelian, catatan, statusTransaksi, createdBy, createdDate, modifiedBy, modifiedDate);
+        return new Pembelian(pembelianID, userID, namaBarang, buktiPembelian, jenisBarang, satuan, jumlah, diskon, hargaBarang, totalHarga, tanggalPembelian, tipePembayaran, createdBy, createdDate, modifiedBy, modifiedDate);
     }
-    
+
 }

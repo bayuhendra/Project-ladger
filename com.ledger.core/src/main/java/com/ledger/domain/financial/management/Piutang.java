@@ -13,9 +13,11 @@ public class Piutang implements EntityObject<Piutang> {
     long id;
     private String userID;
     private String piutangID;
+    private String jenisPiutang;
     private String namaPiutang;
     private double jumlahPiutang;
     private String status;
+    private Date tanggalJatuhTempo;
     private String createdBy;
     private Date createdDate;
     private String modifiedBy;
@@ -24,11 +26,13 @@ public class Piutang implements EntityObject<Piutang> {
     public Piutang() {
     }
 
-    public Piutang(String userID, String piutangID, String namaPiutang, double jumlahPiutang, String status, String createdBy, Date createdDate, String modifiedBy, Date modifiedDate) {
+    public Piutang(String userID, String piutangID, String jenisPiutang, Date tanggalJatuhTempo, String namaPiutang, double jumlahPiutang, String status, String createdBy, Date createdDate, String modifiedBy, Date modifiedDate) {
         this.userID = userID;
         this.piutangID = piutangID;
+        this.jenisPiutang = jenisPiutang;
         this.namaPiutang = namaPiutang;
         this.jumlahPiutang = jumlahPiutang;
+        this.tanggalJatuhTempo = tanggalJatuhTempo;
         this.status = status;
         this.createdBy = createdBy;
         this.createdDate = createdDate;
@@ -108,18 +112,36 @@ public class Piutang implements EntityObject<Piutang> {
         this.userID = userID;
     }
 
+    public String getJenisPiutang() {
+        return jenisPiutang;
+    }
+
+    public void setJenisPiutang(String jenisPiutang) {
+        this.jenisPiutang = jenisPiutang;
+    }
+
+    public Date getTanggalJatuhTempo() {
+        return tanggalJatuhTempo;
+    }
+
+    public void setTanggalJatuhTempo(Date tanggalJatuhTempo) {
+        this.tanggalJatuhTempo = tanggalJatuhTempo;
+    }
+
     @Override
     public int hashCode() {
         int hash = 5;
-        hash = 41 * hash + Objects.hashCode(this.userID);
-        hash = 41 * hash + Objects.hashCode(this.piutangID);
-        hash = 41 * hash + Objects.hashCode(this.namaPiutang);
-        hash = 41 * hash + (int) (Double.doubleToLongBits(this.jumlahPiutang) ^ (Double.doubleToLongBits(this.jumlahPiutang) >>> 32));
-        hash = 41 * hash + Objects.hashCode(this.status);
-        hash = 41 * hash + Objects.hashCode(this.createdBy);
-        hash = 41 * hash + Objects.hashCode(this.createdDate);
-        hash = 41 * hash + Objects.hashCode(this.modifiedBy);
-        hash = 41 * hash + Objects.hashCode(this.modifiedDate);
+        hash = 71 * hash + Objects.hashCode(this.userID);
+        hash = 71 * hash + Objects.hashCode(this.piutangID);
+        hash = 71 * hash + Objects.hashCode(this.jenisPiutang);
+        hash = 71 * hash + Objects.hashCode(this.namaPiutang);
+        hash = 71 * hash + (int) (Double.doubleToLongBits(this.jumlahPiutang) ^ (Double.doubleToLongBits(this.jumlahPiutang) >>> 32));
+        hash = 71 * hash + Objects.hashCode(this.status);
+        hash = 71 * hash + Objects.hashCode(this.tanggalJatuhTempo);
+        hash = 71 * hash + Objects.hashCode(this.createdBy);
+        hash = 71 * hash + Objects.hashCode(this.createdDate);
+        hash = 71 * hash + Objects.hashCode(this.modifiedBy);
+        hash = 71 * hash + Objects.hashCode(this.modifiedDate);
         return hash;
     }
 
@@ -141,8 +163,10 @@ public class Piutang implements EntityObject<Piutang> {
     public void assignNewPiutang(Piutang piutang) {
         this.userID = piutang.userID;
         this.piutangID = piutang.piutangID;
+        this.jenisPiutang = piutang.jenisPiutang;
         this.namaPiutang = piutang.namaPiutang;
         this.jumlahPiutang = piutang.jumlahPiutang;
+        this.tanggalJatuhTempo = piutang.tanggalJatuhTempo;
         this.status = piutang.status;
         this.modifiedBy = piutang.modifiedBy;
         this.modifiedDate = piutang.modifiedDate;

@@ -2,7 +2,6 @@ package com.ledger.domain.infrastructure.persistance.hibernate;
 
 import com.ledger.domain.financial.management.Transaksi;
 import com.ledger.domain.financial.management.TransaksiRepository;
-import com.ledger.shared.status.StatusTransaksi;
 import com.ledger.util.StringUtil;
 import java.util.List;
 import java.util.Map;
@@ -69,6 +68,14 @@ public class TransaksiHibernateRepository extends HibernateRepository implements
     @Override
     public List<Transaksi> findAllByStatus(String statusTransaksi) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List<Transaksi> findByUserID(String userID) {
+        return (List<Transaksi>) getSession()
+                .createQuery("from com.ledger.domain.financial.management.Transaksi where userID = :cid")
+                .setParameter("cid", userID)
+                .list();
     }
 
 }

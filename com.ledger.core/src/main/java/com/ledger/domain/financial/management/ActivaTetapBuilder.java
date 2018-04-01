@@ -2,10 +2,11 @@ package com.ledger.domain.financial.management;
 
 import java.util.Date;
 
-public class ActivaTetapBuilder {
 
+public class ActivaTetapBuilder {
     private String userID;
     private String activaTetapID;
+    private String jenisActiva;
     private String namaActivaTetap;
     private double hargaActivaTetap;
     private int lamaPemakaian;
@@ -28,6 +29,11 @@ public class ActivaTetapBuilder {
 
     public ActivaTetapBuilder setActivaTetapID(String activaTetapID) {
         this.activaTetapID = activaTetapID;
+        return this;
+    }
+
+    public ActivaTetapBuilder setJenisActiva(String jenisActiva) {
+        this.jenisActiva = jenisActiva;
         return this;
     }
 
@@ -87,7 +93,7 @@ public class ActivaTetapBuilder {
     }
 
     public ActivaTetap createActivaTetap() {
-        return new ActivaTetap(userID, activaTetapID, namaActivaTetap, hargaActivaTetap, lamaPemakaian, jangkaWaktuPenyusutan, persenPenyusutan, totalPenyusutan, status, createdBy, createdDate, modifiedBy, modifiedDate);
+        return new ActivaTetap(userID, activaTetapID, jenisActiva, namaActivaTetap, hargaActivaTetap, lamaPemakaian, jangkaWaktuPenyusutan, persenPenyusutan, totalPenyusutan, status, createdBy, createdDate, modifiedBy, modifiedDate);
     }
-
+    
 }

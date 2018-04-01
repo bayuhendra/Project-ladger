@@ -1,6 +1,5 @@
 package com.ledger.common.dto.finance.management;
 
-import com.ledger.shared.type.Kategori;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -12,15 +11,12 @@ public class TransaksiDTO implements Serializable {
 
     private String transaksiID;
     private String userID;
-    private String namaProduk;
-    private Kategori kategoriTransaksi;
-    private String jenisBarang;
-    private double harga;
-    private double diskon;
-    private double total;
+    private String jenisTransaksi;
+    private String namaTransaksi;
+    private double nilaiTransaksi;
+    private double cash;
+    private double kredit;
     private Date tanggalTransaksi;
-    private String deskripsi;
-    private String statusTransaksi;
     private String jenisPembayaran;
     private String createdBy;
     private Date createdDate;
@@ -30,18 +26,15 @@ public class TransaksiDTO implements Serializable {
     public TransaksiDTO() {
     }
 
-    public TransaksiDTO(String transaksiID, String userID, String namaProduk, Kategori kategoriTransaksi, String jenisBarang, double harga, double diskon, double total, Date tanggalTransaksi, String deskripsi, String statusTransaksi, String jenisPembayaran, String createdBy, Date createdDate, String modifiedBy, Date modifiedDate) {
+    public TransaksiDTO(String transaksiID, String userID, String jenisTransaksi, String namaTransaksi, double nilaiTransaksi, double cash, double kredit, Date tanggalTransaksi, String jenisPembayaran, String createdBy, Date createdDate, String modifiedBy, Date modifiedDate) {
         this.transaksiID = transaksiID;
         this.userID = userID;
-        this.namaProduk = namaProduk;
-        this.kategoriTransaksi = kategoriTransaksi;
-        this.jenisBarang = jenisBarang;
-        this.harga = harga;
-        this.diskon = diskon;
-        this.total = total;
+        this.jenisTransaksi = jenisTransaksi;
+        this.namaTransaksi = namaTransaksi;
+        this.nilaiTransaksi = nilaiTransaksi;
+        this.cash = cash;
+        this.kredit = kredit;
         this.tanggalTransaksi = tanggalTransaksi;
-        this.deskripsi = deskripsi;
-        this.statusTransaksi = statusTransaksi;
         this.jenisPembayaran = jenisPembayaran;
         this.createdBy = createdBy;
         this.createdDate = createdDate;
@@ -65,48 +58,44 @@ public class TransaksiDTO implements Serializable {
         this.userID = userID;
     }
 
-    public String getNamaProduk() {
-        return namaProduk;
+    public String getJenisTransaksi() {
+        return jenisTransaksi;
     }
 
-    public void setNamaProduk(String namaProduk) {
-        this.namaProduk = namaProduk;
+    public void setJenisTransaksi(String jenisTransaksi) {
+        this.jenisTransaksi = jenisTransaksi;
     }
 
-    public Kategori getKategoriTransaksi() {
-        return kategoriTransaksi;
+    public String getNamaTransaksi() {
+        return namaTransaksi;
     }
 
-    public void setKategoriTransaksi(Kategori kategoriTransaksi) {
-        this.kategoriTransaksi = kategoriTransaksi;
+    public void setNamaTransaksi(String namaTransaksi) {
+        this.namaTransaksi = namaTransaksi;
     }
 
-    public double getHarga() {
-        return harga;
+    public double getNilaiTransaksi() {
+        return nilaiTransaksi;
     }
 
-    public void setHarga(double harga) {
-        this.harga = harga;
+    public void setNilaiTransaksi(double nilaiTransaksi) {
+        this.nilaiTransaksi = nilaiTransaksi;
     }
 
-    public double getDiskon() {
-        return diskon;
+    public double getCash() {
+        return cash;
     }
 
-    public void setDiskon(double diskon) {
-        this.diskon = diskon;
+    public void setCash(double cash) {
+        this.cash = cash;
     }
 
-    public double getTotal() {
-        return total;
+    public double getKredit() {
+        return kredit;
     }
 
-    public void setTotal(double total) {
-        this.total = total;
-    }
-
-    public void setTotal(int total) {
-        this.total = total;
+    public void setKredit(double kredit) {
+        this.kredit = kredit;
     }
 
     public Date getTanggalTransaksi() {
@@ -115,30 +104,6 @@ public class TransaksiDTO implements Serializable {
 
     public void setTanggalTransaksi(Date tanggalTransaksi) {
         this.tanggalTransaksi = tanggalTransaksi;
-    }
-
-    public String getDeskripsi() {
-        return deskripsi;
-    }
-
-    public void setDeskripsi(String deskripsi) {
-        this.deskripsi = deskripsi;
-    }
-
-    public String getJenisBarang() {
-        return jenisBarang;
-    }
-
-    public void setJenisBarang(String jenisBarang) {
-        this.jenisBarang = jenisBarang;
-    }
-
-    public String getStatusTransaksi() {
-        return statusTransaksi;
-    }
-
-    public void setStatusTransaksi(String statusTransaksi) {
-        this.statusTransaksi = statusTransaksi;
     }
 
     public String getJenisPembayaran() {
@@ -183,7 +148,7 @@ public class TransaksiDTO implements Serializable {
 
     @Override
     public String toString() {
-        return "TransaksiDTO{" + "transaksiID=" + transaksiID + ", userID=" + userID + ", namaProduk=" + namaProduk + ", kategoriTransaksi=" + kategoriTransaksi + ", jenisBarang=" + jenisBarang + ", harga=" + harga + ", diskon=" + diskon + ", total=" + total + ", tanggalTransaksi=" + tanggalTransaksi + ", deskripsi=" + deskripsi + ", statusTransaksi=" + statusTransaksi + ", jenisPembayaran=" + jenisPembayaran + ", createdBy=" + createdBy + ", createdDate=" + createdDate + ", modifiedBy=" + modifiedBy + ", modifiedDate=" + modifiedDate + '}';
+        return "TransaksiDTO{" + "transaksiID=" + transaksiID + ", userID=" + userID + ", jenisTransaksi=" + jenisTransaksi + ", namaTransaksi=" + namaTransaksi + ", nilaiTransaksi=" + nilaiTransaksi + ", cash=" + cash + ", kredit=" + kredit + ", tanggalTransaksi=" + tanggalTransaksi + ", jenisPembayaran=" + jenisPembayaran + ", createdBy=" + createdBy + ", createdDate=" + createdDate + ", modifiedBy=" + modifiedBy + ", modifiedDate=" + modifiedDate + '}';
     }
 
 }

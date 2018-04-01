@@ -15,6 +15,8 @@ public class SaldoKas implements EntityObject<SaldoKas> {
     private String saldoKasID;
     private double saldoKas;
     private double saldoBank;
+    private double saldoLabaRugi;
+    private double modalDisetor;
     private double saldoKasBank;
     private String createdBy;
     private Date createdDate;
@@ -24,11 +26,13 @@ public class SaldoKas implements EntityObject<SaldoKas> {
     public SaldoKas() {
     }
 
-    public SaldoKas(String userID, String saldoKasID, double saldoKas, double saldoBank, double saldoKasBank, String createdBy, Date createdDate, String modifiedBy, Date modifiedDate) {
+    public SaldoKas(String userID, String saldoKasID, double saldoKas, double saldoBank, double saldoLabaRugi, double modalDisetor, double saldoKasBank, String createdBy, Date createdDate, String modifiedBy, Date modifiedDate) {
         this.userID = userID;
         this.saldoKasID = saldoKasID;
         this.saldoKas = saldoKas;
         this.saldoBank = saldoBank;
+        this.saldoLabaRugi = saldoLabaRugi;
+        this.modalDisetor = modalDisetor;
         this.saldoKasBank = saldoKasBank;
         this.createdBy = createdBy;
         this.createdDate = createdDate;
@@ -108,6 +112,22 @@ public class SaldoKas implements EntityObject<SaldoKas> {
         this.userID = userID;
     }
 
+    public double getSaldoLabaRugi() {
+        return saldoLabaRugi;
+    }
+
+    public void setSaldoLabaRugi(double saldoLabaRugi) {
+        this.saldoLabaRugi = saldoLabaRugi;
+    }
+
+    public double getModalDisetor() {
+        return modalDisetor;
+    }
+
+    public void setModalDisetor(double modalDisetor) {
+        this.modalDisetor = modalDisetor;
+    }
+    
     @Override
     public int hashCode() {
         int hash = 7;
@@ -115,6 +135,8 @@ public class SaldoKas implements EntityObject<SaldoKas> {
         hash = 97 * hash + Objects.hashCode(this.saldoKasID);
         hash = 97 * hash + (int) (Double.doubleToLongBits(this.saldoKas) ^ (Double.doubleToLongBits(this.saldoKas) >>> 32));
         hash = 97 * hash + (int) (Double.doubleToLongBits(this.saldoBank) ^ (Double.doubleToLongBits(this.saldoBank) >>> 32));
+        hash = 97 * hash + (int) (Double.doubleToLongBits(this.saldoLabaRugi) ^ (Double.doubleToLongBits(this.saldoLabaRugi) >>> 32));
+        hash = 97 * hash + (int) (Double.doubleToLongBits(this.modalDisetor) ^ (Double.doubleToLongBits(this.modalDisetor) >>> 32));
         hash = 97 * hash + (int) (Double.doubleToLongBits(this.saldoKasBank) ^ (Double.doubleToLongBits(this.saldoKasBank) >>> 32));
         hash = 97 * hash + Objects.hashCode(this.createdBy);
         hash = 97 * hash + Objects.hashCode(this.createdDate);
@@ -143,6 +165,8 @@ public class SaldoKas implements EntityObject<SaldoKas> {
         this.saldoKasID = saldoKas.saldoKasID;
         this.saldoKas = saldoKas.saldoKas;
         this.saldoBank = saldoKas.saldoBank;
+        this.saldoLabaRugi = saldoKas.saldoLabaRugi;
+        this.modalDisetor = saldoKas.modalDisetor;
         this.saldoKasBank = saldoKas.saldoKasBank;
         this.modifiedBy = saldoKas.modifiedBy;
         this.modifiedDate = saldoKas.modifiedDate;

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.ledger.application.impl;
 
 import com.ledger.common.application.finance.management.PembelianService;
@@ -11,10 +6,6 @@ import com.ledger.domain.financial.management.Pembelian;
 import com.ledger.domain.financial.management.PembelianBuilder;
 import com.ledger.domain.financial.management.PembelianRepository;
 import com.ledger.interfaces.web.facade.dto.assembler.finance.management.PembelianDTOAssembler;
-import com.ledger.shared.status.StatusTransaksi;
-import com.ledger.shared.type.JenisBarang;
-import com.ledger.shared.type.Kategori;
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import org.apache.commons.lang.Validate;
@@ -59,20 +50,20 @@ public class PembelianServiceImpl implements PembelianService {
     @Override
     public PembelianDTO getDummyData() {
         Pembelian pembelian = new PembelianBuilder()
-                .setPembelianID("C1")
-                .setNamaBarang("aa")
-                .setKategoriPembelian(Kategori.PEMBELIAN)
-                .setJenisPembelian(JenisBarang.ELETRONIK)
-                .setJumlah(12)
-                .setDiskon(3)
-                .setTotal(4)
-                .setTanggalTransaksiPembelian(new Date())
-                .setStatusTransaksi(StatusTransaksi.DONE)
-                .setCatatan("catatan")
-                .setCreatedBy("createdBy")
-                .setCreatedDate(new Date())
-                .setModifiedBy("aa")
-                .setModifiedDate(new Date())
+                //                .setPembelianID("C1")
+                //                .setNamaBarang("aa")
+                //                .setKategoriPembelian(Kategori.PEMBELIAN)
+                //                .setJenisPembelian(JenisBarang.ELETRONIK)
+                //                .setJumlah(12)
+                //                .setDiskon(3)
+                //                .setTotal(4)
+                //                .setTanggalTransaksiPembelian(new Date())
+                //                .setStatusTransaksi(StatusTransaksi.DONE)
+                //                .setCatatan("catatan")
+                //                .setCreatedBy("createdBy")
+                //                .setCreatedDate(new Date())
+                //                .setModifiedBy("aa")
+                //                .setModifiedDate(new Date())
                 .createPembelian();
         return pembelianDTOAssembler.toDTO(pembelian);
     }

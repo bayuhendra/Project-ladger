@@ -13,8 +13,10 @@ public class Hutang implements EntityObject<Hutang> {
     long id;
     private String userID;
     private String hutangID;
+    private String jenisHutang;
     private String namaHutang;
     private double jumlahHutang;
+    private Date tanggalJatuhTempo;
     private String status;
     private String createdBy;
     private Date createdDate;
@@ -24,12 +26,14 @@ public class Hutang implements EntityObject<Hutang> {
     public Hutang() {
     }
 
-    public Hutang(String userID, String hutangID, String namaHutang, double jumlahHutang, String status, String createdBy, Date createdDate, String modifiedBy, Date modifiedDate) {
+    public Hutang(String userID, String hutangID, String jenisHutang, String namaHutang, Date tanggalJatuhTempo, double jumlahHutang, String status, String createdBy, Date createdDate, String modifiedBy, Date modifiedDate) {
         this.userID = userID;
         this.hutangID = hutangID;
+        this.jenisHutang = jenisHutang;
         this.namaHutang = namaHutang;
         this.jumlahHutang = jumlahHutang;
         this.status = status;
+        this.tanggalJatuhTempo = tanggalJatuhTempo;
         this.createdBy = createdBy;
         this.createdDate = createdDate;
         this.modifiedBy = modifiedBy;
@@ -108,18 +112,36 @@ public class Hutang implements EntityObject<Hutang> {
         this.userID = userID;
     }
 
+    public String getJenisHutang() {
+        return jenisHutang;
+    }
+
+    public void setJenisHutang(String jenisHutang) {
+        this.jenisHutang = jenisHutang;
+    }
+
+    public Date getTanggalJatuhTempo() {
+        return tanggalJatuhTempo;
+    }
+
+    public void setTanggalJatuhTempo(Date tanggalJatuhTempo) {
+        this.tanggalJatuhTempo = tanggalJatuhTempo;
+    }
+
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 41 * hash + Objects.hashCode(this.userID);
-        hash = 41 * hash + Objects.hashCode(this.hutangID);
-        hash = 41 * hash + Objects.hashCode(this.namaHutang);
-        hash = 41 * hash + (int) (Double.doubleToLongBits(this.jumlahHutang) ^ (Double.doubleToLongBits(this.jumlahHutang) >>> 32));
-        hash = 41 * hash + Objects.hashCode(this.status);
-        hash = 41 * hash + Objects.hashCode(this.createdBy);
-        hash = 41 * hash + Objects.hashCode(this.createdDate);
-        hash = 41 * hash + Objects.hashCode(this.modifiedBy);
-        hash = 41 * hash + Objects.hashCode(this.modifiedDate);
+        int hash = 7;
+        hash = 13 * hash + Objects.hashCode(this.userID);
+        hash = 13 * hash + Objects.hashCode(this.hutangID);
+        hash = 13 * hash + Objects.hashCode(this.jenisHutang);
+        hash = 13 * hash + Objects.hashCode(this.namaHutang);
+        hash = 13 * hash + (int) (Double.doubleToLongBits(this.jumlahHutang) ^ (Double.doubleToLongBits(this.jumlahHutang) >>> 32));
+        hash = 13 * hash + Objects.hashCode(this.tanggalJatuhTempo);
+        hash = 13 * hash + Objects.hashCode(this.status);
+        hash = 13 * hash + Objects.hashCode(this.createdBy);
+        hash = 13 * hash + Objects.hashCode(this.createdDate);
+        hash = 13 * hash + Objects.hashCode(this.modifiedBy);
+        hash = 13 * hash + Objects.hashCode(this.modifiedDate);
         return hash;
     }
 
@@ -141,8 +163,10 @@ public class Hutang implements EntityObject<Hutang> {
     public void assignNewHutang(Hutang hutang) {
         this.userID = hutang.userID;
         this.hutangID = hutang.hutangID;
+        this.jenisHutang = hutang.jenisHutang;
         this.namaHutang = hutang.namaHutang;
         this.jumlahHutang = hutang.jumlahHutang;
+        this.tanggalJatuhTempo = hutang.tanggalJatuhTempo;
         this.status = hutang.status;
         this.modifiedBy = hutang.modifiedBy;
         this.modifiedDate = hutang.modifiedDate;

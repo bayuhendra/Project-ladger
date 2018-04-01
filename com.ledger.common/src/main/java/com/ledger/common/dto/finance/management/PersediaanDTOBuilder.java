@@ -2,15 +2,18 @@ package com.ledger.common.dto.finance.management;
 
 import java.util.Date;
 
-
 public class PersediaanDTOBuilder {
+
     private String userID;
     private String persediaanID;
+    private String tipePersediaan;
     private String namaPersediaan;
     private String jenisPersediaan;
+    private String satuan;
     private int jumlahPersediaan;
     private double hargaPersediaan;
     private double totalHargaPersediaan;
+    private double hargaRataRata;
     private String createdBy;
     private Date createdDate;
     private String modifiedBy;
@@ -29,6 +32,11 @@ public class PersediaanDTOBuilder {
         return this;
     }
 
+    public PersediaanDTOBuilder setTipePersediaan(String tipePersediaan) {
+        this.tipePersediaan = tipePersediaan;
+        return this;
+    }
+
     public PersediaanDTOBuilder setNamaPersediaan(String namaPersediaan) {
         this.namaPersediaan = namaPersediaan;
         return this;
@@ -36,6 +44,11 @@ public class PersediaanDTOBuilder {
 
     public PersediaanDTOBuilder setJenisPersediaan(String jenisPersediaan) {
         this.jenisPersediaan = jenisPersediaan;
+        return this;
+    }
+
+    public PersediaanDTOBuilder setSatuan(String satuan) {
+        this.satuan = satuan;
         return this;
     }
 
@@ -51,6 +64,11 @@ public class PersediaanDTOBuilder {
 
     public PersediaanDTOBuilder setTotalHargaPersediaan(double totalHargaPersediaan) {
         this.totalHargaPersediaan = totalHargaPersediaan;
+        return this;
+    }
+
+    public PersediaanDTOBuilder setHargaRataRata(double hargaRataRata) {
+        this.hargaRataRata = hargaRataRata;
         return this;
     }
 
@@ -75,7 +93,7 @@ public class PersediaanDTOBuilder {
     }
 
     public PersediaanDTO createPersediaanDTO() {
-        return new PersediaanDTO(userID, persediaanID, namaPersediaan, jenisPersediaan, jumlahPersediaan, hargaPersediaan, totalHargaPersediaan, createdBy, createdDate, modifiedBy, modifiedDate);
+        return new PersediaanDTO(userID, persediaanID, tipePersediaan, namaPersediaan, jenisPersediaan, satuan, jumlahPersediaan, hargaPersediaan, totalHargaPersediaan, hargaRataRata, createdBy, createdDate, modifiedBy, modifiedDate);
     }
-    
+
 }

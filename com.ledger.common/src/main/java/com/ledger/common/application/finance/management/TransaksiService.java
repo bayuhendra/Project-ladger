@@ -25,5 +25,7 @@ public interface TransaksiService {
 
     List<TransaksiDTO> findAll();
 
+    List<TransaksiDTO> findByUserID(String userID);
+
     List<TransaksiDTO> findByParams(Map map);
 }

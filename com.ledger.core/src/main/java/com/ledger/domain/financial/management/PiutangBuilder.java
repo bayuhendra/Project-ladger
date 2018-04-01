@@ -2,10 +2,12 @@ package com.ledger.domain.financial.management;
 
 import java.util.Date;
 
-
 public class PiutangBuilder {
+
     private String userID;
     private String piutangID;
+    private String jenisPiutang;
+    private Date tanggalJatuhTempo;
     private String namaPiutang;
     private double jumlahPiutang;
     private String status;
@@ -24,6 +26,16 @@ public class PiutangBuilder {
 
     public PiutangBuilder setPiutangID(String piutangID) {
         this.piutangID = piutangID;
+        return this;
+    }
+
+    public PiutangBuilder setJenisPiutang(String jenisPiutang) {
+        this.jenisPiutang = jenisPiutang;
+        return this;
+    }
+
+    public PiutangBuilder setTanggalJatuhTempo(Date tanggalJatuhTempo) {
+        this.tanggalJatuhTempo = tanggalJatuhTempo;
         return this;
     }
 
@@ -63,7 +75,7 @@ public class PiutangBuilder {
     }
 
     public Piutang createPiutang() {
-        return new Piutang(userID, piutangID, namaPiutang, jumlahPiutang, status, createdBy, createdDate, modifiedBy, modifiedDate);
+        return new Piutang(userID, piutangID, jenisPiutang, tanggalJatuhTempo, namaPiutang, jumlahPiutang, status, createdBy, createdDate, modifiedBy, modifiedDate);
     }
-    
+
 }

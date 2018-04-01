@@ -1,110 +1,22 @@
 <zk xmlns:w="client" xmlns:n="native">
     <window apply="org.zkoss.bind.BindComposer"
-            viewModel="@id('vm') @init('com.ledger.main.viewmodel.financial.management.transaksi.TransaksiVM')"
-            form="@id('fx') @load(vm.transaksiDTO) @save(vm.transaksiDTO, before='buttonSimpanTransaksi')" width="500px">
-        <groupbox closable="false" mold="3d">
-            <div class="modal-header" align="center">
-                <n:h4 class="modal-title"> Tambah Data Transaksi</n:h4>
+            viewModel="@id('vm') @init('com.ledger.main.viewmodel.DashboardVM')"
+            width="600px" height="800px" >
+        <!-- Modal content-->
+        <div class="container" xmlns:n="native" visible="true">
+            <navbar mold="bs-tabs">
+                <navitem label="Transaksi Pokok" selected="true" onClick="@command('buttonKlikTransaksiPokok')"/>
+                <navitem label="Transaksi Lainnya" onClick="@command('buttonKlikTransaksiLainnya')"/>
+                <navitem label="Persediaan" onClick="@command('buttonKlikDataPersediaan')"/>
+            </navbar>
+                
+            <separator height="5px"></separator>
+            <hlayout>
+                <include src="@load(vm.transaksiTab1)" hflex="1"/>
+            </hlayout>
+            <div class="modal-footer">
+                <button sclass="btn-danger" label="Close" onClick="@command('buttonCancel')" />
             </div>
-            <groupbox width="600px" contentStyle="border:0">
-                <grid style="border:0">
-                    <columns>
-                        <column width="30%"></column>
-                        <column ></column>
-                    </columns>
-                    <rows>
-                        <row>
-                            <n:h5 class="modal-title"> ID Transaksi</n:h5>
-                            <textbox class="form-control" width="270px" readonly="true" value="@bind(fx.transaksiID)"/>
-                        </row>
-                        <row>
-                            <n:h5 class="modal-title"> Tanggal Transaksi</n:h5>
-                            <datebox sclass="isi" format="dd/MM/yyyy" width="270px" 
-                                     readonly="true"
-                                     constraint="no empty : Tanggal Mulai Tidak Boleh Kosong" value="@bind(fx.tanggalTransaksi)"/>
-                        </row>
-                        <row>
-                            <n:h5 class="modal-title"> Jenis Transaksi</n:h5>
-                            <combobox width="270px" style="font-size:14px" placeholder="-Pilih Jenis Kategori-" model="@load(vm.kategoris)" selectedItem="@bind(vm.kategori)" readonly="true" >
-                                <template name="model" var="items">
-                                    <comboitem label="@load(items)" value="@load(items)"/>
-                                </template>
-                            </combobox>
-                        </row>
-                 
-                    </rows>
-                </grid>
-                <separator height="10px"/>
-            </groupbox>
-            <groupbox visible="@load(vm.kategori eq 'PEMBELIAN' ? true : false)">
-                <div>
-                    <div class="modal-header" align="center">
-                        <n:h4 class="modal-title"> Tambah Data Transaksi Pembelian</n:h4>
-                    </div>
-                    <div class="modal-body">
-                        <div class="input-group">
-                            <n:h5 class="modal-title"> Nama Produk</n:h5>
-                            <textbox class="form-control" width="425px" value="@bind(fx.namaProduk)"/>
-                            <n:h5 class="modal-title"> Jenis Barang</n:h5>
-                            <combobox width="425px" style="font-size:14px" readonly="true" height="25px" placeholder="-Pilih Jenis Jenis" model="@load(vm.jenises)" selectedItem="@bind(fx.jenisBarang)">
-                                <template name="model" var="items">
-                                    <comboitem label="@load(items)" value="@load(items)"/>
-                                </template>
-                            </combobox>
-                            <n:h5 class="modal-title"> Harga</n:h5>
-                            <doublebox class="form-control" width="425px" value="@bind(fx.harga)" format=",###.#" constraint="no empty,no negative"/>
-                            <n:h5 class="modal-title"> Diskon</n:h5>
-                            <doublebox class="form-control" width="425px" value="@bind(fx.diskon)"/>
-                            <n:h5 class="modal-title"> Deskripsi</n:h5>
-                            <textbox class="form-control" width="425px" rows="2" value="@bind(fx.deskripsi)"/>
-                            <n:h5 class="modal-title"> Jenis Pembayaran</n:h5>
-                            <combobox width="425px" style="font-size:14px" readonly="true" height="25px" placeholder="-Pilih Jenis Jenis" model="@load(vm.jenisPembayarans)" selectedItem="@bind(fx.jenisPembayaran)">
-                                <template name="model" var="items">
-                                    <comboitem label="@load(items)" value="@load(items)"/>
-                                </template>
-                            </combobox>
-                        </div>
-                        <separator width="3px"/>
-                    </div>
-                    <div class="modal-footer">
-                        <button sclass="btn-danger" label="Kembali" onClick="@command('buttonKembali')" />
-                        <button sclass="btn-success" label="Simpan" onClick="@command('buttonSimpanTransaksi')" />
-                    </div>
-                </div>
-            </groupbox>
-            
-            
-            <groupbox visible="@load(vm.kategori eq 'PENJUALAN' ? true : false)">
-                <div>
-                    <div class="modal-header" align="center">
-                        <n:h4 class="modal-title"> Tambah Data Penjualan</n:h4>
-                    </div>
-                    <div class="modal-body">
-                        <div class="input-group">
-                            <n:h5 class="modal-title"> Nama Produk</n:h5>
-                            <textbox class="form-control" width="425px" value="@bind(fx.namaProduk)"/>
-                            <n:h5 class="modal-title"> Jenis Barang</n:h5>
-                            <combobox width="425px" style="font-size:14px" readonly="true" height="25px" placeholder="-Pilih Jenis Jenis" model="@load(vm.jenises)" selectedItem="@bind(fx.jenisBarang)">
-                                <template name="model" var="items">
-                                    <comboitem label="@load(items)" value="@load(items)"/>
-                                </template>
-                            </combobox>
-                            <n:h5 class="modal-title"> Harga</n:h5>
-                            <doublebox  class="form-control" width="425px" value="@bind(fx.harga)" format=",###.#" constraint="no empty,no negative"/>
-                            <n:h5 class="modal-title"> Deskripsi</n:h5>
-                            <textbox class="form-control" width="425px" rows="2" value="@bind(fx.deskripsi)"/>
-                            <!--                            <n:h5 class="modal-title"> Tanggal Transaksi</n:h5>
-                   <datebox sclass="isi" format="hh:mm:ss a dd/MM/yyyy" width="250px" 
-                            readonly="true"
-                            constraint="no empty : Tanggal Mulai Tidak Boleh Kosong" value="@bind(fx.tanggalTransaksi)"/>-->
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button sclass="btn-danger" label="Kembali" onClick="@command('buttonKembali')" />
-                        <button sclass="btn-success" label="Simpan" onClick="@command('buttonSimpanTransaksi')" />
-                    </div>
-                </div>
-            </groupbox>
-        </groupbox>
+        </div>
     </window>
 </zk>

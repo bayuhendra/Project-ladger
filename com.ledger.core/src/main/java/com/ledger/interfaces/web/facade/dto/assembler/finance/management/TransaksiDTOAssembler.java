@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.ledger.interfaces.web.facade.dto.assembler.finance.management;
 
 import com.ledger.common.dto.finance.management.TransaksiDTO;
@@ -23,16 +18,13 @@ public class TransaksiDTOAssembler implements IObjectAssembler<Transaksi, Transa
     public TransaksiDTO toDTO(Transaksi domainObject) {
         return new TransaksiDTOBuilder()
                 .setTransaksiID(domainObject.getTransaksiID())
-                .setUserIDTransaksi(domainObject.getUserID())
-                .setNamaProduk(domainObject.getNamaProduk())
-                .setKategoriTransaksi(domainObject.getKategoriTransaksi())
-                .setJenisBarang(domainObject.getJenisBarang())
-                .setHarga(domainObject.getHarga())
-                .setDiskon(domainObject.getDiskon())
-                .setTotal(domainObject.getTotal())
+                .setUserID(domainObject.getUserID())
+                .setJenisTransaksi(domainObject.getJenisTransaksi())
+                .setNamaTransaksi(domainObject.getNamaTransaksi())
+                .setNilaiTransaksi(domainObject.getNilaiTransaksi())
+                .setCash(domainObject.getCash())
+                .setKredit(domainObject.getKredit())
                 .setTanggalTransaksi(domainObject.getTanggalTransaksi())
-                .setStatusTransaksi(domainObject.getStatusTransaksi())
-                .setDeskripsi(domainObject.getDeskripsi())
                 .setJenisPembayaran(domainObject.getJenisPembayaran())
                 .setCreatedBy(domainObject.getCreatedBy())
                 .setCreatedDate(domainObject.getCreatedDate())
@@ -46,15 +38,12 @@ public class TransaksiDTOAssembler implements IObjectAssembler<Transaksi, Transa
         return new TransaksiBuilder()
                 .setTransaksiID(dtoObject.getTransaksiID())
                 .setUserID(dtoObject.getUserID())
-                .setNamaProduk(dtoObject.getNamaProduk())
-                .setKategoriTransaksi(dtoObject.getKategoriTransaksi())
-                .setJenisBarang(dtoObject.getJenisBarang())
-                .setHarga(dtoObject.getHarga())
-                .setDiskon(dtoObject.getDiskon())
-                .setTotal(dtoObject.getTotal())
+                .setJenisTransaksi(dtoObject.getJenisTransaksi())
+                .setNamaTransaksi(dtoObject.getNamaTransaksi())
+                .setNilaiTransaksi(dtoObject.getNilaiTransaksi())
+                .setCash(dtoObject.getCash())
+                .setKredit(dtoObject.getKredit())
                 .setTanggalTransaksi(dtoObject.getTanggalTransaksi())
-                .setStatusTransaksi(dtoObject.getStatusTransaksi())
-                .setDeskripsi(dtoObject.getDeskripsi())
                 .setJenisPembayaran(dtoObject.getJenisPembayaran())
                 .setCreatedBy(dtoObject.getCreatedBy())
                 .setCreatedDate(dtoObject.getCreatedDate())

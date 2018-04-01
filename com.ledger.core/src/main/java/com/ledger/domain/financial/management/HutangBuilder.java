@@ -2,11 +2,13 @@ package com.ledger.domain.financial.management;
 
 import java.util.Date;
 
-public class HutangBuilder {
 
+public class HutangBuilder {
     private String userID;
     private String hutangID;
+    private String jenisHutang;
     private String namaHutang;
+    private Date tanggalJatuhTempo;
     private double jumlahHutang;
     private String status;
     private String createdBy;
@@ -27,8 +29,18 @@ public class HutangBuilder {
         return this;
     }
 
+    public HutangBuilder setJenisHutang(String jenisHutang) {
+        this.jenisHutang = jenisHutang;
+        return this;
+    }
+
     public HutangBuilder setNamaHutang(String namaHutang) {
         this.namaHutang = namaHutang;
+        return this;
+    }
+
+    public HutangBuilder setTanggalJatuhTempo(Date tanggalJatuhTempo) {
+        this.tanggalJatuhTempo = tanggalJatuhTempo;
         return this;
     }
 
@@ -63,7 +75,7 @@ public class HutangBuilder {
     }
 
     public Hutang createHutang() {
-        return new Hutang(userID, hutangID, namaHutang, jumlahHutang, status, createdBy, createdDate, modifiedBy, modifiedDate);
+        return new Hutang(userID, hutangID, jenisHutang, namaHutang, tanggalJatuhTempo, jumlahHutang, status, createdBy, createdDate, modifiedBy, modifiedDate);
     }
-
+    
 }

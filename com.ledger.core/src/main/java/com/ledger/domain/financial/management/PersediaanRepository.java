@@ -14,6 +14,8 @@ public interface PersediaanRepository {
     void deleteData(Persediaan persediaan);
 
     Persediaan findByID(String persediaanID);
+    
+    Persediaan findByName(String namaPersediaan);
 
     List<Persediaan> findAll();
 

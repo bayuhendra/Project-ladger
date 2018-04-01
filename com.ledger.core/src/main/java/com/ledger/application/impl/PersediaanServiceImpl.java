@@ -76,6 +76,16 @@ public class PersediaanServiceImpl implements PersediaanService {
     }
 
     @Override
+    public PersediaanDTO findByName(String namaPersediaan) {
+        Validate.notNull(persediaanRepository);
+        Persediaan b = (Persediaan) persediaanRepository.findByName(namaPersediaan);
+        if (b != null) {
+            return persediaanDTOAssembler.toDTO(b);
+        }
+        return null;
+    }
+
+    @Override
     public List<PersediaanDTO> findAll() {
         Validate.notNull(persediaanRepository);
         List<Persediaan> listPersediaan = persediaanRepository.findAll();

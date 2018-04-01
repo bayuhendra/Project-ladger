@@ -1,7 +1,7 @@
 <zk xmlns:w="client" xmlns:n="native">
     <window apply="org.zkoss.bind.BindComposer"
             viewModel="@id('vm') @init('com.ledger.main.viewmodel.DashboardVM')"
-            width="500px" height="380px" form="@id('fx') @load(vm.hutangDTO) @save(vm.hutangDTO, before='buttonSimpanHutang')" >
+            width="500px" height="300px" form="@id('fx') @load(vm.hutangDTO) @save(vm.hutangDTO, before='buttonSimpanHutang')" >
         <!-- Modal content-->
         <div>
             <div class="modal-header" align="center">
@@ -13,12 +13,12 @@
                     <textbox class="form-control" width="463px" value="@bind(vm.namaHutang) @save(vm.namaHutang, before='buttonSimpanHutang')" constraint="no empty: Nama Hutang tidak boleh kosong"/>
                     <n:h5 class="modal-title"> Nilai Hutang</n:h5>
                     <doublebox class="form-control" format="#,##0.##" width="463px" value="@bind(vm.jumlahHutang) @save(vm.jumlahHutang, before='buttonSimpanHutang')" constraint="no empty: Jumlah Hutang tidak boleh kosong, no zero Jumlah Hutang tidak boleh 0"/>
-                    <n:h5 class="modal-title"> Status Hutang</n:h5>
+<!--                    <n:h5 class="modal-title"> Status Hutang</n:h5>
                     <combobox width="463px" style="font-size:14px" height="25px" placeholder="-Pilih Status-" model="@load(vm.listStatusHutang)" selectedItem="@bind(vm.statusHutang) @save(vm.statusHutang, before='buttonSimpanHutang')" readonly="true" constraint="no empty: Status Hutang tidak boleh kosong">
                         <template name="model" var="items">
                             <comboitem label="@load(items)" value="@load(items)"/>
                         </template>
-                    </combobox>
+                    </combobox>-->
                 </div>
                 <separator width="3px"/>
             </div>

@@ -1,7 +1,7 @@
 <zk xmlns:w="client" xmlns:n="native">
     <window apply="org.zkoss.bind.BindComposer"
             viewModel="@id('vm') @init('com.ledger.main.viewmodel.DashboardVM')"
-            width="500px" height="530px" form="@id('fx') @load(vm.activaTetapDTO) @save(vm.activaTetapDTO, before='buttonSimpanActivaTetap')" >
+            width="500px" height="560px" form="@id('fx') @load(vm.activaTetapDTO) @save(vm.activaTetapDTO, before='buttonSimpanActivaTetap')" >
         <!-- Modal content-->
         <div>
             <div class="modal-header" align="center">
@@ -13,13 +13,15 @@
                     <textbox class="form-control" width="463px" value="@bind(vm.namaActivaTetap) @save(vm.namaActivaTetap, before='buttonSimpanActivaTetap')" constraint="no empty: Nama ActivaTetap tidak boleh kosong"/>
                     <n:h5 class="modal-title"> Nilai Activa Tetap</n:h5>
                     <doublebox class="form-control" format="#,##0.##" width="463px" value="@bind(vm.hargaActivaTetap) @save(vm.hargaActivaTetap, before='buttonSimpanActivaTetap')" constraint="no zero: Jumlah ActivaTetap tidak boleh 0"/>
-                    <n:h5 class="modal-title"> Lama Pemakaian</n:h5>
+                    <n:h5 class="modal-title"> Nilai Ekonomi (dalam tahun)</n:h5>
                     <intbox class="form-control" width="463px" value="@bind(vm.lamaPemakaian) @save(vm.lamaPemakaian, before='buttonSimpanActivaTetap')" constraint="no empty: Jumlah ActivaTetap tidak boleh kosong, no zero: Jumlah ActivaTetap tidak boleh 0"/>
-                    <n:h5 class="modal-title"> Jangka Waktu Penyusutan</n:h5>
+                    <n:h5 class="modal-title"> Tahun Beli</n:h5>
                     <intbox class="form-control" width="463px" value="@bind(vm.jangkaWaktuPenyusutan) @save(vm.jangkaWaktuPenyusutan, before='buttonSimpanActivaTetap')" constraint="no empty: Jumlah ActivaTetap tidak boleh kosong, no zero: Jumlah ActivaTetap tidak boleh 0"/>
-                    <n:h5 class="modal-title"> Persen Penyusutan</n:h5>
+                    <n:h5 class="modal-title"> Tahun Sisa</n:h5>
                     <intbox class="form-control" width="463px" value="@bind(vm.persenPenyusutan) @save(vm.persenPenyusutan, before='buttonSimpanActivaTetap')" constraint="no empty: Jumlah ActivaTetap tidak boleh kosong, no zero: Jumlah ActivaTetap tidak boleh 0"/>
-                    <n:h5 class="modal-title"> Total Nilai Penyusutan</n:h5>
+                    <n:h5 class="modal-title"> Akumulasi Penyusutan</n:h5>
+                    <doublebox class="form-control" format="#,##0.##" width="463px" value="@load((vm.hargaActivaTetap/vm.jangkaWaktuPenyusutan)*(vm.jangkaWaktuPenyusutan-vm.lamaPemakaian)*(vm.persenPenyusutan/100))" readonly="true"/>
+                    <n:h5 class="modal-title"> Harga Sisa</n:h5>
                     <doublebox class="form-control" format="#,##0.##" width="463px" value="@load((vm.hargaActivaTetap/vm.jangkaWaktuPenyusutan)*(vm.jangkaWaktuPenyusutan-vm.lamaPemakaian)*(vm.persenPenyusutan/100))" readonly="true"/>
                 </div>
                 <separator width="3px"/>

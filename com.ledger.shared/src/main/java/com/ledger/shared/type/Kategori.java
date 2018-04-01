@@ -10,6 +10,11 @@ package com.ledger.shared.type;
  * @author BayuHS
  */
 public enum Kategori {
-    PENJUALAN,
+
     PEMBELIAN,
+    PENJUALAN,
+    RETUR_PEMBELIAN,
+    RETUR_PENJUALAN,
+    BIAYA_PENJUALAN,
+    BIAYA_PEMBELIAN
 }

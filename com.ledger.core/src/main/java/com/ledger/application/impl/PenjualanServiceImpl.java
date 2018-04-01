@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.ledger.application.impl;
 
 import com.ledger.common.application.finance.management.PenjualanService;
@@ -59,20 +54,20 @@ public class PenjualanServiceImpl implements PenjualanService {
     @Override
     public PenjualanDTO getDummyData() {
         Penjualan penjualan = new PenjualanBuilder()
-                .setPenjualanID("C1")
-                .setNamaBarang("aa")
-                .setKategoriPenjualan(Kategori.PEMBELIAN)
-                .setJenisPenjualan(JenisBarang.NON_ELEKTRONIK)
-                .setJumlah(12)
-                .setDiskon(3)
-                .setTotal(4)
-                .setTanggalTransaksiPenjualan(new Date())
-                .setStatusTransaksi(StatusTransaksi.DONE)
-                .setCatatan("catatan")
-                .setCreatedBy("createdBy")
-                .setCreatedDate(new Date())
-                .setModifiedBy("aa")
-                .setModifiedDate(new Date())
+//                .setPenjualanID("C1")
+                //                .setNamaBarang("aa")
+                //                .setKategoriPenjualan(Kategori.PEMBELIAN)
+                //                .setJenisPenjualan(JenisBarang.NON_ELEKTRONIK)
+                //                .setJumlah(12)
+                //                .setDiskon(3)
+                //                .setTotal(4)
+                //                .setTanggalTransaksiPenjualan(new Date())
+                //                .setStatusTransaksi(StatusTransaksi.DONE)
+                //                .setCatatan("catatan")
+                //                .setCreatedBy("createdBy")
+                //                .setCreatedDate(new Date())
+                //                .setModifiedBy("aa")
+                //                .setModifiedDate(new Date())
                 .createPenjualan();
         return penjualanDTOAssembler.toDTO(penjualan);
     }

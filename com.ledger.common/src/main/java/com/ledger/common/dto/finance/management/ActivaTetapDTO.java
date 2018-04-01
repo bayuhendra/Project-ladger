@@ -11,6 +11,7 @@ public class ActivaTetapDTO implements Serializable {
 
     private String userID;
     private String activaTetapID;
+    private String jenisActiva;
     private String namaActivaTetap;
     private double hargaActivaTetap;
     private int lamaPemakaian;
@@ -26,9 +27,10 @@ public class ActivaTetapDTO implements Serializable {
     public ActivaTetapDTO() {
     }
 
-    public ActivaTetapDTO(String userID, String activaTetapID, String namaActivaTetap, double hargaActivaTetap, int lamaPemakaian, int jangkaWaktuPenyusutan, int persenPenyusutan, double totalPenyusutan, String status, String createdBy, Date createdDate, String modifiedBy, Date modifiedDate) {
+    public ActivaTetapDTO(String userID, String activaTetapID, String jenisActiva, String namaActivaTetap, double hargaActivaTetap, int lamaPemakaian, int jangkaWaktuPenyusutan, int persenPenyusutan, double totalPenyusutan, String status, String createdBy, Date createdDate, String modifiedBy, Date modifiedDate) {
         this.userID = userID;
         this.activaTetapID = activaTetapID;
+        this.jenisActiva = jenisActiva;
         this.namaActivaTetap = namaActivaTetap;
         this.hargaActivaTetap = hargaActivaTetap;
         this.lamaPemakaian = lamaPemakaian;
@@ -144,6 +146,14 @@ public class ActivaTetapDTO implements Serializable {
 
     public void setUserID(String userID) {
         this.userID = userID;
+    }
+
+    public String getJenisActiva() {
+        return jenisActiva;
+    }
+
+    public void setJenisActiva(String jenisActiva) {
+        this.jenisActiva = jenisActiva;
     }
 
 }

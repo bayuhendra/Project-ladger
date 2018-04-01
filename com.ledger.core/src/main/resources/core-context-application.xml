@@ -67,4 +67,11 @@
         <property name="activaTetapDTOAssembler" ref="activaTetapDTOAssembler"/>
         <property name="activaTetapRepository" ref="activaTetapRepository"/>
     </bean>
+    
+    <bean id="openingBalanceFlagDTOAssembler" class="com.ledger.interfaces.web.facade.dto.assembler.finance.management.OpeningBalanceFlagDTOAssembler">
+    </bean>
+    <bean id="openingBalanceFlagService" class="com.ledger.application.impl.OpeningBalanceFlagServiceImpl">
+        <property name="openingBalanceFlagDTOAssembler" ref="openingBalanceFlagDTOAssembler"/>
+        <property name="openingBalanceFlagRepository" ref="openingBalanceFlagRepository"/>
+    </bean>
 </beans>

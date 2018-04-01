@@ -13,8 +13,10 @@
         </id>
         <property column="piutangID" name="piutangID" not-null="true"/>
         <property column="userID" name="userID" not-null="false"/>
+        <property column="jenisPiutang" name="jenisPiutang" not-null="false"/>
         <property column="namaPiutang" name="namaPiutang" not-null="false"/>
         <property column="jumlahPiutang" name="jumlahPiutang" not-null="false"/>
+        <property column="tanggalJatuhTempo" name="tanggalJatuhTempo" not-null="false"/>
         <property column="status" name="status" not-null="false"/>
         <property column="createdBy" name="createdBy" not-null="false"/>
         <property column="createdDate" name="createdDate" not-null="false"/>

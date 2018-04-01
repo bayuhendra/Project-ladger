@@ -2,20 +2,31 @@ package com.ledger.main.viewmodel;
 
 import com.ledger.common.application.finance.management.ActivaTetapService;
 import com.ledger.common.application.finance.management.HutangService;
+import com.ledger.common.application.finance.management.OpeningBalanceFlagService;
+import com.ledger.common.application.finance.management.PembelianService;
+import com.ledger.common.application.finance.management.PenjualanService;
 import com.ledger.common.application.finance.management.PersediaanService;
 import com.ledger.common.application.finance.management.PiutangService;
 import com.ledger.common.application.finance.management.SaldoKasService;
+import com.ledger.common.application.finance.management.TransaksiService;
 import com.ledger.common.dto.finance.management.ActivaTetapDTO;
 import com.ledger.common.dto.finance.management.ActivaTetapDTOBuilder;
 import com.ledger.common.dto.finance.management.HutangDTO;
 import com.ledger.common.dto.finance.management.HutangDTOBuilder;
+import com.ledger.common.dto.finance.management.OpeningBalanceFlagDTO;
+import com.ledger.common.dto.finance.management.OpeningBalanceFlagDTOBuilder;
+import com.ledger.common.dto.finance.management.PembelianDTO;
+import com.ledger.common.dto.finance.management.PembelianDTOBuilder;
+import com.ledger.common.dto.finance.management.PenjualanDTO;
+import com.ledger.common.dto.finance.management.PenjualanDTOBuilder;
 import com.ledger.common.dto.finance.management.PersediaanDTO;
 import com.ledger.common.dto.finance.management.PersediaanDTOBuilder;
 import com.ledger.common.dto.finance.management.PiutangDTO;
 import com.ledger.common.dto.finance.management.PiutangDTOBuilder;
 import com.ledger.common.dto.finance.management.SaldoKasDTO;
 import com.ledger.common.dto.finance.management.SaldoKasDTOBuilder;
-import com.ledger.common.dto.finance.management.asset.AssetDTO;
+import com.ledger.common.dto.finance.management.TransaksiDTO;
+import com.ledger.common.dto.finance.management.TransaksiDTOBuilder;
 import com.ledger.common.dto.usermanagement.UserDTO;
 import com.ledger.common.security.SecurityUtil;
 import com.ledger.shared.status.Status;
@@ -62,6 +73,14 @@ public class DashboardVM {
     PersediaanService persediaanService;
     @WireVariable
     ActivaTetapService activaTetapService;
+    @WireVariable
+    OpeningBalanceFlagService openingBalanceFlagService;
+    @WireVariable
+    PembelianService pembelianService;
+    @WireVariable
+    PenjualanService penjualanService;
+    @WireVariable
+    TransaksiService transaksiService;
 
     /* data user */
     private UserDTO user;
@@ -72,6 +91,10 @@ public class DashboardVM {
     /* data saldo kas */
     private SaldoKasDTO saldoKasDTO = new SaldoKasDTO();
     private double saldoKasBank;
+    private double saldoKas;
+    private double saldoBank;
+    private double saldoLabaRugi;
+    private double modalDisetor;
 
     /* data hutang */
     private HutangDTO hutangDTO = new HutangDTO();
@@ -100,15 +123,19 @@ public class DashboardVM {
     private List<PersediaanDTO> persediaanDTOs = new ArrayList<>();
     private String namaPersediaan;
     private String jenisPersediaan;
+    private String satuan;
     private int jumlahPersediaan;
     private double hargaPersediaan;
     private double totalHargaPersediaan;
     private String namaPersediaanNew;
     private String jenisPersediaanNew;
+    private String satuanNew;
     private int jumlahPersediaanNew;
     private double hargaPersediaanNew;
     private double totalHargaPersediaanNew;
     private ListModelList<String> listJenisPersediaan = new ListModelList<>();
+    private ListModelList<String> listSatuan = new ListModelList<>();
+    private ListModelList<String> listNamaPersediaan = new ListModelList<>();
 
     /* data activa tetap */
     private ActivaTetapDTO activaTetapDTO = new ActivaTetapDTO();
@@ -128,8 +155,29 @@ public class DashboardVM {
     private boolean isPenyusutan;
     private boolean isPenyusutanNew;
 
+    /* data persediaan */
+    private OpeningBalanceFlagDTO openingBalanceFlagDTO = new OpeningBalanceFlagDTO();
+
+    /* data transaksi */
+    private TransaksiDTO transaksiDTO = new TransaksiDTO();
+    private List<TransaksiDTO> transaksiDTOs = new ArrayList<>();
+    private Date tanggalTransaksi;
+    private String jenisTransaksi;
+    private String tipePembayaran;
+    private ListModelList<String> listJenisTransaksi = new ListModelList<>();
+    private ListModelList<String> listTipePembayaran = new ListModelList<>();
+
+    /* data pembelian */
+    private PembelianDTO pembelianDTO = new PembelianDTO();
+    private List<PembelianDTO> pembelianDTOs = new ArrayList<>();
+
+    /* data penjualan */
+    private PenjualanDTO penjualanDTO = new PenjualanDTO();
+    private List<PenjualanDTO> penjualanDTOs = new ArrayList<>();
+
     /* data page */
-    private String src;
+    private String src = "/financial-management/ledger/neraca.zul";
+    private String transaksiTab1 = "/financial-management/transaksi/transaksi.tab1.zul";
 
     private PageNavigation previous;
     private boolean checked;
@@ -154,12 +202,22 @@ public class DashboardVM {
 
     /* form summary purpose */
     private double totalKasBank;
+    private double totalHutang;
     private double totalPiutang;
     private double totalPersediaan;
     private double nilaiActivaTetap;
     private double nilaiTotalPenyusutan;
     private double nilaiBukuAssetTetap;
     private double totalAsset;
+
+    /* form opening balance exception */
+    private boolean isNoSaldo;
+    private boolean isNoHutang;
+    private boolean isNoPiutang;
+    private boolean isNoPersediaan;
+    private boolean isNoActiva;
+
+    private int year = 2018;
 
     @Init
     public void init(
@@ -186,7 +244,12 @@ public class DashboardVM {
         saldoKasDTO = saldoKasService.findByUserID(SecurityUtil.getUserName());
         if (saldoKasDTO != null) {
             saldoKasBank = saldoKasDTO.getSaldoKasBank();
-            totalKasBank = saldoKasBank;
+            saldoKas = saldoKasDTO.getSaldoKas();
+            saldoBank = saldoKasDTO.getSaldoBank();
+            saldoLabaRugi = saldoKasDTO.getSaldoLabaRugi();
+            modalDisetor = saldoKasDTO.getModalDisetor();
+            totalKasBank = saldoKas + saldoBank + saldoLabaRugi + modalDisetor;
+
         } else {
             saldoKasDTO = new SaldoKasDTOBuilder()
                     .setSaldoKasID(UUID.randomUUID().toString())
@@ -196,12 +259,15 @@ public class DashboardVM {
                     .createSaldoKasDTO();
         }
 
+        transaksiDTOs = transaksiService.findByUserID(SecurityUtil.getUserName());
+
         hutangDTOs = hutangService.findByUserID(SecurityUtil.getUserName());
         for (HutangDTO h : hutangDTOs) {
             hutangDTO = hutangService.findByID(h.getHutangID());
             namaHutang = h.getNamaHutang();
             jumlahHutang = h.getJumlahHutang();
             statusHutang = h.getStatus();
+            totalHutang += jumlahHutang;
         }
         piutangDTOs = piutangService.findByUserID(SecurityUtil.getUserName());
         for (PiutangDTO p : piutangDTOs) {
@@ -218,8 +284,10 @@ public class DashboardVM {
             jenisPersediaan = ps.getJenisPersediaan();
             jumlahPersediaan = ps.getJumlahPersediaan();
             hargaPersediaan = ps.getHargaPersediaan();
+            satuan = ps.getSatuan();
             totalHargaPersediaan = ps.getTotalHargaPersediaan();
             totalPersediaan += totalHargaPersediaan;
+            listNamaPersediaan.add(ps.getNamaPersediaan());
         }
         activaTetapDTOs = activaTetapService.findByUserID(SecurityUtil.getUserName());
         for (ActivaTetapDTO at : activaTetapDTOs) {
@@ -239,45 +307,107 @@ public class DashboardVM {
 
         /* calculation summary */
         /* dummy for listbox/comcobox */
-        listStatusHutang.add("LUNAS");
-        listStatusHutang.add("BELUM LUNAS");
-        listStatusPiutang.add("LUNAS");
-        listStatusPiutang.add("BELUM LUNAS");
         listJenisPersediaan.add("BAHAN BAKU");
         listJenisPersediaan.add("BARANG JADI");
         listJenisPersediaan.add("BARANG SETENGAH JADI");
 
-        if (user.getUserSpecificationDTO().getEscute().equalsIgnoreCase("JASA")) {
-            if (saldoKasDTO != null && !hutangDTOs.isEmpty() && !piutangDTOs.isEmpty() && !activaTetapDTOs.isEmpty()) {
+        listJenisTransaksi.add("PEMBELIAN");
+        listJenisTransaksi.add("PENJUALAN");
+        listJenisTransaksi.add("RETUR");
+
+        listTipePembayaran.add("CASH");
+        listTipePembayaran.add("KREDIT");
+        listTipePembayaran.add("CACH & KREDIT");
+
+        listSatuan.add("Kg");
+        listSatuan.add("Sak");
+        listSatuan.add("Pcs");
+
+        openingBalanceFlagDTO = openingBalanceFlagService.findByUserID(SecurityUtil.getUserName());
+        if (openingBalanceFlagDTO != null) {
+            if (openingBalanceFlagDTO.isIsFormSaldo() == true && openingBalanceFlagDTO.isIsFormHutang() == true
+                    && openingBalanceFlagDTO.isIsFormPiutang() == true && openingBalanceFlagDTO.isIsFormPersediaan() == true
+                    && openingBalanceFlagDTO.isIsFormActiva() == true) {
                 panelAfter = true;
                 panelBefore = false;
+                introForm = true;
+                step1Form = false;
+                step2Form = false;
+                step3Form = false;
+                step4Form = false;
+                step5Form = false;
             } else {
                 panelAfter = false;
                 panelBefore = true;
+                introForm = true;
+                step1Form = false;
+                step2Form = false;
+                step3Form = false;
+                step4Form = false;
+                step5Form = false;
             }
-
-            introForm = true;
-            step1Form = false;
-            step2Form = false;
-            step3Form = false;
-            step4Form = false;
-            step5Form = false;
         } else {
-            if (saldoKasDTO != null && !hutangDTOs.isEmpty() && !piutangDTOs.isEmpty() && !persediaanDTOs.isEmpty() && !activaTetapDTOs.isEmpty()) {
-                panelAfter = true;
-                panelBefore = false;
-            } else {
-                panelAfter = false;
-                panelBefore = true;
-            }
-
+            panelAfter = false;
+            panelBefore = true;
             introForm = true;
             step1Form = false;
             step2Form = false;
             step3Form = false;
             step4Form = false;
             step5Form = false;
+
+            openingBalanceFlagDTO = new OpeningBalanceFlagDTOBuilder()
+                    .setOpeningBalanceFlagID(UUID.randomUUID().toString())
+                    .setUserID(SecurityUtil.getUserName())
+                    .setCreatedBy(SecurityUtil.getUserName())
+                    .setCreatedDate(new Date())
+                    .createOpeningBalanceFlagDTO();
         }
+
+    }
+
+    @NotifyChange("totalHargaPersediaanNew")
+    public double totalPersediaanNew() {
+        totalHargaPersediaanNew = jumlahPersediaanNew * hargaPersediaanNew;
+        return totalHargaPersediaanNew;
+    }
+
+    @NotifyChange("totalHargaPersediaan")
+    public double totalPersediaan() {
+        totalHargaPersediaan = jumlahPersediaan * hargaPersediaan;
+        return totalHargaPersediaan;
+    }
+
+    /* for botton add transaction */
+    @Command("buttonKlikTransaksi")
+    @NotifyChange("src")
+    public void buttonKlikTransaksi(@ContextParam(ContextType.VIEW) Window window) {
+        src = "/financial-management/ledger/neraca.zul";
+    }
+
+    /* for home tab */
+    @Command("buttonKlikNeraca")
+    @NotifyChange("src")
+    public void buttonKlikNeraca(@ContextParam(ContextType.VIEW) Window window) {
+        src = "/financial-management/ledger/neraca.zul";
+    }
+
+    @Command("buttonKlikLabaRugi")
+    @NotifyChange("src")
+    public void buttonKlikLabaRugi(@ContextParam(ContextType.VIEW) Window window) {
+        src = "/financial-management/ledger/laba.rugi.zul";
+    }
+
+    @Command("buttonKlikPersediaan")
+    @NotifyChange("src")
+    public void buttonKlikPersediaan(@ContextParam(ContextType.VIEW) Window window) {
+        src = "/financial-management/ledger/dashboard.persediaan.zul";
+    }
+
+    @Command("buttonKlikHistoryTransaksi")
+    @NotifyChange("src")
+    public void buttonKlikHistoryTransaksi(@ContextParam(ContextType.VIEW) Window window) {
+        src = "/financial-management/ledger/dashboard.transaksi.zul";
     }
 
     @Command({"buttonOk", "buttonClose"})
@@ -318,44 +448,78 @@ public class DashboardVM {
     }
 
     @Command("buttonKlikNextForm1")
-    @NotifyChange({"introForm", "step1Form", "step2Form", "step3Form", "step4Form", "step5Form", "saldoKasDTO"})
+    @NotifyChange({"isNoSaldo", "introForm", "step1Form", "step2Form", "step3Form", "step4Form", "step5Form", "saldoKasDTO"})
     public void buttonKlikNextForm1(@ContextParam(ContextType.VIEW) Window window) {
-        if (saldoKasBank == 0) {
-            Messagebox.show("Data saldo tidak boleh 0!", "Peringatan", Messagebox.OK, Messagebox.EXCLAMATION);
-        } else {
-
+        if (isNoSaldo == true) {
             introForm = false;
             step1Form = false;
             step2Form = true;
             step3Form = false;
             step4Form = false;
             step5Form = false;
-
-            if (saldoKasDTO == null) {
-                saldoKasDTO.setSaldoKasBank(saldoKasBank);
-                saldoKasService.SaveOrUpdate(saldoKasDTO);
+            openingBalanceFlagDTO.setIsFormSaldo(true);
+            openingBalanceFlagService.SaveOrUpdate(openingBalanceFlagDTO);
+        } else {
+            if (saldoKasBank == 0) {
+                Messagebox.show("Data saldo tidak boleh 0!", "Peringatan", Messagebox.OK, Messagebox.EXCLAMATION);
             } else {
-                saldoKasDTO.setModifiedBy(SecurityUtil.getUserName());
-                saldoKasDTO.setModifiedDate(new Date());
-                saldoKasDTO.setSaldoKasBank(saldoKasBank);
-                saldoKasService.SaveOrUpdate(saldoKasDTO);
+                introForm = false;
+                step1Form = false;
+                step2Form = true;
+                step3Form = false;
+                step4Form = false;
+                step5Form = false;
+
+                if (saldoKasDTO == null) {
+                    saldoKasDTO.setSaldoKas(saldoKas);
+                    saldoKasDTO.setSaldoBank(saldoBank);
+                    saldoKasDTO.setSaldoLabaRugi(saldoLabaRugi);
+                    saldoKasDTO.setModalDisetor(modalDisetor);
+                    saldoKasDTO.setSaldoKasBank(saldoKas + saldoBank + saldoLabaRugi + modalDisetor);
+                    saldoKasService.SaveOrUpdate(saldoKasDTO);
+                } else {
+                    saldoKasDTO.setModifiedBy(SecurityUtil.getUserName());
+                    saldoKasDTO.setModifiedDate(new Date());
+                    saldoKasDTO.setSaldoKas(saldoKas);
+                    saldoKasDTO.setSaldoBank(saldoBank);
+                    saldoKasDTO.setSaldoLabaRugi(saldoLabaRugi);
+                    saldoKasDTO.setModalDisetor(modalDisetor);
+                    saldoKasDTO.setSaldoKasBank(saldoKas + saldoBank + saldoLabaRugi + modalDisetor);
+                    saldoKasService.SaveOrUpdate(saldoKasDTO);
+                }
+
+                openingBalanceFlagDTO.setIsFormSaldo(true);
+                openingBalanceFlagService.SaveOrUpdate(openingBalanceFlagDTO);
             }
         }
-
     }
 
     @Command("buttonKlikNextForm2")
-    @NotifyChange({"introForm", "step1Form", "step2Form", "step3Form", "step4Form", "step5Form"})
+    @NotifyChange({"isNoHutang", "introForm", "step1Form", "step2Form", "step3Form", "step4Form", "step5Form"})
     public void buttonKlikNextForm2(@ContextParam(ContextType.VIEW) Window window) {
-        if (hutangDTOs.isEmpty()) {
-            Messagebox.show("Anda belum mengisi data hutang!", "Peringatan", Messagebox.OK, Messagebox.EXCLAMATION);
-        } else {
+        if (isNoHutang == true) {
             introForm = false;
             step1Form = false;
             step2Form = false;
             step3Form = true;
             step4Form = false;
             step5Form = false;
+            openingBalanceFlagDTO.setIsFormHutang(true);
+            openingBalanceFlagService.SaveOrUpdate(openingBalanceFlagDTO);
+        } else {
+            if (hutangDTOs.isEmpty()) {
+                Messagebox.show("Anda belum mengisi data hutang!", "Peringatan", Messagebox.OK, Messagebox.EXCLAMATION);
+            } else {
+                introForm = false;
+                step1Form = false;
+                step2Form = false;
+                step3Form = true;
+                step4Form = false;
+                step5Form = false;
+
+                openingBalanceFlagDTO.setIsFormHutang(true);
+                openingBalanceFlagService.SaveOrUpdate(openingBalanceFlagDTO);
+            }
         }
     }
 
@@ -459,17 +623,32 @@ public class DashboardVM {
     }
 
     @Command("buttonKlikNextForm3")
-    @NotifyChange({"introForm", "step1Form", "step2Form", "step3Form", "step4Form", "step5Form"})
+    @NotifyChange({"isNoPiutang", "introForm", "step1Form", "step2Form", "step3Form", "step4Form", "step5Form"})
     public void buttonKlikNextForm3(@ContextParam(ContextType.VIEW) Window window) {
-        if (piutangDTOs.isEmpty()) {
-            Messagebox.show("Anda belum mengisi data piutang!", "Peringatan", Messagebox.OK, Messagebox.EXCLAMATION);
-        } else {
+        if (isNoPiutang == true) {
             introForm = false;
             step1Form = false;
             step2Form = false;
             step3Form = false;
             step4Form = true;
             step5Form = false;
+
+            openingBalanceFlagDTO.setIsFormPiutang(true);
+            openingBalanceFlagService.SaveOrUpdate(openingBalanceFlagDTO);
+        } else {
+            if (piutangDTOs.isEmpty()) {
+                Messagebox.show("Anda belum mengisi data piutang!", "Peringatan", Messagebox.OK, Messagebox.EXCLAMATION);
+            } else {
+                introForm = false;
+                step1Form = false;
+                step2Form = false;
+                step3Form = false;
+                step4Form = true;
+                step5Form = false;
+                openingBalanceFlagDTO.setIsFormPiutang(true);
+                openingBalanceFlagService.SaveOrUpdate(openingBalanceFlagDTO);
+            }
+
         }
     }
 
@@ -573,15 +752,18 @@ public class DashboardVM {
     }
 
     @Command("buttonKlikNextForm4")
-    @NotifyChange({"introForm", "step1Form", "step2Form", "step3Form", "step4Form", "step5Form"})
+    @NotifyChange({"isNoPersediaan", "introForm", "step1Form", "step2Form", "step3Form", "step4Form", "step5Form"})
     public void buttonKlikNextForm4(@ContextParam(ContextType.VIEW) Window window) {
-        if (user.getUserSpecificationDTO().getEscute().equalsIgnoreCase("JASA")) {
+        if (isNoPersediaan == true) {
             introForm = false;
             step1Form = false;
             step2Form = false;
             step3Form = false;
             step4Form = false;
             step5Form = true;
+
+            openingBalanceFlagDTO.setIsFormPersediaan(true);
+            openingBalanceFlagService.SaveOrUpdate(openingBalanceFlagDTO);
         } else {
             if (persediaanDTOs.isEmpty()) {
                 Messagebox.show("Anda belum mengisi data persediaan!", "Peringatan", Messagebox.OK, Messagebox.EXCLAMATION);
@@ -592,6 +774,9 @@ public class DashboardVM {
                 step3Form = false;
                 step4Form = false;
                 step5Form = true;
+
+                openingBalanceFlagDTO.setIsFormPersediaan(true);
+                openingBalanceFlagService.SaveOrUpdate(openingBalanceFlagDTO);
             }
         }
     }
@@ -633,7 +818,9 @@ public class DashboardVM {
         persediaanDTO.setJumlahPersediaan(jumlahPersediaan);
         persediaanDTO.setJenisPersediaan(jenisPersediaan);
         persediaanDTO.setHargaPersediaan(hargaPersediaan);
+        persediaanDTO.setSatuan(satuan);
         persediaanDTO.setTotalHargaPersediaan(jumlahPersediaan * hargaPersediaan);
+        persediaanDTO.setHargaRataRata(persediaanDTO.getTotalHargaPersediaan() / jumlahPersediaan);
         persediaanDTO.setUserID(SecurityUtil.getUserName());
         persediaanDTO.setModifiedBy(SecurityUtil.getUserName());
         persediaanDTO.setModifiedDate(new Date());
@@ -646,27 +833,289 @@ public class DashboardVM {
     @Command("buttonSimpanPersediaanNew")
     @NotifyChange("persediaanDTO")
     public void buttonSimpanPersediaanNew(@BindingParam("object") PersediaanDTO obj, @ContextParam(ContextType.VIEW) Window window) {
-        persediaanDTO = new PersediaanDTOBuilder()
-                .setPersediaanID(UUID.randomUUID().toString())
-                .setNamaPersediaan(namaPersediaanNew)
-                .setJumlahPersediaan(jumlahPersediaanNew)
-                .setJenisPersediaan(jenisPersediaanNew)
-                .setHargaPersediaan(hargaPersediaanNew)
-                .setTotalHargaPersediaan(jumlahPersediaanNew * hargaPersediaanNew)
-                .setUserID(SecurityUtil.getUserName())
-                .setCreatedBy(SecurityUtil.getUserName())
-                .setCreatedDate(new Date())
-                .createPersediaanDTO();
-        persediaanService.SaveOrUpdate(persediaanDTO);
-        showInformationMessagebox("Data Persediaan Berhasil Ditambahkan");
-        BindUtils.postGlobalCommand(null, null, "refreshDataPersediaan", null);
-        window.detach();
+        persediaanDTO = persediaanService.findByName(namaPersediaanNew);
+        if (persediaanDTO == null) {
+            persediaanDTO = new PersediaanDTOBuilder()
+                    .setPersediaanID(UUID.randomUUID().toString())
+                    .setNamaPersediaan(namaPersediaanNew)
+                    .setJumlahPersediaan(jumlahPersediaanNew)
+                    .setJenisPersediaan(jenisPersediaanNew)
+                    .setSatuan(satuanNew)
+                    .setHargaPersediaan(hargaPersediaanNew)
+                    .setTotalHargaPersediaan(jumlahPersediaanNew * hargaPersediaanNew)
+                    .setHargaRataRata((jumlahPersediaanNew * hargaPersediaanNew) / jumlahPersediaanNew)
+                    .setUserID(SecurityUtil.getUserName())
+                    .setCreatedBy(SecurityUtil.getUserName())
+                    .setCreatedDate(new Date())
+                    .createPersediaanDTO();
+            persediaanService.SaveOrUpdate(persediaanDTO);
+            showInformationMessagebox("Data Persediaan Berhasil Ditambahkan");
+            BindUtils.postGlobalCommand(null, null, "refreshDataPersediaan", null);
+            window.detach();
+        } else {
+            PersediaanDTO lp = persediaanService.findByName(namaPersediaanNew);
+            persediaanDTO.setNamaPersediaan(namaPersediaanNew);
+            persediaanDTO.setJumlahPersediaan(lp.getJumlahPersediaan() + jumlahPersediaanNew);
+            persediaanDTO.setJenisPersediaan(jenisPersediaanNew);
+            persediaanDTO.setSatuan(satuanNew);
+            persediaanDTO.setHargaPersediaan(hargaPersediaanNew);
+            persediaanDTO.setTotalHargaPersediaan(lp.getTotalHargaPersediaan() + (jumlahPersediaanNew * hargaPersediaanNew));
+//            persediaanDTO.setHargaRataRata(persediaanDTO.getTotalHargaPersediaan() / jumlahPersediaanNew);
+            persediaanDTO.setModifiedBy(SecurityUtil.getUserName());
+            persediaanDTO.setModifiedDate(new Date());
+            persediaanService.SaveOrUpdate(persediaanDTO);
+            showInformationMessagebox("Data Persediaan Berhasil Ditambahkan");
+            BindUtils.postGlobalCommand(null, null, "refreshDataPersediaan", null);
+            window.detach();
+        }
+    }
+
+    @Command("buttonSimpanTransaksiPembelian")
+    @NotifyChange({"persediaanDTOs", "penjualanDTOs", "pembelianDTOs", "transaksiDTOs"})
+    public void buttonSimpanTransaksiPembelian(@ContextParam(ContextType.VIEW) Window window) {
+        persediaanDTO = persediaanService.findByName(namaPersediaanNew);
+        if (persediaanDTO == null) {
+            persediaanDTO = new PersediaanDTOBuilder()
+                    .setPersediaanID(UUID.randomUUID().toString())
+                    .setNamaPersediaan(namaPersediaanNew)
+                    .setJumlahPersediaan(jumlahPersediaanNew)
+                    .setJenisPersediaan(jenisPersediaanNew)
+                    .setSatuan(satuanNew)
+                    .setHargaPersediaan(hargaPersediaanNew)
+                    .setTotalHargaPersediaan(jumlahPersediaanNew * hargaPersediaanNew)
+                    .setHargaRataRata(persediaanDTO.getTotalHargaPersediaan() / jumlahPersediaanNew)
+                    .setUserID(SecurityUtil.getUserName())
+                    .setCreatedBy(SecurityUtil.getUserName())
+                    .setCreatedDate(new Date())
+                    .createPersediaanDTO();
+            persediaanService.SaveOrUpdate(persediaanDTO);
+
+            pembelianDTO = new PembelianDTOBuilder()
+                    .setPembelianID(UUID.randomUUID().toString())
+                    .setNamaBarang(namaPersediaanNew)
+                    .setJenisBarang(jenisPersediaanNew)
+                    .setSatuan(satuanNew)
+                    .setJumlah(jumlahPersediaanNew)
+                    .setHargaBarang(hargaPersediaanNew)
+                    .setTotalHarga(jumlahPersediaanNew * hargaPersediaanNew)
+                    .setTanggalPembelian(tanggalTransaksi)
+                    .setTipePembayaran(tipePembayaran)
+                    .setCreatedBy(SecurityUtil.getUserName())
+                    .setCreatedDate(new Date())
+                    .createPembelianDTO();
+
+            pembelianService.SaveOrUpdate(pembelianDTO);
+
+            double cash;
+            double kredit;
+            if (tipePembayaran == "CASH") {
+                cash = jumlahPersediaanNew * hargaPersediaanNew;
+                kredit = 0.0;
+            } else {
+                cash = 0.0;
+                kredit = jumlahPersediaanNew * hargaPersediaanNew;;
+            }
+
+            transaksiDTO = new TransaksiDTOBuilder()
+                    .setTransaksiID(UUID.randomUUID().toString())
+                    .setJenisTransaksi(jenisTransaksi)
+                    .setNamaTransaksi(namaPersediaanNew)
+                    .setNilaiTransaksi(jumlahPersediaanNew * hargaPersediaanNew)
+                    .setUserID(SecurityUtil.getUserName())
+                    .setTanggalTransaksi(tanggalTransaksi)
+                    .setJenisPembayaran(tipePembayaran)
+                    .setCash(cash)
+                    .setKredit(kredit)
+                    .setCreatedBy(SecurityUtil.getUserName())
+                    .setCreatedDate(new Date())
+                    .createTransaksiDTO();
+            transaksiService.SaveOrUpdate(transaksiDTO);
+            showInformationMessagebox("Data Transaksi Berhasil Ditambahkan");
+            BindUtils.postGlobalCommand(null, null, "refreshDataPersediaan", null);
+            window.detach();
+        } else {
+            PersediaanDTO lp = persediaanService.findByName(namaPersediaanNew);
+            persediaanDTO.setNamaPersediaan(namaPersediaanNew);
+            persediaanDTO.setJumlahPersediaan(lp.getJumlahPersediaan() + jumlahPersediaanNew);
+            persediaanDTO.setJenisPersediaan(jenisPersediaanNew);
+            persediaanDTO.setSatuan(satuanNew);
+            persediaanDTO.setHargaPersediaan(hargaPersediaanNew);
+            persediaanDTO.setTotalHargaPersediaan(lp.getTotalHargaPersediaan() + (jumlahPersediaanNew * hargaPersediaanNew));
+            persediaanDTO.setModifiedBy(SecurityUtil.getUserName());
+            persediaanDTO.setModifiedDate(new Date());
+            persediaanService.SaveOrUpdate(persediaanDTO);
+
+            pembelianDTO = new PembelianDTOBuilder()
+                    .setPembelianID(UUID.randomUUID().toString())
+                    .setNamaBarang(namaPersediaanNew)
+                    .setJenisBarang(jenisPersediaanNew)
+                    .setSatuan(satuanNew)
+                    .setJumlah(jumlahPersediaanNew)
+                    .setHargaBarang(hargaPersediaanNew)
+                    .setTotalHarga(jumlahPersediaanNew * hargaPersediaanNew)
+                    .setTanggalPembelian(tanggalTransaksi)
+                    .setTipePembayaran(tipePembayaran)
+                    .setCreatedBy(SecurityUtil.getUserName())
+                    .setCreatedDate(new Date())
+                    .createPembelianDTO();
+            pembelianService.SaveOrUpdate(pembelianDTO);
+
+            double cash;
+            double kredit;
+            if (tipePembayaran == "CASH") {
+                cash = jumlahPersediaanNew * hargaPersediaanNew;
+                kredit = 0.0;
+            } else {
+                cash = 0.0;
+                kredit = jumlahPersediaanNew * hargaPersediaanNew;;
+            }
+
+            transaksiDTO = new TransaksiDTOBuilder()
+                    .setTransaksiID(UUID.randomUUID().toString())
+                    .setJenisTransaksi(jenisTransaksi)
+                    .setNamaTransaksi(namaPersediaanNew)
+                    .setNilaiTransaksi(jumlahPersediaanNew * hargaPersediaanNew)
+                    .setUserID(SecurityUtil.getUserName())
+                    .setTanggalTransaksi(tanggalTransaksi)
+                    .setJenisPembayaran(tipePembayaran)
+                    .setCash(cash)
+                    .setKredit(kredit)
+                    .setCreatedBy(SecurityUtil.getUserName())
+                    .setCreatedDate(new Date())
+                    .createTransaksiDTO();
+
+            transaksiService.SaveOrUpdate(transaksiDTO);
+
+            showInformationMessagebox("Data Transaksi Berhasil Ditambahkan");
+            BindUtils.postGlobalCommand(null, null, "refreshDataPersediaan", null);
+            window.detach();
+        }
+    }
+
+    @Command("buttonSimpanTransaksiPenjualan")
+    @NotifyChange({"persediaanDTOs", "penjualanDTOs", "pembelianDTOs", "transaksiDTOs"})
+    public void buttonSimpanTransaksiPenjualan(@ContextParam(ContextType.VIEW) Window window) {
+        persediaanDTO = persediaanService.findByName(namaPersediaanNew);
+        if (persediaanDTO == null) {
+            persediaanDTO = new PersediaanDTOBuilder()
+                    .setPersediaanID(UUID.randomUUID().toString())
+                    .setNamaPersediaan(namaPersediaanNew)
+                    .setJumlahPersediaan(jumlahPersediaanNew)
+                    .setJenisPersediaan(jenisPersediaanNew)
+                    .setSatuan(satuanNew)
+                    .setHargaPersediaan(hargaPersediaanNew)
+                    .setTotalHargaPersediaan(jumlahPersediaanNew * hargaPersediaanNew)
+                    .setHargaRataRata(persediaanDTO.getTotalHargaPersediaan() / jumlahPersediaanNew)
+                    .setUserID(SecurityUtil.getUserName())
+                    .setCreatedBy(SecurityUtil.getUserName())
+                    .setCreatedDate(new Date())
+                    .createPersediaanDTO();
+            persediaanService.SaveOrUpdate(persediaanDTO);
+
+            penjualanDTO = new PenjualanDTOBuilder()
+                    .setPenjualanID(UUID.randomUUID().toString())
+                    .setNamaBarang(namaPersediaanNew)
+                    .setJenisBarang(jenisPersediaanNew)
+                    .setSatuan(satuanNew)
+                    .setJumlah(jumlahPersediaanNew)
+                    .setHargaBarang(hargaPersediaanNew)
+                    .setTotalHarga(jumlahPersediaanNew * hargaPersediaanNew)
+                    .setTanggalPenjualan(tanggalTransaksi)
+                    .setCreatedBy(SecurityUtil.getUserName())
+                    .setCreatedDate(new Date())
+                    .createPenjualanDTO();
+
+            penjualanService.SaveOrUpdate(penjualanDTO);
+
+            double cash;
+            double kredit;
+            if (tipePembayaran != null) {
+                if (tipePembayaran == "CASH") {
+                    cash = jumlahPersediaanNew * hargaPersediaanNew;
+                    kredit = 0.0;
+                } else {
+                    cash = 0.0;
+                    kredit = jumlahPersediaanNew * hargaPersediaanNew;;
+                }
+            }
+
+            transaksiDTO = new TransaksiDTOBuilder()
+                    .setTransaksiID(UUID.randomUUID().toString())
+                    .setJenisTransaksi(jenisTransaksi)
+                    .setNamaTransaksi(namaPersediaanNew)
+                    .setNilaiTransaksi(jumlahPersediaanNew * hargaPersediaanNew)
+                    .setUserID(SecurityUtil.getUserName())
+                    .setTanggalTransaksi(tanggalTransaksi)
+                    .setJenisPembayaran(tipePembayaran)
+                    .setCreatedBy(SecurityUtil.getUserName())
+                    .setCreatedDate(new Date())
+                    .createTransaksiDTO();
+            transaksiService.SaveOrUpdate(transaksiDTO);
+            showInformationMessagebox("Data Transaksi Berhasil Ditambahkan");
+            BindUtils.postGlobalCommand(null, null, "refreshDataPersediaan", null);
+            window.detach();
+        } else {
+            PersediaanDTO lp = persediaanService.findByName(namaPersediaanNew);
+            persediaanDTO.setNamaPersediaan(namaPersediaanNew);
+            persediaanDTO.setJumlahPersediaan(lp.getJumlahPersediaan() - jumlahPersediaanNew);
+            persediaanDTO.setJenisPersediaan(jenisPersediaanNew);
+            persediaanDTO.setSatuan(satuanNew);
+            persediaanDTO.setHargaPersediaan(hargaPersediaanNew);
+            persediaanDTO.setTotalHargaPersediaan(lp.getTotalHargaPersediaan() - (jumlahPersediaanNew * hargaPersediaanNew));
+            persediaanDTO.setModifiedBy(SecurityUtil.getUserName());
+            persediaanDTO.setModifiedDate(new Date());
+            persediaanService.SaveOrUpdate(persediaanDTO);
+
+            penjualanDTO = new PenjualanDTOBuilder()
+                    .setPenjualanID(UUID.randomUUID().toString())
+                    .setNamaBarang(namaPersediaanNew)
+                    .setJenisBarang(jenisPersediaanNew)
+                    .setSatuan(satuanNew)
+                    .setJumlah(jumlahPersediaanNew)
+                    .setHargaBarang(hargaPersediaanNew)
+                    .setTotalHarga(jumlahPersediaanNew * hargaPersediaanNew)
+                    .setTanggalPenjualan(tanggalTransaksi)
+                    .setCreatedBy(SecurityUtil.getUserName())
+                    .setCreatedDate(new Date())
+                    .createPenjualanDTO();
+            penjualanService.SaveOrUpdate(penjualanDTO);
+
+            double cash;
+            double kredit;
+            if (tipePembayaran == "CASH") {
+                cash = jumlahPersediaanNew * hargaPersediaanNew;
+                kredit = 0.0;
+            } else {
+                cash = 0.0;
+                kredit = jumlahPersediaanNew * hargaPersediaanNew;;
+            }
+
+            transaksiDTO = new TransaksiDTOBuilder()
+                    .setTransaksiID(UUID.randomUUID().toString())
+                    .setJenisTransaksi(jenisTransaksi)
+                    .setNamaTransaksi(namaPersediaanNew)
+                    .setNilaiTransaksi(jumlahPersediaanNew * hargaPersediaanNew)
+                    .setUserID(SecurityUtil.getUserName())
+                    .setTanggalTransaksi(tanggalTransaksi)
+                    .setJenisPembayaran(tipePembayaran)
+                    .setCash(cash)
+                    .setKredit(kredit)
+                    .setCreatedBy(SecurityUtil.getUserName())
+                    .setCreatedDate(new Date())
+                    .createTransaksiDTO();
+            transaksiService.SaveOrUpdate(transaksiDTO);
+
+            showInformationMessagebox("Data Transaksi Berhasil Ditambahkan");
+            BindUtils.postGlobalCommand(null, null, "refreshDataPersediaan", null);
+            window.detach();
+        }
     }
 
     @GlobalCommand
-    @NotifyChange("persediaanDTOs")
+    @NotifyChange({"persediaanDTOs", "transaksiDTOs"})
     public void refreshDataPersediaan() {
         persediaanDTOs = persediaanService.findByUserID(SecurityUtil.getUserName());
+        transaksiDTOs = transaksiService.findByUserID(SecurityUtil.getUserName());
     }
 
     @Command("detailPersediaan")
@@ -700,11 +1149,9 @@ public class DashboardVM {
     }
 
     @Command("buttonKlikFinishForm5")
-    @NotifyChange({"panelAfter", "panelBefore", "introForm", "step1Form", "step2Form", "step3Form", "step4Form", "step5Form"})
+    @NotifyChange({"isNoActiva", "panelAfter", "panelBefore", "introForm", "step1Form", "step2Form", "step3Form", "step4Form", "step5Form"})
     public void buttonKlikFinishForm5(@ContextParam(ContextType.VIEW) Window window) {
-        if (activaTetapDTOs.isEmpty()) {
-            Messagebox.show("Anda belum mengisi data activa tetap!", "Peringatan", Messagebox.OK, Messagebox.EXCLAMATION);
-        } else {
+        if (isNoActiva == true) {
             introForm = false;
             step1Form = false;
             step2Form = false;
@@ -713,7 +1160,27 @@ public class DashboardVM {
             step5Form = false;
             panelBefore = false;
             panelAfter = true;
+
+            openingBalanceFlagDTO.setIsFormActiva(true);
+            openingBalanceFlagService.SaveOrUpdate(openingBalanceFlagDTO);
+        } else {
+            if (activaTetapDTOs.isEmpty()) {
+                Messagebox.show("Anda belum mengisi data activa tetap!", "Peringatan", Messagebox.OK, Messagebox.EXCLAMATION);
+            } else {
+                introForm = false;
+                step1Form = false;
+                step2Form = false;
+                step3Form = false;
+                step4Form = false;
+                step5Form = false;
+                panelBefore = false;
+                panelAfter = true;
+
+                openingBalanceFlagDTO.setIsFormActiva(true);
+                openingBalanceFlagService.SaveOrUpdate(openingBalanceFlagDTO);
+            }
         }
+
     }
 
     @Command("buttonKlikBackForm5")
@@ -753,8 +1220,8 @@ public class DashboardVM {
         activaTetapDTO.setHargaActivaTetap(hargaActivaTetap);
         activaTetapDTO.setLamaPemakaian(lamaPemakaian);
         activaTetapDTO.setJangkaWaktuPenyusutan(jangkaWaktuPenyusutan);
-        activaTetapDTO.setPersenPenyusutan(persenPenyusutan);
-        activaTetapDTO.setTotalPenyusutan((hargaActivaTetap / jangkaWaktuPenyusutan) * (jangkaWaktuPenyusutan - lamaPemakaian) * (persenPenyusutan / 100));
+        activaTetapDTO.setPersenPenyusutan(0);
+        activaTetapDTO.setTotalPenyusutan((hargaActivaTetap / lamaPemakaian) * ((lamaPemakaian) - (year - jangkaWaktuPenyusutan)));
         activaTetapDTO.setUserID(SecurityUtil.getUserName());
         activaTetapDTO.setModifiedBy(SecurityUtil.getUserName());
         activaTetapDTO.setModifiedDate(new Date());
@@ -767,21 +1234,14 @@ public class DashboardVM {
     @Command("buttonSimpanActivaTetapNew")
     @NotifyChange("activaTetapDTO")
     public void buttonSimpanActivaTetapNew(@BindingParam("object") ActivaTetapDTO obj, @ContextParam(ContextType.VIEW) Window window) {
-        double totalPenyusutan = 0.0;
-        if (jangkaWaktuPenyusutanNew != 0 & lamaPemakaianNew != 0 && persenPenyusutanNew != 0) {
-            totalPenyusutan = ((hargaActivaTetapNew / jangkaWaktuPenyusutanNew) * (jangkaWaktuPenyusutanNew - lamaPemakaianNew) * (persenPenyusutanNew)) / 100;
-        } else {
-            totalPenyusutan = 0.0;
-        }
-
         activaTetapDTO = new ActivaTetapDTOBuilder()
                 .setActivaTetapID(UUID.randomUUID().toString())
                 .setNamaActivaTetap(namaActivaTetapNew)
                 .setHargaActivaTetap(hargaActivaTetapNew)
                 .setLamaPemakaian(lamaPemakaianNew)
                 .setJangkaWaktuPenyusutan(jangkaWaktuPenyusutanNew)
-                .setPersenPenyusutan(persenPenyusutanNew)
-                .setTotalPenyusutan(totalPenyusutan)
+                .setPersenPenyusutan(0)
+                .setTotalPenyusutan((hargaActivaTetapNew / lamaPemakaianNew) * ((lamaPemakaianNew) - (year - jangkaWaktuPenyusutanNew)))
                 .setUserID(SecurityUtil.getUserName())
                 .setCreatedBy(SecurityUtil.getUserName())
                 .setCreatedDate(new Date())
@@ -826,6 +1286,39 @@ public class DashboardVM {
                 }
         );
 
+    }
+
+    @Command("buttonTambahTransaksiPokok")
+    @NotifyChange("persediaanDTO")
+    public void buttonTambahTransaksiPokok(@ContextParam(ContextType.VIEW) Window window) {
+        CommonViewModel.navigateToWithoutDetach("/financial-management/transaksi/add.transaksi.zul", window, null);
+    }
+
+    /* for tab transaksi pokok */
+    @Command("buttonKlikTransaksiPokok")
+    @NotifyChange("transaksiTab1")
+    public void buttonKlikTransaksiPokok(@ContextParam(ContextType.VIEW) Window window) {
+        transaksiTab1 = "/financial-management/transaksi/transaksi.tab1.zul";
+    }
+
+    /* for tab transaksi pokok */
+    @Command("buttonKlikTransaksiLainnya")
+    @NotifyChange("transaksiTab1")
+    public void buttonKlikTransaksiLainnya(@ContextParam(ContextType.VIEW) Window window) {
+        transaksiTab1 = "/financial-management/transaksi/transaksi.tab2.zul";
+    }
+
+    /* for tab transaksi pokok */
+    @Command("buttonKlikDataPersediaan")
+    @NotifyChange("transaksiTab1")
+    public void buttonKlikDataPersediaan(@ContextParam(ContextType.VIEW) Window window) {
+//        transaksiTab1 = "/financial-management/transaksi/transaksi.tab3.zul";
+        transaksiTab1 = "/financial-management/ledger/dashboard.persediaan.transaksi.zul";
+    }
+
+    @Command("buttonCancel")
+    public void buttonCancel(@ContextParam(ContextType.VIEW) Window window) {
+        window.detach();
     }
 
     /* Getter&Setter */
@@ -1443,6 +1936,230 @@ public class DashboardVM {
 
     public double getHargaActivaTetap() {
         return hargaActivaTetap;
+    }
+
+    public boolean isIsNoSaldo() {
+        return isNoSaldo;
+    }
+
+    public void setIsNoSaldo(boolean isNoSaldo) {
+        this.isNoSaldo = isNoSaldo;
+    }
+
+    public boolean isIsNoHutang() {
+        return isNoHutang;
+    }
+
+    public void setIsNoHutang(boolean isNoHutang) {
+        this.isNoHutang = isNoHutang;
+    }
+
+    public boolean isIsNoPiutang() {
+        return isNoPiutang;
+    }
+
+    public void setIsNoPiutang(boolean isNoPiutang) {
+        this.isNoPiutang = isNoPiutang;
+    }
+
+    public boolean isIsNoPersediaan() {
+        return isNoPersediaan;
+    }
+
+    public void setIsNoPersediaan(boolean isNoPersediaan) {
+        this.isNoPersediaan = isNoPersediaan;
+    }
+
+    public boolean isIsNoActiva() {
+        return isNoActiva;
+    }
+
+    public void setIsNoActiva(boolean isNoActiva) {
+        this.isNoActiva = isNoActiva;
+    }
+
+    public OpeningBalanceFlagDTO getOpeningBalanceFlagDTO() {
+        return openingBalanceFlagDTO;
+    }
+
+    public void setOpeningBalanceFlagDTO(OpeningBalanceFlagDTO openingBalanceFlagDTO) {
+        this.openingBalanceFlagDTO = openingBalanceFlagDTO;
+    }
+
+    public int getYear() {
+        return year;
+    }
+
+    public void setYear(int year) {
+        this.year = year;
+    }
+
+    public double getTotalHutang() {
+        return totalHutang;
+    }
+
+    public void setTotalHutang(double totalHutang) {
+        this.totalHutang = totalHutang;
+    }
+
+    public String getSatuan() {
+        return satuan;
+    }
+
+    public void setSatuan(String satuan) {
+        this.satuan = satuan;
+    }
+
+    public String getSatuanNew() {
+        return satuanNew;
+    }
+
+    public void setSatuanNew(String satuanNew) {
+        this.satuanNew = satuanNew;
+    }
+
+    public ListModelList<String> getListSatuan() {
+        return listSatuan;
+    }
+
+    public void setListSatuan(ListModelList<String> listSatuan) {
+        this.listSatuan = listSatuan;
+    }
+
+    public ListModelList<String> getListNamaPersediaan() {
+        return listNamaPersediaan;
+    }
+
+    public void setListNamaPersediaan(ListModelList<String> listNamaPersediaan) {
+        this.listNamaPersediaan = listNamaPersediaan;
+    }
+
+    public String getTransaksiTab1() {
+        return transaksiTab1;
+    }
+
+    public void setTransaksiTab1(String transaksiTab1) {
+        this.transaksiTab1 = transaksiTab1;
+    }
+
+    public TransaksiDTO getTransaksiDTO() {
+        return transaksiDTO;
+    }
+
+    public void setTransaksiDTO(TransaksiDTO transaksiDTO) {
+        this.transaksiDTO = transaksiDTO;
+    }
+
+    public List<TransaksiDTO> getTransaksiDTOs() {
+        return transaksiDTOs;
+    }
+
+    public void setTransaksiDTOs(List<TransaksiDTO> transaksiDTOs) {
+        this.transaksiDTOs = transaksiDTOs;
+    }
+
+    public Date getTanggalTransaksi() {
+        return tanggalTransaksi;
+    }
+
+    public void setTanggalTransaksi(Date tanggalTransaksi) {
+        this.tanggalTransaksi = tanggalTransaksi;
+    }
+
+    public String getJenisTransaksi() {
+        return jenisTransaksi;
+    }
+
+    public void setJenisTransaksi(String jenisTransaksi) {
+        this.jenisTransaksi = jenisTransaksi;
+    }
+
+    public ListModelList<String> getListJenisTransaksi() {
+        return listJenisTransaksi;
+    }
+
+    public void setListJenisTransaksi(ListModelList<String> listJenisTransaksi) {
+        this.listJenisTransaksi = listJenisTransaksi;
+    }
+
+    public PembelianDTO getPembelianDTO() {
+        return pembelianDTO;
+    }
+
+    public void setPembelianDTO(PembelianDTO pembelianDTO) {
+        this.pembelianDTO = pembelianDTO;
+    }
+
+    public List<PembelianDTO> getPembelianDTOs() {
+        return pembelianDTOs;
+    }
+
+    public void setPembelianDTOs(List<PembelianDTO> pembelianDTOs) {
+        this.pembelianDTOs = pembelianDTOs;
+    }
+
+    public PenjualanDTO getPenjualanDTO() {
+        return penjualanDTO;
+    }
+
+    public void setPenjualanDTO(PenjualanDTO penjualanDTO) {
+        this.penjualanDTO = penjualanDTO;
+    }
+
+    public List<PenjualanDTO> getPenjualanDTOs() {
+        return penjualanDTOs;
+    }
+
+    public void setPenjualanDTOs(List<PenjualanDTO> penjualanDTOs) {
+        this.penjualanDTOs = penjualanDTOs;
+    }
+
+    public String getTipePembayaran() {
+        return tipePembayaran;
+    }
+
+    public void setTipePembayaran(String tipePembayaran) {
+        this.tipePembayaran = tipePembayaran;
+    }
+
+    public ListModelList<String> getListTipePembayaran() {
+        return listTipePembayaran;
+    }
+
+    public void setListTipePembayaran(ListModelList<String> listTipePembayaran) {
+        this.listTipePembayaran = listTipePembayaran;
+    }
+
+    public double getSaldoKas() {
+        return saldoKas;
+    }
+
+    public void setSaldoKas(double saldoKas) {
+        this.saldoKas = saldoKas;
+    }
+
+    public double getSaldoBank() {
+        return saldoBank;
+    }
+
+    public void setSaldoBank(double saldoBank) {
+        this.saldoBank = saldoBank;
+    }
+
+    public double getSaldoLabaRugi() {
+        return saldoLabaRugi;
+    }
+
+    public void setSaldoLabaRugi(double saldoLabaRugi) {
+        this.saldoLabaRugi = saldoLabaRugi;
+    }
+
+    public double getModalDisetor() {
+        return modalDisetor;
+    }
+
+    public void setModalDisetor(double modalDisetor) {
+        this.modalDisetor = modalDisetor;
     }
 
 }

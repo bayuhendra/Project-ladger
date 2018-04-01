@@ -1,13 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.ledger.common.dto.finance.management;
 
-import com.ledger.shared.status.StatusTransaksi;
-import com.ledger.shared.type.JenisBarang;
-import com.ledger.shared.type.Kategori;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -17,16 +9,18 @@ import java.util.Date;
  */
 public class PembelianDTO implements Serializable {
 
+    private String userID;
     private String pembelianID;
     private String namaBarang;
-    private Kategori kategoriPembelian;
-    private JenisBarang jenisPembelian;
+    private String jenisBarang;
+    private String satuan;
     private int jumlah;
     private int diskon;
-    private int total;
-    private Date tanggalTransaksiPembelian;
-    private String catatan;
-    private StatusTransaksi statusTransaksi;
+    private double hargaBarang;
+    private double totalHarga;
+    private Date tanggalPembelian;
+    private String tipePembayaran;
+    private String buktiPembelian;
     private String createdBy;
     private Date createdDate;
     private String modifiedBy;
@@ -35,17 +29,19 @@ public class PembelianDTO implements Serializable {
     public PembelianDTO() {
     }
 
-    public PembelianDTO(String pembelianID, String namaBarang, Kategori kategoriPembelian, JenisBarang jenisPembelian, int jumlah, int diskon, int total, Date tanggalTransaksiPembelian, String catatan, StatusTransaksi statusTransaksi, String createdBy, Date createdDate, String modifiedBy, Date modifiedDate) {
+    public PembelianDTO(String pembelianID, String userID, String namaBarang, String buktiPembelian, String jenisBarang, String satuan, int jumlah, int diskon, double hargaBarang, double totalHarga, Date tanggalPembelian, String tipePembayaran, String createdBy, Date createdDate, String modifiedBy, Date modifiedDate) {
         this.pembelianID = pembelianID;
+        this.userID = userID;
         this.namaBarang = namaBarang;
-        this.kategoriPembelian = kategoriPembelian;
-        this.jenisPembelian = jenisPembelian;
+        this.jenisBarang = jenisBarang;
+        this.satuan = satuan;
         this.jumlah = jumlah;
         this.diskon = diskon;
-        this.total = total;
-        this.tanggalTransaksiPembelian = tanggalTransaksiPembelian;
-        this.catatan = catatan;
-        this.statusTransaksi = statusTransaksi;
+        this.hargaBarang = hargaBarang;
+        this.totalHarga = totalHarga;
+        this.tanggalPembelian = tanggalPembelian;
+        this.tipePembayaran = tipePembayaran;
+        this.buktiPembelian = buktiPembelian;
         this.createdBy = createdBy;
         this.createdDate = createdDate;
         this.modifiedBy = modifiedBy;
@@ -60,6 +56,14 @@ public class PembelianDTO implements Serializable {
         this.pembelianID = pembelianID;
     }
 
+    public String getUserID() {
+        return userID;
+    }
+
+    public void setUserID(String userID) {
+        this.userID = userID;
+    }
+
     public String getNamaBarang() {
         return namaBarang;
     }
@@ -68,20 +72,20 @@ public class PembelianDTO implements Serializable {
         this.namaBarang = namaBarang;
     }
 
-    public Kategori getKategoriPembelian() {
-        return kategoriPembelian;
+    public String getJenisBarang() {
+        return jenisBarang;
     }
 
-    public void setKategoriPembelian(Kategori kategoriPembelian) {
-        this.kategoriPembelian = kategoriPembelian;
+    public void setJenisBarang(String jenisBarang) {
+        this.jenisBarang = jenisBarang;
     }
 
-    public JenisBarang getJenisPembelian() {
-        return jenisPembelian;
+    public String getSatuan() {
+        return satuan;
     }
 
-    public void setJenisPembelian(JenisBarang jenisPembelian) {
-        this.jenisPembelian = jenisPembelian;
+    public void setSatuan(String satuan) {
+        this.satuan = satuan;
     }
 
     public int getJumlah() {
@@ -100,36 +104,36 @@ public class PembelianDTO implements Serializable {
         this.diskon = diskon;
     }
 
-    public int getTotal() {
-        return total;
+    public double getHargaBarang() {
+        return hargaBarang;
     }
 
-    public void setTotal(int total) {
-        this.total = total;
+    public void setHargaBarang(double hargaBarang) {
+        this.hargaBarang = hargaBarang;
     }
 
-    public Date getTanggalTransaksiPembelian() {
-        return tanggalTransaksiPembelian;
+    public double getTotalHarga() {
+        return totalHarga;
     }
 
-    public void setTanggalTransaksiPembelian(Date tanggalTransaksiPembelian) {
-        this.tanggalTransaksiPembelian = tanggalTransaksiPembelian;
+    public void setTotalHarga(double totalHarga) {
+        this.totalHarga = totalHarga;
     }
 
-    public String getCatatan() {
-        return catatan;
+    public Date getTanggalPembelian() {
+        return tanggalPembelian;
     }
 
-    public void setCatatan(String catatan) {
-        this.catatan = catatan;
+    public void setTanggalPembelian(Date tanggalPembelian) {
+        this.tanggalPembelian = tanggalPembelian;
     }
 
-    public StatusTransaksi getStatusTransaksi() {
-        return statusTransaksi;
+    public String getTipePembayaran() {
+        return tipePembayaran;
     }
 
-    public void setStatusTransaksi(StatusTransaksi statusTransaksi) {
-        this.statusTransaksi = statusTransaksi;
+    public void setTipePembayaran(String tipePembayaran) {
+        this.tipePembayaran = tipePembayaran;
     }
 
     public String getCreatedBy() {
@@ -164,9 +168,17 @@ public class PembelianDTO implements Serializable {
         this.modifiedDate = modifiedDate;
     }
 
+    public String getBuktiPembelian() {
+        return buktiPembelian;
+    }
+
+    public void setBuktiPembelian(String buktiPembelian) {
+        this.buktiPembelian = buktiPembelian;
+    }
+
     @Override
     public String toString() {
-        return "PembelianDTO{" + "pembelianID=" + pembelianID + ", namaBarang=" + namaBarang + ", kategoriPembelian=" + kategoriPembelian + ", jenisPembelian=" + jenisPembelian + ", jumlah=" + jumlah + ", diskon=" + diskon + ", total=" + total + ", tanggalTransaksiPembelian=" + tanggalTransaksiPembelian + ", catatan=" + catatan + ", statusTransaksi=" + statusTransaksi + ", createdBy=" + createdBy + ", createdDate=" + createdDate + ", modifiedBy=" + modifiedBy + ", modifiedDate=" + modifiedDate + '}';
+        return "PembelianDTO{" + "userID=" + userID + ", pembelianID=" + pembelianID + ", namaBarang=" + namaBarang + ", jenisBarang=" + jenisBarang + ", satuan=" + satuan + ", jumlah=" + jumlah + ", diskon=" + diskon + ", hargaBarang=" + hargaBarang + ", totalHarga=" + totalHarga + ", tanggalPembelian=" + tanggalPembelian + ", tipePembayaran=" + tipePembayaran + ", buktiPembelian=" + buktiPembelian + ", createdBy=" + createdBy + ", createdDate=" + createdDate + ", modifiedBy=" + modifiedBy + ", modifiedDate=" + modifiedDate + '}';
     }
 
 }

@@ -1,28 +1,22 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.ledger.common.dto.finance.management;
 
-import com.ledger.shared.status.StatusTransaksi;
-import com.ledger.shared.type.JenisBarang;
-import com.ledger.shared.type.Kategori;
 import java.util.Date;
-
 
 public class PenjualanDTOBuilder {
 
     private String penjualanID;
+    private String userID;
     private String namaBarang;
-    private Kategori kategoriPenjualan;
-    private JenisBarang jenisPenjualan;
+    private String jenisBarang;
+    private String satuan;
     private int jumlah;
     private int diskon;
-    private int total;
-    private Date tanggalTransaksiPenjualan;
-    private String catatan;
-    private StatusTransaksi statusTransaksi;
+    private double hargaBarang;
+    private double totalHarga;
+    private double hargaPokokPenjualan;
+    private double pendapatanUsaha;
+    private Date tanggalPenjualan;
+    private String buktiPenjualan;
     private String createdBy;
     private Date createdDate;
     private String modifiedBy;
@@ -36,18 +30,23 @@ public class PenjualanDTOBuilder {
         return this;
     }
 
+    public PenjualanDTOBuilder setUserID(String userID) {
+        this.userID = userID;
+        return this;
+    }
+
     public PenjualanDTOBuilder setNamaBarang(String namaBarang) {
         this.namaBarang = namaBarang;
         return this;
     }
 
-    public PenjualanDTOBuilder setKategoriPenjualan(Kategori kategoriPenjualan) {
-        this.kategoriPenjualan = kategoriPenjualan;
+    public PenjualanDTOBuilder setJenisBarang(String jenisBarang) {
+        this.jenisBarang = jenisBarang;
         return this;
     }
 
-    public PenjualanDTOBuilder setJenisPenjualan(JenisBarang jenisPenjualan) {
-        this.jenisPenjualan = jenisPenjualan;
+    public PenjualanDTOBuilder setSatuan(String satuan) {
+        this.satuan = satuan;
         return this;
     }
 
@@ -61,23 +60,33 @@ public class PenjualanDTOBuilder {
         return this;
     }
 
-    public PenjualanDTOBuilder setTotal(int total) {
-        this.total = total;
+    public PenjualanDTOBuilder setHargaBarang(double hargaBarang) {
+        this.hargaBarang = hargaBarang;
         return this;
     }
 
-    public PenjualanDTOBuilder setTanggalTransaksiPenjualan(Date tanggalTransaksiPenjualan) {
-        this.tanggalTransaksiPenjualan = tanggalTransaksiPenjualan;
+    public PenjualanDTOBuilder setTotalHarga(double totalHarga) {
+        this.totalHarga = totalHarga;
         return this;
     }
 
-    public PenjualanDTOBuilder setCatatan(String catatan) {
-        this.catatan = catatan;
+    public PenjualanDTOBuilder setHargaPokokPenjualan(double hargaPokokPenjualan) {
+        this.hargaPokokPenjualan = hargaPokokPenjualan;
         return this;
     }
 
-    public PenjualanDTOBuilder setStatusTransaksi(StatusTransaksi statusTransaksi) {
-        this.statusTransaksi = statusTransaksi;
+    public PenjualanDTOBuilder setPendapatanUsaha(double pendapatanUsaha) {
+        this.pendapatanUsaha = pendapatanUsaha;
+        return this;
+    }
+
+    public PenjualanDTOBuilder setTanggalPenjualan(Date tanggalPenjualan) {
+        this.tanggalPenjualan = tanggalPenjualan;
+        return this;
+    }
+
+    public PenjualanDTOBuilder setBuktiPenjualan(String buktiPenjualan) {
+        this.buktiPenjualan = buktiPenjualan;
         return this;
     }
 
@@ -102,7 +111,7 @@ public class PenjualanDTOBuilder {
     }
 
     public PenjualanDTO createPenjualanDTO() {
-        return new PenjualanDTO(penjualanID, namaBarang, kategoriPenjualan, jenisPenjualan, jumlah, diskon, total, tanggalTransaksiPenjualan, catatan, statusTransaksi, createdBy, createdDate, modifiedBy, modifiedDate);
+        return new PenjualanDTO(penjualanID, userID, namaBarang, jenisBarang, satuan, jumlah, diskon, hargaBarang, totalHarga, hargaPokokPenjualan, pendapatanUsaha, tanggalPenjualan, buktiPenjualan, createdBy, createdDate, modifiedBy, modifiedDate);
     }
-    
+
 }

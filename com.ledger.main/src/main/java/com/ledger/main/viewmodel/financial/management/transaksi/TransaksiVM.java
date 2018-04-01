@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.ledger.main.viewmodel.financial.management.transaksi;
 
 import com.ledger.common.application.finance.management.TransaksiService;
@@ -117,12 +112,11 @@ public class TransaksiVM {
                     .setCreatedBy(SecurityUtil.getUserName())
                     .setTanggalTransaksi(new Date())
                     .setCreatedDate(new Date())
-                    .setStatusTransaksi("IN PROGRESS")
                     .createTransaksiDTO();
         } else {
             this.transaksiDTO = transaksi;
             transaksiID = transaksiDTO.getTransaksiID();
-            kategori = transaksiDTO.getKategoriTransaksi();
+//            kategori = transaksiDTO.getKategoriTransaksi();
             this.previous = previous;
         }
     }
@@ -193,11 +187,11 @@ public class TransaksiVM {
     @NotifyChange("transaksiDTO")
     public void buttonSimpanTransaksi(@BindingParam("object") TransaksiDTO obj, @ContextParam(ContextType.VIEW) Window window) {
         transaksiDTO.setUserID(userDTO.getUserID());
-        transaksiDTO.setKategoriTransaksi(kategori);
+//        transaksiDTO.setKategoriTransaksi(kategori);
         transaksiDTO.setTanggalTransaksi(new Date());
-        total = 100 - transaksiDTO.getDiskon();
-        afterDiscount = (total * transaksiDTO.getHarga()) / 100;
-        transaksiDTO.setTotal(afterDiscount);
+//        total = 100 - transaksiDTO.getDiskon();
+//        afterDiscount = (total * transaksiDTO.getHarga()) / 100;
+//        transaksiDTO.setTotal(afterDiscount);
         transaksiService.SaveOrUpdate(transaksiDTO);
         showInformationMessagebox("Data Transaksi Berhasil Disimpan");
         BindUtils.postGlobalCommand(null, null, "refreshDataSubmitTransaksi", null);

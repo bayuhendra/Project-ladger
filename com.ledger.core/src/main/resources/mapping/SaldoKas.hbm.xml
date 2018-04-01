@@ -15,6 +15,8 @@
         <property column="userID" name="userID" not-null="false"/>
         <property column="saldoKas" name="saldoKas" not-null="false"/>
         <property column="saldoBank" name="saldoBank" not-null="false"/>
+        <property column="saldoLabaRugi" name="saldoLabaRugi" not-null="false"/>
+        <property column="modalDisetor" name="modalDisetor" not-null="false"/>
         <property column="saldoKasBank" name="saldoKasBank" not-null="false"/>
         <property column="createdBy" name="createdBy" not-null="false"/>
         <property column="createdDate" name="createdDate" not-null="false"/>

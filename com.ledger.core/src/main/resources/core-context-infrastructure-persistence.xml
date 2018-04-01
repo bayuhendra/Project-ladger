@@ -37,4 +37,7 @@
     <bean id="activaTetapRepository" class="com.ledger.domain.infrastructure.persistance.hibernate.ActivaTetapHibernateRepository">
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
+    <bean id="openingBalanceFlagRepository" class="com.ledger.domain.infrastructure.persistance.hibernate.OpeningBalanceFlagHibernateRepository">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
 </beans>
