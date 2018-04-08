@@ -1,0 +1,18 @@
+<window apply="org.zkoss.bind.BindComposer" closable="true" width="500px"
+        viewModel="@id('vm') @init('com.main.ticket.bulog.bitozen.viewmodel.incidentmanagement.level1.IncidentManagementLevel1VM')"
+        form="@id('fx') @load(vm.ticketDTO) @save(vm.ticketDTO, before='buttonSaveTicket')">
+    <groupbox closable="false" mold="3d">
+        <caption label="Detail Gambar"/>
+        <groupbox contentStyle="border:0">
+            <hbox align="center">
+                <image src="@load(fx.pathLocation)" width="100%" style="overflow:auto" />
+            </hbox>
+        </groupbox>
+        <separator/>
+        <groupbox contentStyle="border:0; padding-left:37%; ">
+            <hbox align="center">
+                <button label="Kembali" mold="trendy" width="100px" onClick="@command('buttonCancel')"/>
+            </hbox>
+        </groupbox>
+    </groupbox>
+</window>

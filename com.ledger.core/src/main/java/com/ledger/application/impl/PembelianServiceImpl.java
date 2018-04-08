@@ -94,4 +94,14 @@ public class PembelianServiceImpl implements PembelianService {
         return null;
     }
 
+    @Override
+    public List<PembelianDTO> findbyName(String namaBarang) {
+        Validate.notNull(pembelianRepository);
+        List<Pembelian> listpembelian = pembelianRepository.findbyName(namaBarang);
+        if (listpembelian != null) {
+            return (List<PembelianDTO>) pembelianDTOAssembler.toDTOs(listpembelian);
+        }
+        return null;
+    }
+
 }

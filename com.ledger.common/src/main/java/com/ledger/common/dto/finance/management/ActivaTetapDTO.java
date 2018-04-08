@@ -19,6 +19,9 @@ public class ActivaTetapDTO implements Serializable {
     private int persenPenyusutan;
     private double totalPenyusutan;
     private String status;
+    private String alamat;
+    private String noSertifikat;
+    private String sertifikat;
     private String createdBy;
     private Date createdDate;
     private String modifiedBy;
@@ -27,7 +30,7 @@ public class ActivaTetapDTO implements Serializable {
     public ActivaTetapDTO() {
     }
 
-    public ActivaTetapDTO(String userID, String activaTetapID, String jenisActiva, String namaActivaTetap, double hargaActivaTetap, int lamaPemakaian, int jangkaWaktuPenyusutan, int persenPenyusutan, double totalPenyusutan, String status, String createdBy, Date createdDate, String modifiedBy, Date modifiedDate) {
+    public ActivaTetapDTO(String userID, String activaTetapID, String jenisActiva, String namaActivaTetap, double hargaActivaTetap, int lamaPemakaian, int jangkaWaktuPenyusutan, int persenPenyusutan, double totalPenyusutan, String status, String alamat, String noSertifikat, String sertifikat, String createdBy, Date createdDate, String modifiedBy, Date modifiedDate) {
         this.userID = userID;
         this.activaTetapID = activaTetapID;
         this.jenisActiva = jenisActiva;
@@ -38,6 +41,9 @@ public class ActivaTetapDTO implements Serializable {
         this.persenPenyusutan = persenPenyusutan;
         this.totalPenyusutan = totalPenyusutan;
         this.status = status;
+        this.alamat = alamat;
+        this.noSertifikat = noSertifikat;
+        this.sertifikat = sertifikat;
         this.createdBy = createdBy;
         this.createdDate = createdDate;
         this.modifiedBy = modifiedBy;
@@ -154,6 +160,30 @@ public class ActivaTetapDTO implements Serializable {
 
     public void setJenisActiva(String jenisActiva) {
         this.jenisActiva = jenisActiva;
+    }
+
+    public String getAlamat() {
+        return alamat;
+    }
+
+    public void setAlamat(String alamat) {
+        this.alamat = alamat;
+    }
+
+    public String getNoSertifikat() {
+        return noSertifikat;
+    }
+
+    public void setNoSertifikat(String noSertifikat) {
+        this.noSertifikat = noSertifikat;
+    }
+
+    public String getSertifikat() {
+        return sertifikat;
+    }
+
+    public void setSertifikat(String sertifikat) {
+        this.sertifikat = sertifikat;
     }
 
 }

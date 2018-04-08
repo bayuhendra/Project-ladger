@@ -1,0 +1,117 @@
+<zk xmlns:w="client" xmlns:n="native">
+    <window closable="true" apply="org.zkoss.bind.BindComposer"
+            viewModel="@id('vm') @init('com.ledger.main.viewmodel.DashboardVM')">
+        <div align="center">
+            <cell>
+                <n:p>
+                    <label style="font-size: 25px; font-weight: bold" value="NERACA SALDO" />
+                </n:p>
+                <n:p>
+                    <label style="font-weight: bold" value="@load(vm.user.userSpecificationDTO.immediateSupervisorUserName)"/>
+                </n:p>
+                <n:p>
+                    <label style="font-weight: bold" value="Periode April 2018"/>
+                </n:p>
+            </cell>
+        </div>
+        <grid>
+            <columns sizable="true">
+                <column label="NAMA AKUN" width="30%" sort="auto" />
+                <column label="DEBET" width="20%" align="right"/>
+                <column label="KREDIT" width="20%" align="right"/>
+                <!--<column label="" width="30%" align="right"/>-->
+            </columns>
+            <rows>
+                <group label="ASSET LANCAR" open="true">
+                </group>
+                <row>
+                    <label value="a. Kas dan Bank" style="padding-left:15px" />
+                    <cell>
+                        <!--<label value="Rp "/>-->
+                        <label width="100%" value="@load(c:formatNumber(vm.totalKasBank, '#,###.##'))" />
+                    </cell>
+                    <cell>
+                    </cell>
+                </row>
+                <row>
+                    <label value="b. Piutang" style="padding-left:15px" />
+                    <cell>
+                        <!--<label value="Rp "/>-->
+                        <label width="100%" value="@load(c:formatNumber(vm.totalPiutang, '#,###.##'))" />
+                    </cell>
+                    <cell>
+                    </cell>
+                </row>
+                <row>
+                    <label value="c. Persediaan" style="padding-left:15px" />
+                    <cell>
+                        <!--<label value="Rp "/>-->
+                        <label width="100%" value="@load(c:formatNumber(vm.totalPersediaan, '#,###.##'))" />
+                    </cell>
+                    <cell>
+                    </cell>
+                </row>
+                <row>
+                    <label value="JUMLAH ASSET LANCAR" style="padding-left:15px; font-weight: bold" />
+                    <!--                            <cell>
+                    </cell>-->
+                    <cell>
+                        <!--<label value="Rp "/>-->
+                        <label width="100%" style="padding-left:15px; font-weight: bold" value="@load(c:formatNumber(vm.totalKasBank + vm.totalPiutang + vm.totalPersediaan, '#,###.##'))" />
+                    </cell>
+                    
+                </row>
+                <group label="ACTIVA TETAP" open="true">
+                </group>
+                <row>
+                    <label value="NILAI ACTIVA TETAP" style="padding-left:15px" />
+                    <!--                            <cell>
+                    </cell>-->
+                    <cell>
+                        <!--<label value="Rp "/>-->
+                        <label width="100%" value="@load(c:formatNumber(vm.nilaiActivaTetap, '#,###.##'))" />
+                    </cell>
+                    
+                </row>
+                <row>
+                    <label value="AKUMULASI PENYUSUTAN" style="padding-left:15px" />
+                    <!--                            <cell>
+                    </cell>-->
+                    <cell>
+                        <!--<label value="Rp "/>-->
+                        <label width="100%" value="@load(c:formatNumber(vm.nilaiTotalPenyusutan, '#,###.##'))" />
+                    </cell>
+                    
+                </row>
+                <row>
+                    <label value="NILAI BUKU ASSET TETAP" style="padding-left:15px" />
+                    <!--                            <cell>
+                    </cell>-->
+                    <cell>
+                        <!--<label value="Rp "/>-->
+                        <label width="100%" value="@load(c:formatNumber(vm.nilaiBukuAssetTetap, '#,###.##'))" />
+                    </cell>
+                </row>
+                <group label="TOTAL ASSET" open="true">
+                    <label width="100%" value="@load(c:formatNumber(vm.totalAsset, '#,###.##'))" />
+                    <label/>
+                </group>
+                <group label="KEWAJIBAN" open="true">
+                </group>
+                <row>
+                    <label value="HUTANG" style="padding-left:15px" />
+                    <!--                            <cell>
+                    </cell>-->
+                    <cell>
+                        <!--<label value="Rp "/>-->
+                        <label width="100%" value="@load(c:formatNumber(vm.totalHutang, '#,###.##'))" />
+                    </cell>
+                </row>
+                <group label="MODAL" open="true">
+                    <label width="100%" value="@load(c:formatNumber(vm.totalAsset-vm.totalHutang, '#,###.##'))" />
+                    <label/>
+                </group>
+            </rows>
+        </grid>
+    </window>
+</zk>

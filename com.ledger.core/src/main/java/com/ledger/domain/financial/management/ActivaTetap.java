@@ -20,6 +20,9 @@ public class ActivaTetap implements EntityObject<ActivaTetap> {
     private int jangkaWaktuPenyusutan;
     private int persenPenyusutan;
     private double totalPenyusutan;
+    private String alamat;
+    private String noSertifikat;
+    private String sertifikat;
     private String status;
     private String createdBy;
     private Date createdDate;
@@ -29,7 +32,7 @@ public class ActivaTetap implements EntityObject<ActivaTetap> {
     public ActivaTetap() {
     }
 
-    public ActivaTetap(String userID, String activaTetapID, String jenisActiva, String namaActivaTetap, double hargaActivaTetap, int lamaPemakaian, int jangkaWaktuPenyusutan, int persenPenyusutan, double totalPenyusutan, String status, String createdBy, Date createdDate, String modifiedBy, Date modifiedDate) {
+    public ActivaTetap(String userID, String alamat, String noSertifikat, String sertifikat, String activaTetapID, String jenisActiva, String namaActivaTetap, double hargaActivaTetap, int lamaPemakaian, int jangkaWaktuPenyusutan, int persenPenyusutan, double totalPenyusutan, String status, String createdBy, Date createdDate, String modifiedBy, Date modifiedDate) {
         this.userID = userID;
         this.activaTetapID = activaTetapID;
         this.jenisActiva = jenisActiva;
@@ -39,6 +42,9 @@ public class ActivaTetap implements EntityObject<ActivaTetap> {
         this.jangkaWaktuPenyusutan = jangkaWaktuPenyusutan;
         this.persenPenyusutan = persenPenyusutan;
         this.totalPenyusutan = totalPenyusutan;
+        this.alamat = alamat;
+        this.sertifikat = sertifikat;
+        this.noSertifikat = noSertifikat;
         this.status = status;
         this.createdBy = createdBy;
         this.createdDate = createdDate;
@@ -158,6 +164,30 @@ public class ActivaTetap implements EntityObject<ActivaTetap> {
         this.jenisActiva = jenisActiva;
     }
 
+    public String getAlamat() {
+        return alamat;
+    }
+
+    public void setAlamat(String alamat) {
+        this.alamat = alamat;
+    }
+
+    public String getNoSertifikat() {
+        return noSertifikat;
+    }
+
+    public void setNoSertifikat(String noSertifikat) {
+        this.noSertifikat = noSertifikat;
+    }
+
+    public String getSertifikat() {
+        return sertifikat;
+    }
+
+    public void setSertifikat(String sertifikat) {
+        this.sertifikat = sertifikat;
+    }
+
     @Override
     public int hashCode() {
         int hash = 7;
@@ -171,6 +201,9 @@ public class ActivaTetap implements EntityObject<ActivaTetap> {
         hash = 53 * hash + this.persenPenyusutan;
         hash = 53 * hash + (int) (Double.doubleToLongBits(this.totalPenyusutan) ^ (Double.doubleToLongBits(this.totalPenyusutan) >>> 32));
         hash = 53 * hash + Objects.hashCode(this.status);
+        hash = 53 * hash + Objects.hashCode(this.alamat);
+        hash = 53 * hash + Objects.hashCode(this.sertifikat);
+        hash = 53 * hash + Objects.hashCode(this.noSertifikat);
         hash = 53 * hash + Objects.hashCode(this.createdBy);
         hash = 53 * hash + Objects.hashCode(this.createdDate);
         hash = 53 * hash + Objects.hashCode(this.modifiedBy);
@@ -204,6 +237,9 @@ public class ActivaTetap implements EntityObject<ActivaTetap> {
         this.persenPenyusutan = activaTetap.persenPenyusutan;
         this.totalPenyusutan = activaTetap.totalPenyusutan;
         this.status = activaTetap.status;
+        this.alamat = activaTetap.alamat;
+        this.sertifikat = activaTetap.sertifikat;
+        this.noSertifikat = activaTetap.noSertifikat;
         this.modifiedBy = activaTetap.modifiedBy;
         this.modifiedDate = activaTetap.modifiedDate;
 

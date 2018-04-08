@@ -6,10 +6,6 @@ import com.ledger.domain.financial.management.Penjualan;
 import com.ledger.domain.financial.management.PenjualanBuilder;
 import com.ledger.domain.financial.management.PenjualanRepository;
 import com.ledger.interfaces.web.facade.dto.assembler.finance.management.PenjualanDTOAssembler;
-import com.ledger.shared.status.StatusTransaksi;
-import com.ledger.shared.type.JenisBarang;
-import com.ledger.shared.type.Kategori;
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import org.apache.commons.lang.Validate;
@@ -54,7 +50,7 @@ public class PenjualanServiceImpl implements PenjualanService {
     @Override
     public PenjualanDTO getDummyData() {
         Penjualan penjualan = new PenjualanBuilder()
-//                .setPenjualanID("C1")
+                //                .setPenjualanID("C1")
                 //                .setNamaBarang("aa")
                 //                .setKategoriPenjualan(Kategori.PEMBELIAN)
                 //                .setJenisPenjualan(JenisBarang.NON_ELEKTRONIK)
@@ -92,6 +88,16 @@ public class PenjualanServiceImpl implements PenjualanService {
     public List<PenjualanDTO> findByParams(Map map) {
         Validate.notNull(penjualanRepository);
         List<Penjualan> listpenjualan = penjualanRepository.findByParams(map);
+        if (listpenjualan != null) {
+            return (List<PenjualanDTO>) penjualanDTOAssembler.toDTOs(listpenjualan);
+        }
+        return null;
+    }
+
+    @Override
+    public List<PenjualanDTO> findbyName(String namaBarang) {
+        Validate.notNull(penjualanRepository);
+        List<Penjualan> listpenjualan = penjualanRepository.findbyName(namaBarang);
         if (listpenjualan != null) {
             return (List<PenjualanDTO>) penjualanDTOAssembler.toDTOs(listpenjualan);
         }

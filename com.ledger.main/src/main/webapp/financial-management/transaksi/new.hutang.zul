@@ -1,11 +1,11 @@
 <zk xmlns:w="client" xmlns:n="native">
     <window apply="org.zkoss.bind.BindComposer"
             viewModel="@id('vm') @init('com.ledger.main.viewmodel.DashboardVM')"
-            width="500px" height="300px" form="@id('fx') @load(vm.hutangDTO) @save(vm.hutangDTO, before='buttonSimpanHutangNew')" >
+            width="500px" height="350px" form="@id('fx') @load(vm.hutangDTO) @save(vm.hutangDTO, before='buttonSimpanHutangNew')" >
         <!-- Modal content-->
         <div>
             <div class="modal-header" align="center">
-                <n:h4 class="modal-title"> Data Hutang</n:h4>
+                <n:h4 class="modal-title"> Hutang Usaha</n:h4>
             </div>
             <div class="modal-body">
                 <div class="input-group">
@@ -13,12 +13,10 @@
                     <textbox class="form-control" width="463px" value="@bind(vm.namaHutangNew) @save(vm.namaHutangNew, before='buttonSimpanHutangNew')" constraint="no empty: Nama Hutang tidak boleh kosong"/>
                     <n:h5 class="modal-title"> Nilai Hutang</n:h5>
                     <doublebox class="form-control" format="#,##0.##" width="463px" value="@bind(vm.jumlahHutangNew) @save(vm.jumlahHutangNew, before='buttonSimpanHutangNew')" constraint="no empty: Jumlah Hutang tidak boleh kosong, no zero Jumlah Hutang tidak boleh 0"/>
-                    <!--                    <n:h5 class="modal-title"> Status Hutang</n:h5>
-                    <combobox width="463px" style="font-size:14px" height="25px" placeholder="-Pilih Status-" model="@load(vm.listStatusHutang)" selectedItem="@bind(vm.statusHutangNew) @save(vm.statusHutangNew, before='buttonSimpanHutangNew')" readonly="true" constraint="no empty: Status Hutang tidak boleh kosong">
-                        <template name="model" var="items">
-                            <comboitem label="@load(items)" value="@load(items)"/>
-                        </template>
-                    </combobox>-->
+                    <n:h5 class="modal-title"> Tanggal Jatuh Tempo</n:h5>
+                    <datebox sclass="isi" format="long" width="270px" 
+                             readonly="true"
+                             value="@bind(vm.tanggalJatuhTempoHutangNew)"/>
                 </div>
                 <separator width="3px"/>
             </div>

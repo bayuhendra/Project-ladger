@@ -2,8 +2,8 @@ package com.ledger.common.dto.finance.management;
 
 import java.util.Date;
 
-public class ActivaTetapDTOBuilder {
 
+public class ActivaTetapDTOBuilder {
     private String userID;
     private String activaTetapID;
     private String jenisActiva;
@@ -14,6 +14,9 @@ public class ActivaTetapDTOBuilder {
     private int persenPenyusutan;
     private double totalPenyusutan;
     private String status;
+    private String alamat;
+    private String noSertifikat;
+    private String sertifikat;
     private String createdBy;
     private Date createdDate;
     private String modifiedBy;
@@ -72,6 +75,21 @@ public class ActivaTetapDTOBuilder {
         return this;
     }
 
+    public ActivaTetapDTOBuilder setAlamat(String alamat) {
+        this.alamat = alamat;
+        return this;
+    }
+
+    public ActivaTetapDTOBuilder setNoSertifikat(String noSertifikat) {
+        this.noSertifikat = noSertifikat;
+        return this;
+    }
+
+    public ActivaTetapDTOBuilder setSertifikat(String sertifikat) {
+        this.sertifikat = sertifikat;
+        return this;
+    }
+
     public ActivaTetapDTOBuilder setCreatedBy(String createdBy) {
         this.createdBy = createdBy;
         return this;
@@ -93,7 +111,7 @@ public class ActivaTetapDTOBuilder {
     }
 
     public ActivaTetapDTO createActivaTetapDTO() {
-        return new ActivaTetapDTO(userID, activaTetapID, jenisActiva, namaActivaTetap, hargaActivaTetap, lamaPemakaian, jangkaWaktuPenyusutan, persenPenyusutan, totalPenyusutan, status, createdBy, createdDate, modifiedBy, modifiedDate);
+        return new ActivaTetapDTO(userID, activaTetapID, jenisActiva, namaActivaTetap, hargaActivaTetap, lamaPemakaian, jangkaWaktuPenyusutan, persenPenyusutan, totalPenyusutan, status, alamat, noSertifikat, sertifikat, createdBy, createdDate, modifiedBy, modifiedDate);
     }
-
+    
 }

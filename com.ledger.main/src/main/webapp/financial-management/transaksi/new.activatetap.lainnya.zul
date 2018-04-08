@@ -1,0 +1,35 @@
+<zk xmlns:w="client" xmlns:n="native">
+    <window apply="org.zkoss.bind.BindComposer"
+            viewModel="@id('vm') @init('com.ledger.main.viewmodel.DashboardVM')"
+            width="500px" height="560px" form="@id('fx') @load(vm.activaTetapDTO) @save(vm.activaTetapDTO, before='buttonSimpanActivaTetapLainnyaNew')" >
+        <!-- Modal content-->
+        <div>
+            <div class="modal-header" align="center">
+                <n:h4 class="modal-title"> Activa Tetap Lainnya</n:h4>
+            </div>
+            <div class="modal-body">
+                <div class="input-group">
+                    <n:h5 class="modal-title"> Nama Activa Tetap</n:h5>
+                    <textbox class="form-control" width="463px" value="@bind(vm.namaActivaTetapNew) @save(vm.namaActivaTetapNew, before='buttonSimpanActivaTetapLainnyaNew')" constraint="no empty: Nama ActivaTetap tidak boleh kosong"/>
+                    <n:h5 class="modal-title"> Nilai Activa Tetap</n:h5>
+                    <doublebox class="form-control" format="#,##0.##" width="463px" value="@bind(vm.hargaActivaTetapNew) @save(vm.hargaActivaTetapNew, before='buttonSimpanActivaTetapLainnyaNew')" constraint="no empty: Jumlah ActivaTetap tidak boleh kosong, no zero: Jumlah ActivaTetap tidak boleh 0"/>
+                    <n:h5 class="modal-title"> Nilai Ekonomi (dalam tahun)</n:h5>
+                    <intbox class="form-control" width="463px" value="@bind(vm.lamaPemakaianNew) @save(vm.lamaPemakaianNew, before='buttonSimpanActivaTetapLainnyaNew')" constraint="no empty: Jumlah ActivaTetap tidak boleh kosong, no zero: Jumlah ActivaTetap tidak boleh 0"/>
+                    <n:h5 class="modal-title"> Tahun Beli</n:h5>
+                    <intbox class="form-control" width="463px" value="@bind(vm.jangkaWaktuPenyusutanNew) @save(vm.jangkaWaktuPenyusutanNew, before='buttonSimpanActivaTetapLainnyaNew')" constraint="no empty: Jumlah ActivaTetap tidak boleh kosong, no zero: Jumlah ActivaTetap tidak boleh 0"/>
+                    <n:h5 class="modal-title"> Tahun Sisa</n:h5>
+                    <intbox class="form-control" width="463px" value="@load((vm.lamaPemakaianNew)-((vm.year)-(vm.jangkaWaktuPenyusutanNew)))" readonly="true"/>
+                    <n:h5 class="modal-title"> Akumulasi Penyusutan</n:h5>
+                    <doublebox class="form-control" format="#,##0.##" width="463px" value="@load((vm.hargaActivaTetapNew/vm.lamaPemakaianNew)*(vm.year-vm.jangkaWaktuPenyusutanNew))" readonly="true"/>
+                    <n:h5 class="modal-title"> Harga Sisa (dalam tahun)</n:h5>
+                    <doublebox class="form-control" format="#,##0.##" width="463px" value="@load((vm.hargaActivaTetapNew/vm.lamaPemakaianNew)*((vm.lamaPemakaianNew)-((vm.year)-(vm.jangkaWaktuPenyusutanNew))))" readonly="true"/>
+                </div>
+                <separator width="3px"/>
+            </div>
+            <div class="modal-footer">
+                <button sclass="btn-danger" label="Close" onClick="@command('buttonKembaliActivaTetap')" />
+                <button sclass="btn-success" label="Simpan" onClick="@command('buttonSimpanActivaTetapLainnyaNew')" />
+            </div>
+        </div>
+    </window>
+</zk>

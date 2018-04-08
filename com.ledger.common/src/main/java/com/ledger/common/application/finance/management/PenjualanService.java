@@ -22,6 +22,8 @@ public interface PenjualanService {
     PenjualanDTO getDummyData();
 
     PenjualanDTO findByID(String penjualanID);
+    
+    List<PenjualanDTO> findbyName(String namaBarang);
 
     List<PenjualanDTO> findAll();
 

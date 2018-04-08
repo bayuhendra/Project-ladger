@@ -1,44 +1,98 @@
 <zk xmlns:w="client" xmlns:n="native">
     <window apply="org.zkoss.bind.BindComposer"
             viewModel="@id('vm') @init('com.ledger.main.viewmodel.DashboardVM')"
-            width="500px" height="500px" >
+            width="580px" height="800px" >
         <!-- Modal content-->
         <groupbox closable="false" mold="3d">
             <div class="modal-header" align="center">
-                <n:h4 class="modal-title"> Tambah Data Transaksi Lainnya</n:h4>
+                <n:h4 class="modal-title"> Tambah Data Penjualan</n:h4>
             </div>
-            <groupbox width="600px" contentStyle="border:0">
-                <grid style="border:0">
-                    <columns>
-                        <column width="30%"></column>
-                        <column ></column>
-                    </columns>
-                    <rows>
-                        <row>
+            <groupbox>
+                <div>
+                    <div class="modal-body">
+                        <div class="input-group">
                             <n:h5 class="modal-title"> Tanggal Transaksi</n:h5>
-                            <datebox sclass="isi" format="long" width="270px" 
+                            <datebox sclass="isi" format="long" width="463px" 
                                      readonly="true"
                                      value="@bind(vm.tanggalTransaksi)"/>
-                        </row>
-                        <row>
-                            <n:h5 class="modal-title"> Jenis Transaksi</n:h5>
-                            <combobox width="270px" style="font-size:14px" placeholder="-Pilih Jenis Transaksi" model="@load(vm.listJenisTransaksi)" selectedItem="@bind(vm.jenisTransaksi)" readonly="true" >
+                            <n:h5 class="modal-title"> Jenis Barang</n:h5>
+                            <combobox width="463px" style="font-size:14px" height="25px" placeholder="-Pilih Jenis Barang-" model="@load(vm.listJenisPersediaan)" selectedItem="@bind(vm.jenisPersediaanNew) @save(vm.jenisPersediaanNew, before='buttonSimpanTransaksiPenjualan')" readonly="true" constraint="no empty: Jenis Persediaan tidak boleh kosong">
                                 <template name="model" var="items">
                                     <comboitem label="@load(items)" value="@load(items)"/>
                                 </template>
                             </combobox>
-                        </row>
-                 
-                    </rows>
-                </grid>
-                <separator height="10px"/>
-            </groupbox>
-            
-<!--            <groupbox>
-                <div class="modal-footer">
-                    <button sclass="btn-danger" label="Close" onClick="@command('buttonKembaliPersediaan')" />
+                            <n:h5 class="modal-title"> Nama Barang</n:h5>
+                            <bandbox width="463px" id="bd1" mold="rounded" autodrop="true" value="@bind(vm.namaPersediaanNew)">  
+                                <bandpopup>
+                                    <listbox height="250px" width="450px" mold="paging" autopaging="true"
+                                             model="@load(vm.listNamaPersediaan)"
+                                             selectedItem="@bind(vm.namaPersediaanNew)"
+                                             onSelect="bd1.value=self.selectedItem.label; bd1.close();">
+                                        <listhead>
+                                            <listheader label="Daftar Persediaan" />
+                                        </listhead>
+                                        <template name="model" var="items">
+                                            <listitem label="@load(items)" value="@load(items)"/>
+                                        </template>
+                                    </listbox>
+                                </bandpopup>
+                            </bandbox>
+                            <n:h5 class="modal-title"> Jumlah Barang</n:h5>
+                            <intbox class="form-control" width="463px" value="@bind(vm.jumlahPersediaanNew) @save(vm.jumlahPersediaanNew, before='buttonSimpanTransaksiPenjualan')" constraint="no empty: Jumlah Persediaan tidak boleh kosong, no zero: Jumlah Persediaan tidak boleh 0"/>
+                            <n:h5 class="modal-title"> Satuan</n:h5>
+                            <combobox width="463px" style="font-size:14px" placeholder="-Pilih Satuan-" model="@load(vm.listSatuan)" selectedItem="@bind(vm.satuanNew) @save(vm.satuanNew, before='buttonSimpanTransaksiPenjualan')" readonly="true">
+                                <template name="model" var="items">
+                                    <comboitem label="@load(items)" value="@load(items)"/>
+                                </template>
+                            </combobox>
+                            <n:h5 class="modal-title"> Harga Satuan</n:h5>
+                            <doublebox class="form-control" format="#,##0.##" width="463px" value="@bind(vm.hargaPersediaan2New) @save(vm.hargaPersediaan2New, before='buttonSimpanTransaksiPenjualan')" constraint="no empty: Jumlah Persediaan tidak boleh kosong"/>
+                            <n:h5 class="modal-title"> Total Nilai Barang</n:h5>
+                            <doublebox class="form-control" format="#,##0.##" width="463px" readonly="true" value="@load(vm.jumlahPersediaanNew * vm.hargaPersediaan2New)"/>
+                            <n:h5 class="modal-title"> Bukti Transaksi</n:h5>
+                            <cell>
+                                <textbox width="340px" value="@bind(vm.mediaName)" readonly="true"/>
+                                <button label="Mengunggah Foto" upload="true" onUpload="@command('uploadFile')"/>
+                            </cell>
+                            <n:h5 class="modal-title"> Jenis Pembayaran</n:h5>
+                            <combobox width="463px" style="font-size:14px" height="25px" placeholder="-Pilih Jenis Pembayaran-" model="@load(vm.listTipePembayaran)" selectedItem="@bind(vm.tipePembayaran) @save(vm.tipePembayaran, before='buttonSimpanTransaksi')" readonly="true" >
+                                <template name="model" var="items">
+                                    <comboitem label="@load(items)" value="@load(items)"/>
+                                </template>
+                            </combobox>
+                        </div>
+                    </div>
+                    <div class="modal-body" visible="@load(vm.tipePembayaran eq 'CASH' ? true : false)">
+                        <div class="input-group">
+                            <n:h5 class="modal-title"> Cash</n:h5>
+                            <doublebox class="form-control" format="#,##0.##" width="463px" value="@bind(vm.penjualanCash) @save(vm.hargaPersediaanNew, before='buttonSimpanTransaksiPenjualan')" constraint="no empty: Jumlah Persediaan tidak boleh kosong"/>
+                        </div>
+                        <separator width="3px"/>
+                    </div>
+                    <div class="modal-body" visible="@load(vm.tipePembayaran eq 'KREDIT' ? true : false)">
+                        <div class="input-group">
+                            <n:h5 class="modal-title"> Kredit</n:h5>
+                            <doublebox class="form-control" format="#,##0.##" width="463px" value="@bind(vm.penjualanKredit) @save(vm.hargaPersediaanNew, before='buttonSimpanTransaksiPenjualan')" constraint="no empty: Jumlah Persediaan tidak boleh kosong"/>
+                        </div>
+                        <separator width="3px"/>
+                    </div>
+                    <div class="modal-body" visible="@load(vm.tipePembayaran eq 'CASH &amp; KREDIT' ? true : false)">
+                        <div class="input-group">
+                            <n:h5 class="modal-title"> Cash</n:h5>
+                            <doublebox class="form-control" format="#,##0.##" width="463px" value="@bind(vm.penjualanCash) @save(vm.pembelianCash, before='buttonSimpanTransaksiPenjualan')" constraint="no empty: Jumlah Persediaan tidak boleh kosong"/>
+                            <n:h5 class="modal-title"> Kredit</n:h5>
+                            <doublebox class="form-control" format="#,##0.##" width="463px" value="@bind(vm.penjualanKredit) @save(vm.pembelianKredit, before='buttonSimpanTransaksiPenjualan')" constraint="no empty: Jumlah Persediaan tidak boleh kosong"/>
+                        </div>
+                        <separator width="3px"/>
+                    </div>
                 </div>
-            </groupbox>-->
+            </groupbox>
+            <groupbox>
+                <div class="modal-footer">
+                    <!--<button sclass="btn-danger" label="Close" onClick="@command('buttonCloseToDashboard')" />-->
+                    <button sclass="btn-success" label="Simpan" onClick="@command('buttonSimpanTransaksiPenjualan')" />
+                </div>
+            </groupbox>
         </groupbox>
     </window>
 </zk>

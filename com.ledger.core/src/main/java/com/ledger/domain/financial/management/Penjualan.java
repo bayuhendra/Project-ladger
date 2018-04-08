@@ -1,9 +1,6 @@
 package com.ledger.domain.financial.management;
 
 import com.ledger.shared.object.EntityObject;
-import com.ledger.shared.status.StatusTransaksi;
-import com.ledger.shared.type.JenisBarang;
-import com.ledger.shared.type.Kategori;
 import java.util.Date;
 import java.util.Objects;
 

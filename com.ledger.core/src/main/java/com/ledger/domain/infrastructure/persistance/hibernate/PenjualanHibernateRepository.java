@@ -73,4 +73,12 @@ public class PenjualanHibernateRepository extends HibernateRepository implements
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    @Override
+    public List<Penjualan> findbyName(String namaBarang) {
+        return (List<Penjualan>) getSession()
+                .createQuery("from com.ledger.domain.financial.management.Penjualan where namaBarang = :cid")
+                .setParameter("cid", namaBarang)
+                .list();
+    }
+
 }

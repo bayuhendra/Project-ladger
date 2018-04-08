@@ -2,9 +2,12 @@ package com.ledger.domain.financial.management;
 
 import java.util.Date;
 
-
 public class ActivaTetapBuilder {
+
     private String userID;
+    private String alamat;
+    private String noSertifikat;
+    private String sertifikat;
     private String activaTetapID;
     private String jenisActiva;
     private String namaActivaTetap;
@@ -24,6 +27,21 @@ public class ActivaTetapBuilder {
 
     public ActivaTetapBuilder setUserID(String userID) {
         this.userID = userID;
+        return this;
+    }
+
+    public ActivaTetapBuilder setAlamat(String alamat) {
+        this.alamat = alamat;
+        return this;
+    }
+
+    public ActivaTetapBuilder setNoSertifikat(String noSertifikat) {
+        this.noSertifikat = noSertifikat;
+        return this;
+    }
+
+    public ActivaTetapBuilder setSertifikat(String sertifikat) {
+        this.sertifikat = sertifikat;
         return this;
     }
 
@@ -93,7 +111,7 @@ public class ActivaTetapBuilder {
     }
 
     public ActivaTetap createActivaTetap() {
-        return new ActivaTetap(userID, activaTetapID, jenisActiva, namaActivaTetap, hargaActivaTetap, lamaPemakaian, jangkaWaktuPenyusutan, persenPenyusutan, totalPenyusutan, status, createdBy, createdDate, modifiedBy, modifiedDate);
+        return new ActivaTetap(userID, alamat, noSertifikat, sertifikat, activaTetapID, jenisActiva, namaActivaTetap, hargaActivaTetap, lamaPemakaian, jangkaWaktuPenyusutan, persenPenyusutan, totalPenyusutan, status, createdBy, createdDate, modifiedBy, modifiedDate);
     }
-    
+
 }

@@ -1,0 +1,56 @@
+<zk xmlns:w="client" xmlns:n="native">
+    <window apply="org.zkoss.bind.BindComposer"
+            viewModel="@id('vm') @init('com.ledger.main.viewmodel.DashboardVM')"
+            width="500px" height="500px" form="@id('fx') @load(vm.persediaanDTO) @save(vm.persediaanDTO, before='buttonSimpanPersediaanNew')" >
+        <!-- Modal content-->
+        <div>
+            <div class="modal-header" align="center">
+                <n:h4 class="modal-title"> Persediaan Lainnya</n:h4>
+            </div>
+            <div class="modal-body">
+                <div class="input-group">
+                    <n:h5 class="modal-title"> Jenis Barang</n:h5>
+                    <combobox width="463px" style="font-size:14px" height="25px" placeholder="-Pilih Jenis-" model="@load(vm.listJenisPersediaan)" selectedItem="@bind(vm.jenisPersediaanNew) @save(vm.jenisPersediaanNew, before='buttonSimpanPersediaanNew')" readonly="true" constraint="no empty: Jenis Persediaan tidak boleh kosong">
+                        <template name="model" var="items">
+                            <comboitem label="@load(items)" value="@load(items)"/>
+                        </template>
+                    </combobox>
+                    <n:h5 class="modal-title"> Nama Barang</n:h5>
+                    <!--<textbox class="form-control" width="463px" value="@bind(vm.namaPersediaanNew) @save(vm.namaPersediaanNew, before='buttonSimpanPersediaanNew')" constraint="no empty: Nama Persediaan tidak boleh kosong"/>-->
+                    <bandbox id="bdd" mold="rounded" autodrop="true" value="@bind(vm.namaPersediaanNew)">  
+                        <bandpopup>
+                            <listbox height="250px" width="450px" mold="paging" autopaging="true"
+                                     model="@load(vm.listNamaPersediaan)"
+                                     selectedItem="@bind(vm.namaPersediaanNew)"
+                                     onSelect="bdd.value=self.selectedItem.label; bdd.close();">
+                                <listhead>
+                                    <listheader label="Daftar Persediaan" />
+                                </listhead>
+                                <template name="model" var="items">
+                                    <listitem label="@load(items)" value="@load(items)"/>
+                                </template>
+                            </listbox>
+                        </bandpopup>
+                    </bandbox>
+                    <n:h5 class="modal-title"> Jumlah Barang</n:h5>
+                    <intbox class="form-control" width="463px" value="@bind(vm.jumlahPersediaanNew) @save(vm.jumlahPersediaanNew, before='buttonSimpanPersediaanNew')" constraint="no empty: Jumlah Persediaan tidak boleh kosong, no zero: Jumlah Persediaan tidak boleh 0"/>
+                    <n:h5 class="modal-title"> Satuan</n:h5>
+                    <combobox width="463px" style="font-size:14px" placeholder="-Pilih Satuan-" model="@load(vm.listSatuan)" selectedItem="@bind(vm.satuanNew) @save(vm.satuanNew, before='buttonSimpanPersediaanNew')" readonly="true">
+                        <template name="model" var="items">
+                            <comboitem label="@load(items)" value="@load(items)"/>
+                        </template>
+                    </combobox>
+                    <n:h5 class="modal-title"> Harga Satuan</n:h5>
+                    <doublebox id="t1" class="form-control" format="#,##0.##" width="463px" value="@bind(vm.hargaPersediaanNew) @save(vm.hargaPersediaanNew, before='buttonSimpanPersediaanNew')" constraint="no empty: Jumlah Persediaan tidak boleh kosong"/>
+                    <n:h5 class="modal-title"> Total Nilai Barang</n:h5>
+                    <doublebox id="t2" class="form-control" format="#,##0.##" width="463px" readonly="true" value="@load(vm.jumlahPersediaanNew * vm.hargaPersediaanNew)"/>
+                </div>
+                <separator width="3px"/>
+            </div>
+            <div class="modal-footer">
+                <button sclass="btn-danger" label="Close" onClick="@command('buttonKembaliPersediaan')" />
+                <button sclass="btn-success" label="Simpan" onClick="@command('buttonSimpanPersediaanLainnyaNew')" />
+            </div>
+        </div>
+    </window>
+</zk>

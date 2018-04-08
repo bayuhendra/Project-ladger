@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+  "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+  "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping default-access="field">
+    <class mutable="true" name="com.ledger.domain.financial.management.Retur" table="TXN_RETUR">
+        <!--<cache usage="read-only"/>-->
+        <id column="id" name="id">
+            <generator class="org.hibernate.id.IdentityGenerator"/>
+            <!--<generator class="increment"/>-->
+        </id>
+        <property column="returID" name="returID" not-null="false"/>
+        <property column="userID" name="userID" not-null="false"/>
+        <property column="transaksiID" name="transaksiID" not-null="false"/>
+        <property column="namaBarang" name="namaBarang" not-null="false"/>
+        <property column="jenisRetur" name="jenisRetur" not-null="false"/>
+        <property column="satuan" name="satuan" not-null="false"/>
+        <property column="jumlah" name="jumlah" not-null="false"/>
+        <property column="hargaBarang" name="hargaBarang" not-null="false"/>
+        <property column="totalHarga" name="totalHarga" not-null="false"/>
+        <property column="tanggalRetur" name="tanggalRetur" not-null="false"/>
+        <property column="tipePembayaran" name="tipePembayaran" not-null="false"/>
+        <property column="buktiPembelian" name="buktiPembelian" not-null="false"/>
+        <property column="createdBy" name="createdBy" not-null="false"/>
+        <property column="createdDate" name="createdDate" not-null="false"/>
+        <property column="modifiedDate" name="modifiedDate" not-null="false"/>
+        <property column="modifiedBy" name="modifiedBy" not-null="false"/>
+    </class>
+</hibernate-mapping>

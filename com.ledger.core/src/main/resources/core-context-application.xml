@@ -74,4 +74,11 @@
         <property name="openingBalanceFlagDTOAssembler" ref="openingBalanceFlagDTOAssembler"/>
         <property name="openingBalanceFlagRepository" ref="openingBalanceFlagRepository"/>
     </bean>
+    
+    <bean id="returDTOAssembler" class="com.ledger.interfaces.web.facade.dto.assembler.finance.management.ReturDTOAssembler">
+    </bean>
+    <bean id="returService" class="com.ledger.application.impl.ReturServiceImpl">
+        <property name="returDTOAssembler" ref="returDTOAssembler"/>
+        <property name="returRepository" ref="returRepository"/>
+    </bean>
 </beans>

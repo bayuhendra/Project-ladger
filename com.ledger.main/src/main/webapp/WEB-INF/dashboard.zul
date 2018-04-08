@@ -91,21 +91,22 @@
                 </cell>
                 <div align="right" class="bs-example">
                     <button label="Tambah Hutang Usaha" sclass="btn-primary" onClick="@command('buttonTambahHutangNew')"/>
-                    <button label="Tambah Hutang Lainnya" sclass="btn-primary" onClick="@command('buttonTambahHutangNew')"/>
+                    <button label="Tambah Hutang Lainnya" sclass="btn-primary" onClick="@command('buttonTambahHutangLainyaNew')"/>
                 </div>
                 <separator height="10px"/>
                 <listbox mold="paging" emptyMessage="${labels.common.noDataFound}"
                          model="@bind(vm.hutangDTOs)">
                     <listhead>
-                        <listheader label="ID" width="30%" align="center"/>
-                        <listheader label="Hutang" width="30%" align="center"/>
+                        <listheader label="Jenis Hutang" width="20%" align="center"/>
+                        <listheader label="Nama Hutang" width="30%" align="center"/>
                         <listheader label="Nilai Hutang" width="20%" align="center"/>
-                        <listheader label="Aksi" width="20%" align="center"/>
+                        <listheader label="Tanggal Jatuh Tempo" width="20%" align="center"/>
+                        <listheader label="Aksi" width="1s0%" align="center"/>
                     </listhead>
                     <template name="model">
                         <listitem value="${each}">
                             <listcell>
-                                <label width="100%" value="@load(each.hutangID)"/>
+                                <label width="100%" value="@load(each.jenisHutang)"/>
                             </listcell>
                             <listcell>
                                 <label width="100%" value="@load(each.namaHutang)"/>
@@ -113,8 +114,11 @@
                             <listcell>
                                 <label width="100%" value="@load(c:formatNumber(each.jumlahHutang, '#,###.##'))"/>
                             </listcell>
+                            <listcell>
+                                <label width="100%" value="@load(each.tanggalJatuhTempo)"/>
+                            </listcell>
                             <listcell >
-                                <a onClick="@command('detailHutang', object=each)" image="/images/skk_edit.png" sclass="btn btn-default"/>
+                                <!--<a onClick="@command('detailHutang', object=each)" image="/images/skk_edit.png" sclass="btn btn-default"/>-->
                                 <a onClick="@command('deleteHutang', object=each)" image="/images/clear_x.png" sclass="btn btn-default"/>
                             </listcell>
                         </listitem>
@@ -148,21 +152,22 @@
                 </cell>
                 <div align="right" class="bs-example">
                     <button label="Tambah Piutang Usaha" sclass="btn-primary" onClick="@command('buttonTambahPiutangNew')"/>
-                    <button label="Tambah Piutang Lainnya" sclass="btn-primary" onClick="@command('buttonTambahPiutangNew')"/>
+                    <button label="Tambah Piutang Lainnya" sclass="btn-primary" onClick="@command('buttonTambahPiutangLainnyaNew')"/>
                 </div>
                 <separator height="10px"/>
                 <listbox mold="paging" emptyMessage="${labels.common.noDataFound}"
                          model="@bind(vm.piutangDTOs)">
                     <listhead>
-                        <listheader label="ID" width="30%" align="center"/>
-                        <listheader label="Piutang" width="30%" align="center"/>
+                        <listheader label="Jenis Piutang" width="20%" align="center"/>
+                        <listheader label="Nama Piutang" width="30%" align="center"/>
                         <listheader label="Nilai Piutang" width="20%" align="center"/>
-                        <listheader label="Aksi" width="20%" align="center"/>
+                        <listheader label="Tanggal Jatuh Tempo" width="20%" align="center"/>
+                        <listheader label="Aksi" width="10%" align="center"/>
                     </listhead>
                     <template name="model">
                         <listitem value="${each}">
                             <listcell>
-                                <label width="100%" value="@load(each.piutangID)"/>
+                                <label width="100%" value="@load(each.jenisPiutang)"/>
                             </listcell>
                             <listcell>
                                 <label width="100%" value="@load(each.namaPiutang)"/>
@@ -170,8 +175,11 @@
                             <listcell>
                                 <label width="100%" value="@load(c:formatNumber(each.jumlahPiutang, '#,###.##'))"/>
                             </listcell>
+                            <listcell>
+                                <label width="100%" value="@load(each.tanggalJatuhTempo)"/>
+                            </listcell>
                             <listcell >
-                                <a onClick="@command('detailPiutang', object=each)" image="/images/skk_edit.png" sclass="btn btn-default"/>
+                                <!--<a onClick="@command('detailPiutang', object=each)" image="/images/skk_edit.png" sclass="btn btn-default"/>-->
                                 <a onClick="@command('deletePiutang', object=each)" image="/images/clear_x.png" sclass="btn btn-default"/>
                             </listcell>
                         </listitem>
@@ -205,34 +213,38 @@
                 </cell>
                 <div align="right" class="bs-example">
                     <button label="Tambah Persediaan Barang Dagangan" sclass="btn-primary" onClick="@command('buttonTambahPersediaanNew')"/>
-                    <button label="Tambah Persediaan Lainnya" sclass="btn-primary" onClick="@command('buttonTambahPersediaanNew')"/>
+                    <button label="Tambah Persediaan Lainnya" sclass="btn-primary" onClick="@command('buttonTambahPersediaanLainnyaNew')"/>
                 </div>
                 <separator height="10px"/>
                 <listbox mold="paging" emptyMessage="${labels.common.noDataFound}"
                          model="@bind(vm.persediaanDTOs)">
                     <listhead>
-                        <listheader label="ID" width="20%" align="center"/>
-                        <listheader label="Jenis Persediaan" width="15%" align="center"/>
-                        <listheader label="Nama Persediaan" width="25%" align="center"/>
-                        <listheader label="Nilai" width="20%" align="center"/>
-                        <listheader label="Aksi" width="20%" align="center"/>
+                        <listheader label="Jenis Persediaan" width="20%" align="center"/>
+                        <listheader label="Nama Persediaan" width="20%" align="center"/>
+                        <listheader label="Jumlah" width="10%" align="center"/>
+                        <listheader label="Total Nilai Persediaan" width="20%" align="center"/>
+                        <listheader label="Harga Rata-Rata" width="20%" align="center"/>
+                        <listheader label="Aksi" width="10%" align="center"/>
                     </listhead>
                     <template name="model">
                         <listitem value="${each}">
                             <listcell>
-                                <label width="100%" value="@load(each.persediaanID)"/>
-                            </listcell>
-                            <listcell>
-                                <label width="100%" value="@load(each.jenisPersediaan)"/>
+                                <label width="100%" value="@load(each.tipePersediaan)"/>
                             </listcell>
                             <listcell>
                                 <label width="100%" value="@load(each.namaPersediaan)"/>
                             </listcell>
                             <listcell>
+                                <label width="100%" value="@load(each.jumlahPersediaan)"/>
+                            </listcell>
+                            <listcell>
                                 <label width="100%" value="@load(c:formatNumber(each.totalHargaPersediaan, '#,###.##'))"/>
                             </listcell>
+                            <listcell>
+                                <label width="100%" value="@load(c:formatNumber(each.hargaRataRata, '#,###.##'))"/>
+                            </listcell>
                             <listcell >
-                                <a onClick="@command('detailPersediaan', object=each)" image="/images/skk_edit.png" sclass="btn btn-default"/>
+                                <!--<a onClick="@command('detailPersediaan', object=each)" image="/images/skk_edit.png" sclass="btn btn-default"/>-->
                                 <a onClick="@command('deletePersediaan', object=each)" image="/images/clear_x.png" sclass="btn btn-default"/>
                             </listcell>
                         </listitem>
@@ -265,24 +277,25 @@
                     </n:p>
                 </cell>
                 <div align="right" class="bs-example">
-                    <button label="Tambah Aktifa Tanah dan Bangunan" sclass="btn-primary" onClick="@command('buttonTambahActivaTetapNew')"/>
-                    <button label="Tambah Aktifa Kendaraan" sclass="btn-primary" onClick="@command('buttonTambahActivaTetapNew')"/>
-                    <button label="Tambah Aktifa Lainnya" sclass="btn-primary" onClick="@command('buttonTambahActivaTetapNew')"/>
+                    <button label="Tambah Aktifa Tanah dan Bangunan" sclass="btn-primary" onClick="@command('buttonTambahActivaTetapTanahNew')"/>
+                    <button label="Tambah Aktifa Kendaraan" sclass="btn-primary" onClick="@command('buttonTambahActivaTetapKendaraanNew')"/>
+                    <button label="Tambah Aktifa Lainnya" sclass="btn-primary" onClick="@command('buttonTambahActivaTetapLainnyaNew')"/>
                 </div>
                 <separator height="10px"/>
                 <listbox mold="paging" emptyMessage="${labels.common.noDataFound}"
                          model="@bind(vm.activaTetapDTOs)">
                     <listhead>
-                        <listheader label="ID" width="10%" align="center"/>
-                        <listheader label="Nama Activa Tetap" width="25%" align="center"/>
-                        <listheader label="Nilai Activa Tetap" width="20%" align="center"/>
-                        <listheader label="Nilai Penyusutan" width="20%" align="center"/>
-                        <listheader label="Aksi" width="25%" align="center"/>
+                        <listheader label="Jenis Activa" width="20%" align="center"/>
+                        <listheader label="Nama Activa" width="20%" align="center"/>
+                        <listheader label="Nilai Activa" width="15%" align="center"/>
+                        <listheader label="Jangka Waktu Penyusutan" width="20%" align="center"/>
+                        <listheader label="Nilai Penyusutan" width="15%" align="center"/>
+                        <listheader label="Aksi" width="10%" align="center"/>
                     </listhead>
                     <template name="model">
                         <listitem value="${each}">
                             <listcell>
-                                <label width="100%" value="@load(each.activaTetapID)"/>
+                                <label width="100%" value="@load(each.jenisActiva)"/>
                             </listcell>
                             <listcell>
                                 <label width="100%" value="@load(each.namaActivaTetap)"/>
@@ -291,10 +304,13 @@
                                 <label width="100%" value="@load(c:formatNumber(each.hargaActivaTetap, '#,###.##'))"/>
                             </listcell>
                             <listcell>
+                                <label width="100%" value="@load(each.lamaPemakaian)"/>
+                            </listcell>
+                            <listcell>
                                 <label width="100%" value="@load(c:formatNumber(each.totalPenyusutan, '#,###.##'))"/>
                             </listcell>
                             <listcell >
-                                <a onClick="@command('detailActivaTetap', object=each)" image="/images/skk_edit.png" sclass="btn btn-default"/>
+                                <!--<a onClick="@command('detailActivaTetap', object=each)" image="/images/skk_edit.png" sclass="btn btn-default"/>-->
                                 <a onClick="@command('deleteActivaTetap', object=each)" image="/images/clear_x.png" sclass="btn btn-default"/>
                             </listcell>
                         </listitem>
@@ -328,7 +344,7 @@
                     <a class="btn btn-primary btn-lg" onClick="@command('buttonTambahTransaksiPokok')">
                         Tambah Transaksi Lainnya
                     </a>
-                    <a class="btn btn-primary btn-lg" onClick="@command('buttonTambahTransaksiPokok')">
+                    <a class="btn btn-primary btn-lg" onClick="@command('buttonKlikHistoryTransaksi')">
                         Riwayat Transaksi
                     </a>
                 </n:p>

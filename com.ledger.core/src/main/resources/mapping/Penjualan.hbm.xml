@@ -8,8 +8,8 @@
     <class mutable="true" name="com.ledger.domain.financial.management.Penjualan" table="TXN_PENJUALAN">
         <!--<cache usage="read-only"/>-->
         <id column="id" name="id">
-            <!--<generator class="org.hibernate.id.IdentityGenerator"/>-->
-            <generator class="increment"/>
+            <generator class="org.hibernate.id.IdentityGenerator"/>
+            <!--<generator class="increment"/>-->
         </id>
         <property column="penjualanID" name="penjualanID" not-null="false"/>
         <property column="userID" name="userID" not-null="false"/>

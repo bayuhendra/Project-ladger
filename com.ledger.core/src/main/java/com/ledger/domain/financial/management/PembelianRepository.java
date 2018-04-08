@@ -23,6 +23,8 @@ public interface PembelianRepository {
 
     List<Pembelian> findAll();
 
+    List<Pembelian> findbyName(String namaBarang);
+
     List<Pembelian> findByParams(Map map);
 
     List<Pembelian> findAllByStatus(StatusTransaksi statusTransaksi);

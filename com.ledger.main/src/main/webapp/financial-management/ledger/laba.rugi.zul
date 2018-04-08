@@ -1,8 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
-<zk xmlns="http://www.zkoss.org/2005/zul">
+<zk xmlns:w="client" xmlns:n="native">
     <window closable="true" apply="org.zkoss.bind.BindComposer"
             viewModel="@id('vm') @init('com.ledger.main.viewmodel.DashboardVM')">
+        <div align="center">
+            <cell>
+                <n:p>
+                    <label style="font-size: 25px; font-weight: bold" value="LAPORAN LABA RUGI"/>
+                </n:p>
+                <n:p>
+                    <label style="font-weight: bold" value="@load(vm.user.userSpecificationDTO.immediateSupervisorUserName)"/>
+                </n:p>
+                <n:p>
+                    <label style="font-weight: bold" value="Periode April 2018"/>
+                </n:p>
+            </cell>
+        </div>
         <div>
             <grid>
                 <columns sizable="true">
@@ -28,7 +41,7 @@
                         <label value="b. Diskon" style="padding-left:15px" />
                         <cell>
                             <!--<label value="Rp "/>-->
-                            <label width="100%" value="@load(c:formatNumber(50000000, '#,###.##'))" />
+                            <label width="100%" value="@load(c:formatNumber(0, '#,###.##'))" />
                         </cell>
                         <cell>
                         </cell>
@@ -46,21 +59,24 @@
                         <label value="d. Pendapatan Lain" style="padding-left:15px" />
                         <cell>
                             <!--<label value="Rp "/>-->
-                            <label width="100%" value="@load(c:formatNumber(150000000, '#,###.##'))" />
+                            <label width="100%" value="@load(c:formatNumber(0, '#,###.##'))" />
                         </cell>
                         <cell>
                         </cell>
                     </row>
                     <row>
-                        <label value="TOTAL PENDAPATAN" style="padding-left:15px" />
+                        <label  value="TOTAL PENDAPATAN" style="padding-left:15px; font-weight: bold" />
+                        <cell>
+                            
+                        </cell>
                         <cell>
                             <!--<label value="Rp "/>-->
-                            <label width="100%" value="@load(c:formatNumber(350000000, '#,###.##'))" />
+                            <label width="100%" style="padding-left:15px; font-weight: bold" value="@load(c:formatNumber(350000000, '#,###.##'))" />
                         </cell>
                     
                     </row>
                     <group label="Harga Pokok Penjualan" open="true">
-                        <label width="100%" value="@load(c:formatNumber(150000000, '#,###.##'))" />
+                        <label/>
                         <label/>
                     </group>
                     <row>
@@ -77,7 +93,7 @@
                         <label value="a. Gaji Pegawai" style="padding-left:15px" />
                         <cell>
                             <!--<label value="Rp "/>-->
-                            <label width="100%" value="@load(c:formatNumber(35000000, '#,###.##'))" />
+                            <label width="100%" value="@load(c:formatNumber(0, '#,###.##'))" />
                         </cell>
                         <cell>
                         </cell>
@@ -86,7 +102,7 @@
                         <label value="b. Listrik" style="padding-left:15px" />
                         <cell>
                             <!--<label value="Rp "/>-->
-                            <label width="100%" value="@load(c:formatNumber(10000000, '#,###.##'))" />
+                            <label width="100%" value="@load(c:formatNumber(0, '#,###.##'))" />
                         </cell>
                         <cell>
                         </cell>
@@ -95,7 +111,7 @@
                         <label value="c. Telpon dan Internet" style="padding-left:15px" />
                         <cell>
                             <!--<label value="Rp "/>-->
-                            <label width="100%" value="@load(c:formatNumber(10000000, '#,###.##'))" />
+                            <label width="100%" value="@load(c:formatNumber(0, '#,###.##'))" />
                         </cell>
                         <cell>
                         </cell>
@@ -104,7 +120,7 @@
                         <label value="d. Perlengkapan Kantor" style="padding-left:15px" />
                         <cell>
                             <!--<label value="Rp "/>-->
-                            <label width="100%" value="@load(c:formatNumber(7000000, '#,###.##'))" />
+                            <label width="100%" value="@load(c:formatNumber(0, '#,###.##'))" />
                         </cell>
                         <cell>
                         </cell>
@@ -122,7 +138,7 @@
                         <label value="f. Transportasi dan Bensin" style="padding-left:15px" />
                         <cell>
                             <!--<label value="Rp "/>-->
-                            <label width="100%" value="@load(c:formatNumber(15000000, '#,###.##'))" />
+                            <label width="100%" value="@load(c:formatNumber(0, '#,###.##'))" />
                         </cell>
                         <cell>
                         </cell>
@@ -131,26 +147,51 @@
                         <label value="g. Biaya Tak Terduga" style="padding-left:15px" />
                         <cell>
                             <!--<label value="Rp "/>-->
-                            <label width="100%" value="@load(c:formatNumber(5000000, '#,###.##'))" />
+                            <label width="100%" value="@load(c:formatNumber(0, '#,###.##'))" />
                         </cell>
                         <cell>
                         </cell>
                     </row>
                     <row>
-                        <label value="TOTAL BIAYA" style="padding-left:15px" />
+                        <label value="TOTAL BIAYA" style="padding-left:15px; font-weight: bold" />
+                        <cell>
+                            
+                        </cell>
                         <cell>
                             <!--<label value="Rp "/>-->
-                            <label width="100%" value="@load(c:formatNumber(102000000, '#,###.##'))" />
+                            <label width="100%" style="padding-left:15px; font-weight: bold" value="@load(c:formatNumber(220000000, '#,###.##'))" />
                         </cell>
                     
                     </row>
                     <row>
-                        <label value="LABA SEBELUM PAJAK" style="padding-left:15px" />
+                        <label value="LABA SEBELUM PAJAK" style="padding-left:15px; font-weight: bold" />
+                        <cell>
+                            
+                        </cell>
                         <cell>
                             <!--<label value="Rp "/>-->
-                            <label width="100%" value="@load(c:formatNumber(98000000, '#,###.##'))" />
+                            <label width="100%" style="padding-left:15px; font-weight: bold" value="@load(c:formatNumber(130000000, '#,###.##'))" />
                         </cell>
-                    
+                    </row>
+                    <row>
+                        <label value="PAJAK" style="padding-left:15px; font-weight: bold" />
+                        <cell>
+                            
+                        </cell>
+                        <cell>
+                            <!--<label value="Rp "/>-->
+                            <label width="100%" style="padding-left:15px; font-weight: bold" value="@load(c:formatNumber(13000000, '#,###.##'))" />
+                        </cell>
+                    </row>
+                    <row>
+                        <label value="LABA BERSIH" style="padding-left:15px; font-weight: bold" />
+                        <cell>
+                            
+                        </cell>
+                        <cell>
+                            <!--<label value="Rp "/>-->
+                            <label width="100%" style="padding-left:15px; font-weight: bold" value="@load(c:formatNumber(117000000, '#,###.##'))" />
+                        </cell>
                     </row>
                 </rows>
             </grid>

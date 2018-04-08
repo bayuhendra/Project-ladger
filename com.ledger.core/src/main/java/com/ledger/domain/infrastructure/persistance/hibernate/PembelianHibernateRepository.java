@@ -73,4 +73,12 @@ public class PembelianHibernateRepository extends HibernateRepository implements
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    @Override
+    public List<Pembelian> findbyName(String namaBarang) {
+        return (List<Pembelian>) getSession()
+                .createQuery("from com.ledger.domain.financial.management.Pembelian where namaBarang = :cid")
+                .setParameter("cid", namaBarang)
+                .list();
+    }
+
 }

@@ -1,0 +1,34 @@
+<zk xmlns:w="client" xmlns:n="native">
+    <window apply="org.zkoss.bind.BindComposer"
+            viewModel="@id('vm') @init('com.ledger.main.viewmodel.DashboardVM')"
+            width="500px" height="350px" form="@id('fx') @load(vm.piutangDTO) @save(vm.piutangDTO, before='buttonSimpanPiutangNew')" >
+        <!-- Modal content-->
+        <div>
+            <div class="modal-header" align="center">
+                <n:h4 class="modal-title"> Piutang Lainnya</n:h4>
+            </div>
+            <div class="modal-body">
+                <div class="input-group">
+                    <n:h5 class="modal-title"> Nama Piutang</n:h5>
+                    <!--<textbox class="form-control" width="463px" value="@bind(vm.namaPiutangNew) @save(vm.namaPiutangNew, before='buttonSimpanPiutangNew')" constraint="no empty: Nama Piutang tidak boleh kosong"/>-->
+                    <combobox width="463px" style="font-size:14px" placeholder="-Pilih Jenis Piutang" model="@load(vm.listNamaPiutang)" selectedItem="@bind(vm.namaPiutangNew)" readonly="true" >
+                        <template name="model" var="items">
+                            <comboitem label="@load(items)" value="@load(items)"/>
+                        </template>
+                    </combobox>
+                    <n:h5 class="modal-title"> Nilai Piutang</n:h5>
+                    <doublebox class="form-control" format="#,##0.##" width="463px" value="@bind(vm.jumlahPiutangNew) @save(vm.jumlahPiutangNew, before='buttonSimpanPiutangNew')" constraint="no empty: Jumlah Piutang tidak boleh kosong, no zero Jumlah Piutang tidak boleh 0"/>
+                    <n:h5 class="modal-title"> Tanggal Jatuh Tempo</n:h5>
+                    <datebox sclass="isi" format="long" width="270px" 
+                             readonly="true"
+                             value="@bind(vm.tanggalJatuhTempoPiutangNew)"/>
+                </div>
+                <separator width="3px"/>
+            </div>
+            <div class="modal-footer">
+                <button sclass="btn-danger" label="Close" onClick="@command('buttonKembaliPiutang')" />
+                <button sclass="btn-success" label="Simpan" onClick="@command('buttonSimpanPiutangLainnyaNew')" />
+            </div>
+        </div>
+    </window>
+</zk>

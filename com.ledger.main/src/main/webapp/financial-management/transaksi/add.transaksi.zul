@@ -1,20 +1,21 @@
 <zk xmlns:w="client" xmlns:n="native">
     <window apply="org.zkoss.bind.BindComposer"
             viewModel="@id('vm') @init('com.ledger.main.viewmodel.DashboardVM')"
-            width="600px" height="800px" >
+            width="600px" height="900px" >
         <!-- Modal content-->
         <div class="container" xmlns:n="native" visible="true">
             <navbar mold="bs-tabs">
-                <navitem label="Transaksi Pokok" selected="true" onClick="@command('buttonKlikTransaksiPokok')"/>
-                <navitem label="Transaksi Lainnya" onClick="@command('buttonKlikTransaksiLainnya')"/>
-                <navitem label="Persediaan" onClick="@command('buttonKlikDataPersediaan')"/>
+                <navitem label="Pembelian" selected="true" onClick="@command('buttonKlikTransaksiPokok')"/>
+                <navitem label="Penjualan" onClick="@command('buttonKlikTransaksiPenjualan')"/>
+                <navitem label="Retur Pembelian" onClick="@command('buttonKlikTransaksiReturPembelian')"/>
+                <navitem label="Retur Penjualan" onClick="@command('buttonKlikTransaksiReturPenjualan')"/>
             </navbar>
                 
             <separator height="5px"></separator>
             <hlayout>
                 <include src="@load(vm.transaksiTab1)" hflex="1"/>
             </hlayout>
-            <div class="modal-footer">
+            <div >
                 <button sclass="btn-danger" label="Close" onClick="@command('buttonCancel')" />
             </div>
         </div>
