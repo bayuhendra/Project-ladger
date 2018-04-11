@@ -109,9 +109,6 @@
                                 <p class="tile-title">Sebelum melanjutkan untuk menggunakan aplikasi ini, Anda diminta untuk mengisi data Opening Balance terlebih dahulu.
 
                                     Apabila Anda sudah siap, mari kita mulai dengan klik tombol Mulai dibawah ini.</p>
-                                <!--                                <button class="btn btn-primary" type="button">
-                                    <i class="fa fa-fw fa-lg fa-check-circle"></i>Mulai
-                                </button>-->
                                 <a href="langkah-1.zul" class="btn btn-primary" role="button">
                                     <i class="fa fa-fw fa-lg fa-check-circle"></i>Mulai</a>
                             </div>
