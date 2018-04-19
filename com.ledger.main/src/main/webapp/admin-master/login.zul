@@ -4,9 +4,8 @@
 <?meta http-equiv="X-UA-Compatible" content="IE=edge"?>
 <?meta name="viewport" content="width=device-width, initial-scale=1"?>
 <?link rel="stylesheet" type="text/css" href="css/main.css"?>
-<!-- Font-icon css-->
 <?link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"?>
-<zk xmlns="http://www.zkoss.org/2005/zul">
+<zk xmlns:w="client" xmlns:n="native">
     <!--<window>-->
     <html>
         <body>
@@ -18,16 +17,19 @@
                     <h1>FN</h1>
                 </div>
                 <div class="login-box" align-content="center">
-                    <form class="login-form" action="workspace.zul">
+                    <form class="login-form" id="f" name="f" action="/ledger/processLogin" method="POST" xmlns:h="native">
                         <h3 class="login-head">
                             Financial Management</h3>
                         <div class="form-group">
                             <label class="control-label">USERNAME</label>
-                            <input class="form-control" type="text" placeholder="Email"></input>
+                            <input class="form-control" type="text" placeholder="Username" name="username"></input>
                         </div>
                         <div class="form-group">
                             <label class="control-label">PASSWORD</label>
-                            <input class="form-control" type="password" placeholder="Password"></input>
+                            <input class="form-control" type="password" placeholder="Password" name="password"></input>
+                        </div>
+                        <div visible="false">
+                            <input class="input100" TYPE='HIDDEN' name="ldapDomain" value="local.default.com"> </input>
                         </div>
                         <div class="form-group">
                             <div class="utility">
@@ -37,17 +39,15 @@
                                         <span class="label-text">Stay Signed in</span>
                                     </label>
                                 </div>
-                                <!--                                <p class="semibold-text mb-2">
-                                    <a href="#" data-toggle="flip">Register</a>
-                                </p>-->
                                 <p class="semibold-text mb-2">
                                     <a href="#" data-toggle="flip">Register</a>
                                 </p>
                             </div>
                         </div>
                         <div class="form-group btn-container">
-                            <button class="btn btn-primary btn-block">
-                                <i class="fa fa-sign-in fa-lg fa-fw"></i>SIGN IN</button>
+                            <button class="btn btn-primary btn-block" type="submit">
+                                <i class="fa fa-sign-in fa-lg fa-fw"></i>SIGN IN
+                            </button>
                         </div>
                     </form>
                     <form class="forget-form" action="workspace.zul">
@@ -58,8 +58,6 @@
                             <input class="form-control" type="text" placeholder="Nama Lengkap"></input>
                             <label class="control-label">Email</label>
                             <input class="form-control" type="text" placeholder="Email"></input>
-                            <!--                            <label class="control-label">Username</label>
-                            <input class="form-control" type="text" placeholder="Username"></input>-->
                         </div>
                         <div class="form-group btn-container">
                             <button class="btn btn-primary btn-block">
@@ -74,12 +72,10 @@
                     </form>
                 </div>
             </section>
-            <!-- Essential javascripts for application to work-->
             <script src="js/jquery-3.2.1.min.js"></script>
             <script src="js/popper.min.js"></script>
             <script src="js/bootstrap.min.js"></script>
             <script src="js/main.js"></script>
-            <!-- The javascript plugin to display page loading on top-->
             <script src="js/plugins/pace.min.js"></script>
             <script type="text/javascript">
                 // Login Page Flipbox control
@@ -88,6 +84,9 @@
                 return false;
                 });
             </script>
+            <html style="color:red; font-size: 12px;" if="${not empty param['login_error']}">
+        <![CDATA[ <p style="text-align:center;">${SPRING_SECURITY_LAST_EXCEPTION.message}</p> ]]>
+            </html>
         </body>
     </html>
     <!--</window>-->
